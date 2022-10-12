@@ -1,0 +1,44 @@
+{
+  "name": "nextjs-app",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=14.0.0",
+    "yarn": ">=1.22.0",
+    "npm": "please-use-yarn"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prettier": "prettier --write .",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
+    "eslint": "8.25.0",
+    "eslint-config-next": "12.3.1",
+    "eslint-plugin-storybook": "^0.6.5",
+    "prettier": "^2.7.1"
+  },
+  "resolutions": {
+    "webpack": "^5"
+  }
+}
