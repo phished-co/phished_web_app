@@ -1,0 +1,61 @@
+.container {
+  display: grid;
+  justify-content: center;
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  font-size: 1rem;
+  color: black;
+  max-width: 400px;
+  min-width: 280px;
+  margin: 0 auto;
+}
+
+.fieldset {
+  border: none;
+  margin: 1rem 0 1rem 0;
+  padding: 0;
+}
+
+.a {
+  cursor: pointer;
+  display: block;
+  color: blue;
+  margin: 1rem 0 1rem 0;
+}
+
+.a:hover {
+  text-decoration: underline;
+}
+
+.bottom_tip {
+  text-align: center;
+  text-decoration: none;
+  margin-top: 2rem;
+  color: blue;
+}
+
+.bottom_tip:hover {
+  text-decoration: underline;
+}
+
+.or {
+  margin: 2rem 0 0.5rem 0;
+}
+
+.icons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.square {
+  width: 44px;
+  height: 44px;
+  background: gray;
+}
+
+.submitting_elements {
+  list-style: none;
+  padding: 0;
+}
