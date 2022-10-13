@@ -1,8 +1,3 @@
-.header {
-  background: gray;
-  text-align: center;
-}
-
 /* Hero */
 .hero_cont {
   align-items: center;
@@ -39,7 +34,7 @@
 
 /* Graphic */
 .graphic_cont {
-  background: gray;
+  background: lightgray;
   height: 400px;
 }
 

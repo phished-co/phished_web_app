@@ -1,10 +1,11 @@
 import styles from '../styles/landing_page.module.css'
+import Header from "../components/header/Header"
 import Login from "../components/login/Login"
 
 export default function Home() {
   return (
     <>
-      <div className={styles.header}>Placeholder header</div>
+      <Header />
       <main>
         <div className={styles.hero_cont}>
           <div className={styles.hero_half}>Protect phriends and phamily phrom phishing by phishing them yourselph.</div>

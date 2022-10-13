@@ -52,13 +52,13 @@ export default function Login() {
     <form onSubmit={handleSubmit}>
       <fieldset className={styles.fieldset} disabled={submitting}>
         <label>
-          <p>Email</p>
+          <p className={styles.input_label}>Email</p>
           <input name='email' onChange={handleChange} value={formData.email || ''} />
         </label>
       </fieldset>
       <fieldset className={styles.fieldset} disabled={submitting}>
         <label>
-          <p>Password</p>
+          <p className={styles.input_label}>Password</p>
           <input name='password' onChange={handleChange} type='password' value={formData.password || ''} />
         </label>
       </fieldset>

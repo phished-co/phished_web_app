@@ -14,8 +14,11 @@
 
 .fieldset {
   border: none;
-  margin: 1rem 0 1rem 0;
   padding: 0;
+}
+
+.input_label {
+  margin-bottom: 0.25rem;
 }
 
 .a {
@@ -52,7 +55,7 @@
 .square {
   width: 44px;
   height: 44px;
-  background: gray;
+  background: lightgray;
 }
 
 .submitting_elements {
