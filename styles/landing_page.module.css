@@ -1,0 +1,96 @@
+/* Hero */
+.hero_cont {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.hero_half {
+  flex: 1 1;
+  font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem);
+  min-width: 280px;
+  padding: 2rem;
+}
+
+/* If you love someone, phish them. */
+.love_cont {
+  background: blue;
+  color: white;
+  width: 100vw;
+}
+
+.love_text {
+  font-size: clamp(3rem, 4vw + 1rem, 5rem);
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 2rem 1rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Graphic */
+.graphic_cont {
+  background: lightgray;
+  height: 400px;
+}
+
+/* Features list */
+
+.feature_wrap {
+  display: grid;
+  padding: 2rem 2rem 0 2rem;
+  justify-content: center;
+}
+
+.feature_cont {
+  max-width: 1280px;
+}
+
+.feature {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .feature_cont {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+  }
+}
+
+.learn_more {
+  margin: 2rem auto;
+}
+
+/* Big text */
+.big_cont {
+  background: lightgray;
+  padding: clamp(2rem, 4vw + 1rem, 4rem);
+}
+
+.big_text {
+  color: black;
+  font-size: clamp(2.5rem, 4vw + 1rem, 4rem);
+  line-height: 1.4;
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+/* About */
+.about_cont {
+  display: grid;
+  margin: 0 auto;
+  max-width: 1280px;
+  text-align: center;
+  padding: 2rem;
+}
+
+.about_cont button {
+  margin: 0 auto;
+  margin-top: 1rem;
+}
