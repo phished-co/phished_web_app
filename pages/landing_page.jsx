@@ -29,19 +29,19 @@ export default function Home() {
         </div>
         <div className={styles.big_cont}>
           <div className={styles.big_text}>
-            <p>Over 18 million fish are caught every year.</p>
+            <p>Over <span className={styles.fish_stat}>18 million fish</span> are caught every year.</p>
             <br />
-            <p>In 2021 over $327 million dollars were lost to online phishing scams.</p>
+            <p>In 2021 over <span className={styles.money}> $327 million dollars</span> were lost to online phishing scams.</p>
             <br />
-            <p>On average, victims lose $20,000 dollars.</p>
+            <p>On average, victims lose  <span className={styles.average_lost}>$20,000 dollars.</span></p>
           </div>
-        </div>
+        </div >
         <div className={styles.about_cont}>Phished Co. is a non-profit organization with a charitable purpose to educate through structured teaching and learning.
           <div className={styles.centre}>
             <Button label='Learn More' primary />
           </div>
         </div>
-      </main>
+      </main >
     </>
   )
 }
