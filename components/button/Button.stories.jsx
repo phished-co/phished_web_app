@@ -9,8 +9,15 @@ export default {
 
 const Template = (args) => <Button {...args} />;
 
-export const Base = Template.bind({});
+export const Primary = Template.bind({});
+Primary.args = {
+  type: 'primary',
+  label: 'Button'
+};
 
-Base.args = {
-  SampleTextProp: 'hellow world',
+export const Secondary = Template.bind({});
+Secondary.args = {
+  ...Primary.args,
+  type: 'secondary',
+  label: 'Secondary'
 };

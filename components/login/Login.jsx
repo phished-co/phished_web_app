@@ -63,7 +63,10 @@ export default function Login() {
         </label>
       </fieldset>
       <a className={styles.a} herf='#'>Forgot your password?</a>
-      <button type='submit' disabled={submitting}>Login</button>
+
+      {/* not making this the button component cause it messes up the disabled and other stuff  */}
+      {/* fix later */}
+      <button className={styles.submit} type='submit' disabled={submitting}>Login</button>
     </form>
     <p className={styles.or}>Or log in with:</p>
     <div className={styles.icons}>

@@ -1,64 +1,29 @@
-.container {
-  display: grid;
-  justify-content: center;
-  background: white;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  font-size: 1rem;
-  color: black;
-  max-width: 400px;
-  min-width: 280px;
-  margin: 0 auto;
-}
-
-.fieldset {
+.button {
   border: none;
-  padding: 0;
-}
-
-.input_label {
-  margin-bottom: 0.25rem;
-}
-
-.a {
+  border-radius: 8px;
+  padding: 0 1.5rem;
+  margin: 1rem;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .1) 0 2px 5px 0, rgba(0, 0, 0, .07) 0 1px 1px 0;
   cursor: pointer;
-  display: block;
-  color: blue;
-  margin: 1rem 0 1rem 0;
-}
-
-.a:hover {
-  text-decoration: underline;
-}
-
-.bottom_tip {
-  text-align: center;
-  text-decoration: none;
-  margin-top: 2rem;
-  color: blue;
-}
-
-.bottom_tip:hover {
-  text-decoration: underline;
-}
-
-.or {
-  margin: 2rem 0 0.5rem 0;
-}
-
-.icons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.square {
-  width: 44px;
   height: 44px;
-  background: lightgray;
+  outline: none;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
 }
 
-.submitting_elements {
-  list-style: none;
-  padding: 0;
+.button:hover,
+.button:focus {
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+
+.primary {
+  background-color: blue;
+  color: white;
+}
+
+.secondary {
+  background-color: white;
+  color: black;
+  outline: 4px solid blue
 }
