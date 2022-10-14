@@ -94,3 +94,24 @@
   margin: 0 auto;
   margin-top: 1rem;
 }
+
+/* Centre for the buttons */
+.centre {
+  text-align: center;
+}
+
+/* For highlighting statistic text */
+.fish_stat {
+  font-weight: bold;
+  color: blue;
+}
+
+.money {
+  color: green;
+  font-weight: bold;
+}
+
+.average_lost {
+  color: red;
+  font-weight: bold;
+}
