@@ -3,39 +3,43 @@ import { Card, Title, AreaChart } from "@tremor/react";
 const chartdata = [
   {
     date: "Jan 22",
-    SemiAnalysis: 2890,
-    "The Pragmatic Engineer": 2338,
+    'Emails sent': 2890,
+    "Times phished": 2338,
   },
   {
     date: "Feb 22",
-    SemiAnalysis: 2756,
-    "The Pragmatic Engineer": 2103,
+    'Emails sent': 2756,
+    "Times phished": 2103,
   },
   {
     date: "Mar 22",
-    SemiAnalysis: 3322,
-    "The Pragmatic Engineer": 2194,
+    'Emails sent': 3322,
+    "Times phished": 2194,
   },
   {
     date: "Apr 22",
-    SemiAnalysis: 3470,
-    "The Pragmatic Engineer": 2108,
+    'Emails sent': 3470,
+    "Times phished": 2108,
   },
   {
     date: "May 22",
-    SemiAnalysis: 3475,
-    "The Pragmatic Engineer": 1812,
+    'Emails sent': 3475,
+    "Times phished": 1812,
   },
   {
     date: "Jun 22",
-    SemiAnalysis: 3129,
-    "The Pragmatic Engineer": 1726,
+    'Emails sent': 3129,
+    "Times phished": 1726,
   },
 ];
 
-const dataFormatter = (number) => {
-  return "$ " + Intl.NumberFormat("us").format(number).toString();
-};
+const colorArray = [
+  "blue", "red"
+]
+
+// const dataFormatter = (number) => {
+//   return "$ " + Intl.NumberFormat("us").format(number).toString();
+// };
 
 
 const Chart = () => (
@@ -43,11 +47,11 @@ const Chart = () => (
     <Title>Total Phishing Success Rates</Title>
     <AreaChart
       data={chartdata}
-      categories={["SemiAnalysis", "The Pragmatic Engineer"]}
+      categories={['Emails sent', "Times phished"]}
       dataKey="date"
       height="h-72"
-      colors={["indigo", "cyan"]}
-      valueFormatter={dataFormatter}
+      colors={colorArray}
+      valueFormatter={undefined}
       marginTop="mt-4"
     />
   </Card>
