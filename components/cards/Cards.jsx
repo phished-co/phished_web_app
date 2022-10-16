@@ -10,6 +10,8 @@ import {
   ColGrid,
 } from '@tremor/react';
 
+import { ArrowRightIcon } from '@heroicons/react/20/solid';
+
 const categories = [
   {
     color: 'emerald',
@@ -88,6 +90,8 @@ export default function Example(props) {
               size="sm"
               text="View details"
               handleClick={props.handleClick}
+              Icon={ArrowRightIcon}
+              iconPosition="right"
             />
           </Footer>
         </Card>
