@@ -1,2 +1,22 @@
 .container {
+  background: white;
+  border-radius: 8px;
+  color: black;
+  padding: 2rem;
+  transition: 0.2s;
+}
+
+.container:hover,
+.container:focus,
+.container:active {
+  transform: scale(1.02)
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.rate {
+  font-size: 1rem;
 }

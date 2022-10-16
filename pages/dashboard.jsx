@@ -1,11 +1,22 @@
+import Cards from "../components/cards/Cards"
 import Chart from "../components/chart/Chart"
-// import fake_data from "../components/chart/fake_data"
+import chartdata from "../components/chart/fake_data"
+import Header from '../components/header/Header'
+import styles from '../styles/dashboard.module.css'
 
 export default function Dashboard() {
 
-  return <>
-    <h1 className="text-4xl">Dashboard</h1>
-    <Chart />
+  // function for cards onclick
+  // should link to more detailed view of user
+  function handleClick() {
+    alert('click')
+  }
 
-  </>
+  return <div className={styles.container}>
+    <Header />
+    <h1 className="text-4xl mb-4">Dashboard</h1>
+    <Chart fakedata={chartdata} />
+    <hr className="m-8" />
+    <Cards handleClick={handleClick} />
+  </div>
 }
