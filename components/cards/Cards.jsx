@@ -12,45 +12,42 @@ import {
 
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 
-const categories = [
-  {
-    color: 'emerald',
-    delta: '10.9%',
-    deltaType: 'moderateDecrease',
-    metric: 'Henry Leung',
-    percentageValue: 32,
-    status: 'Overperforming',
-    target: '80 days left',
-    text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
-  },
-  {
-    title: 'Profit',
-    metric: '$ 40,598',
-    metricPrev: '$ 45,564',
-    delta: '-10.9%',
-    status: 'Underperforming',
-    color: 'amber',
-    text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
-  },
-  {
-    title: 'Customers',
-    metric: '1,016',
-    metricPrev: '1,001',
-    delta: '+1.3%',
-    status: 'Performing as usual',
-    color: 'blue',
-    text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
-  },
-  {
-    title: 'Test',
-    metric: '1,016',
-    metricPrev: '1,001',
-    delta: '+1.3%',
-    status: 'Performing as usual',
-    color: 'blue',
-    text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
-  }
-];
+// const categories = [
+//   {
+//     delta: '10.9%',
+//     deltaType: 'moderateDecrease',
+//     metric: 'Henry Leung',
+//     percentageValue: 32,
+//     target: '80 days remaining',
+//   },
+//   {
+//     title: 'Profit',
+//     metric: '$ 40,598',
+//     metricPrev: '$ 45,564',
+//     delta: '-10.9%',
+//     status: 'Underperforming',
+//     color: 'amber',
+//     text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
+//   },
+//   {
+//     title: 'Customers',
+//     metric: '1,016',
+//     metricPrev: '1,001',
+//     delta: '+1.3%',
+//     status: 'Performing as usual',
+//     color: 'blue',
+//     text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
+//   },
+//   {
+//     title: 'Test',
+//     metric: '1,016',
+//     metricPrev: '1,001',
+//     delta: '+1.3%',
+//     status: 'Performing as usual',
+//     color: 'blue',
+//     text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
+//   }
+// ];
 
 const colors = {
   increase: 'emerald',
@@ -60,10 +57,10 @@ const colors = {
   decrease: 'rose',
 }
 
-export default function Example(props) {
+export default function Cards(props) {
   return (
     <ColGrid numColsSm={2} numColsLg={3} gapX="gap-x-6" gapY="gap-y-6">
-      {categories.map((item) => (
+      {props.categories.map((item) => (
         <Card key={item.title}>
           <Text>{item.title}</Text>
           <Flex
@@ -82,7 +79,7 @@ export default function Example(props) {
             <BadgeDelta deltaType={item.deltaType} />
             <Flex justifyContent="justify-start" spaceX="space-x-1" truncate={true}>
               <Text color={colors[item.deltaType]}>{item.delta}</Text>
-              <Text truncate={true}> to previous month </Text>
+              <Text truncate={true}> from last month</Text>
             </Flex>
           </Flex>
           <Footer>

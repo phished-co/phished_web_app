@@ -1,6 +1,6 @@
 import Cards from "../components/cards/Cards"
 import Chart from "../components/chart/Chart"
-import chartdata from "../components/chart/fake_data"
+import { categories, chartdata } from "../components/chart/fake_data"
 import Header from '../components/header/Header'
 import styles from '../styles/dashboard.module.css'
 
@@ -17,6 +17,6 @@ export default function Dashboard() {
     <h1 className="text-4xl mb-4">Dashboard</h1>
     <Chart fakedata={chartdata} />
     <hr className="m-8" />
-    <Cards handleClick={handleClick} />
+    <Cards categories={categories} handleClick={handleClick} />
   </div>
 }
