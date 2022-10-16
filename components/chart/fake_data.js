@@ -34,38 +34,32 @@ const chartdata = [
 const categories = [
   {
     delta: '10.9%',
-    deltaType: 'moderateDecrease',
+    deltaType: 'decrease',
     metric: 'Henry Leung',
+    percentageValue: 24,
+    target: '34 days remaining',
+  },
+  {
+    delta: '4.8%',
+    deltaType: 'moderateDecrease',
+    metric: 'Wim Teuling',
+    percentageValue: 82,
+    target: '4 days remaining',
+  },
+  {
+    delta: '6.2%',
+    deltaType: 'moderateIncrease',
+    metric: 'Daemon Baldwin',
     percentageValue: 32,
-    target: '80 days remaining',
+    target: '22 days remaining',
   },
   {
-    title: 'Profit',
-    metric: '$ 40,598',
-    metricPrev: '$ 45,564',
-    delta: '-10.9%',
-    status: 'Underperforming',
-    color: 'amber',
-    text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
+    delta: '8.3%',
+    deltaType: 'moderateIncrease',
+    metric: 'Amalia Fowler',
+    percentageValue: 65,
+    target: '12 days remaining',
   },
-  {
-    title: 'Customers',
-    metric: '1,016',
-    metricPrev: '1,001',
-    delta: '+1.3%',
-    status: 'Performing as usual',
-    color: 'blue',
-    text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
-  },
-  {
-    title: 'Test',
-    metric: '1,016',
-    metricPrev: '1,001',
-    delta: '+1.3%',
-    status: 'Performing as usual',
-    color: 'blue',
-    text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
-  }
 ];
 
 export { categories }
