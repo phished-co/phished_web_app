@@ -6,14 +6,26 @@ export default function Search({ onSendEmail }) {
   const [toEmail, setToEmail] = useState('');
   const [content, setContent] = useState('');
   const [subject, setSubject] = useState('');
+  const [name, setName] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSendEmail({ fromEmail, toEmail, subject, content });
+    onSendEmail({ name, fromEmail, toEmail, subject, content });
+    setFromEmail('');
+    setToEmail('');
+    setName('');
   }
   return (
     <div>
       <form className={styles.container} onSubmit={handleSubmit}>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="full name of phish"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <input
           className={styles.input}
           type="text"
