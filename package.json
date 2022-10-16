@@ -19,6 +19,8 @@
   "dependencies": {
     "axios": "^1.1.2",
     "cron": "^2.1.0",
+    "@heroicons/react": "^2.0.12",
+    "@tremor/react": "^1.0.6",
     "next": "12.3.1",
     "nodemailer": "^6.8.0",
     "react": "18.2.0",
@@ -34,12 +36,15 @@
     "@storybook/manager-webpack5": "^6.5.12",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
+    "autoprefixer": "^10.4.12",
     "babel-loader": "^8.2.5",
     "cross-env": "^7.0.3",
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
     "eslint-plugin-storybook": "^0.6.5",
-    "prettier": "^2.7.1"
+    "postcss": "^8.4.18",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.8"
   },
   "resolutions": {
     "webpack": "^5"

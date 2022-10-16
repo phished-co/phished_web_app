@@ -1,11 +1,13 @@
 import styles from './Header.module.css';
 import Link from 'next/link';
 
+
 export default function Header({ ...headerProps }) {
   return (
-    <div className={styles.container}>
+    <div className={styles.navbar}>
       <header {...headerProps} className={styles.header}>
-        <div>
+        <div className={styles.leftnav}>
+          <img className={styles.logo} src= 'LOGO.svg' alt= 'logo placeholder' />
           <Link href="/about">
             <a className={styles.link}>About</a>
           </Link>
