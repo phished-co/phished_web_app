@@ -1,4 +1,4 @@
-import Search from '../components/search/Search';
+import Search from '../components/phishForm/PhishForm';
 import Header from '../components/header/Header';
 import styles from '../styles/Home.module.css';
 import axios from 'axios';

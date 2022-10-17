@@ -11,6 +11,4 @@ const Template = (args) => <Login {...args} />;
 
 export const Base = Template.bind({});
 
-Base.args = {
-  SampleTextProp: 'hellow world',
-};
+Base.args = {};

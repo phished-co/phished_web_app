@@ -1,22 +1,22 @@
-import styles from './Search.module.css';
+import styles from './PhishForm.module.css';
 import { useState } from 'react';
 
-export default function Search({ onSendEmail }) {
+export default function PhishForm({ onSendEmail }) {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
-  const [text, setText] = useState('');
+  const [html, setHtml] = useState('');
   const [subject, setSubject] = useState('');
   const [name, setName] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
     setFrom(`${name}, ${from}`);
-    onSendEmail({ from, to, subject, text });
+    onSendEmail({ from, to, subject, html });
     setFrom('');
     setTo('');
     setName('');
     setSubject('');
-    setText('');
+    setHtml('');
   }
   return (
     <div>
@@ -53,13 +53,13 @@ export default function Search({ onSendEmail }) {
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
         />
-        <input
+        <textarea
           className={styles.input}
           type="text"
           placeholder="content"
           name="content"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={html}
+          onChange={(e) => setHtml(e.target.value)}
         />
         <button className={styles.button} type="submit">
           send email
