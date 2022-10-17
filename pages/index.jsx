@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function Home() {
   const handleSendEmail = async (emailProperties) => {
     // eslint-disable-next-line no-unused-vars
-    const res = await axios.post('/api/hello', {
+    const res = await axios.post('/api/emailSent', {
       ...emailProperties,
       replyTo: 'phishedapp@gmail.com',
     });
@@ -16,7 +16,6 @@ export default function Home() {
     <>
       <Header></Header>
       <div className={styles.container}>
-        <h1> Welcome to phished!</h1>
         <Search onSendEmail={handleSendEmail} />
       </div>
     </>
