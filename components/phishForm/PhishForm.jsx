@@ -2,40 +2,52 @@ import styles from './PhishForm.module.css';
 import { useState } from 'react';
 
 export default function PhishForm({ onSendEmail }) {
-  const [from, setFrom] = useState('');
+  const [fromEmail, setFromEmail] = useState('');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
   const [subject, setSubject] = useState('');
-  const [name, setName] = useState('');
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
-    setFrom(`${name}, ${from}`);
+    let from = `${fname} ${lname} ${fromEmail}`;
     onSendEmail({ from, to, subject, html });
-    setFrom('');
+
+    setFromEmail('');
     setTo('');
-    setName('');
+    setFname('');
+    setLname('');
     setSubject('');
     setHtml('');
   }
+
   return (
     <div>
       <form className={styles.container} onSubmit={handleSubmit}>
         <input
           className={styles.input}
           type="text"
-          placeholder="full name of phish"
+          placeholder="phishing first name"
           name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={fname}
+          onChange={(e) => setFname(e.target.value)}
+        />
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="phishing Last name"
+          name="name"
+          value={lname}
+          onChange={(e) => setLname(e.target.value)}
         />
         <input
           className={styles.input}
           type="text"
           placeholder="sender email"
           name="from"
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
+          value={fromEmail}
+          onChange={(e) => setFromEmail(e.target.value)}
         />
         <input
           className={styles.input}
@@ -65,6 +77,8 @@ export default function PhishForm({ onSendEmail }) {
           send email
         </button>
       </form>
+
+      {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
     </div>
   );
 }

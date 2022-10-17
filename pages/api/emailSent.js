@@ -3,7 +3,27 @@
 import nodemailer from 'nodemailer';
 // import cron from 'cron';
 
-// //serverless computing / lambda functions
+const users = [
+  {
+    id: 1,
+    firstName: 'Lucia',
+    lastName: 'Martin',
+    emailsSent: 0,
+    email: 'luciammperu@gmail.com',
+    phishCaught: 0,
+    // ^^ ie they responded to the email or clicked a link
+  },
+];
+// eslint-disable-next-line no-unused-vars
+const UsersPhished = [
+  {
+    id: 1,
+    firstName: 'first',
+    lastName: 'last',
+    email: 'lucia.emm25@gmail.com',
+    linksClicked: 0,
+  },
+];
 
 let transporter = nodemailer.createTransport({
   pool: true,
@@ -23,6 +43,13 @@ export default function handler(req, res) {
     transporter.sendMail(req.body, (error, info) => {
       if (error) console.log(error);
       else console.log('Email sent: ' + info.response);
+    });
+
+    //has to query through database
+    users.forEach((user) => {
+      if (req.body.from == user.email) {
+        user.emailsSent++;
+      }
     });
   }
 }
