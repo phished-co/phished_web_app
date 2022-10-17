@@ -3,7 +3,7 @@
   display: flex;
   justify-content: baseline;
   flex-direction: column;
-  background: #6D6D6D;
+  background: #2830f8;
 }
 
 .header {
@@ -20,9 +20,11 @@
   align-items: center;
 }
 
-
 .link {
   margin-right: 1vw;
+  color: white;
+  text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .logo {
