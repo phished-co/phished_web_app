@@ -1,6 +1,13 @@
 import Search from '../components/phishForm/PhishForm';
 import Header from '../components/header/Header';
 import styles from '../styles/Home.module.css';
+// import {getUsers, setUsers} from "../firebase/users"
+
+export default function Home() {
+
+    // getUsers();
+    // setUsers("trevor")
+
 import axios from 'axios';
 
 export default function Home() {
@@ -11,6 +18,7 @@ export default function Home() {
       replyTo: 'phishedapp@gmail.com',
     });
   };
+
 
   return (
     <>
