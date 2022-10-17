@@ -1,19 +1,20 @@
 import firebase from "firebase/app"
 import "firebase/firestore"
+import dotenv from 'dotenv'
+
 // import "firebase/auth"
-import "firebase/storage"
 
 
 
 
 // Web app's Firebase configuration
 const config = {
-  apiKey: "AIzaSyCus6EwkgQW3qDr55XM3iCa7oreruJ9JVQ",
-  authDomain: "phished-5bcb6.firebaseapp.com",
-  projectId: "phished-5bcb6",
-  storageBucket: "phished-5bcb6.appspot.com",
-  messagingSenderId: "967904801972",
-  appId: "1:967904801972:web:e38df0c9b886e084ff53e1"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.enc.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
 
