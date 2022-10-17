@@ -2,18 +2,21 @@ import styles from './Search.module.css';
 import { useState } from 'react';
 
 export default function Search({ onSendEmail }) {
-  const [fromEmail, setFromEmail] = useState('');
-  const [toEmail, setToEmail] = useState('');
-  const [content, setContent] = useState('');
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
+  const [text, setText] = useState('');
   const [subject, setSubject] = useState('');
   const [name, setName] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSendEmail({ name, fromEmail, toEmail, subject, content });
-    setFromEmail('');
-    setToEmail('');
+    setFrom(`${name}, ${from}`);
+    onSendEmail({ from, to, subject, text });
+    setFrom('');
+    setTo('');
     setName('');
+    setSubject('');
+    setText('');
   }
   return (
     <div>
@@ -30,17 +33,17 @@ export default function Search({ onSendEmail }) {
           className={styles.input}
           type="text"
           placeholder="sender email"
-          name="fromEmail"
-          value={fromEmail}
-          onChange={(e) => setFromEmail(e.target.value)}
+          name="from"
+          value={from}
+          onChange={(e) => setFrom(e.target.value)}
         />
         <input
           className={styles.input}
           type="text"
           placeholder="receiver email"
-          name="toEmail"
-          value={toEmail}
-          onChange={(e) => setToEmail(e.target.value)}
+          name="to"
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
         />
         <input
           className={styles.input}
@@ -55,8 +58,8 @@ export default function Search({ onSendEmail }) {
           type="text"
           placeholder="content"
           name="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
         />
         <button className={styles.button} type="submit">
           send email

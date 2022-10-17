@@ -19,6 +19,7 @@ let transporter = nodemailer.createTransport({
 // eslint-disable-next-line no-unused-vars
 export default function handler(req, res) {
   if (req.method === 'POST') {
+    console.log(req.body);
     transporter.sendMail(req.body, (error, info) => {
       if (error) console.log(error);
       else console.log('Email sent: ' + info.response);
