@@ -4,21 +4,13 @@ import styles from '../styles/Home.module.css';
 import axios from 'axios';
 
 export default function Home() {
-  function handleSendEmail(name, fromEmail, toEmail, subject, content) {
-    axios
-      .post('/api/hello', {
-        from: `${name} ${fromEmail}`,
-        to: `${toEmail}`,
-        subject: `${subject}`,
-        text: `${content}`,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  const handleSendEmail = async (emailProperties) => {
+    // eslint-disable-next-line no-unused-vars
+    const res = await axios.post('/api/hello', {
+      ...emailProperties,
+      replyTo: 'phishedapp@gmail.com',
+    });
+  };
 
   return (
     <>
