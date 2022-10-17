@@ -1,29 +1,60 @@
-import styles from './Header.module.css';
+// import styles from './Header.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
+import styled from 'styled-components';
 
 
-export default function Header({ ...headerProps }) {
+const Cont = styled.div`
+padding: 0 2rem;
+display: flex;
+justify-content: baseline;
+flex-direction: column;
+background: #6D6D6D;
+`
+
+const Navbar = styled.header`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+margin: 1.5vw 3vw;
+`
+const MenuCont = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+`
+const Menu = styled.a`
+margin-right: 1vw;
+`
+
+export default function Header() {
   return (
-    <div className={styles.navbar}>
-      <header {...headerProps} className={styles.header}>
-        <div className={styles.leftnav}>
-          <img className={styles.logo} src= 'LOGO.svg' alt= 'logo placeholder' />
+    <Cont>
+      <Navbar>
+        <MenuCont>
+          <Link href="/">
+            <Image
+            src= '/LOGO.svg'
+            width= '100px'
+            height = '33px'
+           /></Link>
           <Link href="/about">
-            <a className={styles.link}>About</a>
+            <Menu>About</Menu>
           </Link>
           <Link href="/learn">
-            <a>Learn</a>
+            <Menu>Learn</Menu>
           </Link>
-        </div>
-        <div>
+        </MenuCont>
+        <MenuCont>
           <Link href="/dashboard">
-            <a className={styles.link}>Dashboard</a>
+            <Menu>Dashboard</Menu>
           </Link>
           <Link href="/account">
-            <a>My Account</a>
+            <Menu>My Account</Menu>
           </Link>
-        </div>
-      </header>
-    </div>
+        </MenuCont>
+      </Navbar>
+    </Cont>
   );
 }
