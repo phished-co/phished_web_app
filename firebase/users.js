@@ -1,22 +1,26 @@
 import{firestore} from "./firebase"
 
+//
+// const getUsers = async() => {
+//   const snapshot = await firestore.collection("users").get();
+//   snapshot.docs.forEach((doc) => console.log(doc.data()))
+// }
+//
+// export{getUsers}
 
-const getUsers = async() => {
-  const snapshot = await firestore.collection("users").get();
-  snapshot.docs.forEach((doc) => console.log(doc.data()))
-}
+// const setCities = async() => {
+//
+//   var citiesRef = firestore.collection("cities");
+//
+//   citiesRef.doc("SF").set({
+//     name: "San Francisco", state: "CA", country: "USA",
+//     capital: false, population: 860000,
+//     regions: ["west_coast", "norcal"] });
+//
+//
+//
+// }
+//
+// export{setCities}
+//
 
-export{getUsers}
-
-
-
-const setUsers = async(name) => {
-
-  const snapshot = await firestore.collection("users").doc("Trever@gmail.com").set({
-    name: name,
-    program: "D3",
-  })
-
-}
-
-export{setUsers}
