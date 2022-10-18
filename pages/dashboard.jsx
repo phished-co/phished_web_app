@@ -8,8 +8,8 @@ export default function Dashboard() {
 
   // function for cards onclick
   // should link to more detailed view of user
-  function handleClick() {
-    alert('click')
+  function handleClick(id) {
+    alert(id)
   }
 
   return <div>

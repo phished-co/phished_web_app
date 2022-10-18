@@ -35,6 +35,7 @@ const categories = [
   {
     delta: '10.9%',
     deltaType: 'decrease',
+    id: '1',
     metric: 'Henry Leung',
     percentageValue: 24,
     target: '34 days remaining',
@@ -42,6 +43,7 @@ const categories = [
   {
     delta: '4.8%',
     deltaType: 'moderateDecrease',
+    id: '2',
     metric: 'Wim Teuling',
     percentageValue: 82,
     target: '4 days remaining',
@@ -49,6 +51,7 @@ const categories = [
   {
     delta: '6.2%',
     deltaType: 'moderateIncrease',
+    id: '3',
     metric: 'Daemon Baldwin',
     percentageValue: 32,
     target: '22 days remaining',
@@ -56,6 +59,7 @@ const categories = [
   {
     delta: '8.3%',
     deltaType: 'moderateIncrease',
+    id: '5',
     metric: 'Amalia Fowler',
     percentageValue: 65,
     target: '12 days remaining',

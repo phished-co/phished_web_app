@@ -48,7 +48,7 @@ export default function Cards(props) {
             <ButtonInline
               size="sm"
               text="View details"
-              handleClick={props.handleClick}
+              handleClick={() => { props.handleClick(item.id) }}
               Icon={ArrowRightIcon}
               iconPosition="right"
             />
