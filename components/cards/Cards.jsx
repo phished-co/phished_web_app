@@ -24,7 +24,7 @@ export default function Cards(props) {
   return (
     <ColGrid numColsSm={2} numColsLg={3} gapX="gap-x-6" gapY="gap-y-6">
       {props.categories.map((item) => (
-        <span onClick={() => { props.handleClick(item.id) }}>
+        <span key={item.metric} onClick={() => { props.handleClick(item.id) }}>
           <Card key={item.metric}>
             <Flex
               justifyContent="justify-start"
