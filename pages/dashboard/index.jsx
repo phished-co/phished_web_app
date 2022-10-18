@@ -1,8 +1,8 @@
-import Cards from "../components/cards/Cards"
-import Chart from "../components/chart/Chart"
-import { categories, chartdata } from "../components/chart/fake_data"
-import Header from '../components/header/Header'
-import styles from '../styles/dashboard.module.css'
+import Cards from "./../../components/cards/Cards"
+import Chart from "./../../components/chart/Chart"
+import { categories, chartdata } from "./../../components/chart/fake_data"
+import Header from './../../components/header/Header'
+import styles from './../../styles/dashboard.module.css'
 
 export default function Dashboard() {
 
