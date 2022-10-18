@@ -24,8 +24,7 @@ export default function Cards(props) {
   return (
     <ColGrid numColsSm={2} numColsLg={3} gapX="gap-x-6" gapY="gap-y-6">
       {props.categories.map((item) => (
-        <Card key={item.title}>
-          <Text>{item.title}</Text>
+        <Card key={item.metric}>
           <Flex
             justifyContent="justify-start"
             alignItems="items-baseline"
@@ -49,7 +48,7 @@ export default function Cards(props) {
             <ButtonInline
               size="sm"
               text="View details"
-              handleClick={props.handleClick}
+              handleClick={() => { props.handleClick(item.id) }}
               Icon={ArrowRightIcon}
               iconPosition="right"
             />
