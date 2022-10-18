@@ -3,13 +3,18 @@ import Chart from "./../../components/chart/Chart"
 import { categories, chartdata } from "./../../components/chart/fake_data"
 import Header from './../../components/header/Header'
 import styles from './../../styles/dashboard.module.css'
+import { useRouter } from "next/router"
 
 export default function Dashboard() {
+
+  const r = useRouter()
 
   // function for cards onclick
   // should link to more detailed view of user
   function handleClick(id) {
-    alert(id)
+    r.push({
+      pathname: `dashboard/${id}`
+    })
   }
 
   return <div>

@@ -59,7 +59,7 @@ const categories = [
   {
     delta: '8.3%',
     deltaType: 'moderateIncrease',
-    id: '5',
+    id: '4',
     metric: 'Amalia Fowler',
     percentageValue: 65,
     target: '12 days remaining',
