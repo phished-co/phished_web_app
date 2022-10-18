@@ -12,14 +12,16 @@ export default function Dashboard() {
     alert('click')
   }
 
-  return <div className={styles.container}>
+  return <div>
     <Header />
-    <div className="pt-4">
-      <h1 className="text-4xl mb-6">Dashboard</h1>
-      <Chart fakedata={chartdata} />
-      <hr className="mt-12 mb-10 mr-32 ml-32" />
-      <h1 className="text-4xl mb-6">Active Campaigns</h1>
-      <Cards categories={categories} handleClick={handleClick} />
+    <div className={styles.container}>
+      <div className="pt-4">
+        <h1 className="text-4xl mb-6">Dashboard</h1>
+        <Chart fakedata={chartdata} />
+        <hr className="mt-12 mb-10 mr-32 ml-32" />
+        <h1 className="text-4xl mb-6">Active Campaigns</h1>
+        <Cards categories={categories} handleClick={handleClick} />
+      </div>
     </div>
   </div>
 }
