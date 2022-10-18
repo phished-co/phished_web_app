@@ -1,40 +1,119 @@
 /* eslint-disable @next/next/no-img-element */
 // ^^ We have to change this for future!! ^^
 
-import styles from './Header.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
+import { Bars3Icon } from '@heroicons/react/20/solid';
+import styled from 'styled-components';
+
+
+const NavCont = styled.div`
+padding: 0 2rem;
+display: flex;
+justify-content: baseline;
+flex-direction: column;
+background-color: #2830f8;
+width: 100vw;
+min-height: 33px;
+`
+
+const NavHead = styled.header`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+margin: 1.5vw 3vw;
+
+
+`
+
+const MenuCont = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+`
+
+const Menu = styled.a`
+margin-right: 1vw;
+color: white;
+  text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+@media only screen and (max-width: 480px) {
+   
+  & {
+    display:none;
+  }
+
+} 
+@media only screen and (min-width: 481px, max-width: 768px) {
+   
+  & {
+    display:none;
+  }
+
+} 
+`
+
+const MyImg = styled(Image)`
+min-width: 100px;
+min-height: 33px;
+
+` 
+
+const Hamburger = styled.button`
+
+
+@media only screen and (max-width: 480px) {
+
+  & {
+    color: #fff;
+    width: 30px;
+    height: 30px;
+  }
+}
+`
+
+
+
+
 
 export default function Header({ ...headerProps }) {
   return (
-    <div className={styles.navbar}>
-      <header {...headerProps} className={styles.header}>
-        <div className={styles.leftnav}>
+    <NavCont>
+      <NavHead>
+        <Hamburger>
+          <Bars3Icon />
+        </Hamburger>
+        <MenuCont>
+
           <Link href="/landingPage">
-            <a>
+            <Menu>
               {/* have to make images a next/image element here */}
-              <img
-                className={styles.logo}
-                src="LOGO.svg"
+              <MyImg
+                src="/LOGO.svg"
                 alt="logo placeholder"
+                width= '100px'
+                height = '33px'
               />
-            </a>
+            </Menu>
           </Link>
           <Link href="/about">
-            <a className={styles.link}>About</a>
+            <Menu>About</Menu>
           </Link>
           <Link href="/learn">
-            <a className={styles.link}>Learn</a>
+            <Menu>Learn</Menu>
           </Link>
-        </div>
-        <div>
+        </MenuCont>
+        <MenuCont>
           <Link href="/dashboard">
-            <a className={styles.link}>Dashboard</a>
+            <Menu>Dashboard</Menu>
           </Link>
           <Link href="/">
-            <a className={styles.link}>My Account</a>
+            <Menu>My Account</Menu>
           </Link>
-        </div>
-      </header>
-    </div>
+        </MenuCont>
+      </NavHead>
+    </NavCont>
   );
 }
