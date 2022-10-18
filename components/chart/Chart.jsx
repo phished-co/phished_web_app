@@ -2,13 +2,13 @@ import { Card, Title, AreaChart } from "@tremor/react";
 
 const Chart = (props) => (
   <Card>
-    <Title>All-Time Phishing Success Rate</Title>
+    <Title>Phishing Success Rate</Title>
     <AreaChart
       data={props.fakedata}
       categories={['Emails sent', "Times phished"]}
       dataKey="date"
       height="h-64"
-      colors={['green', 'blue']}
+      colors={['blue', 'red']}
       valueFormatter={undefined}
       marginTop="mt-4"
     />

@@ -1,6 +1,6 @@
 import Chart from "./../../components/chart/Chart"
 import Header from './../../components/header/Header'
-import { categories } from "../../components/chart/fake_data"
+import { categories, chartdata } from "../../components/chart/fake_data"
 import { useRouter } from "next/router"
 
 export const getStaticPaths = () => {
@@ -24,32 +24,27 @@ export const getStaticProps = (context) => {
 export default function Id(props) {
 
   const r = useRouter()
-  console.log(props.categories[0])
-  console.log(r.asPath)
+  // console.log(props.categories[0])
+  // console.log(r.asPath)
+
+  let index = undefined
 
   if (r.asPath === '/dashboard/1') {
-    return <div>
-      <Header />
-      Henry
-    </div>
+    index = 0
   } else if (r.asPath === '/dashboard/2') {
-    return <div>
-      <Header />
-      Wim
-    </div>
+    index = 1
   } else if (r.asPath === '/dashboard/3') {
-    return <div>
-      <Header />
-      Daemon
-    </div>
-  } else if (r.asPath === '/dashboard/4') {
-    return <div>
-      <Header />
-      Amalia
-    </div>
+    index = 2
   } else {
-    return <>
-      Fish not found
-    </>
+    index = 3
+
   }
+
+  return <>
+    <Header />
+    <div className="pt-4" style={{ padding: '2rem' }}>
+      <h1 className="text-4xl mb-6">{props.categories[index].metric}'s Phishing Statistics</h1>
+      <Chart fakedata={chartdata} />
+    </div>
+  </>
 }

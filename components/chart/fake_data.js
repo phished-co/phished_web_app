@@ -54,7 +54,7 @@ const categories = [
     id: '3',
     metric: 'Daemon Baldwin',
     percentageValue: 32,
-    target: '22 days remaining',
+    target: '27 days remaining',
   },
   {
     delta: '8.3%',
