@@ -1,3 +1,4 @@
+import { BadgeDelta, Card, Divider, Flex, ProgressBar, Text } from "@tremor/react";
 import Chart from "./../../components/chart/Chart"
 import Header from './../../components/header/Header'
 import { categories, chartdata } from "../../components/chart/fake_data"
@@ -44,6 +45,21 @@ export default function Id(props) {
     <Header />
     <div className="pt-4" style={{ padding: '2rem' }}>
       <h1 className="text-4xl mb-6">{props.categories[index].metric}'s Phishing Statistics</h1>
+      <Card>
+        <BadgeDelta
+          deltaType={props.categories[index].deltaType}
+          size='xl'
+          text={`${props.categories[index].delta} since last month`}
+        />
+        <Flex marginTop="mt-4">
+          <Text>{props.categories[index].target}</Text>
+        </Flex>
+        <ProgressBar
+          percentageValue={props.categories[index].percentageValue}
+          target={props.categories[index].target}
+        />
+      </Card>
+      <Divider />
       <Chart fakedata={chartdata} />
     </div>
   </>

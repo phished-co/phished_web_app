@@ -39,6 +39,7 @@ const categories = [
     metric: 'Henry Leung',
     percentageValue: 24,
     target: '34 days remaining',
+    text: 'Phishing avoiding rate'
   },
   {
     delta: '4.8%',
