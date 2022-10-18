@@ -1,6 +1,7 @@
 import { BadgeDelta, Card, Divider, Flex, ProgressBar, Text } from "@tremor/react";
 import Chart from "./../../components/chart/Chart"
 import Header from './../../components/header/Header'
+import CardMetric from "../../components/metric/CardMetric";
 import { categories, chartdata } from "../../components/chart/fake_data"
 import { useRouter } from "next/router"
 
@@ -61,6 +62,8 @@ export default function Id(props) {
       </Card>
       <Divider />
       <Chart fakedata={chartdata} />
+      <Divider />
+      <CardMetric index={index} />
     </div>
   </>
 }

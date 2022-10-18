@@ -1,9 +1,9 @@
-import Metric from './Metric';
+import CardMetric from './CardMetric';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: 'Templates/Metric',
-  component: Metric,
+  title: 'Templates/CardMetric',
+  component: CardMetric,
   argTypes: {},
 };
 
