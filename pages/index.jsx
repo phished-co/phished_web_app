@@ -1,8 +1,11 @@
 import Search from '../components/phishForm/PhishForm';
 import Header from '../components/header/Header';
 import styles from '../styles/Home.module.css';
+import Button from '../components/button/Button';
+import { Container } from '../styles/global';
 // import {getUsers, setUsers} from "../firebase/users"
 import axios from 'axios';
+
 
 
 export default function Home() {
@@ -18,9 +21,10 @@ export default function Home() {
   return (
     <>
       <Header></Header>
-      <div className={styles.container}>
+      <Container>
         <Search onSendEmail={handleSendEmail} />
-      </div>
+      </Container>
+      <Button />
     </>
   );
 }
