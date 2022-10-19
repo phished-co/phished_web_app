@@ -8,11 +8,35 @@ export default function PhishForm({ onSendEmail }) {
   const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
+  const [showNote, setShowNote] = useState(false)
+
+  const mystyle = {
+    backgroundColor: "RGBA(150,183,80,0.43)",
+    padding: "10px",
+    margin:"10px",
+    textAlign:"center",
+    fontSize:"10px"
+  };
+
+
+  function confirmationNote(){
+    const timeId = setTimeout(() => {
+      setShowNote(false)
+    }, 2000)
+
+    return () => {
+      clearTimeout(timeId)
+    }
+  }
+
 
   function handleSubmit(e) {
     e.preventDefault();
     let from = `${fname} ${lname} ${fromEmail}`;
     onSendEmail({ from, to, subject, html });
+
+    setShowNote(true)
+    confirmationNote()
 
     setFromEmail('');
     setTo('');
@@ -20,7 +44,10 @@ export default function PhishForm({ onSendEmail }) {
     setLname('');
     setSubject('');
     setHtml('');
+
+
   }
+
 
   return (
     <div>
@@ -32,6 +59,7 @@ export default function PhishForm({ onSendEmail }) {
           name="name"
           value={fname}
           onChange={(e) => setFname(e.target.value)}
+          required
         />
         <input
           className={styles.input}
@@ -40,6 +68,7 @@ export default function PhishForm({ onSendEmail }) {
           name="name"
           value={lname}
           onChange={(e) => setLname(e.target.value)}
+          required
         />
         <input
           className={styles.input}
@@ -48,6 +77,7 @@ export default function PhishForm({ onSendEmail }) {
           name="from"
           value={fromEmail}
           onChange={(e) => setFromEmail(e.target.value)}
+          required
         />
         <input
           className={styles.input}
@@ -56,6 +86,7 @@ export default function PhishForm({ onSendEmail }) {
           name="to"
           value={to}
           onChange={(e) => setTo(e.target.value)}
+          required
         />
         <input
           className={styles.input}
@@ -72,13 +103,19 @@ export default function PhishForm({ onSendEmail }) {
           name="content"
           value={html}
           onChange={(e) => setHtml(e.target.value)}
+
         />
         <button className={styles.button} type="submit">
           send email
         </button>
       </form>
 
+      {showNote ? <div style={mystyle}><p> Submitted successfully</p></div>
+        : <></>
+      }
       {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
     </div>
   );
 }
+
+
