@@ -67,5 +67,73 @@ const categories = [
   },
 ];
 
+const cardmetrics = [
+  [{
+    title: 'Total Emails Sent',
+    metric: '72',
+  },
+  {
+    title: 'Total Times Phished',
+    metric: '18',
+  },
+  {
+    title: 'Rank Among Your Fish',
+    metric: '#3',
+  },
+  {
+    title: 'Worldwide Ranking',
+    metric: 'Top 64%'
+  }],
+  [{
+    title: 'Total Emails Sent',
+    metric: '64',
+  },
+  {
+    title: 'Total Times Phished',
+    metric: '21',
+  },
+  {
+    title: 'Rank Among Your Fish',
+    metric: '#4',
+  },
+  {
+    title: 'Worldwide Ranking',
+    metric: 'Top 78%'
+  }],
+  [{
+    title: 'Total Emails Sent',
+    metric: '30',
+  },
+  {
+    title: 'Total Times Phished',
+    metric: '4',
+  },
+  {
+    title: 'Rank Among Your Fish',
+    metric: '#2',
+  },
+  {
+    title: 'Worldwide Ranking',
+    metric: 'Top 46%'
+  }],
+  [{
+    title: 'Total Emails Sent',
+    metric: '47',
+  },
+  {
+    title: 'Total Times Phished',
+    metric: '3',
+  },
+  {
+    title: 'Rank Among Your Fish',
+    metric: '#1',
+  },
+  {
+    title: 'Worldwide Ranking',
+    metric: 'Top 21%'
+  }],
+];
+
 export { categories }
 export { chartdata }
+export { cardmetrics }
