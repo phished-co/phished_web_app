@@ -109,11 +109,11 @@ export default function PhishForm({ onSendEmail }) {
           send email
         </button>
       </form>
-
+      
+      {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
       {showNote ? <div style={mystyle}><p> Submitted successfully</p></div>
         : <></>
       }
-      {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
     </div>
   );
 }
