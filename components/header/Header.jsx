@@ -43,8 +43,9 @@ margin: 1.5vw 3vw;
 const Menu = styled.a`
 margin: 0 1vw;
 color: white;
-  text-decoration: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+text-decoration: none;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+cursor: pointer;
 
 @media only screen and (max-width: 480px) {
    
@@ -67,6 +68,7 @@ const MyImg = styled(Image)`
 min-width: 100px;
 min-height: 33px;
 margin-right: 1vw;
+cursor: pointer;
 ` 
 
 const Hamburger = styled.button`
@@ -82,6 +84,7 @@ display: none;
     align-items: center;
     justify-content: center;
     margin: 1vw;
+    cursor: pointer;
 
   }
 }
@@ -100,7 +103,7 @@ export default function Header({ ...headerProps }) {
         </Hamburger>
         <MenuCont>
 
-          <Link href="/landingPage">
+          <Link href="/">
             
               <MyImg
                 src="/LOGO.svg"
@@ -121,7 +124,7 @@ export default function Header({ ...headerProps }) {
           <Link href="/dashboard">
             <Menu>Dashboard</Menu>
           </Link>
-          <Link href="/">
+          <Link href="/account">
             <Menu>My Account</Menu>
           </Link>
           <Hamburger>
