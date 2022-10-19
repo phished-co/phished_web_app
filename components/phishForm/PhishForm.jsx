@@ -1,4 +1,5 @@
 import styles from './PhishForm.module.css';
+import Button from '../button/Button';
 import { useState } from 'react';
 
 export default function PhishForm({ onSendEmail }) {
@@ -73,9 +74,7 @@ export default function PhishForm({ onSendEmail }) {
           value={html}
           onChange={(e) => setHtml(e.target.value)}
         />
-        <button className={styles.button} type="submit">
-          send email
-        </button>
+        <Button type="submit" txt = "send email" />
       </form>
 
       {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
