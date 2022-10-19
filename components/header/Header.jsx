@@ -103,7 +103,7 @@ export default function Header({ ...headerProps }) {
         </Hamburger>
         <MenuCont>
 
-          <Link href="/landingPage">
+          <Link href="/">
             
               <MyImg
                 src="/LOGO.svg"
@@ -124,7 +124,7 @@ export default function Header({ ...headerProps }) {
           <Link href="/dashboard">
             <Menu>Dashboard</Menu>
           </Link>
-          <Link href="/">
+          <Link href="/account">
             <Menu>My Account</Menu>
           </Link>
           <Hamburger>
