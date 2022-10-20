@@ -2,7 +2,7 @@ import Cards from './Cards';
 import { categories, chartdata, cardmetrics } from "../chart/fake_data"
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: 'Cards',
+  title: 'Tremor/Cards',
   component: Cards,
   argTypes: {},
 };
