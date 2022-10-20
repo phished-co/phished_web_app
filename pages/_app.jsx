@@ -1,15 +1,19 @@
 import '../styles/globals.css'
 import '@tremor/react/dist/esm/tremor.css';
 import Head from 'next/head';
-import { ColorSchemeProvider, ColorScheme, MantineProvider } from '@mantine/core';
+import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { useState } from "react";
+import { getCookie, setCookie } from 'cookies-next';
 
 export default function App(props) {
   const { Component, pageProps } = props;
-  const [colorScheme, setColorScheme] = useState('dark')
+  const [colorScheme, setColorScheme] = useState('light')
 
   function toggleColorScheme(value) {
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+    setColorScheme(nextColorScheme);
+    // when color scheme is updated save it to cookie
+    setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
   }
 
   return (
@@ -20,10 +24,22 @@ export default function App(props) {
             <title>Phished | Protect Friends & Family by Phishing Them</title>
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           </Head>
-
           <Component {...pageProps} />
         </MantineProvider>
       </ColorSchemeProvider>
     </>
   );
 }
+
+// Saving color scheme in cookie?
+// I don't even this this works
+// Warning: "next should not be imported directly" 
+// known issue add this to .eslintrc.json
+//"rules": {
+//"@next/next/no-document-import-in-page": "off"
+//}
+
+App.getInitialProps = ({ ctx }) => ({
+  // get color scheme from cookie
+  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
+});
