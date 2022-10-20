@@ -1,43 +1,42 @@
 import styles from './PhishForm.module.css';
 import Button from '../button/Button';
 import { useState } from 'react';
+import Link from 'next/link';
 
-export default function PhishForm({ onSendEmail }) {
+export default function PhishForm({ onSendEmail, onScheduleEmail }) {
   const [fromEmail, setFromEmail] = useState('');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
   const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [showNote, setShowNote] = useState(false)
+  const [showNote, setShowNote] = useState(false);
 
   const mystyle = {
-    backgroundColor: "RGBA(150,183,80,0.43)",
-    padding: "10px",
-    margin:"10px",
-    textAlign:"center",
-    fontSize:"10px"
+    backgroundColor: 'RGBA(150,183,80,0.)',
+    padding: '10px',
+    margin: '10px',
+    textAlign: 'center',
+    fontSize: '10px',
   };
 
-
-  function confirmationNote(){
+  function confirmationNote() {
     const timeId = setTimeout(() => {
-      setShowNote(false)
-    }, 2000)
+      setShowNote(false);
+    }, 2000);
 
     return () => {
-      clearTimeout(timeId)
-    }
+      clearTimeout(timeId);
+    };
   }
 
-
+  let from = `${fname} ${lname} ${fromEmail}`;
   function handleSubmit(e) {
     e.preventDefault();
-    let from = `${fname} ${lname} ${fromEmail}`;
     onSendEmail({ from, to, subject, html });
 
-    setShowNote(true)
-    confirmationNote()
+    setShowNote(true);
+    confirmationNote();
 
     setFromEmail('');
     setTo('');
@@ -45,10 +44,7 @@ export default function PhishForm({ onSendEmail }) {
     setLname('');
     setSubject('');
     setHtml('');
-
-
   }
-
 
   return (
     <div>
@@ -104,17 +100,22 @@ export default function PhishForm({ onSendEmail }) {
           name="content"
           value={html}
           onChange={(e) => setHtml(e.target.value)}
-
         />
-        <Button type="submit" txt = "send email" />
+        <Button type="submit" txt="send email" />
       </form>
-      
+      <Link href="/scheduleEmail" passHref>
+        <a onClick={() => onScheduleEmail({ from, to, subject, html })}>
+          <Button txt="schedule email for later" />
+        </a>
+      </Link>
       {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
-      {showNote ? <div style={mystyle}><p> Submitted successfully</p></div>
-        : <></>
-      }
+      {showNote ? (
+        <div style={mystyle}>
+          <p> Submitted successfully</p>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
-
-
