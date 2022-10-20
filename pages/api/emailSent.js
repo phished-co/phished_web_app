@@ -1,7 +1,10 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
+// import validate from 'deep-email-validator'
 import nodemailer from 'nodemailer';
 // import cron from 'cron';
+
+export const config = {
+  api:{ externalResolver: true, },
+}
 
 const users = [
   {
@@ -39,11 +42,26 @@ let transporter = nodemailer.createTransport({
 // eslint-disable-next-line no-unused-vars
 export default function handler(req, res) {
   if (req.method === 'POST') {
-    console.log(req.body);
+    // console.log(req.body);
+
+    const isValid = async () => {
+      // let res = await validate(email)
+      console.log(req.body)
+    }
+    
+
     transporter.sendMail(req.body, (error, info) => {
+      // auth: {
+      //   user: "gmail.user@gmail.com", // service is detected from the username
+      //     pass: "userpass"
+      // }
+
+
+
       if (error) console.log(error);
       else console.log('Email sent: ' + info.response);
     });
+
 
     //has to query through database
     users.forEach((user) => {

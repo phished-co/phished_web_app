@@ -1,6 +1,10 @@
 import styles from './PhishForm.module.css';
 import Button from '../button/Button';
+
 import { useState } from 'react';
+// import validate from 'deep-email-validator'
+import EmailValidator from 'email-validator';
+
 
 export default function PhishForm({ onSendEmail }) {
   const [fromEmail, setFromEmail] = useState('');
@@ -25,14 +29,15 @@ export default function PhishForm({ onSendEmail }) {
       setShowNote(false)
     }, 2000)
 
-    return () => {
-      clearTimeout(timeId)
-    }
+    return () => clearTimeout(timeId);
   }
 
 
   function handleSubmit(e) {
     e.preventDefault();
+    
+    console.log("valid? "+ EmailValidator.validate(to));
+
     let from = `${fname} ${lname} ${fromEmail}`;
     onSendEmail({ from, to, subject, html });
 
