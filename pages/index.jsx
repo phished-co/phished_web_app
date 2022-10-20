@@ -3,6 +3,7 @@ import Button from '../components/button/Button'
 import Header from "../components/header/Header"
 import Login from "../components/login/Login"
 // import { Checkbox } from '@mantine/core';
+import ColorToggle from "../components/colorToggle/ColorToggle"
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Header />
       <main>
         {/* <Checkbox label='test'/> */}
+        <ColorToggle />
         <div className={styles.hero_cont}>
           <div className={styles.hero_half}>Protect phriends and phamily phrom phishing by phishing them yourselph.</div>
           <div className={styles.hero_half}><Login /></div>
