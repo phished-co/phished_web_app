@@ -136,20 +136,20 @@ const cardmetrics = [
 
 const links = [
   {
-    link: "/about",
-    label: "Features"
+    link: "/",
+    label: "Home"
   },
   {
-    link: "/pricing",
-    label: "Pricing"
+    link: "/about",
+    label: "About"
   },
   {
     link: "/learn",
     label: "Learn"
   },
   {
-    link: "/community",
-    label: "Community"
+    link: "/dashboard",
+    label: "Dashboard"
   }
 ]
 

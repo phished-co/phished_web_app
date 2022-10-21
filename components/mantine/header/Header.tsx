@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'
+import Link from 'next/link';
 
 const HEADER_HEIGHT = 60;
 
@@ -84,6 +85,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
+
     <a
       key={link.label}
       href={link.link}
@@ -93,8 +95,9 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         setActive(link.link);
         close();
       }}
-    >
+    ><Link href={link.link}>
       {link.label}
+      </Link>
     </a>
   ));
 

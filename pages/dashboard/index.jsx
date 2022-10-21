@@ -2,7 +2,6 @@ import Cards from "./../../components/cards/Cards"
 import Chart from "./../../components/chart/Chart"
 import { categories, chartdata } from "./../../components/chart/fake_data"
 import { Divider } from "@tremor/react"
-import Header from './../../components/header/Header'
 import styles from './../../styles/dashboard.module.css'
 import { useRouter } from "next/router"
 
@@ -19,7 +18,6 @@ export default function Dashboard() {
   }
 
   return <div>
-    <Header />
     <div className={styles.container}>
       <div className="pt-4">
         <h1 className="text-4xl mb-6">Dashboard</h1>
