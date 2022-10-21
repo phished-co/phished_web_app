@@ -4,6 +4,15 @@ import Head from 'next/head';
 import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { useState } from "react";
 import { getCookie, setCookie } from 'cookies-next';
+import { links } from "../components/chart/fake_data"
+import styled from "styled-components"
+import { HeaderResponsive } from "../components/mantine/header/Header.tsx"
+
+const Container = styled.div`
+  main {
+    margin-top: -120px;
+  }
+`
 
 export default function App(props) {
   const { Component, pageProps } = props;
@@ -17,17 +26,18 @@ export default function App(props) {
   }
 
   return (
-    <>
+    <Container>
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider withGlobalStyles withNormalizeCSS theme={{ colorScheme }}>
           <Head>
             <title>Phished | Protect Friends & Family by Phishing Them</title>
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           </Head>
+          <HeaderResponsive links={links} />
           <Component {...pageProps} />
         </MantineProvider>
       </ColorSchemeProvider>
-    </>
+    </Container>
   );
 }
 
