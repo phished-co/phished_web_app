@@ -1,6 +1,5 @@
 import { BadgeDelta, Card, Divider, Flex, ProgressBar, Text } from "@tremor/react";
 import Chart from "./../../components/chart/Chart"
-import Header from './../../components/header/Header'
 import CardMetric from "../../components/metric/CardMetric";
 import { categories, chartdata } from "../../components/chart/fake_data"
 import { useRouter } from "next/router"
@@ -43,7 +42,6 @@ export default function Id(props) {
   }
 
   return <>
-    <Header />
     <div className="pt-4" style={{ padding: '2rem' }}>
       <h1 className="text-4xl mb-6">{props.categories[index].metric}'s Phishing Statistics</h1>
       <Card>
