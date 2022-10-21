@@ -1,4 +1,4 @@
-// import validate from 'deep-email-validator'
+import validate from 'deep-email-validator'
 import nodemailer from 'nodemailer';
 // import cron from 'cron';
 
@@ -39,15 +39,24 @@ let transporter = nodemailer.createTransport({
   },
 });
 
+
+
+const senderValidator =  async (email) => {
+  return await validate(email)
+  // return res
+}
+
+
 // eslint-disable-next-line no-unused-vars
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
     // console.log(req.body);
 
-    const isValid = async () => {
-      // let res = await validate(email)
-      console.log(req.body)
-    }
+    let senderInfo = req.body.from.split(' ')
+    let validationInfo = await senderValidator(senderInfo[2])
+
+    res.send(validationInfo.valid)
+    if (!validationInfo.valid) return
     
 
     transporter.sendMail(req.body, (error, info) => {

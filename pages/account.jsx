@@ -9,12 +9,15 @@ import axios from 'axios';
 
 
 export default function Home() {
+  // let senderEmailValidation;
+
   const handleSendEmail = async (emailProperties) => {
     // eslint-disable-next-line no-unused-vars
     const res = await axios.post('/api/emailSent', {
       ...emailProperties,
       replyTo: 'phishedapp@gmail.com',
     });
+    return res.data
   };
 
 

@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/phishForm/PhishForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/phishForm/PhishForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/account.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/account.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/api/emailSent.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailSent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -33,6 +34,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/components/phishForm/PhishForm.jsx" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2GC8hNETdioq1VlVXZ9w2ARJDxl" />
   <component name="ProjectViewState">
