@@ -81,7 +81,7 @@ export function HeroHeader() {
         </h1>
 
         <Text className={classes.description} color="dimmed">
-          Send personalized phishing emails to test and educate your friends and family – You'll never have to worry about their internet safety again
+          Send personalized phishing emails to test and educate your friends and family – never worry about their internet safety again
         </Text>
 
         <Group className={classes.controls}>

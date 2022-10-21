@@ -26,7 +26,7 @@ const useStyles = createStyles((theme) => ({
     } 100%)`,
     padding: theme.spacing.xl * 1.5,
     borderRadius: theme.radius.md,
-    maxWidth: '1080px',
+    maxWidth: '1140px',
     margin: '0 auto',
 
     [theme.fn.smallerThan('sm')]: {
@@ -91,3 +91,5 @@ export function StatsGroup() {
   ));
   return <div className={classes.root}>{stats}</div>;
 }
+
+export default StatsGroup
