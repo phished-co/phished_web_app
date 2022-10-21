@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const HEADER_HEIGHT = 60;
 
@@ -81,8 +81,9 @@ interface HeaderResponsiveProps {
 
 export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
+  const [active, setActive] = useState('');
   const { classes, cx } = useStyles();
+  const r = useRouter()
 
   const items = links.map((link) => (
 
@@ -93,11 +94,12 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
       onClick={(event) => {
         event.preventDefault();
         setActive(link.link);
+        r.push({
+          pathname: `${link.link}`
+        })
         close();
-      }}
-    ><Link href={link.link}>
+      }}>
       {link.label}
-      </Link>
     </a>
   ));
 
