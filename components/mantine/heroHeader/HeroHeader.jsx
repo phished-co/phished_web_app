@@ -76,7 +76,7 @@ export function HeroHeader() {
         <h1 className={classes.title}>
           Protect Mom from phishing attacks by{' '}
           <Text component="span" color='blue' inherit>
-            phishing her yourself.
+            phishing her yourself
           </Text>
         </h1>
 
