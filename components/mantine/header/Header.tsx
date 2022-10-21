@@ -3,7 +3,8 @@ import { Button, createStyles, Header, Container, Group, Burger, Paper, Transiti
 import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'
 import { useRouter } from 'next/router';
-import ColorToggle from "../../colorToggle/ColorToggle"
+import ColorToggle from '../../colorToggle/ColorToggle'
+import { NodeNextRequest } from 'next/dist/server/base-http/node';
 
 const HEADER_HEIGHT = 60;
 
@@ -46,6 +47,10 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.largerThan('sm')]: {
       display: 'none',
     },
+  },
+
+  logo: {
+    marginRight: '12px'
   },
 
   link: {
@@ -105,12 +110,12 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
+    <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
-        <span onClick={() => {r.push({pathname: '/'})}}>
+        <Group spacing={5} className={classes.links}>
+        <span className={classes.logo} onClick={() => {r.push({pathname: '/'})}}>
         <GiFishingHook size={28}/>
         </span>
-        <Group spacing={5} className={classes.links}>
           {items}
 
         </Group>
@@ -120,17 +125,21 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         <ColorToggle />
 
         </Group>
-
         <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
 
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
+              <span onClick={() => {r.push({pathname: '/'})}}>
+        </span>
+        <ColorToggle/>
+
               {items}
               <Group position="center" grow pb="xl" px="md">
             <Button variant="default">Log in</Button>
             <Button variant="outline">Sign up</Button>
+            
           </Group>
             </Paper>
           )}

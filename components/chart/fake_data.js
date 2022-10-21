@@ -147,10 +147,10 @@ const links = [
     link: "/learn",
     label: "Learn"
   },
-  {
-    link: "/dashboard",
-    label: "Dashboard"
-  }
+  // {
+  //   link: "/dashboard",
+  //   label: "Dashboard"
+  // }
 ]
 
 export { categories }
