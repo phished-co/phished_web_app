@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
+import { Button, createStyles, Header, Container, Group, Burger, Paper, Transition, Divider } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'
 import { useRouter } from 'next/router';
@@ -110,6 +110,11 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         <GiFishingHook size={28} />
         <Group spacing={5} className={classes.links}>
           {items}
+
+        </Group>
+        <Group spacing={5} className={classes.links}>
+          <Button variant="default">Log in</Button>
+          <Button type='null'>Sign up</Button>
         <ColorToggle />
 
         </Group>
@@ -121,6 +126,10 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
               {items}
+              <Group position="center" grow pb="xl" px="md">
+            <Button variant="default">Log in</Button>
+            <Button type='null'>Sign up</Button>
+          </Group>
             </Paper>
           )}
         </Transition>
