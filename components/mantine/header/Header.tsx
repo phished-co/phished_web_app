@@ -3,6 +3,7 @@ import { createStyles, Header, Container, Group, Burger, Paper, Transition } fro
 import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'
 import { useRouter } from 'next/router';
+import ColorToggle from "../../colorToggle/ColorToggle"
 
 const HEADER_HEIGHT = 60;
 
@@ -109,6 +110,8 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         <GiFishingHook size={28} />
         <Group spacing={5} className={classes.links}>
           {items}
+        <ColorToggle />
+
         </Group>
 
         <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
