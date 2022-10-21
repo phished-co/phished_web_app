@@ -137,3 +137,5 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
     </Header>
   );
 }
+
+// tsconfig strictNullCheck = false does get rid of type error
