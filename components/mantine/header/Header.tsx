@@ -116,7 +116,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         </Group>
         <Group spacing={5} className={classes.links}>
           <Button variant="default">Log in</Button>
-          <Button type='null'>Sign up</Button>
+          <Button variant="outline">Sign up</Button>
         <ColorToggle />
 
         </Group>
@@ -130,7 +130,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
               {items}
               <Group position="center" grow pb="xl" px="md">
             <Button variant="default">Log in</Button>
-            <Button type='null'>Sign up</Button>
+            <Button variant="outline">Sign up</Button>
           </Group>
             </Paper>
           )}
