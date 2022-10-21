@@ -107,7 +107,9 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   return (
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
       <Container className={classes.header}>
-        <GiFishingHook size={28} />
+        <span onClick={() => {r.push({pathname: '/'})}}>
+        <GiFishingHook size={28}/>
+        </span>
         <Group spacing={5} className={classes.links}>
           {items}
 
