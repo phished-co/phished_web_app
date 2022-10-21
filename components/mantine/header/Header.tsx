@@ -4,7 +4,6 @@ import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'
 import { useRouter } from 'next/router';
 import ColorToggle from '../../colorToggle/ColorToggle'
-import { NodeNextRequest } from 'next/dist/server/base-http/node';
 
 const HEADER_HEIGHT = 60;
 
