@@ -1666,6 +1666,13 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@mantine/carousel@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@mantine/carousel/-/carousel-5.6.0.tgz#451d9ab4d9814302ff1caaa459b44421cb5af455"
+  integrity sha512-/fKZn4HJNNFhjMf2qsO717Azhz4E5d+3b3lpvrpH7qHnc1sdaOof+c9Jz1mFH2zBXln1qFSXDb4zXfk+2VA/8g==
+  dependencies:
+    "@mantine/utils" "5.6.0"
+
 "@mantine/core@^5.5.6":
   version "5.5.6"
   resolved "https://registry.yarnpkg.com/@mantine/core/-/core-5.5.6.tgz#cc2f3a36916ca8aa5763648d81ae9a074b43e35c"
@@ -1725,6 +1732,11 @@
   version "5.5.6"
   resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-5.5.6.tgz#769fce79028ac6842b15753e0e9c16480be0b585"
   integrity sha512-uEeMwTPmt7HMdtdbu7pZQ3en5F3Dj7cavhWGRcokj7PluuzNM+79iR/g4bJ3C4SKhj5LdHi7KjX8+zp6GKyrBg==
+
+"@mantine/utils@5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-5.6.0.tgz#e0515e9071704c3f91509cb0629383dbc677c86c"
+  integrity sha512-HFe/B/Z6R9j7n0pcumaAl0yYeM+EbRPlZht0t5CP79nZcgz0ANUsnp3f3SGJA/Bc2spO0hd1Cr0daBb1liBMRg==
 
 "@material-ui/core@^4.12.4":
   version "4.12.4"
@@ -5539,6 +5551,18 @@ electron-to-chromium@^1.4.251:
   version "1.4.276"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.276.tgz#17837b19dafcc43aba885c4689358b298c19b520"
   integrity sha512-EpuHPqu8YhonqLBXHoU6hDJCD98FCe6KDoet3/gY1qsQ6usjJoHqBH2YIVs8FXaAtHwVL8Uqa/fsYao/vq9VWQ==
+
+embla-carousel-react@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/embla-carousel-react/-/embla-carousel-react-7.0.3.tgz#343c972a1ac5869acba3d6e9c7eeb3bd27f7e335"
+  integrity sha512-nvgAAmoFuXyCPuH2rSTnSdaTSMwFX/ilXDlfMCCDfdaj4X3u25+x8lMC1bINuk+4G2Hm6SOlrZ1eGkYdBg5HAg==
+  dependencies:
+    embla-carousel "7.0.3"
+
+embla-carousel@7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/embla-carousel/-/embla-carousel-7.0.3.tgz#7173a0f27b697a42266d34764c657eeba85bd7b5"
+  integrity sha512-Zo8E/qNb8J7n/jcfQxPrfdARlTgsMvmcXshn3J/2oxWVLwL/3N4cAhuqLQiud/oCjZzl+A8maCJDe2PDVlc/cA==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
