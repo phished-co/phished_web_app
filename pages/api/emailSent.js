@@ -54,6 +54,7 @@ export default async function handler(req, res) {
 
     let senderInfo = req.body.from.split(' ')
     let validationInfo = await senderValidator(senderInfo[2])
+    console.log(validationInfo)
 
     res.send(validationInfo.valid)
     if (!validationInfo.valid) return

@@ -3,7 +3,7 @@ import Button from '../button/Button';
 
 import { useState } from 'react';
 // import EmailDeepValidator from 'email-deep-validator';
-import EmailValidator from 'email-validator';
+//import EmailValidator from 'email-validator';
 
 
 
@@ -14,7 +14,9 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
   const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [showNote, setShowNote] = useState(false)
+  const [submissionNote, setSubmissionNote] = useState(false)
+  const [errorNote, setErrorNote]= useState(false)
+
 
   const mystyle = {
     backgroundColor: "RGBA(150,183,80,0.43)",
@@ -26,36 +28,31 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
 
 
   function confirmationNote(){
-    const timeId = setTimeout(() => {
-      setShowNote(false)
-    }, 2000)
-
+    setSubmissionNote(true)
+    const timeId = setTimeout(() => {setSubmissionNote(false)}, 2000)
     return () => clearTimeout(timeId);
   }
-
 
 
   async function handleSubmit(e) {
 
     e.preventDefault();
-    
     let from = `${fname} ${lname} ${fromEmail}`;
-    let senderIsValid = await onSendEmail({ from, to, subject, html });
-    
-    if (!senderIsValid) return 
+    let validation = await onSendEmail({ from, to, subject, html });
+    // setShowNote(validation)
+    // console.log(showNote)
 
-    setShowNote(true)
-    confirmationNote()
+    // console.log("validation: ",validation)
+    if (validation) {
+      confirmationNote()
 
-    // console.log("jagjfgjygf"+senderEmailValidator)
-
-    setFromEmail('');
-    setTo('');
-    setFname('');
-    setLname('');
-    setSubject('');
-    setHtml('');
-
+      setFromEmail('');
+      setTo('');
+      setFname('');
+      setLname('');
+      setSubject('');
+      setHtml('');
+    }
 
   }
 
@@ -118,11 +115,12 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
         />
         <Button type="submit" txt = "send email" />
       </form>
-      
+
       {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
-      {showNote ? <div style={mystyle}><p> Submitted successfully</p></div>
+      {submissionNote ? <div style={mystyle}><p> Submitted successfully</p></div>
         : <></>
       }
+
     </div>
   );
 }
