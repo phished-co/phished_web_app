@@ -18,7 +18,7 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
   const [errorNote, setErrorNote]= useState(false)
 
 
-  const mystyle = {
+  const confrimStyle = {
     backgroundColor: "RGBA(150,183,80,0.43)",
     padding: "10px",
     margin:"10px",
@@ -26,10 +26,22 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
     fontSize:"10px"
   };
 
+  const errorStyle = {
+    backgroundColor: "RGBA(255,0,41,0.32)",
+    padding: "10px",
+    margin:"10px",
+    textAlign:"center",
+    fontSize:"10px"
+  };
 
-  function confirmationNote(){
-    setSubmissionNote(true)
-    const timeId = setTimeout(() => {setSubmissionNote(false)}, 2000)
+
+  function confirmationNote(validation){
+    validation? setSubmissionNote(true): setErrorNote(true)
+
+    const timeId = setTimeout(() => {
+      setSubmissionNote(false)
+
+    }, 2000)
     return () => clearTimeout(timeId);
   }
 
@@ -37,24 +49,24 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
   async function handleSubmit(e) {
 
     e.preventDefault();
+
+    setErrorNote(false)
     let from = `${fname} ${lname} ${fromEmail}`;
     let validation = await onSendEmail({ from, to, subject, html });
-    // setShowNote(validation)
-    // console.log(showNote)
 
-    // console.log("validation: ",validation)
     if (validation) {
-      confirmationNote()
-
       setFromEmail('');
       setTo('');
       setFname('');
       setLname('');
       setSubject('');
       setHtml('');
-    }
+      }
 
-  }
+      confirmationNote(validation)
+
+
+    }
 
 
   return (
@@ -117,7 +129,10 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
       </form>
 
       {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
-      {submissionNote ? <div style={mystyle}><p> Submitted successfully</p></div>
+      {submissionNote ? <div style={confrimStyle}><p> Submitted successfully</p></div>
+        : <></>
+      }
+      {errorNote ? <div style={errorStyle}><p> Please Enter a valid sender email </p></div>
         : <></>
       }
 
