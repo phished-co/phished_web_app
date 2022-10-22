@@ -9,8 +9,11 @@ export default {
 
 const Template = (args) => <MyInput {...args} />;
 
-export const Base = Template.bind({});
 
-Base.args = {
-  SampleTextProp: 'hellow world',
+export const Email = Template.bind({});
+Email.args = {
+  label: "Email Address",
+  description: "Please enter your email",
+  placeholder: "example@email.com",
+  inputWrapperOrder: ['label', 'description', 'error', 'input']
 };
