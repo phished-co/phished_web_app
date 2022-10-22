@@ -2,19 +2,16 @@ import { createStyles, Text } from '@mantine/core';
 
 let data = [
     {
-      "title": "Page views",
-      "stats": "456,133",
-      "description": "24% more than in the same month last year, 33% more that two years ago"
+      "title": "6.4 billion emails are sent every day worldwide",
+      "description": "Cybercriminals pursue personal information, like a person's identity, to use in later phishing attacks."
     },
     {
-      "title": "New users",
-      "stats": "2,175",
-      "description": "13% less compared to last month, new user engagement up by 6%"
+      "title": "Victims over 60 years of age lose an average of $34 200",
+      "description": "Older adults are significantly more likely to lose money to online fraud."
     },
     {
-      "title": "Completed orders",
-      "stats": "1,994",
-      "description": "1994 orders were completed this month, 97% satisfaction rate"
+      "title": "56% of Canadians report being a victim of online fraud",
+      "description": "1/10 Canadiens, tech-savvy or not, will unknowingly reply to a phishing email today."
     }
   ]
 
@@ -84,7 +81,7 @@ export function StatsGroup() {
   const { classes } = useStyles();
   const stats = data.map((stat) => (
     <div key={stat.title} className={classes.stat}>
-      <Text className={classes.count}>{stat.stats}</Text>
+      {/* <Text className={classes.count}>{stat.stats}</Text> */}
       <Text className={classes.title}>{stat.title}</Text>
       <Text className={classes.description}>{stat.description}</Text>
     </div>

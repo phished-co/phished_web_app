@@ -15,7 +15,7 @@ const Container = styled.div`
 
 export function QuizCard() {
   return <Container>
-    <Title align='center' order={2}>Get started by inviting your first fish</Title>
+    <Title align='center' order={2}>Know someone vulnerable? Get phishing immediately</Title>
     <Button className='cta' type='null' variant='fill'>Let's go!</Button>
   </Container>
 }

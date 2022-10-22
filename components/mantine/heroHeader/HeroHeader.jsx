@@ -75,7 +75,7 @@ export function HeroHeader() {
       <Container size={700} className={classes.inner}>
         <h1 className={classes.title}>
           Protect Mom from phishing attacks by{' '}
-          <Text component="span" color='blue' inherit>
+          <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'blue' }} inherit>
             phishing her yourself
           </Text>
         </h1>
@@ -97,6 +97,7 @@ export function HeroHeader() {
           <Button
             component="a"
             href="https://github.com/phished-co/phished_web_app"
+            target='_blank'
             size="xl"
             variant="default"
             className={classes.control}

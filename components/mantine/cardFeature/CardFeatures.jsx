@@ -14,19 +14,19 @@ const mockdata = [
   {
     title: 'Personalized Sending',
     description:
-      'This dust is actually a powerful poison that will even make a pro wrestler sick, Regice cloaks itself with frigid air of -328 degrees Fahrenheit',
+      'Phished sends phishing emails tailored to emulate common and dangerous emails that real world criminals use. ',
     icon: RiSendPlaneFill,
   },
   {
     title: 'Empowering Privacy',
     description:
-      'People say it can run at the same speed as lightning striking, Its icy body is so cold, it will not melt even if it is immersed in magma',
+      'Empower vulnerable internet users by providing them the education and training they need to avoid online fraud.',
     icon: RiLock2Fill,
   },
   {
     title: 'Dashboards and Metrics and Stats, oh my!',
     description:
-      'They’re popular, but they’re rare. Trainers who show them off recklessly may be targeted by thieves',
+      `View how your fish are progressing with our dashboard. Track their progress to ensure they're on the right track.`,
     icon: RiLineChartLine,
   },
 ];

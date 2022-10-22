@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, createStyles, Header, Container, Group, Burger, Paper, Transition, Divider } from '@mantine/core';
+import {MantineModal} from "../modal/Modal"
 import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'
 import { useRouter } from 'next/router';
@@ -119,7 +120,8 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
 
         </Group>
         <Group spacing={5} className={classes.links}>
-          <Button variant="default">Log in</Button>
+          <MantineModal />
+          {/* <Button variant="default">Log in</Button> */}
           <Button variant="outline">Sign up</Button>
         <ColorToggle />
 
@@ -135,8 +137,9 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         <ColorToggle/>
 
               {items}
-              <Group position="center" grow pb="xl" px="md">
-            <Button variant="default">Log in</Button>
+              <Group position="left" pb="xl" px="md">
+            <MantineModal/>
+            {/* <Button variant="default">Log in</Button> */}
             <Button variant="outline">Sign up</Button>
             
           </Group>
