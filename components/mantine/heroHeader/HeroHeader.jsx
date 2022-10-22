@@ -75,7 +75,7 @@ export function HeroHeader() {
       <Container size={700} className={classes.inner}>
         <h1 className={classes.title}>
           Protect Mom from phishing attacks by{' '}
-          <Text component="span" color='blue' inherit>
+          <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'blue' }} inherit>
             phishing her yourself
           </Text>
         </h1>
