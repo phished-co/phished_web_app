@@ -6,6 +6,7 @@ import { useState } from "react";
 import { getCookie, setCookie } from 'cookies-next';
 import { links } from "../components/chart/fake_data"
 import { HeaderResponsive } from "../components/mantine/header/Header.tsx"
+import { FooterSimple } from "../components/mantine/footer/Footer"
 
 export default function App(props) {
   const { Component, pageProps } = props;
@@ -28,6 +29,7 @@ export default function App(props) {
           </Head>
           <HeaderResponsive links={links} />
           <Component {...pageProps} />
+          <FooterSimple />
         </MantineProvider>
       </ColorSchemeProvider>
     </>
