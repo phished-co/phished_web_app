@@ -97,6 +97,7 @@ export function HeroHeader() {
           <Button
             component="a"
             href="https://github.com/phished-co/phished_web_app"
+            target='_blank'
             size="xl"
             variant="default"
             className={classes.control}
