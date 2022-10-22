@@ -20,6 +20,7 @@ const useStyles = createStyles((theme) => ({
     alignItems: 'flex-start',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    cursor: 'pointer'
   },
 
   title: {
