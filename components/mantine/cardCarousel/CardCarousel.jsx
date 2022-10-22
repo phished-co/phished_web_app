@@ -4,7 +4,7 @@ import { createStyles, Paper, Text, Title, Button, useMantineTheme } from '@mant
 import styled from "styled-components";
 
 const Container = styled.div`
-  maxWidth: 1080px;
+  maxWidth: 1140px;
 
   button {
     background: white;
@@ -24,7 +24,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    fontFamily: `${theme.fontFamily}`,
     fontWeight: 900,
     color: theme.white,
     lineHeight: 1.2,
@@ -34,7 +34,7 @@ const useStyles = createStyles((theme) => ({
 
   category: {
     color: theme.white,
-    opacity: 0.7,
+    opacity: 0.8,
     fontWeight: 700,
     textTransform: 'uppercase',
   },
@@ -69,7 +69,7 @@ function Card({ image, title, category }) {
 const data = [
   {
     image:
-      'https://i.pinimg.com/564x/2e/71/75/2e7175d5197b599967777ac2fbf82fc5.jpg',
+      'https://i.pinimg.com/564x/e4/50/12/e45012346d6734d6dc0817e7932db723.jpg',
     title: `Can you spot the phishing email? Take our new quiz!`,
     category: 'quiz',
   },
@@ -81,26 +81,26 @@ const data = [
   },
   {
     image:
-      'https://images.unsplash.com/photo-1608481337062-4093bf3ed404?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-    title: 'Mountains at night: 12 best locations to enjoy the view',
+      'https://i.pinimg.com/564x/f3/98/f1/f398f16b90dd07689a4df83d1ece2c3a.jpg',
+    title: 'How Cyber Threats Work',
     category: 'article',
   },
   {
     image:
-      'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-    title: 'Aurora in Norway: when to visit for best experience',
+      'https://i.pinimg.com/564x/9e/e9/3e/9ee93eb98efcb7e53f91b02a85c11e85.jpg',
+    title: 'How to help the older adults in your life get cyber safe',
     category: 'article',
   },
   {
     image:
-      'https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-    title: 'Best places to visit this winter',
+      'https://i.pinimg.com/564x/64/48/4c/64484c24a197defb114640929d08e473.jpg',
+    title: "Senior's guide to staying cyber safe",
     category: 'tourism',
   },
   {
     image:
-      'https://images.unsplash.com/photo-1582721478779-0ae163c05a60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-    title: 'Active volcanos reviews: travel at your own risk',
+      'https://i.pinimg.com/564x/5c/18/d3/5c18d33081fb632100884e85383d59e2.jpg',
+    title: 'How anyone can become a confident online shopper',
     category: 'article',
   },
 ];
