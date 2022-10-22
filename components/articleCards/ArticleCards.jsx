@@ -1,6 +1,5 @@
-import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
-import { createStyles, Paper, Text, Title, Button, useMantineTheme } from '@mantine/core';
+import { createStyles, Paper, Text, Title, Button, useMantineTheme, SimpleGrid } from '@mantine/core';
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -105,28 +104,25 @@ const data = [
   },
 ];
 
-export function CardCarousel() {
+export function ArticleCards() {
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
   const slides = data.map((item) => (
-    <Carousel.Slide key={item.title}>
-      <Card {...item} />
-    </Carousel.Slide>
+    <Card {...item} />
   ));
 
   return (
     <Container>
-      <Carousel
-        slideSize="50%"
-        breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: 2 }]}
-        slideGap="xl"
-        align="start"
-        slidesToScroll={mobile ? 1 : 2}
-      >
+      <SimpleGrid
+        cols={3}
+        breakpoints={[
+          { maxWidth: 900, cols: 2, spacing: 'md' },
+          { maxWidth: 600, cols: 1, spacing: 'sm' }
+        ]}>
         {slides}
-      </Carousel>
+      </SimpleGrid>
     </Container>
   );
 }
 
-export default CardCarousel
+export default ArticleCards
