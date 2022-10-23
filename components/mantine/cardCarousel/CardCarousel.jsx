@@ -2,6 +2,7 @@ import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import { createStyles, Paper, Text, Title, Button, useMantineTheme } from '@mantine/core';
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   maxWidth: 1140px;
@@ -42,6 +43,7 @@ const useStyles = createStyles((theme) => ({
 
 function Card({ image, title, category }) {
   const { classes } = useStyles();
+  const r = useRouter()
 
   return (
     <Paper
@@ -50,6 +52,7 @@ function Card({ image, title, category }) {
       radius="md"
       sx={{ backgroundImage: `url(${image})` }}
       className={classes.card}
+      onClick={() => { { category === 'quiz' ? r.push({ pathname: 'quiz' }) : '' } }}
     >
       <div>
         <Text className={classes.category} size="xs">

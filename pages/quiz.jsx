@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import QuizTitle from "../components/quiz/title/Title"
 import AnswerButton from "../components/quiz/answer/AnswerButtons"
+import QuizEmail from "../components/quiz/email/QuizEmail"
 
 const Container = styled.div`
   max-width: 1140px;
@@ -16,5 +17,6 @@ export default function Quiz() {
       title="Personal Contact"
     />
     <AnswerButton />
+    <QuizEmail />
   </Container>
 }
