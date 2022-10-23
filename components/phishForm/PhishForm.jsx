@@ -2,12 +2,9 @@ import styles from './PhishForm.module.css';
 import Button from '../button/Button';
 
 import { useState } from 'react';
-// import EmailDeepValidator from 'email-deep-validator';
-//import EmailValidator from 'email-validator';
+import Link from 'next/link';
 
-
-
-export default function PhishForm({ onSendEmail, senderEmailValidator}) {
+export default function PhishForm({ onSendEmail, onScheduleEmail }) {
   const [fromEmail, setFromEmail] = useState('');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
@@ -61,9 +58,7 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
       setSubject('');
       setHtml('');
       }
-
     }
-
 
   return (
     <div>
@@ -119,19 +114,23 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
           name="content"
           value={html}
           onChange={(e) => setHtml(e.target.value)}
-
         />
-        <Button type="submit" txt = "send email" />
+        <Button type="submit" txt="send email" />
       </form>
 
-      {
+      <Link href="/scheduleEmail" passHref>
+        <a onClick={() => onScheduleEmail({ from, to, subject, html })}>
+          <Button txt="schedule email for later" />
+        </a>
+      </Link>
+   
+           {
         successNote ? <div style={confirmStyle}><p> Submitted successfully</p></div>
           : errorNote ? <div style={errorStyle}><p> Please Enter a valid sender email </p></div>
             : <></>
       }
 
+
     </div>
   );
 }
-
-

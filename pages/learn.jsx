@@ -1,10 +1,17 @@
-import Header from '../components/header/Header';
+import ArticleCards from "../components/articleCards/ArticleCards";
+import styled from 'styled-components'
 
-export default function About() {
+const Container = styled.div`
+  max-width: 1140px;
+  margin: 0 auto;
+`
+
+export default function Learn() {
   return (
-    <section>
-      <Header />
-      <p>this is for learning</p>
-    </section>
+    <Container>
+      <section>
+        <ArticleCards />
+      </section>
+    </Container>
   );
 }

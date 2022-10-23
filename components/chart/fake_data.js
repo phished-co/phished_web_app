@@ -134,6 +134,26 @@ const cardmetrics = [
   }],
 ];
 
+const links = [
+  {
+    link: "/",
+    label: "Home"
+  },
+  {
+    link: "/about",
+    label: "About"
+  },
+  {
+    link: "/learn",
+    label: "Learn"
+  },
+  // {
+  //   link: "/dashboard",
+  //   label: "Dashboard"
+  // }
+]
+
 export { categories }
 export { chartdata }
 export { cardmetrics }
+export { links }

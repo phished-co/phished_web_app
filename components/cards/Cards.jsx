@@ -20,11 +20,14 @@ const colors = {
   decrease: 'rose',
 }
 
-export default function Cards(props) {
+export default function Cards({
+  categories = [],
+  handleClick = () => { }
+}) {
   return (
     <ColGrid numColsSm={2} numColsLg={3} gapX="gap-x-6" gapY="gap-y-6">
-      {props.categories.map((item) => (
-        <span key={item.metric} onClick={() => { props.handleClick(item.id) }}>
+      {categories.map((item) => (
+        <span key={item.metric} onClick={() => { handleClick(item.id) }}>
           <Card key={item.metric}>
             <Flex
               justifyContent="justify-start"
@@ -49,7 +52,7 @@ export default function Cards(props) {
               <ButtonInline
                 size="sm"
                 text="View details"
-                handleClick={() => { props.handleClick(item.id) }}
+                handleClick={() => { handleClick(item.id) }}
                 Icon={ArrowRightIcon}
                 iconPosition="right"
               />
