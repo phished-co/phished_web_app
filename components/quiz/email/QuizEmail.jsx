@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const Container = styled.div`
   margin-top: 3rem;
-  outline: 2px solid red;
+  ${'' /* outline: 2px solid red; */}
   padding: 1rem 4vw;
 `
 
@@ -35,10 +35,34 @@ const SurroundingBox = styled.div`
   padding: 2rem;
 `
 
+const HoverLink = styled.span`
+    color: blue;
+    cursor: pointer;
+
+    :hover {
+      text-decoration: underline;
+    }
+`
+
+const URLContainer = styled.div`
+  background: gray;
+  color: white;
+  max-width: 32rem;
+  margin-top: 8rem;
+  padding-left: 0.5rem;
+  opacity: 0;
+
+  ${Container}:hover & {
+    opacity: 1;
+  }
+`
+
 const EmailContainer = styled.div`
   width: 100%;
   min-height: 8rem;
   background: white;
+  padding: 1rem;
+  color: black;
 `
 
 const Circle = styled.div`
@@ -64,9 +88,12 @@ export default function QuizEmail() {
       </Header>
       <SurroundingBox>
         <EmailContainer>
-
+          <p>Here are the photos from <HoverLink>last vacation!</HoverLink></p>
         </EmailContainer>
       </SurroundingBox>
+      <URLContainer>
+        https://googlephotos.com
+      </URLContainer>
     </Container>
   )
 }
