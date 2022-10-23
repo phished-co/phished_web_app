@@ -1,5 +1,6 @@
 import styles from './PhishForm.module.css';
 import Button from '../button/Button';
+
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -10,41 +11,54 @@ export default function PhishForm({ onSendEmail, onScheduleEmail }) {
   const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [showNote, setShowNote] = useState(false);
+  const [successNote, setSuccessNote] = useState(false)
+  const [errorNote, setErrorNote]= useState(false)
 
-  const mystyle = {
-    backgroundColor: 'RGBA(150,183,80,0.)',
-    padding: '10px',
-    margin: '10px',
-    textAlign: 'center',
-    fontSize: '10px',
+
+  const confirmStyle = {
+    backgroundColor: "RGBA(150,183,80,0.43)",
+    padding: "10px",
+    margin:"10px",
+    textAlign:"center",
+    fontSize:"10px"
   };
 
-  function confirmationNote() {
-    const timeId = setTimeout(() => {
-      setShowNote(false);
-    }, 2000);
+  const errorStyle = {
+    backgroundColor: "RGBA(255,0,41,0.32)",
+    padding: "10px",
+    margin:"10px",
+    textAlign:"center",
+    fontSize:"10px"
+  };
 
-    return () => {
-      clearTimeout(timeId);
-    };
+
+  function submissionNote(validation){
+
+    setErrorNote(false)
+    validation? setSuccessNote(true): setErrorNote(true)
+
+    const timeId = setTimeout(() => { setSuccessNote(false) }, 2000)
+    return () => clearTimeout(timeId);
   }
 
-  let from = `${fname} ${lname} ${fromEmail}`;
-  function handleSubmit(e) {
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    onSendEmail({ from, to, subject, html });
 
-    setShowNote(true);
-    confirmationNote();
+    let from = `${fname} ${lname} ${fromEmail}`;
+    let validation = await onSendEmail({ from, to, subject, html });
 
-    setFromEmail('');
-    setTo('');
-    setFname('');
-    setLname('');
-    setSubject('');
-    setHtml('');
-  }
+    submissionNote(validation)
+
+    if (validation) {
+      setFromEmail('');
+      setTo('');
+      setFname('');
+      setLname('');
+      setSubject('');
+      setHtml('');
+      }
+    }
 
   return (
     <div>
@@ -103,19 +117,20 @@ export default function PhishForm({ onSendEmail, onScheduleEmail }) {
         />
         <Button type="submit" txt="send email" />
       </form>
+
       <Link href="/scheduleEmail" passHref>
         <a onClick={() => onScheduleEmail({ from, to, subject, html })}>
           <Button txt="schedule email for later" />
         </a>
       </Link>
-      {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
-      {showNote ? (
-        <div style={mystyle}>
-          <p> Submitted successfully</p>
-        </div>
-      ) : (
-        <></>
-      )}
+   
+           {
+        successNote ? <div style={confirmStyle}><p> Submitted successfully</p></div>
+          : errorNote ? <div style={errorStyle}><p> Please Enter a valid sender email </p></div>
+            : <></>
+      }
+
+
     </div>
   );
 }
