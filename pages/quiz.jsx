@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import QuizTitle from "../components/quiz/title/Title"
+import AnswerButton from "../components/quiz/answer/AnswerButtons"
 
 const Container = styled.div`
   max-width: 1140px;
@@ -14,5 +15,6 @@ export default function Quiz() {
       tip="Check link URLS by hovering over them! Don't worry about clicking anything malicious – the links are non-functional and for demonstrative purposes only."
       title="Personal Contact"
     />
+    <AnswerButton />
   </Container>
 }

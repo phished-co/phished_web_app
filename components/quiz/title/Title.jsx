@@ -1,4 +1,4 @@
-import { Text, Title } from "@mantine/core"
+import { Divider, Text, Title } from "@mantine/core"
 
 export default function QuizTitle({ number, title, tip }) {
   return (
@@ -6,6 +6,7 @@ export default function QuizTitle({ number, title, tip }) {
       <Text>{number} of 8</Text>
       <Title order={1}>{title}</Title>
       <Text dimmed>{tip}</Text>
+      <Divider mt={32} />
     </>
   )
 }
