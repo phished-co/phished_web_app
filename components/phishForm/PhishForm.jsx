@@ -14,11 +14,11 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
   const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [submissionNote, setSubmissionNote] = useState(false)
+  const [successNote, setSuccessNote] = useState(false)
   const [errorNote, setErrorNote]= useState(false)
 
 
-  const confrimStyle = {
+  const confirmStyle = {
     backgroundColor: "RGBA(150,183,80,0.43)",
     padding: "10px",
     margin:"10px",
@@ -35,24 +35,23 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
   };
 
 
-  function confirmationNote(validation){
-    validation? setSubmissionNote(true): setErrorNote(true)
+  function submissionNote(validation){
 
-    const timeId = setTimeout(() => {
-      setSubmissionNote(false)
+    setErrorNote(false)
+    validation? setSuccessNote(true): setErrorNote(true)
 
-    }, 2000)
+    const timeId = setTimeout(() => { setSuccessNote(false) }, 2000)
     return () => clearTimeout(timeId);
   }
 
 
   async function handleSubmit(e) {
-
     e.preventDefault();
 
-    setErrorNote(false)
     let from = `${fname} ${lname} ${fromEmail}`;
     let validation = await onSendEmail({ from, to, subject, html });
+
+    submissionNote(validation)
 
     if (validation) {
       setFromEmail('');
@@ -62,9 +61,6 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
       setSubject('');
       setHtml('');
       }
-
-      confirmationNote(validation)
-
 
     }
 
@@ -128,12 +124,10 @@ export default function PhishForm({ onSendEmail, senderEmailValidator}) {
         <Button type="submit" txt = "send email" />
       </form>
 
-      {/* {emailNotif ? <EmailSentNotif email={to}></EmailSentNotif> : <></>} */}
-      {submissionNote ? <div style={confrimStyle}><p> Submitted successfully</p></div>
-        : <></>
-      }
-      {errorNote ? <div style={errorStyle}><p> Please Enter a valid sender email </p></div>
-        : <></>
+      {
+        successNote ? <div style={confirmStyle}><p> Submitted successfully</p></div>
+          : errorNote ? <div style={errorStyle}><p> Please Enter a valid sender email </p></div>
+            : <></>
       }
 
     </div>
