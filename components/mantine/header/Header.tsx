@@ -122,7 +122,10 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         <Group spacing={5} className={classes.links}>
           <MantineModal />
           {/* <Button variant="default">Log in</Button> */}
-          <Button variant="outline">Sign up</Button>
+          <Button variant="outline" onClick={()=> {r.push({pathname:"/onboarding",
+                    query: {
+                        page: 1,
+                    }})}}>Sign up</Button>
         <ColorToggle />
 
         </Group>
