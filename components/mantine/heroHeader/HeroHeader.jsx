@@ -1,5 +1,6 @@
 import { createStyles, Container, Text, Button, Group } from '@mantine/core';
 import { FaGithub } from 'react-icons/fa'
+import { useRouter } from "next/router";
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -69,6 +70,7 @@ const useStyles = createStyles((theme) => ({
 
 export function HeroHeader() {
   const { classes } = useStyles();
+  const r = useRouter()
 
   return (
     <div className={classes.wrapper}>
@@ -90,6 +92,7 @@ export function HeroHeader() {
             className={classes.control}
             variant="fill"
             type='null'
+            onClick={() => { r.push({ pathname: '/onboarding' }) }}
           >
             Get started
           </Button>
