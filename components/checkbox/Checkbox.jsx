@@ -1,8 +1,8 @@
 
 import { Checkbox } from '@mantine/core';
 
-export default function Checkboxx() {
+export default function Checkboxx({label}) {
   return <>
-  <Checkbox label = "working?" />
+  <Checkbox label = {label} />
   </>
 }

@@ -1,5 +1,5 @@
 import styles from './CardMetric.module.css';
-import { cardmetrics } from "../chart/fake_data";
+import { cardmetrics } from "../../data/fake_data"
 
 import {
   Card,
