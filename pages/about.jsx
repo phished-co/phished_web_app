@@ -4,7 +4,7 @@ import { Divider, Text, Title } from "@mantine/core";
 const Container = styled.div`
   max-width: 1140px;
   margin: 0 auto;
-  margin-top: 8rem;
+  margin-top: 4rem;
 `
 
 const AboutContainer = styled.div`
@@ -17,7 +17,7 @@ export default function About() {
   return (
     <Container>
       <AboutContainer>
-        <Title mb={12}>About Phished</Title>
+        <Title mb={48} order={2} size='h1' weight='900'>About Phished</Title>
         <Text>Phished is a non-profit organization that proudly empowers our users to educate their family members, friends, and neighbours on internet safety. Phished will always be free and open-source. </Text>
         <br />
         <Text>Phished was developed for people to gain experience in dealing with phishing emails without exposing themselves to online fraud. Our phishing simulator provides hands-on training and is based on real-world examples of common phishing techniques. </Text>
