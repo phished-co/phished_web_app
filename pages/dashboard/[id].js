@@ -38,7 +38,6 @@ export default function Id(props) {
     index = 2
   } else {
     index = 3
-
   }
 
   return <>
