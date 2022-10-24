@@ -9,23 +9,23 @@ export const config = {
 }
 
 
-const senderValidator =  async (email) => {
-  return await validate(email)
-  // return res
-}
-
-
 export default async function handler(req, res) {
   try {
     if (req.method === 'POST') {
     
       let senderInfo = req.body.from.split(' ')
-      let validationInfo = await senderValidator(senderInfo[2])
+      let validationInfo = await validate(senderInfo[2])
       console.log(validationInfo)
 
-      res.send(validationInfo.valid)
-      if (!validationInfo.valid) return
-      
+      console.log(validationInfo)
+
+
+      res.send(validationInfo.validators.mx)
+      if (!validationInfo.validators.mx) return
+
+      // res.send(validationInfo.valid)
+      // if (!validationInfo.valid) return
+
     
       transporter.sendMail(req.body, (error, info) => {
         if (error) console.log(error);
