@@ -140,7 +140,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
               <Group position="left" pb="xl" px="md">
             <MantineModal/>
             {/* <Button variant="default">Log in</Button> */}
-            <Button variant="outline">Sign up</Button>
+            <Button variant="outline" onClick={()=> {r.push({pathname:"/onboarding"})}}>Sign up</Button>
             
           </Group>
             </Paper>
