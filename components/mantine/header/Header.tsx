@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, createStyles, Header, Container, Group, Burger, Paper, Transition, Divider } from '@mantine/core';
+import { Button, createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
 import {MantineModal} from "../modal/Modal"
 import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'

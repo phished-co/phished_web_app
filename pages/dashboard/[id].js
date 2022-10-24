@@ -1,8 +1,10 @@
-import { BadgeDelta, Card, Divider, Flex, ProgressBar, Text } from "@tremor/react";
-import Chart from "./../../components/chart/Chart"
-import CardMetric from "../../components/metric/CardMetric";
-import { categories, chartdata } from "../../components/chart/fake_data"
 import { useRouter } from "next/router"
+import { BadgeDelta, Card, Divider, Flex, ProgressBar, Text } from "@tremor/react";
+
+// Our imports
+import { categories, chartdata } from "../../data/fake_data"
+import CardMetric from "../../components/metric/CardMetric";
+import Chart from "./../../components/chart/Chart"
 
 export const getStaticPaths = () => {
   return {
@@ -25,8 +27,6 @@ export const getStaticProps = (context) => {
 export default function Id(props) {
 
   const r = useRouter()
-  // console.log(props.categories[0])
-  // console.log(r.asPath)
 
   let index = undefined
 

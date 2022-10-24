@@ -1,5 +1,5 @@
-import { Divider, Text, Title } from "@mantine/core";
 import styled from "styled-components";
+import { Divider, Text, Title } from "@mantine/core";
 
 const Container = styled.div`
   max-width: 1140px;
@@ -24,7 +24,7 @@ export default function About() {
         <br />
         <Text>If you have any questions, or want to get in contact, please send us an email at support@phished.app</Text>
         <Divider mt={48} mb={48} />
-        <Text>Developed in Canada 🇨🇦 by Yasmina Amirifar, Sue Lee, Trevor Lee, Ivan Li, Lucia Martin, Sejin Oh, and Ivan Tong.</Text>
+        <Text>Developed in Canada 🇨🇦 by Yasmina Amirifar, Sue Lee, Trevor Lee, Ivan Li, Lucia Martin, Sejin Oh, and Ivan Tong</Text>
       </AboutContainer>
     </Container>
   );

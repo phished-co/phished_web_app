@@ -13,11 +13,11 @@ const Container = styled.div`
   }
 `
 
-export function QuizCard() {
+export function GetStarted() {
   return <Container>
     <Title align='center' order={2}>Know someone vulnerable? Get phishing immediately</Title>
     <Button className='cta' type='null' variant='fill'>Let's go!</Button>
   </Container>
 }
 
-export default QuizCard
+export default GetStarted
