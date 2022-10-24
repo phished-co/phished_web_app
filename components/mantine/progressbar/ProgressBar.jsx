@@ -52,7 +52,7 @@ export function ProgressBar() {
 
   return (
     <>
-      <Stepper active={active} breakpoint="sm">
+      <Stepper active={active}>
         <Stepper.Step>
           <div>
             <Title mt={24} order={2} align='center'>I want to phish someone else</Title>
