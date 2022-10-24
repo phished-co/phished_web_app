@@ -1,8 +1,14 @@
 import PhishForm from '../components/phishForm/PhishForm';
-import styles from '../styles/Home.module.css';
+import MidtermForm from "../components/midtermForm/MidtermForm";
 import Button from '../components/button/Button';
-import { Container } from '../styles/global';
 import axios from 'axios';
+import styled from 'styled-components';
+
+export const Container = styled.div`
+  max-width: 360px;
+  margin: 0 auto;
+  margin-top: 4rem;
+`
 
 export default function Home() {
   // let senderEmailValidation;
@@ -22,7 +28,11 @@ export default function Home() {
   return (
     <>
       <Container>
-        <PhishForm
+        {/* <PhishForm
+          onSendEmail={handleSendEmail}
+          onScheduleEmail={handleScheduleEmail}
+        /> */}
+        <MidtermForm
           onSendEmail={handleSendEmail}
           onScheduleEmail={handleScheduleEmail}
         />
