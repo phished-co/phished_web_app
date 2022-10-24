@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { ProgressBar } from "../components/mantine/progressbar/ProgressBar"
 import { createStyles, Container, Text, Divider, Button, Radio, NumberInput } from '@mantine/core';
-import OnboardStep from "../components/onboarding/onboarding";
+import OnboardStep from "../components/onboarding/OnboardStep";
 
 
 const Wrapper = styled(Container) `
