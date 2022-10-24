@@ -5,9 +5,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  outline: 2px solid red;
   max-width: 360px;
-  margin: 0 auto
+  margin: 0 auto;
+  margin-top: 4rem;
 `
 
 export default function Home() {
@@ -28,10 +28,10 @@ export default function Home() {
   return (
     <>
       <Container>
-        <PhishForm
+        {/* <PhishForm
           onSendEmail={handleSendEmail}
           onScheduleEmail={handleScheduleEmail}
-        />
+        /> */}
         <MidtermForm
           onSendEmail={handleSendEmail}
           onScheduleEmail={handleScheduleEmail}
