@@ -1,5 +1,4 @@
 import PhishForm from '../components/phishForm/PhishForm';
-import Header from '../components/header/Header';
 import styles from '../styles/Home.module.css';
 import Button from '../components/button/Button';
 import { Container } from '../styles/global';
@@ -22,7 +21,6 @@ export default function Home() {
 
   return (
     <>
-      <Header></Header>
       <Container>
         <PhishForm
           onSendEmail={handleSendEmail}
