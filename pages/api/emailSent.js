@@ -1,9 +1,9 @@
 // import emailSMTPVerificator from 'email-smtp-verificator';
 // import validate from 'deep-email-validator';
-// // import validate from 'email-validator';
+// import validate from 'email-validator';
+// import { verifyEmail } from '@devmehq/email-validator-js';
 import { transporter } from '../../nodemailer';
 //emailSent.js is if the user decides to send their email right away (ie. without scheduling)
-import { verifyEmail } from '@devmehq/email-validator-js';
 
 export const config = {
   api:{ externalResolver: true, },
