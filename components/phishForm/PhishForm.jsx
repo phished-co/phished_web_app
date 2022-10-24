@@ -20,7 +20,8 @@ export default function PhishForm({ onSendEmail, onScheduleEmail }) {
     padding: "10px",
     margin:"10px",
     textAlign:"center",
-    fontSize:"10px"
+    fontSize:"10px",
+    borderRadius:"10px"
   };
 
   const errorStyle = {
@@ -28,7 +29,9 @@ export default function PhishForm({ onSendEmail, onScheduleEmail }) {
     padding: "10px",
     margin:"10px",
     textAlign:"center",
-    fontSize:"10px"
+    fontSize:"10px",
+    borderRadius:"10px"
+
   };
 
 

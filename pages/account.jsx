@@ -14,10 +14,11 @@ export default function Home() {
   // let senderEmailValidation;
 
   const handleSendEmail = async (emailProperties) => {
-    await axios.post('/api/emailSent', {
+   const res = await axios.post('/api/emailSent', {
       ...emailProperties,
       replyTo: 'phishedapp@gmail.com',
     });
+    
     return res.data
   };
 
@@ -27,6 +28,7 @@ export default function Home() {
 
   return (
     <>
+
       <Container>
         {/* <PhishForm
           onSendEmail={handleSendEmail}
