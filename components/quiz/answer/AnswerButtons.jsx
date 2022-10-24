@@ -11,7 +11,7 @@ export default function AnswerButton() {
   return (
     <Container>
       <Button fullWidth type='null'>Phishing</Button>
-      <Button fullWidth grow type='null'>Legitimate</Button>
+      <Button fullWidth type='null'>Legitimate</Button>
     </Container>
   )
 }
