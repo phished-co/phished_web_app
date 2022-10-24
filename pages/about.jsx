@@ -18,7 +18,7 @@ export default function About() {
     <Container>
       <AboutContainer>
         <Title mb={12}>About Phished</Title>
-        <Text>Phished is a non-profit organization that proudly empowers our users to educate their family members, friends, and neighbours on internet safety. Phished wil always be free and open-source. </Text>
+        <Text>Phished is a non-profit organization that proudly empowers our users to educate their family members, friends, and neighbours on internet safety. Phished will always be free and open-source. </Text>
         <br />
         <Text>Phished was developed for people to gain experience in dealing with phishing emails without exposing themselves to online fraud. Our phishing simulator provides hands-on training and is based on real-world examples of common phishing techniques. </Text>
         <br />
