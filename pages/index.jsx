@@ -1,10 +1,12 @@
+import styled from "styled-components"
+import { Divider } from "@mantine/core"
+
+// Our imports
 import { HeroHeader } from "../components/mantine/heroHeader/HeroHeader"
 import { FeaturesCards } from "../components/mantine/cardFeature/CardFeatures"
 import { StatsGroup } from "../components/mantine/statsGroup/StatsGroup"
 import { QuizCard } from "../components/quizCard/QuizCard"
 import { CardCarousel } from "../components/mantine/cardCarousel/CardCarousel"
-import { Divider } from "@mantine/core"
-import styled from "styled-components"
 
 const Container = styled.div`
   .section {
