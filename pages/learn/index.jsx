@@ -1,4 +1,4 @@
-import ArticleCards from "../components/articleCards/ArticleCards";
+import ArticleCards from "../../components/articleCards/ArticleCards";
 import styled from 'styled-components'
 
 const Container = styled.div`

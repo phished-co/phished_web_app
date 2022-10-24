@@ -1,5 +1,6 @@
 import { createStyles, Container, Group, Anchor } from '@mantine/core';
 import {GiFishingHook} from 'react-icons/gi'
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -30,15 +31,15 @@ const useStyles = createStyles((theme) => ({
 
 let links = [
     {
-      "link": "#",
+      "link": "/about",
       "label": "About"
     },
     {
-      "link": "#",
+      "link": "/contact",
       "label": "Contact"
     },
     {
-      "link": "#",
+      "link": "/privacy",
       "label": "Privacy Policy"
     }
   ]
@@ -46,15 +47,16 @@ let links = [
 export function FooterSimple() {
   const { classes } = useStyles();
   const items = links.map((link) => (
-    <Anchor<'a'>
+    <Link
       color="dimmed"
       key={link.label}
       href={link.link}
       onClick={(event) => event.preventDefault()}
-      size="sm"
+      font-size='12'
+      passHref
     >
       {link.label}
-    </Anchor>
+    </Link>
   ));
 
   return (

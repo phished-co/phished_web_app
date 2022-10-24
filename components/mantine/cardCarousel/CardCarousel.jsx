@@ -3,6 +3,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { createStyles, Paper, Text, Title, Button, useMantineTheme } from '@mantine/core';
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import { data } from "../../../data/fake_data"
 
 const Container = styled.div`
   maxWidth: 1140px;
@@ -41,7 +42,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function Card({ image, title, category }) {
+function Card({ image, title, category, id, ...props }) {
   const { classes } = useStyles();
   const r = useRouter()
 
@@ -52,7 +53,7 @@ function Card({ image, title, category }) {
       radius="md"
       sx={{ backgroundImage: `url(${image})` }}
       className={classes.card}
-      onClick={() => { { category === 'quiz' ? r.push({ pathname: 'quiz' }) : '' } }}
+      onClick={() => { { category === 'quiz' ? r.push({ pathname: 'quiz' }) : r.push({ pathname: `learn/${id}` }) } }}
     >
       <div>
         <Text className={classes.category} size="xs">
@@ -69,44 +70,44 @@ function Card({ image, title, category }) {
   );
 }
 
-const data = [
-  {
-    image:
-      'https://i.pinimg.com/564x/e4/50/12/e45012346d6734d6dc0817e7932db723.jpg',
-    title: `Can you spot the phishing email? Take our new quiz!`,
-    category: 'quiz',
-  },
-  {
-    image:
-      'https://i.pinimg.com/564x/75/14/39/75143976f254439cb0b3ed0eae826218.jpg',
-    title: 'The most common types of phishing (and how to avoid them)',
-    category: 'article',
-  },
-  {
-    image:
-      'https://i.pinimg.com/564x/f3/98/f1/f398f16b90dd07689a4df83d1ece2c3a.jpg',
-    title: 'How Cyber Threats Work',
-    category: 'article',
-  },
-  {
-    image:
-      'https://i.pinimg.com/564x/9e/e9/3e/9ee93eb98efcb7e53f91b02a85c11e85.jpg',
-    title: 'How to help the older adults in your life get cyber safe',
-    category: 'article',
-  },
-  {
-    image:
-      'https://i.pinimg.com/564x/64/48/4c/64484c24a197defb114640929d08e473.jpg',
-    title: "Senior's guide to staying cyber safe",
-    category: 'tourism',
-  },
-  {
-    image:
-      'https://i.pinimg.com/564x/5c/18/d3/5c18d33081fb632100884e85383d59e2.jpg',
-    title: 'How anyone can become a confident online shopper',
-    category: 'article',
-  },
-];
+// const data = [
+//   {
+//     image:
+//       'https://i.pinimg.com/564x/e4/50/12/e45012346d6734d6dc0817e7932db723.jpg',
+//     title: `Can you spot the phishing email? Take our new quiz!`,
+//     category: 'quiz',
+//   },
+//   {
+//     image:
+//       'https://i.pinimg.com/564x/75/14/39/75143976f254439cb0b3ed0eae826218.jpg',
+//     title: 'The most common types of phishing (and how to avoid them)',
+//     category: 'article',
+//   },
+//   {
+//     image:
+//       'https://i.pinimg.com/564x/f3/98/f1/f398f16b90dd07689a4df83d1ece2c3a.jpg',
+//     title: 'How Cyber Threats Work',
+//     category: 'article',
+//   },
+//   {
+//     image:
+//       'https://i.pinimg.com/564x/9e/e9/3e/9ee93eb98efcb7e53f91b02a85c11e85.jpg',
+//     title: 'How to help the older adults in your life get cyber safe',
+//     category: 'article',
+//   },
+//   {
+//     image:
+//       'https://i.pinimg.com/564x/64/48/4c/64484c24a197defb114640929d08e473.jpg',
+//     title: "Senior's guide to staying cyber safe",
+//     category: 'tourism',
+//   },
+//   {
+//     image:
+//       'https://i.pinimg.com/564x/5c/18/d3/5c18d33081fb632100884e85383d59e2.jpg',
+//     title: 'How anyone can become a confident online shopper',
+//     category: 'article',
+//   },
+// ];
 
 export function CardCarousel() {
   const theme = useMantineTheme();
