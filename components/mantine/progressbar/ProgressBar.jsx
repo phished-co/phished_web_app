@@ -99,7 +99,7 @@ export function ProgressBar() {
             Back
           </Button>
         )}
-        {active < 4 && <Button type='null' onClick={nextStep}>Next step</Button>}
+        {active < 4 && active !== 0 && <Button type='null' onClick={nextStep}>Next step</Button>}
         {active === 4 && <Button type='null' onClick={() => { r.push('/dashboard') }}>Submit</Button>}
       </Group>
     </>
