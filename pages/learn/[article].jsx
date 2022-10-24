@@ -1,6 +1,30 @@
 import { Text, Title } from "@mantine/core"
 import { useRouter } from "next/router"
 import { data } from '../../data/fake_data'
+import styled from "styled-components"
+import Image from "next/image"
+
+const Container = styled.div`
+  max-width: 1140px;
+  margin: 0 auto;
+`
+
+const ImageContainer = styled.div`
+  ${'' /* outline: 2px solid red; */}
+  overflow: hidden;
+  max-height: 480px;
+  margin-bottom: 2rem;
+
+  .image {
+    width: 100%;
+  }
+`
+
+const ArticleContainer = styled.div`
+  padding: 0 2rem;
+  max-width: 64ch;
+  margin: 0 auto;
+`
 
 
 export const getStaticPaths = () => {
@@ -43,8 +67,12 @@ export default function Article(props) {
     index = 5
   }
 
-  return <>
-    <Title>{props.data[index].title}</Title>
-    <Text>{props.data[index].content}</Text>
-  </>
+  return <Container>
+    <ImageContainer><img src={props.data[index].image} alt='' className='image' /></ImageContainer>
+    <ArticleContainer>
+      <Title>{props.data[index].title}</Title>
+      <Text color='dimmed' transform='uppercase' size={14} mb={36}>{props.data[index].date}</Text>
+      <Text>{props.data[index].content}</Text>
+    </ArticleContainer>
+  </Container>
 }

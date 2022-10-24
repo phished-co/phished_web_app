@@ -160,6 +160,7 @@ const data = [
     title: `Can you spot the phishing email? Take our new quiz!`,
     category: 'quiz',
     id: 'quiz',
+    date: 'September 07 2022'
   },
   {
     image:
@@ -167,7 +168,8 @@ const data = [
     title: 'The most common types of phishing (and how to avoid them)',
     category: 'article',
     id: '2',
-    content: 'This is the content of the article 1'
+    content: 'This is the content of the article 1',
+    date: 'September 14 2022'
   },
   {
     image:
@@ -175,7 +177,8 @@ const data = [
     title: 'How Cyber Threats Work',
     category: 'article',
     id: '3',
-    content: 'This is the content of the article 2'
+    content: 'This is the content of the article 2',
+    date: 'September 21 2022'
   },
   {
     image:
@@ -183,7 +186,8 @@ const data = [
     title: 'How to help the older adults in your life get cyber safe',
     category: 'article',
     id: '4',
-    content: 'This is the content of the article 3'
+    content: 'This is the content of the article 3',
+    date: 'October 05 2022'
   },
   {
     image:
@@ -191,7 +195,8 @@ const data = [
     title: "Senior's guide to staying cyber safe",
     category: 'tourism',
     id: '5',
-    content: 'This is the content of the article 4'
+    content: 'This is the content of the article 4',
+    date: 'October 12 2022'
   },
   {
     image:
@@ -199,7 +204,8 @@ const data = [
     title: 'How anyone can become a confident online shopper',
     category: 'article',
     id: '6',
-    content: 'This is the content of the article 5'
+    content: 'This is the content of the article 5',
+    date: 'October 24 2022'
   },
 ];
 
