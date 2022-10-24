@@ -7,7 +7,7 @@ import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
 // Our imports
 import { FooterSimple } from "../components/mantine/footer/Footer"
 import { HeaderResponsive } from "../components/mantine/header/Header.tsx"
-import { links } from "../components/chart/fake_data"
+import { links } from "../data/fake_data"
 
 export default function App(props) {
   const { Component, pageProps } = props;

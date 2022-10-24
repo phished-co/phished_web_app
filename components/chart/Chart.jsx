@@ -4,7 +4,7 @@ const Chart = (props) => (
   <Card>
     <Title>Phishing Success Rate</Title>
     <AreaChart
-      data={props.fakedata}
+      data={props.data}
       categories={['Emails sent', "Times phished"]}
       dataKey="date"
       height="h-64"

@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { BadgeDelta, Card, Divider, Flex, ProgressBar, Text } from "@tremor/react";
 
 // Our imports
-import { categories, chartdata } from "../../components/chart/fake_data"
+import { categories, chartdata } from "../../data/fake_data"
 import CardMetric from "../../components/metric/CardMetric";
 import Chart from "./../../components/chart/Chart"
 
