@@ -43,6 +43,7 @@
     "firebase": "^9.12.1",
     "firebase-admin": "^11.2.0",
     "firebase-functions": "^4.0.1",
+    "firestore": "^1.1.6",
     "lottie-react": "^2.3.1",
     "next": "12.3.1",
     "nodemailer": "^6.8.0",
