@@ -30,7 +30,7 @@ export async function getScheduledEmail(id) {
 
 //postEmailContent
 export async function postDoc(collectionName, postData) {
-  const docAdded = await addDoc(collection(db, collectionName), { postData });
+  const docAdded = await addDoc(collection(db, collectionName), postData );
   return docAdded.id;
 }
 

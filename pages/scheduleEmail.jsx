@@ -42,12 +42,12 @@ export default function About() {
                 // console.log(email.id)
                 // console.log(email.data().postData)
                 <div key={email.id}>
-                  <p>Firstname: {email.data().postData.firstName}</p>
-                  <p>Lastname: {email.data().postData.lastName}</p>
-                  <p>SenderEmail: {email.data().postData.senderEmail}</p>
-                  <p>Receiver: {email.data().postData.receiver}</p>
-                  <p>Subject: {email.data().postData.subject}</p>
-                  <p>Message: {email.data().postData.message}</p>
+                  <p>Firstname: {email.data().firstName}</p>
+                  <p>Lastname: {email.data().lastName}</p>
+                  <p>SenderEmail: {email.data().senderEmail}</p>
+                  <p>Receiver: {email.data().receiver}</p>
+                  <p>Subject: {email.data().subject}</p>
+                  <p>Message: {email.data().message}</p>
                   <br />
                 </div>
               ))}

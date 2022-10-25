@@ -19,8 +19,8 @@ export default async function handler(req, res) {
       const scheduledEmail = await postDoc('scheduledEmails', emailInfo);
       console.log('*Successfully stored in db*');
       console.log('*** Id ***: ' + scheduledEmail);
-      res.status(200).send();
     }
+    res.status(200).send();
   } catch (e) {
     console.log(e);
     res.status(400).end();
