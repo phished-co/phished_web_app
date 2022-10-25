@@ -1,4 +1,5 @@
 import { createStyles, SimpleGrid, Card, Image, Text, Container, AspectRatio } from '@mantine/core';
+import Router, { useRouter } from 'next/router';
 
 const mockdata = [
   {
@@ -61,6 +62,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function ArticleCards() {
+  const r = useRouter();
   const { classes } = useStyles();
 
   const cards = mockdata.map((article) => (
@@ -77,8 +79,9 @@ export function ArticleCards() {
     </Card>
   ));
 
+
   return (
-    <Container py="xl">
+    <Container py="xl" onClick={() => r.replace("/quiz")} >
       <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
         {cards}
       </SimpleGrid>
