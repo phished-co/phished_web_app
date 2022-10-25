@@ -1,5 +1,5 @@
 import styles from './PhishForm.module.css';
-import Button from '../button/Button';
+import MyButton from '../button/Button';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -118,12 +118,12 @@ export default function PhishForm({ onSendEmail, onScheduleEmail }) {
           value={html}
           onChange={(e) => setHtml(e.target.value)}
         />
-        <Button type="submit" txt="send email" />
+        <MyButton type="submit" txt="send email" />
       </form>
 
       <Link href="/scheduleEmail" passHref>
         <a onClick={() => onScheduleEmail({ from, to, subject, html })}>
-          <Button txt="schedule email for later" />
+          <MyButton txt="schedule email for later" />
         </a>
       </Link>
    
