@@ -1,19 +1,32 @@
-import { TextInput, InputBase } from '@mantine/core';
+import { TextInput, InputBase, PasswordInput } from '@mantine/core';
 
 export default function MyInput({
   label,
   description,
   placeholder,
-  inputWrapperOrder
+  inputWrapperOrder,
+  type,
+  required=false,
+  disabled=false
 }) {
   return (
     <>
-      <TextInput
+    {type === "text" && <TextInput
         label={label}
         description={description}
         placeholder={placeholder}
         inputWrapperOrder={inputWrapperOrder}
-        required
-      />
+        required={required}
+        disabled={disabled}
+      />}
+    {type === "password" && 
+      <PasswordInput
+        label={label}
+        description={description}
+        placeholder={placeholder}
+        inputWrapperOrder={inputWrapperOrder}
+        required={required}
+        disabled={disabled}
+      />}
     </>
     )}
