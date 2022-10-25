@@ -53,7 +53,6 @@ export function FooterSimple() {
       href={link.link}
       onClick={(event) => event.preventDefault()}
       font-size='12'
-      passHref
     >
       {link.label}
     </Link>
