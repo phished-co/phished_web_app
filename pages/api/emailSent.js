@@ -10,7 +10,6 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-  try {
     await new Promise((resolve, reject) => {
       // verify connection configuration
       transporter.verify(function (error, success) {
@@ -24,23 +23,6 @@ export default async function handler(req, res) {
       });
     });
     if (req.method === 'POST') {
-      // let senderInfo = req.body.from.split(' ')
-
-      //verifier
-      // let validationInfo =  await validate({email: senderInfo[2], verbose: true, timeout: 2000})
-      // console.log(validationInfo)
-
-      //deep validator
-      // let validationInfo = await validate(senderInfo[2])
-      // console.log(validationInfo)
-      // res.send(validationInfo.valid)
-      // if (!validationInfo.valid) return
-
-      //verificator
-      // const verify = emailSMTPVerificator({ timeout: 12000 });
-      // console.log(await verify(senderInfo[2]))
-
-      //temporarily
       res.send(true);
 
       await new Promise((resolve, reject) => {
@@ -48,16 +30,14 @@ export default async function handler(req, res) {
           if (error) {
             console.error(error);
             reject(error);
+            res.status(400).end();
           } else {
             console.log('Email sent: ' + info.response);
             resolve(info);
+            res.status(200).send();
           }
         });
       });
     }
-    res.status(200).send();
-  } catch (e) {
-    console.log(e);
-    res.status(400).end();
-  }
+  
 }
