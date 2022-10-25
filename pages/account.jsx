@@ -1,6 +1,5 @@
 import PhishForm from '../components/phishForm/PhishForm';
 import MidtermForm from "../components/midtermForm/MidtermForm";
-import Button from '../components/button/Button';
 import axios from 'axios';
 import styled from 'styled-components';
 
