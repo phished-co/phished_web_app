@@ -24,18 +24,16 @@ export default function App(props) {
         <MantineProvider withGlobalStyles withNormalizeCSS theme={{
           colors: {
             'blue': [
-              "#F7FAFE",
-              "#CFE1F8",
-              "#A8CBF6",
-              "#82B5F6",
-              "#5DA2F9",
-              "#3890FF",
-              "#2180F7",
-              "#1171EB",
-              "#1667CD",
-              "#1A5DB2",
-              "#1C549C",
-              "#1D4C88"
+              "#31D8FF",
+              "#B5E6FF",
+              "#9ED8FF",
+              "#88C9FE",
+              "#71BAFE",
+              "#5AABFE",
+              "#449CFE",
+              "#2D8EFD",
+              "#177FFD",
+              "#0070FD"
             ]
           }, colorScheme
         }}>
