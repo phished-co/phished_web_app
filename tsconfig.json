@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": [], 
     "strictNullChecks": false,
     "target": "es5",
     "lib": [
