@@ -43,26 +43,26 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     res.send(true);
 
-    // return new Promise((resolve, reject) => {
-    //   transporter
-    //     .sendMail(req.body)
-    //     .then((info) => {
-    //       console.log('Email sent: ' + info.response);
-    //       resolve(info);
-    //     })
-    //     .catch((e) => {
-    //       reject(e);
-    //     });
-    // });
-
-    return new Promise(async (resolve, reject) => {
-      try {
-        const info = await transporter.sendMail(req.body);
-        console.log('Email sent: ' + info.response);
-        resolve(info);
-      } catch (e) {
-        reject(e);
-      }
+    return new Promise((resolve, reject) => {
+      transporter
+        .sendMail(req.body)
+        .then((info) => {
+          console.log('Email sent: ' + info.response);
+          resolve(info);
+        })
+        .catch((e) => {
+          reject(e.response);
+        });
     });
+
+    // return new Promise(async (resolve, reject) => {
+    //   try {
+    //     const info = await transporter.sendMail(req.body);
+    //     console.log('Email sent: ' + info.response);
+    //     resolve(info);
+    //   } catch (e) {
+    //     reject(e);
+    //   }
+    // });
   }
 }
