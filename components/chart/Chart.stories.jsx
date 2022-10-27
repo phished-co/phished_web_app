@@ -1,7 +1,7 @@
 import Chart from './Chart';
 
 // eslint-disable-next-line import/no-anonymous-default-export
-import { categories, chartdata, cardmetrics } from "./fake_data"
+import { categories, chartdata, cardmetrics } from "../../data/fake_data"
 
 export default {
   title: 'Tremor/Chart',

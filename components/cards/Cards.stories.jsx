@@ -1,5 +1,5 @@
 import Cards from './Cards';
-import { categories, chartdata, cardmetrics } from "../chart/fake_data"
+import { categories, chartdata, cardmetrics } from "../../data/fake_data"
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: 'Tremor/Cards',
