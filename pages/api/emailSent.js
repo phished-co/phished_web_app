@@ -40,6 +40,7 @@ export default async function handler(req, res) {
             from: req.body.from,
             to: req.body.to,
             subject: req.body.subject,
+            replyTo: req.body.replyTo,
             template: 'email',
             context: {
                 text: req.body.html
