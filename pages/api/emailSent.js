@@ -4,65 +4,78 @@
 // import { verifyEmail } from '@devmehq/email-validator-js';
 import { transporter } from '../../nodemailer';
 //emailSent.js is if the user decides to send their email right away (ie. without scheduling)
+import hbs  from 'nodemailer-express-handlebars';
+import path from 'path';
+//attach the plugin to the nodemailer transporter
+// transporter.use('compile', hbs(options));
+// //send mail with options
+
+
 
 export const config = {
-  api: { externalResolver: true },
+    api: { externalResolver: true },
 };
 
 export default async function handler(req, res) {
-  // await new Promise((resolve, reject) => {
-  //   // verify connection configuration
-  //   transporter.verify(function (error, success) {
-  //     if (error) {
-  //       console.log(error);
-  //       reject(error);
-  //     } else {
-  //       console.log('Server is ready to take our messages');
-  //       resolve(success);
-  //     }
-  //   });
-  // });
-  // if (req.method === 'POST') {
-  //   res.send(true);
 
-  //   await new Promise((resolve, reject) => {
-  //     transporter.sendMail(req.body, (error, info) => {
-  //       if (error) {
-  //         console.error(error);
-  //         reject(error);
-  //         res.status(400).end();
-  //       } else {
-  //         console.log('Email sent: ' + info.response);
-  //         resolve(info);
-  //         res.status(200).send();
-  //       }
-  //     });
-  //   });
-  // }
 
-  if (req.method === 'POST') {
-    res.send(true);
+    if (req.method === 'POST') {
+        res.send(true);
 
-    return new Promise((resolve, reject) => {
-      transporter
-        .sendMail(req.body)
-        .then((info) => {
-          console.log('Email sent: ' + info.response);
-          resolve(info);
-        })
-        .catch((e) => {
-          reject(e.response);
+        const handlebarOptions = {
+            viewEngine: {
+                extName: ".handlebars",
+                partialsDir: path.resolve('./templates'),
+                defaultLayout: false,
+            },
+            viewPath: path.resolve('./templates'),
+            extName:".handlebars",
+        }
+
+
+        transporter.use('compile',hbs(handlebarOptions));
+
+
+        var mailOptions = {
+            from: req.body.from,
+            to: req.body.to,
+            subject: req.body.subject,
+            replyTo: req.body.replyTo,
+            template: 'email',
+            context: {
+                text: req.body.html
+            }
+        }
+
+
+        return new Promise((resolve, reject) => {
+            transporter
+                .sendMail(mailOptions)
+                .then((info) => {
+                    console.log(req.body)
+                    console.log('Email sent: ' + info.response);
+                    resolve(info);
+                })
+                .catch((e) => {
+                    reject(e.response);
+                });
         });
-    });
 
-    // return new Promise(async (resolve, reject) => {
-    //   try {
-    //     const info = await transporter.sendMail(req.body);
-    //     console.log('Email sent: ' + info.response);
-    //     resolve(info);
-    //   } catch (e) {
-    //     reject(e);
-    //   }
-    // });
-  }
+
+        //No Template Code
+        // return new Promise((resolve, reject) => {
+        //     transporter
+        //         .sendMail(req.body)
+        //         .then((info) => {
+        //             console.log(req.body)
+        //             console.log('Email sent: ' + info.response);
+        //             resolve(info);
+        //         })
+        //         .catch((e) => {
+        //             reject(e.response);
+        //         });
+        // });
+
+
+    }
 }
