@@ -51,7 +51,7 @@ export function FooterSimple() {
       color="dimmed"
       key={link.label}
       href={link.link}
-      onClick={(event) => event.preventDefault()}
+      // onClick={(event) => event.preventDefault()}
       font-size='12'
     >
       {link.label}
