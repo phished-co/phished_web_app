@@ -58,7 +58,7 @@ export default function Id(props) {
         />
       </Card>
       <Divider />
-      <Chart fakedata={chartdata} />
+      <Chart data={chartdata} />
       <Divider />
       <CardMetric index={index} />
     </div>
