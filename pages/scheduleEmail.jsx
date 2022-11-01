@@ -1,6 +1,8 @@
 import { db } from '../firebaseConfig';
 import { useState, useEffect } from 'react';
 import { collection, doc, setDoc, getDocs } from '@firebase/firestore';
+import ScheduledData from '../components/scheduledData/ScheduledData';
+import { Button } from '@mantine/core';
 
 export default function About() {
   const [scheduleEmails, setScheduleEmails] = useState([]);
@@ -41,16 +43,11 @@ export default function About() {
               {scheduleEmails.map((email) => (
                 // console.log(email.id)
                 // console.log(email.data().postData)
-                <div key={email.id}>
-                  <p>Firstname: {email.data().firstName}</p>
-                  <p>Lastname: {email.data().lastName}</p>
-                  <p>SenderEmail: {email.data().senderEmail}</p>
-                  <p>Receiver: {email.data().receiver}</p>
-                  <p>Subject: {email.data().subject}</p>
-                  <p>Message: {email.data().message}</p>
-                  <br />
-                </div>
-              ))}
+              
+                <ScheduledData key={email.id} firstName={email.data().firstName} lastName={email.data().lastName} senderEmail={email.data().senderEmail} receiver={email.data().receiver} subject={email.data().subject} message={email.data().message} />
+                
+                ))}
+                
             </div>
           )
         }
