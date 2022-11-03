@@ -1,17 +1,37 @@
-// import Head from 'next/head';
-import Search from '../components/search/Search';
-import Header from '../components/header/Header';
-// import PrimaryLayout from '../components/layouts/primary/PrimaryLayout';
-import styles from '../styles/Home.module.css';
+import styled from "styled-components"
+import { Divider } from "@mantine/core"
+
+// Our imports
+import { HeroHeader } from "../components/mantine/heroHeader/HeroHeader"
+import { FeaturesCards } from "../components/mantine/cardFeature/CardFeatures"
+import { StatsGroup } from "../components/mantine/statsGroup/StatsGroup"
+import { GetStarted } from "../components/getStarted/GetStarted"
+import { CardCarousel } from "../components/mantine/cardCarousel/CardCarousel"
+
+const Container = styled.div`
+  .section {
+    max-width: 1140px;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+`
 
 export default function Home() {
   return (
-    <>
-      <Header></Header>
-      <div className={styles.container}>
-        <h1> Welcome to phished!</h1>
-        <Search />
-      </div>
-    </>
-  );
+    <Container>
+      <main>
+        <HeroHeader />
+        <FeaturesCards />
+        <Divider />
+        <div className='section'>
+          <CardCarousel />
+        </div>
+        <div className='section'>
+          <StatsGroup />
+        </div>
+        <GetStarted />
+      </main>
+    </Container>
+  )
 }

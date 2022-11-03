@@ -1,0 +1,29 @@
+.button {
+  border: none;
+  border-radius: 8px;
+  padding: 0 1.5rem;
+  margin: 1rem;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .1) 0 2px 5px 0, rgba(0, 0, 0, .07) 0 1px 1px 0;
+  cursor: pointer;
+  height: 44px;
+  outline: none;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.button:hover,
+.button:focus {
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+
+.primary {
+  background-color: blue;
+  color: white;
+}
+
+.secondary {
+  background-color: white;
+  color: black;
+  outline: 4px solid blue
+}

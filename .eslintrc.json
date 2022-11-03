@@ -3,6 +3,7 @@
     "plugin:storybook/recommended",
     "next",
     "next/core-web-vitals",
+    "next/babel",
     "eslint:recommended"
   ],
   "globals": {
