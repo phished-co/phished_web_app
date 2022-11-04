@@ -4,7 +4,8 @@ import { BadgeDelta, Card, Divider, Flex, ProgressBar, Text } from "@tremor/reac
 // Our imports
 import { categories, chartdata } from "./../../data/fake_data"
 import CardMetric from "../../components/metric/CardMetric";
-import Chart from "./../../components/chart/Chart"
+//import Chart from "./../../components/chart/Chart"
+import NewChart from "../../components/newChart/NewChart"
 
 export const getStaticPaths = () => {
   return {
@@ -58,7 +59,7 @@ export default function Id(props) {
         />
       </Card>
       <Divider />
-      <Chart data={chartdata} />
+      <NewChart />
       <Divider />
       <CardMetric index={index} />
     </div>
