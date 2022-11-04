@@ -1,33 +1,33 @@
 const chartdata = [
   {
     date: "Jan 2022",
-    'Emails sent': 6,
-    "Times phished": 4,
+    sent: 6,
+    success: 4,
   },
   {
     date: "Feb 2022",
-    'Emails sent': 10,
-    "Times phished": 8,
+    sent: 10,
+    success: 8,
   },
   {
     date: "Mar 2022",
-    'Emails sent': 14,
-    "Times phished": 11,
+    sent: 14,
+    success: 11,
   },
   {
     date: "Apr 2022",
-    'Emails sent': 21,
-    "Times phished": 12,
+    sent: 21,
+    success: 12,
   },
   {
     date: "May 2022",
-    'Emails sent': 25,
-    "Times phished": 14,
+    sent: 25,
+    success: 14,
   },
   {
     date: "Jun 2022",
-    'Emails sent': 32,
-    "Times phished": 15,
+    sent: 32,
+    success: 15,
   },
 ];
 
