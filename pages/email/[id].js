@@ -105,7 +105,7 @@ export async function getStaticProps(context) {
   console.log(email.data());
   const returnedEmail = email.data();
   return {
-    props: { email: returnedEmail },
+    props: { email: returnedEmail || null },
   };
 }
 
