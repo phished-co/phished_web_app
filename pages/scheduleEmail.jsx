@@ -3,8 +3,12 @@ import { useState, useEffect } from 'react';
 import { collection, doc, setDoc, getDocs } from '@firebase/firestore';
 import ScheduledData from '../components/scheduledData/ScheduledData';
 import { Button } from '@mantine/core';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function About() {
+  const router = useRouter();
+
   const [scheduleEmails, setScheduleEmails] = useState([]);
   const [loading, setLoading] = useState(true);
   const scheduledEmailList = collection(db, 'scheduledEmails');
@@ -17,7 +21,7 @@ export default function About() {
     });
     setScheduleEmails(allDocs);
   };
-  
+
   useEffect(() => {
     // get the todos
     getScheduledEmail();
@@ -30,29 +34,38 @@ export default function About() {
   return (
     <div>
       <h1>Scheduled Email List</h1>
-      {loading ? ( 
-          <h2> Loading... </h2>
-        ) : 
-          scheduleEmails.length === 0 ? (
-            <div>
-             <h2>No scheduled Email</h2>
-             <p>Consider adding a scheduled Email from <a href="/account">Click Here</a></p>
-            </div>
-           ) : (  
-            <div>
-              {scheduleEmails.map((email) => (
-                // console.log(email.id)
-                // console.log(email.data().postData)
-              
-                <ScheduledData key={email.id} firstName={email.data().firstName} lastName={email.data().lastName} senderEmail={email.data().senderEmail} receiver={email.data().receiver} subject={email.data().subject} message={email.data().message} />
-                
-                ))}
-                
-            </div>
-          )
-        }
+      {loading ? (
+        <h2> Loading... </h2>
+      ) : scheduleEmails.length === 0 ? (
+        <div>
+          <h2>No scheduled Email</h2>
+          <p>
+            Consider adding a scheduled Email from{' '}
+            <a href="/account">Click Here</a>
+          </p>
+        </div>
+      ) : (
+        <div>
+          {scheduleEmails.map((email) => (
+            // console.log(email.id)
+            // console.log(email.data().postData)
+
+            <Link key={email.id} href={`/email/${email.id}`}>
+              <a>
+                <ScheduledData
+                  key={email.id}
+                  firstName={email.data().firstName}
+                  lastName={email.data().lastName}
+                  senderEmail={email.data().senderEmail}
+                  receiver={email.data().receiver}
+                  subject={email.data().subject}
+                  message={email.data().message}
+                />
+              </a>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
-
-
