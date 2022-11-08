@@ -19,7 +19,7 @@ const Calendar = dynamic(
 import * as firebase from 'firebase/firestore';
 import { Button, createStyles, TextInput, Textarea } from '@mantine/core';
 
-export default function email({ email }) {
+export default function Email({ email }) {
   const [fromEmail, setFromEmail] = useState(
     `${email.firstName} ${email.lastName} ${email.senderEmail}`
   );
