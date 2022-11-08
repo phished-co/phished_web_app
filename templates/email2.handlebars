@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Handlebars Template 2</title>
+    <meta name="description" content="Our second page">
+    <meta name="keywords" content="html tutorial template 2">
+
+    <style>
+        h2{
+            color: #4267B2;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="data"></div>
+    <script id="template" type="text/x-handlebars-template">
+        <h2>{{company}}</h2>
+        <hr />
+        <p>Hello {{name}},</p>
+        <p>Your Facebook password was changed on {{datetime}}</p>
+        <p><strong>If you did this, </strong>you can safely disregard this email.</p>
+        <p><strong>If you didn't do this, </strong>please <a href="http://localhost:3000/youPhished">secure your account</a>.</p>
+        <p>Thanks, </p>
+        <p>The Facebook Security Team</p>
+    </script>
+
+    <script type="text/javascript">
+        let info = document.getElementById("template").innerHTML
+        let handlebarsTemplate = Handlebars.compile(info)
+        let data = template({
+            company: "Facebook",
+            datetime: "Monday, November 7, at 6:57 PM (PDT).",
+            name: "Trevor"
+        })
+        document.getElementById("data").innerHTML += data
+    </script>
+</body>
+</html>
