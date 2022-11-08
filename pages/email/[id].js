@@ -24,8 +24,8 @@ export default function Email({ email }) {
     ''
     // `${email.firstName} ${email.lastName} ${email.senderEmail}`
   );
-  // const [to, setTo] = useState(email.receiver);
-  const [to, setTo] = useState('');
+  const [to, setTo] = useState(email.receiver);
+  // const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
   const [subject, setSubject] = useState('');
 
@@ -125,6 +125,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
