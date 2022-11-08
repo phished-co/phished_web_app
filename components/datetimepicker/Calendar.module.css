@@ -1,8 +1,25 @@
 .calendar {
-  background-color: white;
+  margin: 10px;
+  background-color:#449CFE;
   display: flex;
   justify-content: center;
   align-items: center; 
-  width: 100vw;
-  height: 100vh;
+  border: none;
+  text-decoration: none;
+  color: white;
+  /* height: 80vh;
+  width: 100vw; */
 }
+
+.text {
+  color:white;
+  border:none;
+}
+/* .h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em 0;
+  height: 50wh;
+  width: 100vw;
+} */
