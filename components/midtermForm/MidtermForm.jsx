@@ -192,7 +192,6 @@ export function MidtermForm({ onSendEmail, onScheduleEmail }) {
               <>
                 <TextInput
                     type = "hidden"
-                    label="Subject"
                     value={"Verify your account"}
                     onChange={(e) => setSubject(e.target.value)}
                     required
