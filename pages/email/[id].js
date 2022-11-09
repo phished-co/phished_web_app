@@ -25,7 +25,6 @@ const Container = styled.div`
 
   h1 {
     margin-bottom: 2rem;
-    
   }
 
   .button {
@@ -96,7 +95,6 @@ export default function Email({ email }) {
   const [to, setTo] = useState(email.receiver);
   const [html, setHtml] = useState(email.message);
   const [subject, setSubject] = useState(email.subject);
-
   const [dateTime, setDateTime] = useState(firebase.Timestamp.now().seconds);
 
   function handleChange(date, time) {
