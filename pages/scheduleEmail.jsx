@@ -5,6 +5,17 @@ import ScheduledData from '../components/scheduledData/ScheduledData';
 import { Button } from '@mantine/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import styled from 'styled-components';
+
+
+const Container = styled.div`
+  div h1 {
+    margin: 2rem;
+  }
+`
+
+
+
 
 export default function About() {
   const router = useRouter();
@@ -32,18 +43,23 @@ export default function About() {
   }, []);
 
   return (
-    <div>
+    <Container>
+      <div>
       <h1>Scheduled Email List</h1>
+      
       {loading ? (
-        <h2> Loading... </h2>
+        <h1> Loading... </h1>
       ) : scheduleEmails.length === 0 ? (
         <div>
-          <h2>No scheduled Email</h2>
+          <h1>No scheduled Email</h1>
           <p>
-            Consider adding a scheduled Email from{' '}
-            <a href="/account">Click Here</a>
-          </p>
+            Consider adding a scheduled Email from{' '} </p>
+            <Link href="/account">
+              <Button color="blue" variant="outline">Click Here</Button>
+            </Link>
+          
         </div>
+        
       ) : (
         <div>
           {scheduleEmails.map((email) => (
@@ -66,6 +82,8 @@ export default function About() {
           ))}
         </div>
       )}
-    </div>
-  );
+      </div>
+    </Container>
+      );
+      
 }

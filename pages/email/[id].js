@@ -10,16 +10,86 @@ import {
 import { useState } from 'react';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { Button, createStyles, TextInput, Textarea } from '@mantine/core';
+import * as firebase from 'firebase/firestore';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+  margin: 3rem auto;
+
+  h1 {
+    margin-bottom: 2rem;
+    
+  }
+
+  .button {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .description {
+    margin: 1rem;
+  }
+`;
+
+const useStyles = createStyles((theme) => ({
+  root: {
+    position: 'relative',
+  },
+
+  input: {
+    height: 'auto',
+    paddingTop: 16,
+  },
+
+  label: {
+    position: 'absolute',
+    pointerEvents: 'none',
+    fontSize: theme.fontSizes.xs,
+    paddingLeft: theme.spacing.sm,
+    paddingTop: theme.spacing.sm / 2,
+    zIndex: 1,
+  },
+}));
+
+const textAreaStyles = createStyles((theme) => ({
+  root: {
+    position: 'relative',
+  },
+
+  input: {
+    height: 'auto',
+    paddingTop: 16,
+  },
+
+  label: {
+    position: 'absolute',
+    pointerEvents: 'none',
+    fontSize: theme.fontSizes.xs,
+    paddingLeft: theme.spacing.sm,
+    paddingTop: theme.spacing.sm / 2,
+    zIndex: 1,
+  },
+}));
+
 const Calendar = dynamic(
   () => import('../../components/datetimepicker/Calendar'),
   {
     ssr: false,
   }
 );
-import * as firebase from 'firebase/firestore';
-import { Button, createStyles, TextInput, Textarea } from '@mantine/core';
 
 export default function Email({ email }) {
+  const { classes } = useStyles();
+  const { textarea } = textAreaStyles();
+
   const [fromEmail, setFromEmail] = useState(
     `${email.firstName} ${email.lastName} ${email.senderEmail}`
   );
@@ -28,6 +98,7 @@ export default function Email({ email }) {
   const [subject, setSubject] = useState(email.subject);
 
   const [dateTime, setDateTime] = useState(firebase.Timestamp.now().seconds);
+
   function handleChange(date, time) {
     console.log('this is from handleChange');
     console.log(new Date(`${date} ${time}`));
@@ -61,41 +132,60 @@ export default function Email({ email }) {
     handleScheduleEmail(emailTemplate);
   }
   return (
-    <>
+    <Container>
+      <h1> Schedule Your Email</h1>
       <form onSubmit={handleSubmit}>
         <TextInput
           onChange={(e) => setFromEmail(e.target.value)}
           label="Your Phish Email"
           value={fromEmail}
+          mb={12}
+          classNames={classes}
+          required
         ></TextInput>
         <TextInput
           label="to"
           value={to}
+          mb={12}
+          classNames={classes}
           onChange={(e) => setTo(e.target.value)}
+          required
         ></TextInput>
         <TextInput
           label="subject"
           value={subject}
+          mb={12}
+          classNames={classes}
           onChange={(e) => setSubject(e.target.value)}
+          required
         ></TextInput>
         <Textarea
           label="content"
           value={html}
+          autosize
+          minRows={4}
+          classNames={textarea}
           onChange={(e) => setHtml(e.target.value)}
+          required
         ></Textarea>
-        <p>
-          this is where the email should be edited/deleted and removed from
+        <div className="description">
+          This is where the email should be edited/deleted and removed from
           scheduled emails once sent (this is sent to tasks) (once scheduled
           can't change it lol)
-        </p>
+        </div>
 
         <Calendar onChange={handleChange}></Calendar>
 
-        <Button variant="outline" type="submit">
-          Schedule Email
-        </Button>
+        <div className="button">
+          <Button variant="outline" type="submit">
+            Schedule Email
+          </Button>
+          <Link href="/scheduleEmail">
+            <Button variant="outline">Cancel</Button>
+          </Link>
+        </div>
       </form>
-    </>
+    </Container>
   );
 }
 
