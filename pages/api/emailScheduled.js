@@ -1,15 +1,8 @@
-import {
-  getAllDocs,
-  postDoc,
-  getScheduledEmail,
-  deleteScheduledEmail,
-  updateScheduledEmail,
-} from '../../firebase';
+import { getAllscheduledEmails, getScheduledEmail, postScheduleEmail, deleteScheduledEmail, deleteEmailFromTasks, updateScheduledEmail } from '../../firebase';
 
 export default async function handler(req, res) {
-  //   if (req.method === 'POST') {
   console.log('we want to store this info for later -');
-  console.log(req.body);
+  console.log("info:", req.body);
 
   try {
     let emailInfo = {
@@ -19,14 +12,30 @@ export default async function handler(req, res) {
       receiver: req.body.to,
       subject: req.body.subject,
       message: req.body.html,
+      // id: req.body.id,
     };
+    
 
-    if (req.method === 'POST') {
-      const scheduledEmail = await postDoc('scheduledEmails', emailInfo);
+    if (req.method === 'GET') {
+      const allEmails = await getAllscheduledEmails('scheduledEmails');
+      res.status(200).json(allEmails);
+
+    } else if (req.method === 'POST') {
+      const scheduledEmail = await postScheduleEmail('scheduledEmails', emailInfo);
       console.log('*Successfully stored in db*');
       console.log('*** Id ***: ' + scheduledEmail);
+      res.status(200).send();
+    
+    } else if (req.method === 'PUT') {
+      //update email
+    
+    } else if (req.method === 'DELETE') {
+      //delete email
+      // const deletedEmail = await deleteScheduledEmail('scheduledEmails', req.body.id);
+      // console.log("here", emailInfo);
+      // console.log('*** Deleted Email ***: ' + deletedEmail);
     }
-    res.status(200).send();
+
   } catch (e) {
     console.log(e);
     res.status(400).end();
