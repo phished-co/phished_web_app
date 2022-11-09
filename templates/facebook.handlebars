@@ -15,8 +15,8 @@
 
 <body>
     <div id="data"></div>
-    <script id="template" type="text/x-handlebars-template">
-        <h2>{{company}}</h2>
+<!--    <script id="template" type="text/x-handlebars-template">-->
+<!--        <h2>{{company}}</h2>-->
         <hr />
         <p>Hello {{name}},</p>
         <p>Your Facebook password was changed on {{datetime}}</p>
@@ -24,17 +24,17 @@
         <p><strong>If you didn't do this, </strong>please <a href="http://localhost:3000/youPhished">secure your account</a>.</p>
         <p>Thanks, </p>
         <p>The Facebook Security Team</p>
-    </script>
+<!--    </script>-->
 
-    <script type="text/javascript">
-        let info = document.getElementById("template").innerHTML
-        let handlebarsTemplate = Handlebars.compile(info)
-        let data = template({
-            company: "Facebook",
-            datetime: "Monday, November 7, at 6:57 PM (PDT).",
-            name: "Trevor"
-        })
-        document.getElementById("data").innerHTML += data
-    </script>
+<!--    <script type="text/javascript">-->
+<!--        let info = document.getElementById("template").innerHTML-->
+<!--        let handlebarsTemplate = Handlebars.compile(info)-->
+<!--        let data = template({-->
+<!--            company: "Facebook",-->
+<!--            datetime: "Monday, November 7, at 6:57 PM (PDT).",-->
+<!--            name: "Trevor"-->
+<!--        })-->
+<!--        document.getElementById("data").innerHTML += data-->
+<!--    </script>-->
 </body>
 </html>

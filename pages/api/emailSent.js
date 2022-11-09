@@ -29,29 +29,31 @@ export default async function handler(req, res) {
     };
 
     transporter.use('compile', hbs(handlebarOptions));
-
     var mailOptions = {
       from: req.body.from,
       to: req.body.to,
       subject: req.body.subject,
       replyTo: req.body.replyTo,
-      template: 'email',
+      template: "facebook",
+
       context: {
         text: req.body.html,
+        datetime: "Monday, November 7, at 6:57 PM (PDT).",
+        name:"jdfh"
       },
     };
 
     return new Promise((resolve, reject) => {
       transporter
-        .sendMail(mailOptions)
-        .then((info) => {
-          console.log(req.body);
-          console.log('Email sent: ' + info.response);
-          resolve(info);
-        })
-        .catch((e) => {
-          reject(e.response);
-        });
+          .sendMail(mailOptions)
+          .then((info) => {
+            console.log(req.body);
+            console.log('Email sent: ' + info.response);
+            resolve(info);
+          })
+          .catch((e) => {
+            reject(e.response);
+          });
     });
   }
 }

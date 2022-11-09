@@ -67,6 +67,8 @@ export function MidtermForm({ onSendEmail, onScheduleEmail }) {
   const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
+  const [template, setTemplate] = useState('basic');
+
   const [successNote, setSuccessNote] = useState(false);
   const [errorNote, setErrorNote] = useState(false);
 
@@ -100,7 +102,7 @@ export function MidtermForm({ onSendEmail, onScheduleEmail }) {
     e.preventDefault();
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = await onSendEmail({ from, to, subject, html });
+    let validation = await onSendEmail({ from, to, subject, html, template });
 
     submissionNote(validation);
 
@@ -173,10 +175,17 @@ export function MidtermForm({ onSendEmail, onScheduleEmail }) {
           required
         />
 
+        <select  name="template" value={template} onChange={(e) => setTemplate(e.target.value)}>
+          {/*<option> --choose the template--</option>*/}
+          <option> basic </option>
+          <option> facebook</option>
+        </select>
+
         <div className="button">
           <Button type="submit" variant="outline">
             Send email
           </Button>
+
           <Link href="/scheduleEmail" passHref>
             <a
               onClick={() =>
