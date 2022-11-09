@@ -9,6 +9,8 @@ export const Container = styled.div`
   margin-top: 4rem;
 `;
 
+
+
 export default function Home() {
   const handleSendEmail = async (emailProperties) => {
     const res = await axios.post('/api/emailSent', {
@@ -22,6 +24,7 @@ export default function Home() {
   const handleScheduleEmail = (props) => {
     axios.post('/api/emailScheduled', props);
   };
+  
 
   return (
     <>
