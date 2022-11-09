@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5614ad5-0748-41e2-a0c7-81b3af1be12f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/api/emailTemplates.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/midtermForm/MidtermForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/midtermForm/MidtermForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/account.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/account.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/api/emailSent.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailSent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/email.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/templates/basic.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/email2.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facebook.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facebook.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facebook.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
