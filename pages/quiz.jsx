@@ -15,7 +15,7 @@ export default function Quiz() {
   return <Container>
     <QuizTitle
       number="1"
-      tip="Check link URLS by hovering over them! Don't worry about clicking anything malicious – the links are non-functional and for demonstrative purposes only."
+      tip="Check link URLs by hovering over them! Don't worry about clicking anything malicious – the links are non-functional and for demonstrative purposes only."
       title="Personal Contact"
     />
     <AnswerButton />
