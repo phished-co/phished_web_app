@@ -164,7 +164,7 @@ const data = [
   },
   {
     image:
-      'https://i.pinimg.com/564x/75/14/39/75143976f254439cb0b3ed0eae826218.jpg',
+      '../ArticleSplash/splash-one.png',
     title: 'The most common types of phishing (and how to avoid them)',
     category: 'article',
     id: '2',
