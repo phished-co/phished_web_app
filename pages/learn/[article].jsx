@@ -9,21 +9,38 @@ const Container = styled.div`
   margin: 0 auto;
 `
 
-const ImageContainer = styled.div`
-  ${'' /* outline: 2px solid red; */}
-  overflow: hidden;
-  max-height: 480px;
-  margin-bottom: 2rem;
+// const ImageContainer = styled.div`
+//   ${'' /* outline: 2px solid red; */}
+//   overflow: hidden;
+//   max-height: 480px;
+//   margin-bottom: 2rem;
 
-  .image {
+//   .image {
+//     width: 100%;
+//   }
+// `
+
+export const ImageContainer = styled.div`
+  outline: 2px solid green;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+
+  img {
+    margin: 0 auto;
+    object-fit: cover;
     width: 100%;
+    height: 30rem;
   }
-`
+`;
 
 const ArticleContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: start;
   padding: 0 2rem;
   max-width: 64ch;
   margin: 0 auto;
+  ${'' /* outline: red 2px solid; */}
 `
 
 
