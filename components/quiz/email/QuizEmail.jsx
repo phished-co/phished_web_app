@@ -3,6 +3,11 @@ import styled from "styled-components";
 import EmailBody, {questions} from "./EmailData";
 import React, { useState } from "react";
 
+// I don't think this page is needed anymore
+// I'll delete this once the quiz page is done
+// -SUE
+
+
 const Container = styled.div`
   margin-top: 3rem;
   ${'' /* outline: 2px solid red; */}
@@ -82,90 +87,6 @@ const URLContainer = styled.div`
   }
 `
 
-const EmailContainer = styled.div`
-  width: 100%;
-  min-height: 8rem;
-  background: white;
-  padding: 1rem;
-  color: black;
-`
-
-
-
-
-export function EmailContent(){
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const nextQuestion = currentQuestion + 1;
-
-  if (currentQuestion === 0){
-  return<>
-    <BodyCont>
-      <Header>
-        <div className='header'>
-          <Circle />
-          <div className='sender'>
-            <Text weight={700}>{questions[currentQuestion].sname}</Text>
-            <Text color='dimmed' weight={400}>{questions[currentQuestion].semail}</Text>
-          </div>
-        </div>
-      </Header>
-          
-      <SurroundingBox>
-        <EmailContainer>
-          <p>Here are the photos from <HoverLink>last vacation!</HoverLink></p>
-        </EmailContainer>
-      </SurroundingBox>
-
-      <URLContainer>
-        https://googlephotos.com
-      </URLContainer>
-    </BodyCont>
-  </>
-  }
-  if (currentQuestion === 1){
-    return<>
-      <BodyCont>
-        <Header>
-          <div className='header'>
-            <Circle />
-            <div className='sender'>
-              <Text weight={700}>{questions[currentQuestion].sname}</Text>
-              <Text color='dimmed' weight={400}>{questions[currentQuestion].semail}</Text>
-            </div>
-          </div>
-        </Header>
-            
-        <SurroundingBox>
-          <EmailContainer>
-            <p>Here are the photos from <HoverLink>last vacation!</HoverLink></p>
-          </EmailContainer>
-        </SurroundingBox>
-  
-        <URLContainer>
-          https://googlephotos.com
-        </URLContainer>
-      </BodyCont>
-    </>
-    }
-  
-  }
-
-
-
-
-//   return<>
-//       <SurroundingBox>
-//           <EmailContainer>
-//           <p>Check this out! <HoverLink>photo</HoverLink></p>
-//           </EmailContainer>
-//       </SurroundingBox>
-//       <URLContainer>
-//               https://googlephotos.com
-//       </URLContainer>
-//   </>
-// }
-
-
 export default function QuizEmail() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const nextQuestion = currentQuestion + 1;
@@ -176,7 +97,6 @@ export default function QuizEmail() {
 
     <Container>
       <EmailBody />
-      <EmailContent />
     </Container>
   </>)
 }

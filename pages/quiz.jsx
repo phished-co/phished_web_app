@@ -1,8 +1,6 @@
 import styled from "styled-components"
 
 // Our imports
-import QuizTitle from "../components/quiz/title/Title"
-import QuizEmail from "../components/quiz/email/QuizEmail"
 import EmailBody from "../components/quiz/email/EmailData"
 
 const Container = styled.div`
@@ -14,7 +12,7 @@ const Container = styled.div`
 export default function Quiz() {
   return <>
   <Container>
-    <QuizEmail />
+    <EmailBody />
   </Container>
   </>
 }

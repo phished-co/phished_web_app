@@ -3,36 +3,93 @@ import { Button, Divider, Text, Title } from "@mantine/core";
 import styled from "styled-components";
 
 
-
+// Quiz data
 export const questions = [
   {
-      num:1,
-      questionsText: "Personal Contact 1",
-      questionsTip: "Click this to check",
+      questionsText: "Personal Contact",
+      questionsTip: "Check link URLs by hovering over them! Don't worry about clicking anything malicious – the links are non-functional and for demonstrative purposes only.",
       sname: "Logan MacDougall",
       semail: "l.macdougall@gmail.com",
       answerOptions: [
         { answerText: "Phishing", isCorrect: true },
         { answerText: "Legitimate", isCorrect: false }
-      ]
+      ],
+      content: `Here are the photos from `,
+      content2: `last vacation!`,
+      content3: ``,
+      urldesc: "https://googlephotos.com",
+      src: "",
+      alt: "",
   },
   {
-      num:2,
       questionsText: "Personal Contact 2",
-      questionsTip: "Hover this to check",
+      questionsTip: "This question is similiar to the previous question. Try to see if the URL link is credible. ",
       sname: "Trevor Tyler Lee",
       semail: "t.tylee@gmail.com",
       answerOptions: [
         { answerText: "Phishing", isCorrect: true },
         { answerText: "Legitimate", isCorrect: false }
-      ]
-
+      ],
+      content: `Hey, do you wanna see what I've changed? `,
+      content2: `click here`,
+      content3: ` to see what I've been working on!`,
+      urldesc: "shorturl.at/aqBCD",
+      src: "",
+      alt: "",
+  },
+  {
+    questionsText: "Personal Contact 2",
+    questionsTip: "Hover this to check",
+    sname: "Trevor Tyler Lee",
+    semail: "t.tylee@gmail.com",
+    answerOptions: [
+      { answerText: "Phishing", isCorrect: true },
+      { answerText: "Legitimate", isCorrect: false }
+    ],
+    content: `Check this out! `,
+    content2: `photo`,
+    content3: ``,
+    urldesc: "https://googlephotos.com",
+    src: "",
+    alt: "",
+  },
+  {
+    questionsText: "Personal Contact 2",
+    questionsTip: "Hover this to check",
+    sname: "Trevor Tyler Lee",
+    semail: "t.tylee@gmail.com",
+    answerOptions: [
+      { answerText: "Phishing", isCorrect: true },
+      { answerText: "Legitimate", isCorrect: false }
+    ],
+    content: `Check this out! `,
+    content2: `photo`,
+    content3: ``,
+    urldesc: "https://googlephotos.com",
+    src: "",
+    alt: "",
+  },
+  {
+    questionsText: "Personal Contact 2",
+    questionsTip: "Hover this to check",
+    sname: "Trevor Tyler Lee",
+    semail: "t.tylee@gmail.com",
+    answerOptions: [
+      { answerText: "Phishing", isCorrect: true },
+      { answerText: "Legitimate", isCorrect: false }
+    ],
+    content: `Check this out! `,
+    content2: `photo`,
+    content3: ``,
+    urldesc: "https://googlephotos.com",
+    src: "",
+    alt: "",
   },
 
 ];
 
 
-
+// Styled-comp
 const AnswerSection = styled.div`
 display: flex;
 flex-direction: row;
@@ -40,6 +97,7 @@ justify-content: space-around;
 gap: 1rem;
 margin-top: 20px;
 `
+
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -60,7 +118,47 @@ const Header = styled.div`
     }
   }
 `
+const SurroundingBox = styled.div`
+  width: 100%;
+  min-height: 4rem;
+  background: lightgray;
+  padding: 2rem;
+  }
+`
 
+const HoverLink = styled.span`
+    color: blue;
+    cursor: pointer;
+
+    :hover {
+      text-decoration: underline;
+    }
+`
+const Container = styled.div`
+  margin-top: 3rem;
+  ${'' /* outline: 2px solid red; */}
+  padding: 1rem 4vw;
+`
+const URLContainer = styled.div`
+  background: gray;
+  color: white;
+  max-width: 32rem;
+  margin-top: 8rem;
+  padding-left: 0.5rem;
+  opacity: 0;
+
+  ${Container}:hover & {
+    opacity: 1;
+  }
+`
+
+const EmailContainer = styled.div`
+  width: 100%;
+  min-height: 8rem;
+  background: white;
+  padding: 1rem;
+  color: black;
+`
 
 const Circle = styled.div`
   height: 4rem;
@@ -71,7 +169,14 @@ const Circle = styled.div`
   margin-right: 2rem;
 `
 
+const BodyCont = styled.div`
+margin-top: 3rem;
+${'' /* outline: 2px solid red; */}
+padding: 1rem 4vw;`
 
+
+
+// Actual Body
 export default function EmailBody(){
 
 const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -80,8 +185,9 @@ const [showScore, setShowScore] = useState(false);
 
 const [score, setScore] = useState(0);
 
-const QuizTitle = ()=> {
 
+// QUIZ HEADER
+const QuizTitle = ()=> {
   return<>
       <Text color='dimmed'>Question {currentQuestion + 1} / {questions.length}</Text>
       <Title>{questions[currentQuestion].questionsText}</Title>
@@ -90,8 +196,8 @@ const QuizTitle = ()=> {
   </>
 };
 
+// EMAIL SENDER
 const SenderEmail = ()=> {
-
   return<>
       <div className='sender'>
           <Text weight={700}>{questions[currentQuestion].sname}</Text>
@@ -99,6 +205,7 @@ const SenderEmail = ()=> {
       </div>
   </>
 };
+
 
 const handleAnswerButtonClick = (isCorrect) => {
   if(isCorrect === true){
@@ -119,31 +226,52 @@ const resetQuestion = () => {
   setScore(0);
 }
 
+
+
+
 return (
-  <div>
+  <>
     {showScore ? (
       <div className="score-section">You scored {score} out of {questions.length}
-      <Button type='null' onClick={resetQuestion}>Try Again</Button></div>
-    ) : (
-      <>
-      <QuizTitle />
-      <AnswerSection>
-          {questions[currentQuestion].answerOptions.map((answerOptions)=>
-            <Button fullWidth type='null' onClick={()=>handleAnswerButtonClick(answerOptions.isCorrect)}>{answerOptions.answerText}</Button>)}
-      </AnswerSection>
-      
-      <div className="question-section">
-        <div className="question-count">
-          <span>Question {currentQuestion + 1}</span>/{questions.length}
-        </div>
-        <div className="question-text">
-          {questions[currentQuestion].questionsText}
-        </div>
+        <Button type='null' onClick={resetQuestion}>Try Again</Button>
       </div>
-      </>
+  
+    ) : (
+    <>
+      <Container>
 
+        {/* Header */}
+          <QuizTitle />
+          <AnswerSection>
+              {questions[currentQuestion].answerOptions.map((answerOptions)=>
+                <Button fullWidth type='null' onClick={()=>handleAnswerButtonClick(answerOptions.isCorrect)}>{answerOptions.answerText}</Button>)}
+          </AnswerSection>
+
+        {/* Body */}
+          <BodyCont>
+            <Header>
+              <div className='header'>
+                <Circle />
+                <SenderEmail />
+              </div>
+            </Header>
+                
+            <SurroundingBox>
+              <EmailContainer>
+              <p>{questions[currentQuestion].content}<HoverLink>{questions[currentQuestion].content2}</HoverLink>{questions[currentQuestion].content3}</p>
+              <img src={questions[currentQuestion].src} alt={questions[currentQuestion].alt} />
+              </EmailContainer>
+            </SurroundingBox>
+      
+            <URLContainer>
+              {questions[currentQuestion].urldesc}
+            </URLContainer>
+          </BodyCont>
+      </Container>
+    </>
     )}
-
-  </div>
+  
+  
+  </> 
 )
-}
+};
