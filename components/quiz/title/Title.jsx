@@ -1,12 +1,29 @@
 import { Divider, Text, Title } from "@mantine/core";
-import { quizQuestions } from "../data";
 
-export default function QuizTitle({ number, i, tip }) {
+
+export const titleData = [
+  {
+      num:1,
+      q: "Persoanl Contact",
+      tip: "Check link URLs by hovering over them! Don't worry about clicking anything malicious – the links are non-functional and for demonstrative purposes only.",
+  },
+  {
+    num:2,
+    q: "Persoanl Contact 2",
+    tip: "Check link URLs by hovering over them! Don't worry about clicking anything malicious – the links are non-functional and for demonstrative purposes only.",
+  }
+]
+
+
+export default function QuizTitle({
+
+}) {
+  
   return (
     <>
-      <Text color='dimmed'>{number} of 8</Text>
-      <Title>{quizQuestions[0].q}</Title>
-      <Text>{tip}</Text>
+      <Text color='dimmed'>Question {currentQuestion + 1} / {questions.length}</Text>
+      <Title>{questions[currentQuestion].questionsText}</Title>
+      <Text>{questions[currentQuestion].questionsTip}</Text>
       <Divider mt={32} />
     </>
   )
