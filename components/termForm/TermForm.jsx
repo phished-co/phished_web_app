@@ -22,7 +22,7 @@ const Container = styled.div`
 
 export function TermForm({ onSendEmail, onScheduleEmail }) {
 
-    const [template, setTemplate] = useState('');
+    const [templateName, setTemplateName] = useState('');
 
     async function submitHandler(data) {
         await onSendEmail(data);
@@ -32,17 +32,17 @@ export function TermForm({ onSendEmail, onScheduleEmail }) {
         <Container>
             <h1> Choose your template to start </h1>
             <form style={{marginTop: 20 }}>
-                <select mb={12} name="template" value={template} onChange={(e) => setTemplate(e.target.value)}>
-                    <option value="" disabled >--choose your template --</option>
+                <select mb={12} name="template" value={templateName} onChange={(e) => setTemplateName(e.target.value)}>
+                    <option value="" disabled >--select here --</option>
                     <option> Basic </option>
-                    {/*<option> Facebook </option>*/}
+                    <option> Facebook </option>
                     {/*<option> Instagram</option>*/}
                 </select>
             </form>
 
-
-            { template == 'Basic' && <MidtermForm submitHandler={submitHandler} onScheduleEmail={onScheduleEmail}/>}
-            {/*{ template == 'Facebook' &&  <FacebookForm submitHandler={submitHandler}/>}*/}
+            { templateName == '' && <div style={{height: 250 }}></div>}
+            { templateName == 'Basic' && <MidtermForm submitHandler={submitHandler} onScheduleEmail={onScheduleEmail}/>}
+            { templateName == 'Facebook' &&  <FacebookForm submitHandler={submitHandler}/>}
             {/*{ template == 'Instagram' && <h2>instagramform</h2>}*/}
 
         </Container>

@@ -94,7 +94,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [targetName, setTargetName] = useState('');
-  const [templateName, setTemplateName] = useState('Basic');
+  const [template, setTemplate] = useState('basic');
 
   const [successNote, setSuccessNote] = useState(false);
 
@@ -105,7 +105,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
 
     let from = `${fname} ${lname} ${fromEmail}`;
     // let template = "basic"
-    let validation = submitHandler({ from, to, subject, html, targetName, templateName})
+    let validation = submitHandler({ from, to, subject, html, targetName, template})
     setSuccessNote(true)
 
     const timeId = setTimeout(() => {
@@ -194,24 +194,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
                     onChange={(e) => setHtml(e.target.value)}
                     required
                 />
-
-              {/*  <TextInput*/}
-              {/*      type = "hidden"*/}
-              {/*      value={"Verify your account"}*/}
-              {/*      onChange={(e) => setSubject(e.target.value)}*/}
-              {/*      required*/}
-              {/*  />*/}
-
-              {/*  <TextInput*/}
-              {/*      label="target Name"*/}
-              {/*      placeholder="sam"*/}
-              {/*      classNames={classes}*/}
-              {/*      mb={12}*/}
-              {/*      value={targetName}*/}
-              {/*      onChange={(e) => setTargetName(e.target.value)}*/}
-              {/*      required*/}
-              {/*  />*/}
-
 
 
           

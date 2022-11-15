@@ -56,7 +56,32 @@ const textAreaStyles = createStyles((theme) => ({
   },
 }));
 
-export function FacebookForm({ onSendEmail, onScheduleEmail }) {
+
+const confirmStyle = {
+  backgroundColor: 'RGBA(150,183,80,0.43)',
+  padding: '10px',
+  margin: '10px',
+  textAlign: 'center',
+  fontSize: '10px',
+  borderRadius: '4px'
+};
+
+
+const templateStyle ={
+  marginTop: 20,
+  padding: 20,
+  backgroundColor: '#D4EBFF',
+  border: '1px dashed #50A7F2',
+  borderRadius: '5px',
+  color: '#3F3F3F',
+  fontSize: '10px',
+
+
+
+
+}
+
+export function FacebookForm({ submitHandler, onScheduleEmail }) {
   // Styles
   const { classes } = useStyles();
   const { textarea } = textAreaStyles();
@@ -68,61 +93,50 @@ export function FacebookForm({ onSendEmail, onScheduleEmail }) {
   const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [template, setTemplate] = useState('basic');
   const [targetName, setTargetName] = useState('');
+  const [template, setTemplate] = useState('facebook');
 
   const [successNote, setSuccessNote] = useState(false);
-  const [errorNote, setErrorNote] = useState(false);
 
-  const confirmStyle = {
-    backgroundColor: 'RGBA(150,183,80,0.43)',
-    padding: '10px',
-    margin: '10px',
-    textAlign: 'center',
-    fontSize: '10px',
-  };
-  const errorStyle = {
-    backgroundColor: 'RGBA(255,0,41,0.32)',
-    padding: '10px',
-    margin: '10px',
-    textAlign: 'center',
-    fontSize: '10px',
-  };
 
-  function submissionNote(validation) {
-    setErrorNote(false);
-    validation ? setSuccessNote(true) : setErrorNote(true);
+
+  async function onClick(e) {
+    e.preventDefault();
+
+    let from = `${fname} ${lname} ${fromEmail}`;
+    // let template = "basic"
+    let validation = submitHandler({ from, to, subject, html, targetName, template})
+    setSuccessNote(true)
 
     const timeId = setTimeout(() => {
       setSuccessNote(false);
     }, 2000);
     return () => clearTimeout(timeId);
-  }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    
-    let template = "facebook"
-    let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = await onSendEmail({ from, to, subject, html, template, targetName, template });
 
-    submissionNote(validation);
-
-    if (validation) {
-      setFromEmail('');
-      setTo('');
-      setFname('');
-      setLname('');
-      setSubject('');
-      setHtml('');
-      setTargetName('');
-    }
+    setFromEmail('');
+    setTo('');
+    setFname('');
+    setLname('');
+    setSubject('');
+    setHtml('');
+    setTargetName('');
   }
 
   return (
       // <Container>
 
-        <form onSubmit={handleSubmit}>
+      <>
+        <div style={templateStyle} >
+          <p>Hello [targetName],</p>
+          <p>Your Facebook password was changed on [datetime]</p>
+          <p>If you did this, you can safely disregard this email.</p>
+          <p>If you didn't do this, please[secure your account].</p>
+          <p>Thanks, </p>
+          <p>The Facebook Security Team</p>
+        </div>
+
+        <form onSubmit={onClick} style={{marginTop: 20 }} >
 
           <TextInput
               label="First Name"
@@ -149,6 +163,7 @@ export function FacebookForm({ onSendEmail, onScheduleEmail }) {
               mb={12}
               value={fromEmail}
               onChange={(e) => setFromEmail(e.target.value)}
+              type="email"
               required
           />
           <TextInput
@@ -158,52 +173,31 @@ export function FacebookForm({ onSendEmail, onScheduleEmail }) {
               mb={12}
               value={to}
               onChange={(e) => setTo(e.target.value)}
+              type="email"
               required
           />
 
 
-              {/*<TextInput*/}
-              {/*    label="Subject"*/}
-              {/*    placeholder="You won!"*/}
-              {/*      classnames={classes}*/}
-              {/*      mb={12}*/}
-              {/*      value={subject}*/}
-              {/*      onChange={(e) => setSubject(e.target.value)}*/}
-              {/*      required*/}
+            <TextInput
+                type = "hidden"
+                value={"Verify your account"}
+                onChange={(e) => setSubject(e.target.value)}
+                required
+            />
 
-              {/*  />*/}
-
-              {/*  <Textarea*/}
-              {/*      label="Content"*/}
-              {/*      placeholder="Hi Mom..."*/}
-              {/*      autosize*/}
-              {/*      minRows={4}*/}
-              {/*      classnames={textarea}*/}
-              {/*      value={html}*/}
-              {/*      onChange={(e) => setHtml(e.target.value)}*/}
-              {/*      required*/}
-              {/*  />*/}
-
-                <TextInput
-                    type = "hidden"
-                    value={"Verify your account"}
-                    onChange={(e) => setSubject(e.target.value)}
-                    required
-                />
-
-                <TextInput
-                    label="target Name"
-                    placeholder="sam"
-                    classNames={classes}
-                    mb={12}
-                    value={targetName}
-                    onChange={(e) => setTargetName(e.target.value)}
-                    required
-                />
+            <TextInput
+                label="target Name"
+                placeholder="sam"
+                classNames={classes}
+                mb={12}
+                value={targetName}
+                onChange={(e) => setTargetName(e.target.value)}
+                required
+            />
 
 
 
-          
+
 
           <div className="button">
             <Button type="submit" variant="outline">
@@ -222,18 +216,14 @@ export function FacebookForm({ onSendEmail, onScheduleEmail }) {
           </div>
         </form>
 
-      //   {successNote ? (
-      //       <div style={confirmStyle}>
-      //         <p> Submitted successfully</p>
-      //       </div>
-      //   ) : errorNote ? (
-      //       <div style={errorStyle}>
-      //         <p> Please Enter a valid sender email </p>
-      //       </div>
-      //   ) : (
-      //       <></>
-      //   )}
-      // // </Container>
+        {successNote &&
+        <div style={confirmStyle}>
+          <p> Submitted successfully</p>
+        </div>
+        }
+
+      </>
+
   );
 }
 

@@ -41,8 +41,8 @@ export default async function handler(req, res) {
       subject: req.body.subject,
       replyTo: req.body.replyTo,
       template: req.body.template,
-      //html:''
-      // template: 'instagram',
+      html:req.body.html,
+            // template: 'instagram',
 
       context: {
         text: req.body.html,
