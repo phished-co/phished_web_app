@@ -32,6 +32,8 @@ export default async function handler(req, res) {
 
     transporter.use('compile', hbs(handlebarOptions));
 
+    console.log(req.body)
+
 
     var mailOptions = {
       from: req.body.from,
@@ -39,6 +41,9 @@ export default async function handler(req, res) {
       subject: req.body.subject,
       replyTo: req.body.replyTo,
       template: req.body.template,
+      //html:''
+      // template: 'instagram',
+
       context: {
         text: req.body.html,
         datetime: "Monday, November 7, at 6:57 PM (PDT).",

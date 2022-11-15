@@ -56,32 +56,7 @@ const textAreaStyles = createStyles((theme) => ({
   },
 }));
 
-
-const confirmStyle = {
-  backgroundColor: 'RGBA(150,183,80,0.43)',
-  padding: '10px',
-  margin: '10px',
-  textAlign: 'center',
-  fontSize: '10px',
-  borderRadius: '4px'
-};
-
-
-const templateStyle ={
-  marginTop: 20,
-  padding: 20,
-  backgroundColor: '#D4EBFF',
-  border: '1px dashed #50A7F2',
-  borderRadius: '5px',
-  color: '#3F3F3F',
-  fontSize: '10px',
-
-  
-
-
-}
-
-export function MidtermForm({ submitHandler, onScheduleEmail }) {
+export function FacebookForm({ onSendEmail, onScheduleEmail }) {
   // Styles
   const { classes } = useStyles();
   const { textarea } = textAreaStyles();
@@ -93,27 +68,47 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
+  const [template, setTemplate] = useState('basic');
   const [targetName, setTargetName] = useState('');
-  const [templateName, setTemplateName] = useState('Basic');
 
   const [successNote, setSuccessNote] = useState(false);
+  const [errorNote, setErrorNote] = useState(false);
 
+  const confirmStyle = {
+    backgroundColor: 'RGBA(150,183,80,0.43)',
+    padding: '10px',
+    margin: '10px',
+    textAlign: 'center',
+    fontSize: '10px',
+  };
+  const errorStyle = {
+    backgroundColor: 'RGBA(255,0,41,0.32)',
+    padding: '10px',
+    margin: '10px',
+    textAlign: 'center',
+    fontSize: '10px',
+  };
 
-
-  async function onClick(e) {
-    e.preventDefault();
-
-    let from = `${fname} ${lname} ${fromEmail}`;
-    // let template = "basic"
-    let validation = submitHandler({ from, to, subject, html, targetName, templateName})
-    setSuccessNote(true)
+  function submissionNote(validation) {
+    setErrorNote(false);
+    validation ? setSuccessNote(true) : setErrorNote(true);
 
     const timeId = setTimeout(() => {
       setSuccessNote(false);
     }, 2000);
     return () => clearTimeout(timeId);
+  }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    
+    let template = "facebook"
+    let from = `${fname} ${lname} ${fromEmail}`;
+    let validation = await onSendEmail({ from, to, subject, html, template, targetName, template });
 
+    submissionNote(validation);
+
+    if (validation) {
       setFromEmail('');
       setTo('');
       setFname('');
@@ -121,17 +116,13 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
       setSubject('');
       setHtml('');
       setTargetName('');
+    }
   }
 
   return (
       // <Container>
 
-  <>
-    <div style={templateStyle} >
-      <p>[your text] <br/> link</p>
-    </div>
-
-        <form onSubmit={onClick} style={{marginTop: 20 }} >
+        <form onSubmit={handleSubmit}>
 
           <TextInput
               label="First Name"
@@ -158,7 +149,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               mb={12}
               value={fromEmail}
               onChange={(e) => setFromEmail(e.target.value)}
-              type="email"
               required
           />
           <TextInput
@@ -168,49 +158,48 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               mb={12}
               value={to}
               onChange={(e) => setTo(e.target.value)}
-              type="email"
               required
           />
 
 
-              <TextInput
-                  label="Subject"
-                  placeholder="You won!"
-                    classnames={classes}
-                    mb={12}
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
-                    required
-
-                />
-
-                <Textarea
-                    label="Content"
-                    placeholder="Hi Mom..."
-                    autosize
-                    minRows={4}
-                    classnames={textarea}
-                    value={html}
-                    onChange={(e) => setHtml(e.target.value)}
-                    required
-                />
-
-              {/*  <TextInput*/}
-              {/*      type = "hidden"*/}
-              {/*      value={"Verify your account"}*/}
+              {/*<TextInput*/}
+              {/*    label="Subject"*/}
+              {/*    placeholder="You won!"*/}
+              {/*      classnames={classes}*/}
+              {/*      mb={12}*/}
+              {/*      value={subject}*/}
               {/*      onChange={(e) => setSubject(e.target.value)}*/}
               {/*      required*/}
+
               {/*  />*/}
 
-              {/*  <TextInput*/}
-              {/*      label="target Name"*/}
-              {/*      placeholder="sam"*/}
-              {/*      classNames={classes}*/}
-              {/*      mb={12}*/}
-              {/*      value={targetName}*/}
-              {/*      onChange={(e) => setTargetName(e.target.value)}*/}
+              {/*  <Textarea*/}
+              {/*      label="Content"*/}
+              {/*      placeholder="Hi Mom..."*/}
+              {/*      autosize*/}
+              {/*      minRows={4}*/}
+              {/*      classnames={textarea}*/}
+              {/*      value={html}*/}
+              {/*      onChange={(e) => setHtml(e.target.value)}*/}
               {/*      required*/}
               {/*  />*/}
+
+                <TextInput
+                    type = "hidden"
+                    value={"Verify your account"}
+                    onChange={(e) => setSubject(e.target.value)}
+                    required
+                />
+
+                <TextInput
+                    label="target Name"
+                    placeholder="sam"
+                    classNames={classes}
+                    mb={12}
+                    value={targetName}
+                    onChange={(e) => setTargetName(e.target.value)}
+                    required
+                />
 
 
 
@@ -233,15 +222,19 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
           </div>
         </form>
 
-    {successNote &&
-    <div style={confirmStyle}>
-      <p> Submitted successfully</p>
-    </div>
-    }
-
-  </>
-
+      //   {successNote ? (
+      //       <div style={confirmStyle}>
+      //         <p> Submitted successfully</p>
+      //       </div>
+      //   ) : errorNote ? (
+      //       <div style={errorStyle}>
+      //         <p> Please Enter a valid sender email </p>
+      //       </div>
+      //   ) : (
+      //       <></>
+      //   )}
+      // // </Container>
   );
 }
 
-export default MidtermForm;
+export default FacebookForm;

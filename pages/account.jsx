@@ -1,5 +1,7 @@
 import PhishForm from '../components/phishForm/PhishForm';
 import MidtermForm from '../components/midtermForm/MidtermForm';
+import TermForm from '../components/termForm/TermForm';
+
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -25,15 +27,12 @@ export default function Home() {
     axios.post('/api/emailScheduled', props);
   };
   
-
   return (
-    <>
-      <Container>
-        <MidtermForm
-          onSendEmail={handleSendEmail}
-          onScheduleEmail={handleScheduleEmail}
-        />
-      </Container>
-    </>
+        <Container>
+          <TermForm
+              onSendEmail={handleSendEmail}
+              onScheduleEmail={handleScheduleEmail}
+          />
+        </Container>
   );
 }
