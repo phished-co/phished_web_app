@@ -14,7 +14,8 @@
     "lint": "next lint",
     "prettier": "prettier --write .",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@atlaskit/datetime-picker": "^12.3.0",
@@ -53,6 +54,8 @@
     "next": "12.3.1",
     "nodemailer": "^6.8.0",
     "nodemailer-express-handlebars": "^5.0.0",
+    "patch-package": "^6.5.0",
+    "postinstall-postinstall": "^2.1.0",
     "nprogress": "^0.2.0",
     "react": "18.2.0",
     "react-chartjs-2": "^4.3.1",
