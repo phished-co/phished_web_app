@@ -103,17 +103,6 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   async function onClick(e) {
     e.preventDefault();
 
-    let from = `${fname} ${lname} ${fromEmail}`;
-    // let template = "basic"
-    let validation = submitHandler({ from, to, subject, html, targetName, template})
-    setSuccessNote(true)
-
-    const timeId = setTimeout(() => {
-      setSuccessNote(false);
-    }, 2000);
-    return () => clearTimeout(timeId);
-
-
     setFromEmail('');
     setTo('');
     setFname('');
@@ -121,6 +110,16 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
     setSubject('');
     setHtml('');
     setTargetName('');
+
+    let from = `${fname} ${lname} ${fromEmail}`;
+    let validation = submitHandler({ from, to, subject, html, targetName, template})
+
+    setSuccessNote(true)
+    const timeId = setTimeout(() => {
+      setSuccessNote(false);}, 2000);
+    return () => clearTimeout(timeId);
+
+
   }
 
   return (

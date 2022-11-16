@@ -16,6 +16,12 @@ export const config = {
   api: { externalResolver: true },
 };
 
+function subtractHours(date, minutes) {
+  date.setMinutes(date.getMinutes() - minutes);
+  return date;
+}
+
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     res.send(true);
@@ -32,7 +38,11 @@ export default async function handler(req, res) {
 
     transporter.use('compile', hbs(handlebarOptions));
 
-    console.log(req.body)
+
+
+      let date = new Date();
+      let newDate = subtractHours(date, 20);
+      console.log(newDate.toUTCString())
 
 
     var mailOptions = {
@@ -42,11 +52,10 @@ export default async function handler(req, res) {
       replyTo: req.body.replyTo,
       template: req.body.template,
       html:req.body.html,
-            // template: 'instagram',
-
       context: {
         text: req.body.html,
-        datetime: "Monday, November 7, at 6:57 PM (PDT).",
+        datetime: newDate.toUTCString(),
+        // datetime: "Monday, November 7, at 6:57 PM (PDT).",
         targetName:req.body.targetName
       },
     };
@@ -58,7 +67,7 @@ export default async function handler(req, res) {
       transporter
           .sendMail(mailOptions)
           .then((info) => {
-            console.log(req.body);
+            // console.log(req.body);
             console.log('Email sent: ' + info.response);
             resolve(info);
           })
