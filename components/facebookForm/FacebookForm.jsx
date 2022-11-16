@@ -76,12 +76,12 @@ const templateStyle ={
   color: '#3F3F3F',
   fontSize: '10px',
 
-  
+
 
 
 }
 
-export function MidtermForm({ submitHandler, onScheduleEmail }) {
+export function FacebookForm({ submitHandler, onScheduleEmail }) {
   // Styles
   const { classes } = useStyles();
   const { textarea } = textAreaStyles();
@@ -94,7 +94,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [targetName, setTargetName] = useState('');
-  const [template, setTemplate] = useState('basic');
+  const [template, setTemplate] = useState('facebook');
 
   const [successNote, setSuccessNote] = useState(false);
 
@@ -125,10 +125,15 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   return (
       // <Container>
 
-  <>
-    <div style={templateStyle} >
-      <p>[your text] <br/> link</p>
-    </div>
+      <>
+        <div style={templateStyle} >
+          <p>Hello [targetName],</p>
+          <p>Your Facebook password was changed on [datetime]</p>
+          <p>If you did this, you can safely disregard this email.</p>
+          <p>If you didn't do this, please[secure your account].</p>
+          <p>Thanks, </p>
+          <p>The Facebook Security Team</p>
+        </div>
 
         <form onSubmit={onClick} style={{marginTop: 20 }} >
 
@@ -172,30 +177,26 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
           />
 
 
-              <TextInput
-                  label="Subject"
-                  placeholder="You won!"
-                    classnames={classes}
-                    mb={12}
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
-                    required
+            <TextInput
+                type = "hidden"
+                value={"Verify your account"}
+                onChange={(e) => setSubject(e.target.value)}
+                required
+            />
 
-                />
-
-                <Textarea
-                    label="Content"
-                    placeholder="Hi Mom..."
-                    autosize
-                    minRows={4}
-                    classnames={textarea}
-                    value={html}
-                    onChange={(e) => setHtml(e.target.value)}
-                    required
-                />
+            <TextInput
+                label="target Name"
+                placeholder="sam"
+                classNames={classes}
+                mb={12}
+                value={targetName}
+                onChange={(e) => setTargetName(e.target.value)}
+                required
+            />
 
 
-          
+
+
 
           <div className="button">
             <Button type="submit" variant="outline">
@@ -214,15 +215,15 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
           </div>
         </form>
 
-    {successNote &&
-    <div style={confirmStyle}>
-      <p> Submitted successfully</p>
-    </div>
-    }
+        {successNote &&
+        <div style={confirmStyle}>
+          <p> Submitted successfully</p>
+        </div>
+        }
 
-  </>
+      </>
 
   );
 }
 
-export default MidtermForm;
+export default FacebookForm;
