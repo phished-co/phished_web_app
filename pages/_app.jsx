@@ -8,6 +8,8 @@ import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { FooterSimple } from "../components/mantine/footer/Footer"
 import { HeaderResponsive } from "../components/mantine/header/Header.tsx"
 import { links } from "../data/fake_data"
+import NextNProgress from "../components/LoadingBar/LoadingBar";
+
 
 export default function App(props) {
   const { Component, pageProps } = props;
@@ -42,6 +44,7 @@ export default function App(props) {
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           </Head>
           <HeaderResponsive links={links} />
+          <NextNProgress />
           <Component {...pageProps} />
           <FooterSimple />
         </MantineProvider>
