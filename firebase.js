@@ -37,13 +37,14 @@ export async function postScheduleEmail(collectionName, postData) {
 export async function deleteScheduledEmail(id) {
   await deleteDoc(doc(db, 'scheduledEmails', id));
   console.log(`scheduledEmail deleted from db: scheduledEmails + ${id}`);
+  return id;
 }
 
 //to remove from db: tasks
-export async function deleteEmailFromTasks(id) {
-  await deleteDoc(doc(db, 'tasks', id));
-  console.log(`email deleted from db: tasks + ${id}`);
-}
+// export async function deleteEmailFromTasks(id) {
+//   await deleteDoc(doc(db, 'tasks', id));
+//   console.log(`email deleted from db: tasks + ${id}`);
+// }
 
 //probably need to be able to update a scheduled email
 export async function updateScheduledEmail(id) {
@@ -56,4 +57,5 @@ export async function updateScheduledEmail(id) {
     subject,
     message,
   });
+  return id;
 }
