@@ -67,10 +67,10 @@ export default function About() {
       });
   };
 
-  // const handleEdit = (id) => {
-  //   console.log('edit', id);
-  //   router.push(`/email/${id}`);
-  // };
+  const handleEdit = (id) => {
+    console.log('edit', id);
+    router.push(`/email/${id}`);
+  };
 
   return (
     <Container>
@@ -102,7 +102,7 @@ export default function About() {
                 subject={email.subject}
                 message={email.message}
                 onDelete={handleDelete}
-                // onEdit={handleEdit}
+                onEdit={handleEdit}
               />
             ))}
             <Link href="/account" className="button">
