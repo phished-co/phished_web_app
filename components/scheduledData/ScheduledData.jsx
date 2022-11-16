@@ -63,10 +63,10 @@ export default function ScheduledData({
         <p>Subject: {subject}</p>
         <span className="message">Message: {message}</span>
         <div className="button">
-          {/* <Button variant="outline" onClick={() => onEdit(id)}>SET DATE</Button> */}
-          <Link href={`/email/${id}`} key={id}>
-            <Button variant="outline">SET DATE</Button>
-          </Link>
+          <Button variant="outline" onClick={() => onEdit(id)}>SET DATE</Button>
+          {/* <Link href={`/email/${id}`} key={id}> */}
+            {/* <Button variant="outline">SET DATE</Button> */}
+          {/* </Link> */}
           <Button variant="outline" onClick={() => onDelete(id)}>
             DELETE
           </Button>
