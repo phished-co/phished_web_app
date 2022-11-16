@@ -10,6 +10,22 @@ const Container = styled.div`
   div h1 {
     margin: 2rem;
   }
+
+  .card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .card .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
 `;
 
 export default function About() {
@@ -23,7 +39,7 @@ export default function About() {
       .get('/api/emailScheduled')
       .then((res) => {
         setScheduleEmails(res.data);
-        console.log("+++", res.data);
+        console.log('+++', res.data);
       })
       .catch((err) => {
         console.log('error appeared', err);
@@ -35,18 +51,25 @@ export default function About() {
     }, 2000);
   }, []);
 
-  const handleDelete = () => {
+  const handleDelete = (id) => {
+    console.log('delete', id);
     axios
-      .delete(`/api/emailScheduled`)
+      .delete(`/api/emailScheduled/${id}`)
       .then((res) => {
-        // setScheduleEmails(
-        //   emails.filter((singleEmail) => singleEmail.id !== id)
-        //   )
-          console.log("delete email", res.data.id);
+        setScheduleEmails(emails.filter((email) => email.id !== id));
+        // console.log("delete email", res.data.id);
       })
+      // .then(() => {
+      //   router.push('/scheduleEmail');
+      // })
       .catch((err) => {
         console.error('error', err);
       });
+  };
+
+  const handleEdit = (id) => {
+    console.log('edit', id);
+    router.push(`/email/${id}`);
   };
 
   return (
@@ -67,11 +90,10 @@ export default function About() {
             </Link>
           </div>
         ) : (
-          <div>
+          <div className="card">
             {scheduleEmails.map((email) => (
-              <Link key={email.id} href={`/email/${email.id}`}>
-                <a>
               <ScheduledData
+                id={email.id}
                 key={email.id}
                 firstName={email.firstName}
                 lastName={email.lastName}
@@ -79,11 +101,15 @@ export default function About() {
                 receiver={email.receiver}
                 subject={email.subject}
                 message={email.message}
-                // onDelete={handleDelete}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
               />
-              </a>
-             </Link>
             ))}
+            <Link href="/account" className="button">
+              <Button color="blue" variant="outline">
+                Go back to Email page
+              </Button>
+            </Link>
           </div>
         )}
       </div>
