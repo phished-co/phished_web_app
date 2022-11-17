@@ -1,12 +1,13 @@
 import React, { useState } from "react"
-import { Button, Divider, Text, Title } from "@mantine/core";
+import { Button, Divider, Text, Title, Container } from "@mantine/core";
 import styled from "styled-components";
+import { useRouter } from 'next/router'
 
 
 // Quiz data
 export const questions = [
   {
-      questionsText: "Personal Contact",
+      questionsText: "Personal Contact with External Link",
       questionsTip: "Check link URLs by hovering over them! Don't worry about clicking anything malicious – the links are non-functional and for demonstrative purposes only.",
       sname: "Logan MacDougall",
       semail: "l.macdougall@gmail.com",
@@ -22,7 +23,39 @@ export const questions = [
       alt: "",
   },
   {
-      questionsText: "Personal Contact 2",
+    questionsText: "Email with attachment",
+    questionsTip: "This example contains the attachment. Do you want to check the file?",
+    sname: "Natasha Gisman",
+    semail: "gis.nas.man@gmail.com",
+    answerOptions: [
+      { answerText: "Phishing", isCorrect: true },
+      { answerText: "Legitimate", isCorrect: false }
+    ],
+    content: `2022 Budget Plan`,
+    content2: `Hey, please double check the attachment to confirm your order`,
+    content3: ` to see what I've been working on!`,
+    urldesc: "shorturl.at/aqBCD",
+    src: "../../../docimg.png",
+    alt: "google doc icon",
+  },
+  {
+    questionsText: "Security Alert",
+    questionsTip: "It looks like you got a security alert ",
+    sname: "Google",
+    semail: "security@googl.com",
+    answerOptions: [
+      { answerText: "Phishing", isCorrect: true },
+      { answerText: "Legitimate", isCorrect: false }
+    ],
+    content: `Hey, we have noticed some unusul activity `,
+    content2: `Was this you?`,
+    content3: `Click the link to confirm this activity `,
+    urldesc: "https://googlephotos.com",
+    src: "../../../githublogo.png",
+    alt: "github logo",
+  },
+  {
+      questionsText: "Personal Contact with External Link",
       questionsTip: "This question is similiar to the previous question. Try to see if the URL link is credible. ",
       sname: "Trevor Tyler Lee",
       semail: "t.tylee@gmail.com",
@@ -37,51 +70,36 @@ export const questions = [
       src: "",
       alt: "",
   },
+
   {
-    questionsText: "Personal Contact 2",
-    questionsTip: "Hover this to check",
-    sname: "Trevor Tyler Lee",
-    semail: "t.tylee@gmail.com",
+    questionsText: "Another example with an attachment",
+    questionsTip: "This example contains the attachment. Check if you",
+    sname: "La Boutique de Jeanne ",
+    semail: "j.ane@gmail.com",
     answerOptions: [
       { answerText: "Phishing", isCorrect: true },
       { answerText: "Legitimate", isCorrect: false }
     ],
-    content: `Check this out! `,
-    content2: `photo`,
+    content: `Order Confirmation`,
+    content2: `Thank you for your purchase. Here's the confirmation of your order.`,
     content3: ``,
-    urldesc: "https://googlephotos.com",
-    src: "",
-    alt: "",
+    urldesc: "shorturl.at/aqBCD",
+    src: "../../../pdfimg.png",
+    alt: "pdf icon",
   },
   {
-    questionsText: "Personal Contact 2",
-    questionsTip: "Hover this to check",
-    sname: "Trevor Tyler Lee",
-    semail: "t.tylee@gmail.com",
+    questionsText: "New Email from Unknown Sender ",
+    questionsTip: "You received the email from a sender that you don't recognize.",
+    sname: "Ivan Gartner",
+    semail: "gartner.ii@gmail.com",
     answerOptions: [
       { answerText: "Phishing", isCorrect: true },
       { answerText: "Legitimate", isCorrect: false }
     ],
-    content: `Check this out! `,
-    content2: `photo`,
-    content3: ``,
-    urldesc: "https://googlephotos.com",
-    src: "",
-    alt: "",
-  },
-  {
-    questionsText: "Personal Contact 2",
-    questionsTip: "Hover this to check",
-    sname: "Trevor Tyler Lee",
-    semail: "t.tylee@gmail.com",
-    answerOptions: [
-      { answerText: "Phishing", isCorrect: true },
-      { answerText: "Legitimate", isCorrect: false }
-    ],
-    content: `Check this out! `,
-    content2: `photo`,
-    content3: ``,
-    urldesc: "https://googlephotos.com",
+    content: `Security Alert `,
+    content2: `Was this you?`,
+    content3: `Confirm this login activity`,
+    urldesc: "shorturl.at/aqBCD",
     src: "",
     alt: "",
   },
@@ -134,7 +152,13 @@ const HoverLink = styled.span`
       text-decoration: underline;
     }
 `
-const Container = styled.div`
+
+const IconImg = styled.img`
+    width: 40px;
+    height: 40px;
+`
+
+const Wrapper = styled(Container)`
   margin-top: 3rem;
   ${'' /* outline: 2px solid red; */}
   padding: 1rem 4vw;
@@ -175,6 +199,16 @@ ${'' /* outline: 2px solid red; */}
 padding: 1rem 4vw;`
 
 
+const ResultCont = styled.div`
+display: flex;
+flex-direction: column;
+justfiy-content: center;
+align-items: center;
+margin: 2rem;
+padding: 2rem;
+gap: 2rem;
+`
+
 
 // Actual Body
 export default function EmailBody(){
@@ -195,6 +229,23 @@ const QuizTitle = ()=> {
       <Divider mt={32} />
   </>
 };
+
+const ResultPage = () =>{
+  return <>
+    <Title> Your Result</Title>
+    <Divider mt= {32} />
+    <ResultCont>
+      <Text
+        variant="gradient"
+        gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+        sx={{ fontFamily: 'Greycliff CF, sans-serif' }}
+        ta="center"
+        fz="xl"
+        fw={700}
+      ></Text>
+    </ResultCont>
+  </>
+}
 
 // EMAIL SENDER
 const SenderEmail = ()=> {
@@ -220,10 +271,15 @@ const handleAnswerButtonClick = (isCorrect) => {
   }
 }
 
+
+const r = useRouter();
+
 const resetQuestion = () => {
   setCurrentQuestion(0);
   setShowScore(false);
   setScore(0);
+  
+  r.push = () => { r.push("/quiz") }
 }
 
 
@@ -232,13 +288,33 @@ const resetQuestion = () => {
 return (
   <>
     {showScore ? (
-      <div className="score-section">You scored {score} out of {questions.length}
-        <Button type='null' onClick={resetQuestion}>Try Again</Button>
-      </div>
-  
+      <Wrapper>
+        <Title>Nice Try!</Title>
+        <Divider mt= {32} />
+          <ResultCont>
+            <Text
+              size={30}
+              weight={700}
+              variant="gradient"
+              gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+            >You got {score} out of {questions.length} correct!
+            </Text>
+            <Text>
+              Try until you get it all right! The more you practice, the safer you are from phishing attacks.
+              <br />
+              Learn more about how to protect yourself and loved ones.
+              <br />
+              <HoverLink><a href="https://www.phished.app/learn">Click Here</a></HoverLink>
+            </Text>
+            
+            <Button type='null' onClick={resetQuestion}>Try Again</Button>
+        
+          </ResultCont>
+      </Wrapper>
+
     ) : (
     <>
-      <Container>
+      <Wrapper>
 
         {/* Header */}
           <QuizTitle />
@@ -248,6 +324,8 @@ return (
           </AnswerSection>
 
         {/* Body */}
+      
+      
           <BodyCont>
             <Header>
               <div className='header'>
@@ -255,19 +333,30 @@ return (
                 <SenderEmail />
               </div>
             </Header>
-                
+            
             <SurroundingBox>
-              <EmailContainer>
-              <p>{questions[currentQuestion].content}<HoverLink>{questions[currentQuestion].content2}</HoverLink>{questions[currentQuestion].content3}</p>
-              <img src={questions[currentQuestion].src} alt={questions[currentQuestion].alt} />
-              </EmailContainer>
-            </SurroundingBox>
+              {currentQuestion === 1 || currentQuestion === 4? (
+                <EmailContainer>
+                  <a href="https://google.com">
+                    <IconImg src={questions[currentQuestion].src} alt={questions[currentQuestion].alt} />
+                    <HoverLink>{questions[currentQuestion].content}</HoverLink>
+                  </a>
+                  <p>{questions[currentQuestion].content2}</p>
+                </EmailContainer>
+        
+              ) : (   
+              
+                <EmailContainer>
+                <p>{questions[currentQuestion].content}<HoverLink>{questions[currentQuestion].content2}</HoverLink>{questions[currentQuestion].content3}</p>
+                <img width= "100" height= "auto" src={questions[currentQuestion].src} alt={questions[currentQuestion].alt} />
+                </EmailContainer>)}
+              </SurroundingBox>
       
             <URLContainer>
               {questions[currentQuestion].urldesc}
             </URLContainer>
           </BodyCont>
-      </Container>
+      </Wrapper>
     </>
     )}
   
