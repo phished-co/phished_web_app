@@ -1,0 +1,36 @@
+{{!-- One variable: email --}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New login</title>
+    <meta name="description" content="new login">
+    <meta name="keywords" content="new login">
+<style>
+h1 {
+text-align: center;
+font-size: 2rem;
+font-weight: 400;
+margin-bottom: 2rem;
+}
+p {
+margin-top: 2rem;
+margin-bottom: 2rem;
+}
+.btn {
+color: white;
+background: #4283F3;
+padding: 0.5rem;
+}
+.btn:hover {
+background: #5a8ce3;
+}
+</style>
+
+<body>
+  <h1>New device signed in to {{email}}</h1>
+  <hr />
+  <p>Your account was just signed in to from a new Apple iPhone device. You're getting this email to make sure it was you.</p>
+<a class="btn" href="http://localhost:3000/youPhished">CHECK ACTIVITY</a>
+</body>
+</html>
