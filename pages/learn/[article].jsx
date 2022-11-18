@@ -21,7 +21,7 @@ const Container = styled.div`
 // `
 
 export const ImageContainer = styled.div`
-  outline: 2px solid green;
+  ${'' /* outline: 2px solid green; */}
   margin: 0 auto;
   margin-bottom: 1rem;
 
