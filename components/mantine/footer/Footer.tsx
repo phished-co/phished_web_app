@@ -41,6 +41,10 @@ let links = [
     {
       "link": "/privacy",
       "label": "Privacy Policy"
+    },
+    {
+      "link": "/terms",
+      "label": "Terms & Conditions"
     }
   ]
 
