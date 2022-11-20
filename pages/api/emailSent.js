@@ -1,15 +1,21 @@
-// import emailSMTPVerificator from 'email-smtp-verificator';
-// import validate from 'deep-email-validator';
-// import validate from 'email-validator';
-// import { verifyEmail } from '@devmehq/email-validator-js';
+
+// import { useSession } from "next-auth/react"
 import { transporter } from '../../nodemailer';
 import hbs from 'nodemailer-express-handlebars';
 import path from 'path';
 
+import { db } from '../../firebaseConfig';
+import {
+  collection,
+  doc,
+  addDoc,
+  getDoc,
+  getDocs,
+  deleteDoc,
+  setDoc,
+} from 'firebase/firestore';
 
-//attach the plugin to the nodemailer transporter
-// transporter.use('compile', hbs(options));
-// //send mail with options
+//
 
 
 export const config = {
@@ -26,6 +32,21 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     res.send(true);
 
+    ///--------------------------------------
+
+
+    let emailDataForDb = req.body
+
+    emailDataForDb.userEmail = "01ssTZgBlq376xEaZaYo"
+    emailDataForDb.timestamp = Date.now()
+
+
+    const sentEmail = await addDoc(collection(db, "sentEmails"), emailDataForDb);
+      // console.log(sentEmail.id)
+
+
+      ///--------------------------------------
+
     const handlebarOptions = {
       viewEngine: {
         extName: '.handlebars',
@@ -39,11 +60,13 @@ export default async function handler(req, res) {
     transporter.use('compile', hbs(handlebarOptions));
 
 
+    let date = new Date();
+    let newDate = subtractHours(date, 20);
 
-      let date = new Date();
-      let newDate = subtractHours(date, 20);
-      console.log(newDate.toUTCString())
-
+    //localhost
+    let phishedLink = `http://localhost:3000/youPhished?phishingCode=${sentEmail.id}`
+    //deplyment
+    // let phishedLink = `https://phished.app/youPhished?${sentEmail.id}`
 
     var mailOptions = {
       from: req.body.from,
@@ -56,7 +79,8 @@ export default async function handler(req, res) {
         text: req.body.html,
         datetime: newDate.toUTCString(),
         // datetime: "Monday, November 7, at 6:57 PM (PDT).",
-        targetName:req.body.targetName
+        targetName:req.body.targetName,
+        phishedLink:phishedLink
       },
     };
 

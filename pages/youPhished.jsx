@@ -1,4 +1,8 @@
+import axios from 'axios';
 import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
+
 
 export const Container = styled.div`
   display: flex;
@@ -70,6 +74,40 @@ display: flex;
 
 
 export default function tracktest() {
+
+    const router = useRouter()
+    const emailId = router.query.phishingCode
+
+
+
+    useEffect(() => {
+        if(!emailId) return;
+
+        const postData = async () => {
+            const res = await axios.post('/api/emailData', {id: emailId});
+        }
+        postData()
+    }, [emailId])
+
+
+
+
+
+
+    //
+    // [emailId].map(blah => console.log(blah))
+    //
+    //
+    // console.log(emailId)
+
+    //
+    // useEffect(async() => {
+    //         const res = await axios.post('/api/emailData', emailId);
+    //     }, []);
+    //
+
+
+
   return (
     <>
       <Container>
