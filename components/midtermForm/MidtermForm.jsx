@@ -87,7 +87,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   const { textarea } = textAreaStyles();
 
   // Inputs
-  const [fromEmail, setFromEmail] = useState('');
+  const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
   const [subject, setSubject] = useState('');
@@ -103,7 +103,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   async function onClick(e) {
     e.preventDefault();
 
-    setFromEmail('');
     setTo('');
     setFname('');
     setLname('');
@@ -127,7 +126,11 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
 
   <>
     <div style={templateStyle} >
-      <p>[your text] <br/> link</p>
+      {/*<p>[your text] <br/> link</p>*/}
+      <p>[Phish emoticon]</p>
+      <p>[your text]</p>
+      <p><u>Click Here</u></p>
+
     </div>
 
         <form onSubmit={onClick} style={{marginTop: 20 }} >
@@ -150,16 +153,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               onChange={(e) => setLname(e.target.value)}
               required
           />
-          <TextInput
-              label="Sender Email"
-              placeholder="my.email@gmail.com"
-              classnames={classes}
-              mb={12}
-              value={fromEmail}
-              onChange={(e) => setFromEmail(e.target.value)}
-              type="email"
-              required
-          />
+
           <TextInput
               label="Receiver Email"
               placeholder="receivers.email@gmail.com"

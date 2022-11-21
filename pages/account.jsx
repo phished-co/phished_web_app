@@ -40,7 +40,6 @@ export default function Home() {
         }
     };
 
-
     const handleScheduleEmail = (props) => {
         axios.post('/api/emailScheduled', props);
     };

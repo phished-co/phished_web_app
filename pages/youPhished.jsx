@@ -2,75 +2,22 @@ import axios from 'axios';
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
+import { Text, Title, Divider, Accordion } from "@mantine/core";
 
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 100vw;
-  height: 1500px;
+const Container = styled.div`
+  max-width: 420px;
   margin: 0 auto;
-  margin-top: 4rem;
-  margin-bottom: 10rem;
-  padding: 20px;
-  border: green 2px solid;
-`;
+  padding: 1rem;
 
-export const HeadCont = styled.div`
-  text-align: center;
-`;
+  .hero {
+    text-align: center;
+  }
 
-export const BlockCont = styled.div`
-min-width:400px;
-  width: 400px;
-  height: 275px;
-  margin: 20px;
-  padding: 20px;
-  border: red 2px solid;
-`;
+  .oops {
+    font-size: 8rem;
+  }
 
-export const RowCont = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-export const BlockHead = styled.text`
-    font-size: 20px;
-    font-weight: 600;
 `
-
-export const BodyText = styled.text`
-    font-size: 16px;
-    position: relative;
-`
-
-export const NumHead = styled.text`
-    font-size: 36px;
-    font-weight: 600;
-    margin-right: 25px;
-    border:red solid 2px;
-    position: relative;
-`
-
-export const StepCont = styled.div`
-display:flex;
-    position: relative;
-    width: 700px;
-    height: 150px;
-    margin-top: 30px;
-    align-items: top;
-    border: blue solid 2px;
-`
-
-export const StepTextCont = styled.div`
-display: flex;
-    position: relative;
-    max-width: 600px;
-    height: 150px;
-    border: blue solid 2px;
-`
-
 
 
 export default function tracktest() {
@@ -94,62 +41,34 @@ export default function tracktest() {
   return (
     <>
       <Container>
-        <HeadCont>
-          <h1>Oops! 🎣</h1>
-          <h2>
-            You’ve accidentally clicked on a potentially dangerous email link.
-            <br />
-            You’ve been phished [x] time(s) this month.
-          </h2>
-        </HeadCont>
-        <RowCont>
-          <BlockCont>
-            <BlockHead>What happened?</BlockHead>
-            <br/>
-            <BodyText>
-              [Name] sent you this email using Phished, a non-profit
-              organization focused on internet safety and awareness.
-              <br />
-              <br />
-              The link you clicked on is an example of how cybercriminals can
-              trick you into revealing personal information.
-            </BodyText>
-          </BlockCont>
-          <BlockCont>
-            <BlockHead>What happened?</BlockHead>
-            <br/>
-            <BodyText>
-              Don’t get discouraged or feel embarassed–phishing emails have
-              fooled politicians, CEOs, and more. The reason these emails are so
-              dangerous is it only takes a split-second to click a malicious
-              link.
-              <br />
-              <br />
-              The next time you’re checking your email, keep the following tips
-              in mind.
-            </BodyText>
-          </BlockCont>
-        </RowCont>
-        <div>
-            <StepCont>
-                <NumHead>1.</NumHead> 
-                <StepTextCont>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </StepTextCont> 
-            </StepCont>
-            <StepCont>
-                <NumHead>2.</NumHead> 
-                <StepTextCont>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </StepTextCont> 
-            </StepCont>
-            <StepCont>
-                <NumHead>3.</NumHead> 
-                <StepTextCont>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </StepTextCont> 
-            </StepCont>
+        <div className="hero">
+          <Title className="oops">Oops!</Title>
+          <Title order={3} size={'1.75rem'}>You've been phished 🎣</Title>
+          <Text>You're here because you clicked on a link that you shouldn't have. Don't feel embarassed – politicians, CEOs, and many more people have all been fooled by phishing emails. </Text>
         </div>
+        <Divider mt={48} mb={48} />
+        <Title order={4} size={'1.5rem'}>Don't worry!</Title>
+        <Text>Your device has not been compromised and your personal data is safe. Our mission is to educate people to protect themselves online.</Text>
+        <Title order={4} size={'1.5rem'} mt={32}>Tips for next time</Title>
+        <Text>Spotting and recognizing phishing emails is not easy. Keep these tips in mind for next time:</Text>
+
+        <Accordion variant="contained" radius="md" defaultValue={'who'} mt={16}>
+          <Accordion.Item value="who">
+            <Accordion.Control>Who is it?</Accordion.Control>
+            <Accordion.Panel>Look to the sender's email address – does it make sense? Does the email address match up with the email content? When in doubt, don't respond or reply to the email – seek them out directly on your own.</Accordion.Panel>
+          </Accordion.Item>
+
+          <Accordion.Item value="urls">
+            <Accordion.Control>Suspicious URLs</Accordion.Control>
+            <Accordion.Panel>Before clicking, hover your cursor over a link. Some signs of a fishy URL include misspelled words, extra words, or numbers tacked onto the end.</Accordion.Panel>
+          </Accordion.Item>
+
+          <Accordion.Item value="urgency">
+            <Accordion.Control>A Sense of Urgency</Accordion.Control>
+            <Accordion.Panel>Be suspicious of emails that issue threats or urgent call-to-actions; scammers create a false sense of security to pressure their victims into making a mistake.</Accordion.Panel>
+          </Accordion.Item>
+        </Accordion>
+
       </Container>
     </>
   );

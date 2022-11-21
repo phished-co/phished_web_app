@@ -15,7 +15,7 @@ export const TextContainer = styled.div`
 `;
 
 export const ImgContainer = styled.div`
-  outline: 2px solid green;
+  ${'' /* outline: 2px solid green; */}
   margin: 0 auto;
 
   img {
@@ -41,12 +41,12 @@ export default function Article() {
   return (
     <div>
     <ImgContainer>
-      <img src="../ArticleSplash/splash-one.png" />
+      <img src="../../ArticleSplash/splash-one.png" />
     </ImgContainer>
     <TextContainer>
-        <Header>The Most Common Types of Phishing </Header>
+        <Header>Senior's guide to staying cyber safe</Header>
             <AuthorDate>
-                Trevor Lee | Nov 8 2022, 10:32 am
+                 Nov 8 2022, 10:32 am
             </AuthorDate>
         <p>
             Magna nostrud proident quis cupidatat et adipisicing voluptate ut non ipsum. Commodo fugiat Lorem consectetur Lorem officia in qui tempor minim. Velit irure dolor minim ullamco laborum aliqua ut incididunt et mollit. Esse exercitation ea esse voluptate deserunt esse. Do nisi occaecat laborum do deserunt esse dolore cillum cupidatat adipisicing nostrud magna ipsum laborum.
