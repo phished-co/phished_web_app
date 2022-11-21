@@ -128,7 +128,7 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
           <p>Hello [targetName],</p>
           <p>Your Facebook password was changed on [datetime]</p>
           <p>If you did this, you can safely disregard this email.</p>
-          <p>If you didn't do this, please[secure your account].</p>
+          <p>If you didn't do this, please <u>secure your account. </u></p>
           <p>Thanks, </p>
           <p>The Facebook Security Team</p>
         </div>
