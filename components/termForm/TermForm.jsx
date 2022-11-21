@@ -6,6 +6,9 @@ import dynamic from 'next/dynamic';
 
 import MidtermForm from '../midtermForm/MidtermForm';
 import FacebookForm from '../facebookForm/FacebookForm';
+import DocsForm from '../docsForm/DocsForm';
+import NewDeviceForm from '../newDeviceForm/NewDeviceForm';
+import PayoutForm from '../payoutForm/PayoutForm';
 
 // import Calendar from '../datetimepicker/Calendar';
 
@@ -36,6 +39,12 @@ export function TermForm({ onSendEmail, onScheduleEmail }) {
                     <option value="" disabled >--select here --</option>
                     <option> Basic </option>
                     <option> Facebook </option>
+                    <option> New Device </option>
+                    <option> Payout </option>
+                    <option> Google Docs </option>
+
+
+
                     {/*<option> Instagram</option>*/}
                 </select>
             </form>
@@ -43,7 +52,9 @@ export function TermForm({ onSendEmail, onScheduleEmail }) {
             { templateName == '' && <div style={{height: 250 }}></div>}
             { templateName == 'Basic' && <MidtermForm submitHandler={submitHandler} onScheduleEmail={onScheduleEmail}/>}
             { templateName == 'Facebook' &&  <FacebookForm submitHandler={submitHandler}/>}
-            {/*{ template == 'Instagram' && <h2>instagramform</h2>}*/}
+            { templateName == 'New Device' &&  <NewDeviceForm submitHandler={submitHandler}/>}
+            { templateName == 'Payout' &&  <PayoutForm submitHandler={submitHandler}/>}
+            { templateName == 'Google Docs' &&  <DocsForm submitHandler={submitHandler}/>}
 
         </Container>
     );

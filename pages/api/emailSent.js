@@ -55,8 +55,9 @@ export default async function handler(req, res) {
       context: {
         text: req.body.html,
         datetime: newDate.toUTCString(),
-        // datetime: "Monday, November 7, at 6:57 PM (PDT).",
-        targetName:req.body.targetName
+        email: req.body.to,
+        bodyName:req.body.bodyName,
+        bank:req.body.bankName,
       },
     };
 
