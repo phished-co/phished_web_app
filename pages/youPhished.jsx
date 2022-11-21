@@ -1,4 +1,7 @@
+import axios from 'axios';
 import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
 import { Text, Title, Divider, Accordion } from "@mantine/core";
 
 const Container = styled.div`
@@ -18,6 +21,23 @@ const Container = styled.div`
 
 
 export default function tracktest() {
+
+    const router = useRouter()
+    const emailId = router.query.phishingCode
+
+
+
+    useEffect(() => {
+        if(!emailId) return;
+
+        const postData = async () => {
+            const res = await axios.post('/api/emailData', {id: emailId});
+        }
+        postData()
+    }, [emailId])
+
+
+
   return (
     <>
       <Container>

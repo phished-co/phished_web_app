@@ -5,6 +5,10 @@ import TermForm from '../components/termForm/TermForm';
 import axios from 'axios';
 import styled from 'styled-components';
 
+import { useSession } from "next-auth/react"
+import React, { useState, useEffect } from 'react';
+
+
 export const Container = styled.div`
   max-width: 360px;
   margin: 0 auto;
@@ -18,28 +22,36 @@ function subtractHours(date, minutes) {
 }
 
 export default function Home() {
+    const { data:session} = useSession()
+    console.log(session)
 
 
-  const handleSendEmail = async (emailProperties) => {
-    const res = await axios.post('/api/emailSent', {
-      ...emailProperties,
-      replyTo: 'phishedapp@gmail.com',
-    });
+    const handleSendEmail = async (emailProperties) => {
 
-    return res.data;
-  };
+        if (session) {
 
-  const handleScheduleEmail = (props) => {
-    axios.post('/api/emailScheduled', props);
-  };
-  
-  return (
+            const res = await axios.post('/api/emailSent', {
+                ...emailProperties,
+                replyTo: 'phishedapp@gmail.com',
+                creatorEmail: session.user.email
+            });
+
+            return res.data;
+        }
+    };
+
+    const handleScheduleEmail = (props) => {
+        axios.post('/api/emailScheduled', props);
+    };
+
+
+    return (
 
         <Container>
-          <TermForm
-              onSendEmail={handleSendEmail}
-              onScheduleEmail={handleScheduleEmail}
-          />
+            <TermForm
+                onSendEmail={handleSendEmail}
+                onScheduleEmail={handleScheduleEmail}
+            />
         </Container>
-  );
+    );
 }
