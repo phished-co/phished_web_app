@@ -18,12 +18,6 @@ function subtractHours(date, minutes) {
 }
 
 export default function Home() {
-    function blah(){
-        let date = new Date();
-        let newDate = subtractHours(date, 20);
-
-        console.log(newDate)
-    }
 
 
   const handleSendEmail = async (emailProperties) => {
