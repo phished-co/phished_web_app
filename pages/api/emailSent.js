@@ -1,5 +1,4 @@
 
-// import { useSession } from "next-auth/react"
 import { transporter } from '../../nodemailer';
 import hbs from 'nodemailer-express-handlebars';
 import path from 'path';
@@ -15,14 +14,14 @@ import {
   setDoc,
 } from 'firebase/firestore';
 
-//
+
 
 
 export const config = {
   api: { externalResolver: true },
 };
 
-function subtractHours(date, minutes) {
+function subtractMinutes(date, minutes) {
   date.setMinutes(date.getMinutes() - minutes);
   return date;
 }
@@ -32,21 +31,13 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     res.send(true);
 
-    ///--------------------------------------
-
-
+//Send data to Db
     let emailDataForDb = req.body
-
-    emailDataForDb.userEmail = "01ssTZgBlq376xEaZaYo"
-    emailDataForDb.timestamp = Date.now()
-
-
+    emailDataForDb.createdAt = Date.now()
     const sentEmail = await addDoc(collection(db, "sentEmails"), emailDataForDb);
-      // console.log(sentEmail.id)
 
 
-      ///--------------------------------------
-
+    //Template Connection
     const handlebarOptions = {
       viewEngine: {
         extName: '.handlebars',
@@ -61,7 +52,7 @@ export default async function handler(req, res) {
 
 
     let date = new Date();
-    let newDate = subtractHours(date, 20);
+    let newDate = subtractMinutes(date, 20);
 
     //localhost
     let phishedLink = `http://localhost:3000/youPhished?phishingCode=${sentEmail.id}`
@@ -78,7 +69,6 @@ export default async function handler(req, res) {
       context: {
         text: req.body.html,
         datetime: newDate.toUTCString(),
-        // datetime: "Monday, November 7, at 6:57 PM (PDT).",
         targetName:req.body.targetName,
         phishedLink:phishedLink
       },
@@ -86,7 +76,7 @@ export default async function handler(req, res) {
 
 
 
-
+    //sending email
     return new Promise((resolve, reject) => {
       transporter
           .sendMail(mailOptions)

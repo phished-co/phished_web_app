@@ -91,23 +91,6 @@ export default function tracktest() {
 
 
 
-
-
-
-    //
-    // [emailId].map(blah => console.log(blah))
-    //
-    //
-    // console.log(emailId)
-
-    //
-    // useEffect(async() => {
-    //         const res = await axios.post('/api/emailData', emailId);
-    //     }, []);
-    //
-
-
-
   return (
     <>
       <Container>
