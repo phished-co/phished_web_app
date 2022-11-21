@@ -81,20 +81,20 @@ const templateStyle ={
 
 }
 
-export function FacebookForm({ submitHandler, onScheduleEmail }) {
+export function DocsForm({ submitHandler, onScheduleEmail }) {
   // Styles
   const { classes } = useStyles();
   const { textarea } = textAreaStyles();
 
   // Inputs
-  const [subject, setSubject] = useState('Your Facebook password has been changed! ');
+  const [subject, setSubject] = useState('Document shared with you!');
   const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [bodyName, setBodyName] = useState('');
-  const [template, setTemplate] = useState('facebook');
+  const [template, setTemplate] = useState('docs');
 
   const [successNote, setSuccessNote] = useState(false);
 
@@ -125,12 +125,8 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
 
       <>
         <div style={templateStyle} >
-          <p>Hello [targetName],</p>
-          <p>Your Facebook password was changed on [datetime]</p>
-          <p>If you did this, you can safely disregard this email.</p>
-          <p>If you didn't do this, please <u>secure your account. </u></p>
-          <p>Thanks, </p>
-          <p>The Facebook Security Team</p>
+          <p>[Target's friend's name] has invited you to collaborate on the following document:</p>
+          <p><u>Open in Docs</u></p>
         </div>
 
         <form onSubmit={onClick} style={{marginTop: 20 }} >
@@ -165,7 +161,7 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
               required
           />
           <TextInput
-              label="Target Name"
+              label="Friend's Name"
               placeholder="Sam"
               classnames={classes}
               mb={12}
@@ -204,4 +200,4 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   );
 }
 
-export default FacebookForm;
+export default DocsForm;

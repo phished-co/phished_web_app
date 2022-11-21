@@ -81,20 +81,19 @@ const templateStyle ={
 
 }
 
-export function FacebookForm({ submitHandler, onScheduleEmail }) {
+export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
   // Styles
   const { classes } = useStyles();
   const { textarea } = textAreaStyles();
 
   // Inputs
-  const [subject, setSubject] = useState('Your Facebook password has been changed! ');
+  const [subject, setSubject] = useState('New login');
   const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [bodyName, setBodyName] = useState('');
-  const [template, setTemplate] = useState('facebook');
+  const [template, setTemplate] = useState('new_device');
 
   const [successNote, setSuccessNote] = useState(false);
 
@@ -107,10 +106,9 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
     setFname('');
     setLname('');
     setHtml('');
-    setBodyName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = submitHandler({ from, to, subject, html, bodyName, template})
+    let validation = submitHandler({ from, to, subject, html, template})
 
     setSuccessNote(true)
     const timeId = setTimeout(() => {
@@ -125,12 +123,8 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
 
       <>
         <div style={templateStyle} >
-          <p>Hello [targetName],</p>
-          <p>Your Facebook password was changed on [datetime]</p>
-          <p>If you did this, you can safely disregard this email.</p>
-          <p>If you didn't do this, please <u>secure your account. </u></p>
-          <p>Thanks, </p>
-          <p>The Facebook Security Team</p>
+          <p>New device signed in using [target email]</p>
+          <p>Your account was just signed in to from a new Apple iPhone device. You're getting this email to make sure it was you.</p>          <p><u>CHECK ACTIVITY</u></p>
         </div>
 
         <form onSubmit={onClick} style={{marginTop: 20 }} >
@@ -164,15 +158,6 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
               type="email"
               required
           />
-          <TextInput
-              label="Target Name"
-              placeholder="Sam"
-              classnames={classes}
-              mb={12}
-              value={bodyName}
-              onChange={(e) => setBodyName(e.target.value)}
-              required
-          />
 
 
 
@@ -204,4 +189,4 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   );
 }
 
-export default FacebookForm;
+export default NewDeviceForm;
