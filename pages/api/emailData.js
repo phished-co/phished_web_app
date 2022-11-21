@@ -6,6 +6,7 @@ import {
   addDoc,
   getDoc,
   getDocs,
+  updateDoc,
   deleteDoc,
   setDoc,
   query,
@@ -13,97 +14,96 @@ import {
 } from 'firebase/firestore';
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
-
-    let phishedEmailId = req.body.id
-
-    //get the sent email doc from sentEmails collection
-    const sentEmailsDocRef = doc(db, "sentEmails", phishedEmailId);
-    const sentEmailDocSnap = await getDoc(sentEmailsDocRef);
-
-    //get the phished email doc from phishedEmails collection
-    const phishedEmailsDocRef = doc(db, "phishedEmails", phishedEmailId);
-    const docSnap = await getDoc(phishedEmailsDocRef);
-
-    //if the recent phished email id was not in phishedEmails collection add.
-    if (!docSnap.exists()) {
-      await setDoc(doc(db, "phishedEmails", phishedEmailId), sentEmailDocSnap.data());
-    }
+  const {method} = req
+  switch (method) {
 
 
+    case 'POST':
 
+      let phishedEmailId = req.body.id
 
+      //get the sent email doc from sentEmails collection
+      const sentEmailsDocRef = doc(db, "sentEmails", phishedEmailId);
+      const sentEmailDocSnap = await getDoc(sentEmailsDocRef);
 
-  } else if (req.method === 'GET'){
+      //get the phished email doc from phishedEmails collection
+      const phishedEmailsDocRef = doc(db, "phishedEmails", phishedEmailId);
+      const phishedEmailsDocSnap = await getDoc(phishedEmailsDocRef);
 
-    let userSentEmails = []
-    let userPhishedEmails = []
+      //if the phished email id was not in phishedEmails collection add.
 
-    let chartMonths = [];
-    let graphData = []
-
-    let monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
-    let newMonth = 0;
-    var d = new Date();
-    for (let i = 0; i < 6; ++i) {
-
-      if (i === 0 ) {
-        newMonth = d.getMonth();
-      } else {
-        newMonth = d.getMonth() - 1;
+      if (!phishedEmailsDocSnap.exists()) {
+        await setDoc(doc(db, "phishedEmails", phishedEmailId), sentEmailDocSnap.data());
+        await updateDoc(phishedEmailsDocRef, {
+          phishedAt: Date.now()
+        });
       }
-      d.setMonth(newMonth);
-      chartMonths.push({
-        date : `${monthNames[d.getMonth()]} ${d.getFullYear()}` ,
-        sent : 0,
-        success : 0
+      
+
+
+      break
+    case 'GET':
+
+      //Initialize the Object Array
+      let userSentEmails = []
+      let userPhishedEmails = []
+      let chartMonths = [];
+
+      let monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+      let newMonth = 0;
+
+      var d = new Date();
+      for (let i = 0; i < 6; ++i) {
+
+        newMonth = i === 0 ? d.getMonth() :  d.getMonth() - 1
+        d.setMonth(newMonth);
+
+        chartMonths.push({
+          date : `${monthNames[d.getMonth()]} ${d.getFullYear()}` ,
+          sent : 0,
+          success : 0
+        });
+      }
+
+
+
+      //get the user sent emails
+      const userSentEmailsQuery = query(collection(db, "sentEmails"), where("creatorEmail", "==", req.query.userEmail));
+      const sentEmailsQuerySnapshot = await getDocs(userSentEmailsQuery);
+      sentEmailsQuerySnapshot.forEach((doc) => {
+
+        //adding the matched docs to objectArray
+        let newDate = new Date(doc.data().createdAt);
+        chartMonths.forEach((i) => {
+          if (`${monthNames[newDate.getMonth()]} ${newDate.getFullYear()}` === i.date) {
+            i.sent += 1;
+          }
+        });
+
       });
 
-    }
-    //Get current month and past months function
-    let currentDate = new Date()
-    let currentMonth = currentDate.getMonth()
 
-    function subtractMonths(date, months) {
-      const formattedDate = new Date(date);
+      //get the user phished emails
+      const userPhishedEmailsQuery = query(collection(db, "phishedEmails"), where("creatorEmail", "==", req.query.userEmail));
+      const phishedEmailsQuerySnapshot = await getDocs(userPhishedEmailsQuery);
+      phishedEmailsQuerySnapshot.forEach((doc) =>{
 
-      date.setMonth(formattedDate.getMonth() - months);
-      return date;
-    }
-
-
-
-    //get the user sent emails
-    const userSentEmailsQuery = query(collection(db, "sentEmails"), where("creatorEmail", "==", req.query.userEmail));
-    const sentEmailsQuerySnapshot = await getDocs(userSentEmailsQuery);
-    sentEmailsQuerySnapshot.forEach((doc) => {
-      let newDate = new Date(doc.data().createdAt);
-      chartMonths.forEach((i) => {
-        if (`${monthNames[newDate.getMonth()]} ${newDate.getFullYear()}` === i.date) {
-          i.sent += 1;
-        }
+        //adding the matched docs to objectArray
+        let newDate = new Date(doc.data().createdAt);
+        chartMonths.forEach((i) => {
+          if (`${monthNames[newDate.getMonth()]} ${newDate.getFullYear()}` === i.date) {
+            i.success += 1;
+          }
+        })
       });
-    });
 
 
+      res.send(chartMonths)
+      // console.log(chartMonths)
 
-    //get the user phished emails
-    const userPhishedEmailsQuery = query(collection(db, "phishedEmails"), where("creatorEmail", "==", req.query.userEmail));
-    const phishedEmailsQuerySnapshot = await getDocs(userPhishedEmailsQuery);
-    phishedEmailsQuerySnapshot.forEach((doc) =>{
-      let newDate = new Date(doc.data().createdAt);
-      chartMonths.forEach((i) => {
-        if (`${monthNames[newDate.getMonth()]} ${newDate.getFullYear()}` === i.date) {
-          i.success += 1;
-        }
-      })
-    });
-    graphData = chartMonths;
-    console.log(graphData)
-
-
-
-
+      break
+    default:
+      res.setHeader('Allow', ['POST'])
+      res.status(405).end(`Method ${method} Not Allowed`)
   }
 }

@@ -30,22 +30,15 @@ export default function Dashboard() {
 
 
   useEffect(() => {
-    console.log(session)
-
     if(session){
-
       const getData = async () => {
-        console.log("2")
-
         const res = await axios.get(`/api/emailData?userEmail=${session.user.email}`)
         setChartdata(res.data)
-        // console.log(res.data)
+        console.log(res.data)
       }
       getData()
     }
   }, [session])
-
-
 
 
 
