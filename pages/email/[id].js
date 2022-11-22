@@ -14,6 +14,8 @@ import Link from 'next/link';
 import { Button, createStyles, TextInput, Textarea } from '@mantine/core';
 import * as firebase from 'firebase/firestore';
 import styled from 'styled-components';
+import { authOptions } from '../api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth';
 
 const Container = styled.div`
   display: flex;
@@ -35,6 +37,7 @@ const Container = styled.div`
 
   .description {
     margin: 1rem;
+    width: 35vw;
   }
 `;
 
@@ -167,9 +170,9 @@ export default function Email({ email }) {
           required
         ></Textarea>
         <div className="description">
-          This is where the email should be edited/deleted and removed from
+          {/* This is where the email should be edited/deleted and removed from
           scheduled emails once sent (this is sent to tasks) (once scheduled
-          can't change it lol)
+          can't change it lol) */}
         </div>
 
         <Calendar onChange={handleChange}></Calendar>
@@ -187,7 +190,50 @@ export default function Email({ email }) {
   );
 }
 
-export async function getStaticProps(context) {
+// export async function getStaticProps(context) {
+//   const id = context.params.id;
+//   const email = await getDoc(doc(db, 'scheduledEmails', id));
+//   console.log(email.data());
+//   const returnedEmail = email.data();
+//   return {
+//     props: { email: returnedEmail },
+//   };
+// }
+
+// export async function getStaticPaths() {
+//   const querySnapshot = await getDocs(collection(db, 'scheduledEmails'));
+//   const allEmails = [];
+//   querySnapshot.forEach((doc) => {
+//     allEmails.push(doc);
+//   });
+//   const paths = allEmails.map((email) => {
+//     return {
+//       params: { id: `${email.id}` },
+//     };
+//   });
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
+
+export async function getServerSideProps(context) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/api/auth/signin',
+        permanent: false,
+      },
+    };
+  }
+
   const id = context.params.id;
   const email = await getDoc(doc(db, 'scheduledEmails', id));
   console.log(email.data());
@@ -195,22 +241,5 @@ export async function getStaticProps(context) {
   return {
     props: { email: returnedEmail },
   };
-}
 
-export async function getStaticPaths() {
-  const querySnapshot = await getDocs(collection(db, 'scheduledEmails'));
-  const allEmails = [];
-  querySnapshot.forEach((doc) => {
-    allEmails.push(doc);
-  });
-  const paths = allEmails.map((email) => {
-    return {
-      params: { id: `${email.id}` },
-    };
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
 }
