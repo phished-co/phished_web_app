@@ -156,7 +156,7 @@ const links = [
 const data = [
   {
     image:
-      'https://i.pinimg.com/564x/e4/50/12/e45012346d6734d6dc0817e7932db723.jpg',
+      '../ArticleSplash/Horrorzontal.png',
     title: `Can you spot the phishing email? Take our new quiz!`,
     category: 'quiz',
     id: 'quiz',
@@ -164,7 +164,7 @@ const data = [
   },
   {
     image:
-      '../ArticleSplash/splash-one.png',
+      '../ArticleSplash/Ocean.png',
     title: 'The most common types of phishing (and how to avoid them)',
     category: 'article',
     id: '2',
@@ -173,7 +173,7 @@ const data = [
   },
   {
     image:
-      'https://i.pinimg.com/564x/f3/98/f1/f398f16b90dd07689a4df83d1ece2c3a.jpg',
+      '../ArticleSplash/Browser.png',
     title: 'How Cyber Threats Work',
     category: 'article',
     id: '3',
@@ -182,7 +182,7 @@ const data = [
   },
   {
     image:
-      'https://i.pinimg.com/564x/9e/e9/3e/9ee93eb98efcb7e53f91b02a85c11e85.jpg',
+      '../ArticleSplash/Drown.png',
     title: 'How to help the older adults in your life get cyber safe',
     category: 'article',
     id: '4',
@@ -191,7 +191,7 @@ const data = [
   },
   {
     image:
-      'https://i.pinimg.com/564x/64/48/4c/64484c24a197defb114640929d08e473.jpg',
+      '../ArticleSplash/Shield.png',
     title: "Senior's guide to staying cyber safe",
     category: 'tourism',
     id: '5',
@@ -200,7 +200,7 @@ const data = [
   },
   {
     image:
-      'https://i.pinimg.com/564x/5c/18/d3/5c18d33081fb632100884e85383d59e2.jpg',
+      '../ArticleSplash/laptop.png',
     title: 'How anyone can become a confident online shopper',
     category: 'article',
     id: '6',

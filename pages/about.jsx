@@ -8,7 +8,7 @@ const Container = styled.div`
 `
 
 const AboutContainer = styled.div`
-  text-align: center;
+  ${'' /* text-align: center; */}
   max-width: 60ch;
   margin: 0 auto;
 `
