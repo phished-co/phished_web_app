@@ -2,7 +2,7 @@ import styled from "styled-components"
 // Our imports
 import EmailBody from "../components/quiz/EmailData"
 
-const Container = styled.div`
+export const Container = styled.div`
   max-width: 1140px;
   margin: 0 auto;
   margin-top: 8vh
@@ -10,8 +10,8 @@ const Container = styled.div`
 
 export default function Quiz() {
   return <>
-  <Container>
-    <EmailBody />
-  </Container>
+    <Container>
+      <EmailBody />
+    </Container>
   </>
 }
