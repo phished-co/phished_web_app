@@ -1,5 +1,4 @@
 import styled from "styled-components"
-
 // Our imports
 import EmailBody from "../components/quiz/email/EmailData"
 

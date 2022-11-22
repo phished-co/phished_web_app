@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, Divider, Text, Title, Container } from "@mantine/core";
+import { Button, Divider, Text, Title, Stepper, MantineThemeOverride, MantineProvider } from "@mantine/core";
 import styled from "styled-components";
 import { useRouter } from 'next/router'
 
@@ -21,6 +21,7 @@ export const questions = [
       urldesc: "https://googlephotos.com",
       src: "",
       alt: "",
+      bgcolor: "purple",
   },
   {
     questionsText: "Email with attachment",
@@ -37,6 +38,7 @@ export const questions = [
     urldesc: "shorturl.at/aqBCD",
     src: "../../../docimg.png",
     alt: "google doc icon",
+    bgcolor: "blue",
   },
   {
     questionsText: "Security Alert",
@@ -53,27 +55,29 @@ export const questions = [
     urldesc: "https://googlephotos.com",
     src: "../../../githublogo.png",
     alt: "github logo",
+    bgcolor: "orange",
   },
   {
-      questionsText: "Personal Contact with External Link",
-      questionsTip: "This question is similiar to the previous question. Try to see if the URL link is credible. ",
-      sname: "Trevor Tyler Lee",
-      semail: "t.tylee@gmail.com",
-      answerOptions: [
-        { answerText: "Phishing", isCorrect: true },
-        { answerText: "Legitimate", isCorrect: false }
-      ],
-      content: `Hey, do you wanna see what I've changed? `,
-      content2: `click here`,
-      content3: ` to see what I've been working on!`,
-      urldesc: "shorturl.at/aqBCD",
-      src: "",
-      alt: "",
+    questionsText: "Personal Contact with External Link",
+    questionsTip: "This question is similiar to the previous question. Try to see if the URL link is credible. ",
+    sname: "Trevor Tyler Lee",
+    semail: "t.tylee@gmail.com",
+    answerOptions: [
+      { answerText: "Phishing", isCorrect: true },
+      { answerText: "Legitimate", isCorrect: false }
+    ],
+    content: `Hey, do you wanna see what I've changed? `,
+    content2: `click here`,
+    content3: ` to see what I've been working on!`,
+    urldesc: "shorturl.at/aqBCD",
+    src: "",
+    alt: "",
+    bgcolor: "#f1f3f4",
   },
 
   {
     questionsText: "Another example with an attachment",
-    questionsTip: "This example contains the attachment. Check if you",
+    questionsTip: "This example contains the attachment. Can you verify them?",
     sname: "La Boutique de Jeanne ",
     semail: "j.ane@gmail.com",
     answerOptions: [
@@ -86,6 +90,7 @@ export const questions = [
     urldesc: "shorturl.at/aqBCD",
     src: "../../../pdfimg.png",
     alt: "pdf icon",
+    bgcolor: "yellow",
   },
   {
     questionsText: "New Email from Unknown Sender ",
@@ -97,23 +102,28 @@ export const questions = [
       { answerText: "Legitimate", isCorrect: false }
     ],
     content: `Security Alert `,
-    content2: `Was this you?`,
+    content2: `Was this you? `,
     content3: `Confirm this login activity`,
     urldesc: "shorturl.at/aqBCD",
     src: "",
     alt: "",
+    bgcolor: "green",
   },
 
 ];
 
 
 // Styled-comp
-const AnswerSection = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-around;
-gap: 1rem;
-margin-top: 20px;
+
+const Wrapper = styled.div`
+  margin-top: 3rem;
+  padding: 1rem 4vw;
+
+  .email {
+    padding: 1rem 4vw 2rem 4vw;
+    border: 0.2rem solid #f1f1f1;
+    border-radius: 5px;
+  }
 `
 
 const Header = styled.div`
@@ -121,11 +131,6 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-
-  .sender {
-    display: inline-block;
-    align-items: center;
-  }
 
   .header {
     display: flex;
@@ -136,11 +141,20 @@ const Header = styled.div`
     }
   }
 `
+
+const AnswerSection = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+gap: 1rem;
+margin: 20px;
+`
+
 const SurroundingBox = styled.div`
   width: 100%;
   min-height: 4rem;
   background: lightgray;
-  padding: 2rem;
+  padding: 1.5rem;
   }
 `
 
@@ -158,46 +172,29 @@ const IconImg = styled.img`
     height: 40px;
 `
 
-const Wrapper = styled(Container)`
-  margin-top: 3rem;
-  ${'' /* outline: 2px solid red; */}
-  padding: 1rem 4vw;
-`
-const URLContainer = styled.div`
-  background: gray;
-  color: white;
-  max-width: 32rem;
-  margin-top: 8rem;
-  padding-left: 0.5rem;
-  opacity: 0;
-
-  ${Container}:hover & {
-    opacity: 1;
-  }
-`
-
 const EmailContainer = styled.div`
   width: 100%;
   min-height: 8rem;
   background: white;
-  padding: 1rem;
+  padding: 1rem 2rem;
   color: black;
 `
 
-const Circle = styled.div`
-  height: 4rem;
-  width: 4rem;
-  background: purple;
-  border-radius: 8rem;
-  display: block;
-  margin-right: 2rem;
+
+const URLContainer = styled.div`
+  background: gray;
+  color: white;
+  max-width: 32rem;
+  padding: 0 0.5rem;
+  opacity: 0;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+
+  ${Wrapper}:hover & {
+    opacity: 1;
+  }
 `
-
-const BodyCont = styled.div`
-margin-top: 3rem;
-${'' /* outline: 2px solid red; */}
-padding: 1rem 4vw;`
-
 
 const ResultCont = styled.div`
 display: flex;
@@ -209,8 +206,7 @@ padding: 2rem;
 gap: 2rem;
 `
 
-
-// Actual Body
+// Email Body
 export default function EmailBody(){
 
 const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -220,30 +216,104 @@ const [showScore, setShowScore] = useState(false);
 const [score, setScore] = useState(0);
 
 
+const Circle = styled.div`
+  height: 3.5rem;
+  width: 3.5rem;
+  background: ${questions[currentQuestion].bgcolor};
+  border-radius: 8rem;
+  display: block;
+  margin-right: 2rem;
+`
+const [active, setActive] = useState(currentQuestion);
+
 // QUIZ HEADER
 const QuizTitle = ()=> {
   return<>
-      <Text color='dimmed'>Question {currentQuestion + 1} / {questions.length}</Text>
-      <Title>{questions[currentQuestion].questionsText}</Title>
-      <Text>{questions[currentQuestion].questionsTip}</Text>
-      <Divider mt={32} />
+        <Stepper active={active} onStepClick={setActive}>
+
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+
+        </Stepper>
   </>
 };
 
+// RESULT PAGE
 const ResultPage = () =>{
   return <>
-    <Title> Your Result</Title>
-    <Divider mt= {32} />
-    <ResultCont>
-      <Text
-        variant="gradient"
-        gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-        sx={{ fontFamily: 'Greycliff CF, sans-serif' }}
-        ta="center"
-        fz="xl"
-        fw={700}
-      ></Text>
-    </ResultCont>
+        <Stepper active={active} onStepClick={setActive(6)}>
+
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Step allowStepSelect={false}>
+            <Title>{questions[currentQuestion].questionsText}</Title>
+            <Text color='dimmed'>{questions[currentQuestion].questionsTip}</Text>
+          </Stepper.Step>
+          <Stepper.Completed allowStepSelect={false}>
+            <Title>Nice Try!</Title>
+          </Stepper.Completed>
+        
+        </Stepper>
+        
+        <Divider mt= {32} />
+        
+        <ResultCont>
+          <Text
+            size={30}
+            weight={700}
+            variant="gradient"
+            gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+          >You got {score} out of {questions.length} correct!
+          </Text>
+          <Text>
+            Try until you get it all right! The more you practice, the safer you are from phishing attacks.
+            <br />
+            Learn more about how to protect yourself and loved ones. <HoverLink><a href="https://www.phished.app/learn">Click Here</a></HoverLink>
+          </Text>
+            
+          <Button type='null' onClick={resetQuestion}>Try Again</Button>
+        
+        </ResultCont>
   </>
 }
 
@@ -258,6 +328,7 @@ const SenderEmail = ()=> {
 };
 
 
+// CALCULATE THE SCORE
 const handleAnswerButtonClick = (isCorrect) => {
   if(isCorrect === true){
     setScore(score + 1);
@@ -266,6 +337,7 @@ const handleAnswerButtonClick = (isCorrect) => {
   const nextQuestion = currentQuestion + 1;
   if(nextQuestion < questions.length){
     setCurrentQuestion(nextQuestion)
+    setActive(nextQuestion)
   } else {
     setShowScore(true)
   }
@@ -278,6 +350,7 @@ const resetQuestion = () => {
   setCurrentQuestion(0);
   setShowScore(false);
   setScore(0);
+  setActive(0)
   
   r.push = () => { r.push("/quiz") }
 }
@@ -288,28 +361,9 @@ const resetQuestion = () => {
 return (
   <>
     {showScore ? (
+      
       <Wrapper>
-        <Title>Nice Try!</Title>
-        <Divider mt= {32} />
-          <ResultCont>
-            <Text
-              size={30}
-              weight={700}
-              variant="gradient"
-              gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-            >You got {score} out of {questions.length} correct!
-            </Text>
-            <Text>
-              Try until you get it all right! The more you practice, the safer you are from phishing attacks.
-              <br />
-              Learn more about how to protect yourself and loved ones.
-              <br />
-              <HoverLink><a href="https://www.phished.app/learn">Click Here</a></HoverLink>
-            </Text>
-            
-            <Button type='null' onClick={resetQuestion}>Try Again</Button>
-        
-          </ResultCont>
+        <ResultPage />
       </Wrapper>
 
     ) : (
@@ -318,18 +372,19 @@ return (
 
         {/* Header */}
           <QuizTitle />
+          <Divider mt={20} />
           <AnswerSection>
               {questions[currentQuestion].answerOptions.map((answerOptions)=>
                 <Button fullWidth type='null' onClick={()=>handleAnswerButtonClick(answerOptions.isCorrect)}>{answerOptions.answerText}</Button>)}
           </AnswerSection>
+          
+
 
         {/* Body */}
-      
-      
-          <BodyCont>
+          <Wrapper className="email">
             <Header>
               <div className='header'>
-                <Circle />
+                <Circle background={questions[currentQuestion].bgcolor}/>
                 <SenderEmail />
               </div>
             </Header>
@@ -351,11 +406,11 @@ return (
                 <img width= "100" height= "auto" src={questions[currentQuestion].src} alt={questions[currentQuestion].alt} />
                 </EmailContainer>)}
               </SurroundingBox>
-      
+   
+          </Wrapper>
             <URLContainer>
               {questions[currentQuestion].urldesc}
             </URLContainer>
-          </BodyCont>
       </Wrapper>
     </>
     )}
