@@ -4,10 +4,11 @@ import TermForm from '../components/termForm/TermForm';
 
 import axios from 'axios';
 import styled from 'styled-components';
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth';
 
-import { useSession } from "next-auth/react"
+import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
-
 
 export const Container = styled.div`
   max-width: 360px;
@@ -15,43 +16,60 @@ export const Container = styled.div`
   margin-top: 4rem;
 `;
 
-
 function subtractHours(date, minutes) {
-    date.setMinutes(date.getMinutes() - minutes);
-    return date;
+  date.setMinutes(date.getMinutes() - minutes);
+  return date;
 }
 
 export default function Home() {
-    const { data:session} = useSession()
-    console.log(session)
+  const { data: session } = useSession();
+  console.log(session);
 
+  const handleSendEmail = async (emailProperties) => {
+    if (session) {
+      const res = await axios.post('/api/emailSent', {
+        ...emailProperties,
+        replyTo: 'phishedapp@gmail.com',
+        creatorEmail: session.user.email,
+      });
 
-    const handleSendEmail = async (emailProperties) => {
+      return res.data;
+    }
+  };
 
-        if (session) {
+  const handleScheduleEmail = (props) => {
+    axios.post('/api/emailScheduled', props);
+  };
 
-            const res = await axios.post('/api/emailSent', {
-                ...emailProperties,
-                replyTo: 'phishedapp@gmail.com',
-                creatorEmail: session.user.email
-            });
+  return (
+    <Container>
+      <TermForm
+        onSendEmail={handleSendEmail}
+        onScheduleEmail={handleScheduleEmail}
+      />
+    </Container>
+  );
+}
 
-            return res.data;
-        }
+export async function getServerSideProps(context) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/api/auth/signin',
+        permanent: false,
+      },
     };
+  }
 
-    const handleScheduleEmail = (props) => {
-        axios.post('/api/emailScheduled', props);
-    };
-
-
-    return (
-
-        <Container>
-            <TermForm
-                onSendEmail={handleSendEmail}
-                onScheduleEmail={handleScheduleEmail}
-            />
-        </Container>
-    );
+  return {
+    props: {
+      session,
+    },
+  };
 }

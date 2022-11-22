@@ -6,7 +6,7 @@ import GithubProvider from 'next-auth/providers/github';
 import * as firestoreFunctions from 'firebase/firestore';
 import { db } from '../../../firebaseConfig';
 
-export default NextAuth({
+export const authOptions = {
 
   providers: [
     GoogleProvider({
@@ -30,4 +30,5 @@ export default NextAuth({
     // storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
     // messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   }),
-});
+};
+export default NextAuth(authOptions)

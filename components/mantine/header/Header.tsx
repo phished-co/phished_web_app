@@ -5,6 +5,7 @@ import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'
 import { useRouter } from 'next/router';
 import ColorToggle from '../../colorToggle/ColorToggle'
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const HEADER_HEIGHT = 60;
 
@@ -90,7 +91,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   const [active, setActive] = useState('');
   const { classes, cx } = useStyles();
   const r = useRouter()
-
+  const { data: session } = useSession();
   const items = links.map((link) => (
 
     <a
@@ -122,7 +123,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         <Group spacing={5} className={classes.links}>
           <MantineModal />
           {/* <Button variant="default">Log in</Button> */}
-          <Button variant="outline" onClick={()=> {r.push({pathname:"/onboarding"})}}>Sign up</Button>
+          {session ?<Button variant="outline" onClick={()=> {r.push({pathname:"/account"})}}>Send Email</Button> : <div></div>}
         <ColorToggle />
 
         </Group>
@@ -140,7 +141,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
               <Group position="left" pb="xl" px="md">
             <MantineModal/>
             {/* <Button variant="default">Log in</Button> */}
-            <Button variant="outline" onClick={()=> {r.push({pathname:"/onboarding"})}}>Sign up</Button>
+            {session ?<Button variant="outline" onClick={()=> {r.push({pathname:"/account"})}}>Send Email</Button> : <div></div>}
             
           </Group>
             </Paper>
