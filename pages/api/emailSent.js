@@ -71,7 +71,7 @@ export default async function handler(req, res) {
         subject: req.body.subject,
         replyTo: req.body.replyTo,
         template: req.body.template,
-        html: req.body.html,
+        // html: req.body.html,
         context: {
           text: req.body.html,
           datetime: newDate.toUTCString(),
