@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/datetimepicker/Calendar.jsx"  ],
+, "components/datetimepicker/Calendar.jsx", "components/mantine/progressbar/ProgressBar.jsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,16 +1,16 @@
-import ProgressBar from './ProgressBar';
+// import ProgressBar from './ProgressBar';
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {
-  title: 'ProgressBar',
-  component: ProgressBar,
-  argTypes: {},
-};
+// // eslint-disable-next-line import/no-anonymous-default-export
+// export default {
+//   title: 'ProgressBar',
+//   component: ProgressBar,
+//   argTypes: {},
+// };
 
-const Template = (args) => <ProgressBar {...args} />;
+// const Template = (args) => <ProgressBar {...args} />;
 
-export const Base = Template.bind({});
+// export const Base = Template.bind({});
 
-Base.args = {
-  SampleTextProp: 'hellow world',
-};
+// Base.args = {
+//   SampleTextProp: 'hellow world',
+// };
