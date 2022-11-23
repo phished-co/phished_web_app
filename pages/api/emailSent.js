@@ -61,9 +61,9 @@ export default async function handler(req, res) {
       let newDate = subtractMinutes(date, 20);
 
       //localhost
-      let phishedLink = `http://localhost:3000/youPhished?phishingCode=${sentEmail.id}`
+      //let phishedLink = `http://localhost:3000/youPhished?phishingCode=${sentEmail.id}`
       //deplyment
-      // let phishedLink = `https://phished.app/youPhished?${sentEmail.id}`
+      let phishedLink = `https://phished.app/youPhished?${sentEmail.id}`
 
       var mailOptions = {
         from: req.body.from,
