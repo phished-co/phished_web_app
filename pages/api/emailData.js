@@ -38,7 +38,7 @@ export default async function handler(req, res) {
           phishedAt: Date.now()
         });
       }
-      
+
 
 
       break
@@ -67,6 +67,8 @@ export default async function handler(req, res) {
 
 
 
+
+
       //get the user sent emails
       const userSentEmailsQuery = query(collection(db, "sentEmails"), where("creatorEmail", "==", req.query.userEmail));
       const sentEmailsQuerySnapshot = await getDocs(userSentEmailsQuery);
@@ -81,6 +83,9 @@ export default async function handler(req, res) {
         });
 
       });
+
+
+
 
 
       //get the user phished emails
@@ -98,7 +103,29 @@ export default async function handler(req, res) {
       });
 
 
-      res.send(chartMonths)
+
+      ///-----FAKE DATA FOR DEMO ----------------------
+      //last Month
+      chartMonths[1].sent = 18
+      chartMonths[1].success = 15
+      // 2months ago
+      chartMonths[2].sent = 12
+      chartMonths[2].success = 8
+      // 3months ago
+      chartMonths[3].sent = 14
+      chartMonths[3].success = 7
+      // 4months ago
+      chartMonths[4].sent = 15
+      chartMonths[4].success = 10
+      // 5months ago
+      chartMonths[5].sent = 5
+      chartMonths[5].success = 2
+      //--------------------------------------------------
+
+
+
+
+      res.send(chartMonths.reverse())
       // console.log(chartMonths)
 
       break

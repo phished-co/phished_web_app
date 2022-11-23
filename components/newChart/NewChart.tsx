@@ -1,4 +1,3 @@
-import {chartdata} from '../../data/fake_data';
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -36,9 +35,11 @@ export const options = {
   },
 };
 
+export default function NewChart({data: chartdata}) {
+
 const labels = chartdata.map(({date})=>date);
 
-export const data = {
+const data = {
   labels,
   datasets: [
     {
@@ -56,6 +57,6 @@ export const data = {
   ],
 };
 
-export default function NewChart() {
+
   return <Line options={options} data={data} />;
 }
