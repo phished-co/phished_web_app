@@ -32,13 +32,13 @@ export default function Dashboard() {
       const getData = async () => {
         const res = await axios.get(
           `/api/emailData?userEmail=${session.user.email}`
-        );17
+        );
         setChartdata(res.data);
         console.log(res.data);
       };
       getData();
     }
-  }, []);
+  });
 
   return (
     <div>
