@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
-import { authOptions } from './api/auth/[...nextauth]';
+import { authOptions } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
 
 // TODO switch from css modules to styled-components
