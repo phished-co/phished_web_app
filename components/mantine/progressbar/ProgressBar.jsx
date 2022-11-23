@@ -1,10 +1,22 @@
 import { useState } from 'react';
-import { Stepper, Button, Group, TextInput, Code, Divider, Title, Text, NativeSelect, Checkbox } from '@mantine/core';
+import { Stepper, Button, Group, TextInput, Code, Anchor, Title, Text, NativeSelect, Checkbox } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useRouter } from "next/router";
+import styled from 'styled-components'
+
+const Container = styled.div`
+  .signature {
+    padding: 0.5rem 0.5rem;
+    margin-top: 1rem;
+    outline: 2px solid #449CFE;
+  }
+`
 
 export function ProgressBar() {
   const [active, setActive] = useState(0);
+  const [terms, setTerms] = useState(false)
+  const [privacy, setPrivacy] = useState(false)
+  const [signature, setSignature] = useState('')
   const r = useRouter()
 
   const form = useForm({
@@ -53,7 +65,7 @@ export function ProgressBar() {
   return (
     <>
       <Stepper active={active}>
-        <Stepper.Step>
+        {/* <Stepper.Step>
           <div>
             <Title mt={24} order={2} align='center'>I want to phish someone else</Title>
             <Text color='dimmed' align='center'>Help your friends and family stay safe</Text>
@@ -69,27 +81,82 @@ export function ProgressBar() {
 
         <Stepper.Step>
           <NativeSelect required label="Who do you want to phish?" placeholder="Pick one" description='Only phish people you have a personal relationship with' data={['Family member', 'Friend', 'Coworker', 'Student', 'Client', 'Other']}{...form.getInputProps('person')} />
-        </Stepper.Step>
+        </Stepper.Step> */}
 
         <Stepper.Step>
-          <TextInput label="What is their first name?" placeholder="First Name" {...form.getInputProps('firstName')} />
-          <TextInput mt="sm" label="What is their last name?" placeholder="Last Name" {...form.getInputProps('lastName')} />
-          <TextInput required mt="sm" label="What is their email?" placeholder="Email" {...form.getInputProps('email')} />
+          {/* <TextInput label="What is their first name?" placeholder="First Name" {...form.getInputProps('firstName')} /> */}
+          {/* <TextInput mt="sm" label="What is their last name?" placeholder="Last Name" {...form.getInputProps('lastName')} /> */}
+          {/* <Checkbox.Group
+            mt={32}
+            orientation="vertical"
+            label="By checking the box below you are indicating you have read and agree to our terms and conditions."
+            withAsterisk
+            spacing="md"
+            offset="md"
+            size="md"
+          >
+            <Checkbox label={
+              <>
+                I accept the{' '}
+                <Anchor size="md" href="https://phished.app/terms" target="_blank">
+                  terms and conditions
+                </Anchor>
+              </>
+            } />
+          </Checkbox.Group>
+          <Checkbox.Group
+            mt={32}
+            orientation="vertical"
+            label="By checking the boxes below you are indicating you have read and agree to our privacy policy."
+            withAsterisk
+            spacing="md"
+            offset="md"
+            size="md"
+          >
+            <Checkbox label={
+              <>
+                I accept the{' '}
+                <Anchor size="md" href="https://phished.app/privacy" target="_blank">
+                  privacy policy
+                </Anchor>
+              </>
+            } />
+          </Checkbox.Group> */}
+          <Container>
+            <input
+              value={terms}
+              type='checkbox'
+              id='terms'
+              onClick={() => { terms ? setTerms(false) : setTerms(true) }}
+            />
+            <label htmlFor='terms'> I agree to the <Anchor href="https://phished.app/terms" target="_blank">terms and agreements</Anchor></label>
+          </Container>
+          <Container>
+            <input
+              value={privacy}
+              type='checkbox'
+              id='privacy'
+              onClick={() => { privacy ? setPrivacy(false) : setPrivacy(true) }}
+            />
+            <label htmlFor='privacy'> I agree to the <Anchor href="https://phished.app/privacy" target="_blank">privacy policy</Anchor></label>
+          </Container>
         </Stepper.Step>
 
         <Stepper.Step>
           <Text size={32} mt={12} order={2}>Phished is for <Text span underline weight={600} color='red'>educational use only.</Text></Text>
-          <Text size={32} mt={24} order={2}>Phishing someone without their consent is a <Text span underline weight={600} color='red'>crime.</Text></Text>
-          <Checkbox mt={36} label="I agree to only phish people I have a personal relationship with" />
-          <Checkbox mt={12} label="I agree to use Phished for educational purposes exclusively" />
-          <TextInput mt={24} label="Type your name to indicate you agree with our terms of use" placeholder="Name" {...form.getInputProps('fullName')} required />
+          <Text size={32} mt={24} mb={24} order={2}>Phishing someone without their consent is a <Text span underline weight={600} color='red'>crime.</Text></Text>
+          {/* <TextInput required mt="sm" label="What is their email?" placeholder="Email" {...form.getInputProps('email')} /> */}
+          <Container>
+            <label htmlFor="signature">Sign your name digitally to confirm you will adhere to the above rules</label>
+          </Container>
+          <Container>
+            <input class='signature' type="text" id="signature" value={signature} onChange={(e) => { setSignature(e.currentTarget.value) }} mt={24} placeholder="Name" />
+          </Container>
+
         </Stepper.Step>
 
         <Stepper.Completed>
-          Completed! Form values:
-          <Code block mt="xl">
-            {JSON.stringify(form.values, null, 2)}
-          </Code>
+          Thank you. Click Submit to proceed.
         </Stepper.Completed>
       </Stepper>
 
@@ -99,8 +166,9 @@ export function ProgressBar() {
             Back
           </Button>
         )}
-        {active < 4 && active !== 0 && <Button type='null' onClick={nextStep}>Next step</Button>}
-        {active === 4 && <Button type='null' onClick={() => { r.push('/dashboard') }}>Submit</Button>}
+        {active === 0 && <Button type='null' onClick={() => { terms && privacy ? nextStep() : alert('You must agree to our policies.') }}>Continue</Button>}
+        {active === 1 && <Button type='null' onClick={() => { signature.length >= 2 ? nextStep() : alert("Sign your full name.") }}>Continue</Button>}
+        {active === 2 && <Button type='null' onClick={() => { r.push('/dashboard') }}>Submit</Button>}
       </Group>
     </>
   );
