@@ -10,8 +10,6 @@ import {
 } from '@mantine/core';
 import OnboardStep from '../components/onboarding/OnboardStep';
 
-import { authOptions } from './api/auth/[...nextauth]';
-import { unstable_getServerSession } from 'next-auth';
 
 const Container = styled.div`
   max-width: 480px;
@@ -27,25 +25,3 @@ export default function Onboarding() {
   );
 }
 
-export async function getServerSideProps(context) {
-  const session = await unstable_getServerSession(
-    context.req,
-    context.res,
-    authOptions
-  );
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/api/auth/signin',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      session,
-    },
-  };
-}
