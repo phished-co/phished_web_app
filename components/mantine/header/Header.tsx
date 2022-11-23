@@ -123,8 +123,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         <Group spacing={5} className={classes.links}>
           <MantineModal />
           {/* <Button variant="default">Log in</Button> */}
-          {session ?<Button variant="outline" onClick={()=> {r.push({pathname:"/account"})}}>Send Email</Button> : <div></div>}
-        <ColorToggle />
+          {session ?<Button variant="outline" onClick={()=> {r.push({pathname:"/account"})}}>Send Email</Button> : <Button variant="outline" onClick={()=> {r.push({pathname:"/onboarding"})}}>Sign Up</Button>}        <ColorToggle />
 
         </Group>
         <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
@@ -141,7 +140,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
               <Group position="left" pb="xl" px="md">
             <MantineModal/>
             {/* <Button variant="default">Log in</Button> */}
-            {session ?<Button variant="outline" onClick={()=> {r.push({pathname:"/account"})}}>Send Email</Button> : <div></div>}
+            {session ?<Button variant="outline" onClick={()=> {r.push({pathname:"/account"})}}>Send Email</Button> : <Button variant="outline" onClick={()=> {r.push({pathname:"/onboarding"})}}>Sign Up</Button>}
             
           </Group>
             </Paper>
