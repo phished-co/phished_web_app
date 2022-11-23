@@ -38,7 +38,7 @@ export default function Dashboard() {
       };
       getData();
     }
-  }, [session]);
+  }, []);
 
   return (
     <div>
