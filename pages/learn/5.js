@@ -7,7 +7,7 @@ export default function Article() {
   return (
     <div>
       <ImgContainer>
-        <img src="../../ArticleSplash/shield.png" />
+        <img src="../../ArticleSplash/Shield.png" />
       </ImgContainer>
       <TextContainer>
         <Header>Senior's guide to staying cyber safe</Header>
