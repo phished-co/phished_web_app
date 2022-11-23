@@ -4,11 +4,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-import MidtermForm from '../emailForms/midtermForm/MidtermForm';
-import FacebookForm from '../emailForms/facebookForm/FacebookForm';
-import DocsForm from '../emailForms/docsForm/DocsForm';
-import NewDeviceForm from '../emailForms/newDeviceForm/NewDeviceForm';
-import PayoutForm from '../emailForms/payoutForm/PayoutForm';
+import MidtermForm from '../midtermForm/MidtermForm';
+import FacebookForm from '../facebookForm/FacebookForm';
+import DocsForm from '../docsForm/DocsForm';
+import NewDeviceForm from '../newDeviceForm/NewDeviceForm';
+import PayoutForm from '../payoutForm/PayoutForm';
 
 // import Calendar from '../datetimepicker/Calendar';
 
