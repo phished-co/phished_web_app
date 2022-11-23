@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
+import { Button, createStyles, Header, Container, Group, Burger, Paper, Transition, Image } from '@mantine/core';
 import {MantineModal} from "../modal/Modal"
 import { useDisclosure } from '@mantine/hooks';
 import {GiFishingHook} from 'react-icons/gi'
@@ -51,7 +51,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   logo: {
-    marginRight: '12px'
+    marginRight: '8px',
+    cursor: 'pointer'
   },
 
   link: {
@@ -115,7 +116,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
       <Container className={classes.header}>
         <Group spacing={5} className={classes.links}>
         <span className={classes.logo} onClick={() => {r.push({pathname: '/'})}}>
-        <GiFishingHook size={28}/>
+          <Image src="../../../../icon-logo-coloured.png" width={28}/>
         </span>
           {items}
 
