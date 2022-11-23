@@ -23,7 +23,7 @@ function subtractHours(date, minutes) {
 
 export default function Home() {
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session);
 
   const handleSendEmail = async (emailProperties) => {
     if (session) {

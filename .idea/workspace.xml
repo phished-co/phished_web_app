@@ -6,19 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="f5614ad5-0748-41e2-a0c7-81b3af1be12f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/emailData.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/docsForm/DocsForm.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/newDeviceForm/NewDeviceForm.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/payoutForm/PayoutForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/facebookForm/FacebookForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/facebookForm/FacebookForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/docsForm/DocsForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/facebookForm/FacebookForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/midtermForm/MidtermForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/newDeviceForm/NewDeviceForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/payoutForm/PayoutForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/phishForm/PhishForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/phishForm/PhishForm.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/phishForm/PhishForm.stories.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/termForm/TermForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/termForm/TermForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/emailSent.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailSent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/docs.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/templates/docs.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facebook.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facebook.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/instagram.handlebars" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/new_device.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/templates/new_device.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/account.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/account.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +39,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/components/phishForm/PhishForm.jsx" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2GC8hNETdioq1VlVXZ9w2ARJDxl" />
   <component name="ProjectViewState">
