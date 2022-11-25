@@ -1,3 +1,7 @@
+import { transporter } from '../../nodemailer';
+import hbs from 'nodemailer-express-handlebars';
+import path from 'path';
+
 import { db } from '../../firebaseConfig';
 
 import {
@@ -12,6 +16,10 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+
+export const config = {
+  api: { externalResolver: true },
+};
 
 export default async function handler(req, res) {
   const {method} = req
@@ -30,18 +38,80 @@ export default async function handler(req, res) {
       const phishedEmailsDocRef = doc(db, "phishedEmails", phishedEmailId);
       const phishedEmailsDocSnap = await getDoc(phishedEmailsDocRef);
 
-      //if the phished email id was not in phishedEmails collection add.
-
-      if (!phishedEmailsDocSnap.exists()) {
-        await setDoc(doc(db, "phishedEmails", phishedEmailId), sentEmailDocSnap.data());
-        await updateDoc(phishedEmailsDocRef, {
-          phishedAt: Date.now()
-        });
+      //check if the phishe email already exist if it does do nothing
+      if (phishedEmailsDocSnap.exists()) {
+        console.log("This link has been used before.")
+        break
       }
+      
+      console.log("Email has been saved in DB as a success.")
+      await setDoc(doc(db, "phishedEmails", phishedEmailId), sentEmailDocSnap.data());
+      await updateDoc(phishedEmailsDocRef, {
+        phishedAt: Date.now()
+      });
 
+
+      //sending email to the sender
+      //email the sender that their user has been phished
+      let senderEmail = sentEmailDocSnap.data().creatorEmail
+      let targetEmail = sentEmailDocSnap.data().to
+      let emailTemplate = sentEmailDocSnap.data().template
+
+      /**CHANGE THIS WHILE TESTING LOCALLY**/
+      //localhost
+      // let websiteLink = `http://localhost:3000/`
+      //deplyment
+      let websiteLink = `https://phished.app/`
+
+
+      //Template Connection
+      const handlebarOptions = {
+        viewEngine: {
+          extName: '.handlebars',
+          partialsDir: path.resolve('./templates'),
+          defaultLayout: false,
+        },
+        viewPath: path.resolve('./templates'),
+        extName: '.handlebars',
+      };
+
+      transporter.use('compile', hbs(handlebarOptions));
+
+
+      //template variables
+      var mailOptions = {
+        from: 'phishedapp@gmail.com',
+        to: senderEmail,
+        subject: 'Your target has been phished!',
+        replyTo: 'phishedapp@gmail.com',
+        template: 'phishConfirm',
+        context: {
+          targetEmail:targetEmail,
+          template: emailTemplate,
+          link: websiteLink,
+
+        },
+      };
+
+
+      //sending emails
+
+      return new Promise((resolve, reject) => {
+        transporter
+            .sendMail(mailOptions)
+            .then((info) => {
+              // console.log(req.body);
+              console.log('Email sent: ' + info.response);
+              resolve(info);
+            })
+            .catch((e) => {
+              reject(e.response);
+            });
+      });
 
 
       break
+    
     case 'GET':
 
       //Initialize the Object Array
@@ -67,8 +137,6 @@ export default async function handler(req, res) {
 
 
 
-
-
       //get the user sent emails
       const userSentEmailsQuery = query(collection(db, "sentEmails"), where("creatorEmail", "==", req.query.userEmail));
       const sentEmailsQuerySnapshot = await getDocs(userSentEmailsQuery);
@@ -83,8 +151,6 @@ export default async function handler(req, res) {
         });
 
       });
-
-
 
 
 
