@@ -57,11 +57,9 @@ export default async function handler(req, res) {
       let targetEmail = sentEmailDocSnap.data().to
       let emailTemplate = sentEmailDocSnap.data().template
 
-      /**CHANGE THIS WHILE TESTING LOCALLY**/
-      //localhost
-      // let websiteLink = `http://localhost:3000/`
-      //deplyment
-      let websiteLink = `https://phished.app/`
+      /* -- Notification Emails Link Destination---*/
+      let websiteLink = `https://phished.app/`        //Deploymnt
+      // let websiteLink = `http://localhost:3000/`   //LocalHost
 
 
       //Template Connection
