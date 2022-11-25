@@ -16,12 +16,10 @@ export const Container = styled.div`
   margin-top: 4rem;
 `;
 
-function subtractHours(date, minutes) {
-  date.setMinutes(date.getMinutes() - minutes);
-  return date;
-}
+
 
 export default function Home() {
+
   const { data: session } = useSession();
   console.log(session);
 
@@ -43,6 +41,7 @@ export default function Home() {
       ...props,
     });
   };
+  
 
   return (
     <Container>

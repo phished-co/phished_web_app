@@ -74,7 +74,7 @@ export default async function handler(req, res) {
         // html: req.body.html,
         context: {
           text: req.body.html,
-          datetime: newDate.toUTCString(),
+          datetime: newDate.toString(),
           email: req.body.to,
           bodyName:req.body.bodyName,
           bank:req.body.bankName,
