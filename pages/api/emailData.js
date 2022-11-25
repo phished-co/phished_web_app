@@ -31,8 +31,9 @@ export default async function handler(req, res) {
       const phishedEmailsDocSnap = await getDoc(phishedEmailsDocRef);
 
       //if the phished email id was not in phishedEmails collection add.
-
       if (!phishedEmailsDocSnap.exists()) {
+        console.log("Email has been saved in DB as a success")
+
         await setDoc(doc(db, "phishedEmails", phishedEmailId), sentEmailDocSnap.data());
         await updateDoc(phishedEmailsDocRef, {
           phishedAt: Date.now()
@@ -67,8 +68,6 @@ export default async function handler(req, res) {
 
 
 
-
-
       //get the user sent emails
       const userSentEmailsQuery = query(collection(db, "sentEmails"), where("creatorEmail", "==", req.query.userEmail));
       const sentEmailsQuerySnapshot = await getDocs(userSentEmailsQuery);
@@ -84,9 +83,7 @@ export default async function handler(req, res) {
 
       });
 
-
-
-
+      
 
       //get the user phished emails
       const userPhishedEmailsQuery = query(collection(db, "phishedEmails"), where("creatorEmail", "==", req.query.userEmail));
