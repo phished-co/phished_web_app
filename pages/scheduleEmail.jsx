@@ -96,12 +96,12 @@ export default function About() {
               <ScheduledData
                 id={email.id}
                 key={email.id}
-                firstName={email.firstName}
-                lastName={email.lastName}
-                senderEmail={email.senderEmail}
-                receiver={email.receiver}
-                subject={email.subject}
-                message={email.message}
+                firstName={email.options.firstName}
+                lastName={email.options.lastName}
+                senderEmail={email.options.senderEmail}
+                receiver={email.options.receiver}
+                subject={email.options.subject}
+                message={email.options.message}
                 onDelete={handleDelete}
                 onEdit={handleEdit}
               />

@@ -7,7 +7,6 @@ import * as firestoreFunctions from 'firebase/firestore';
 import { db } from '../../../firebaseConfig';
 
 export const authOptions = {
-
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -30,5 +29,12 @@ export const authOptions = {
     // storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
     // messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   }),
+  callbacks: {
+    async session({ session, user }) {
+      session.userId = user.id;
+      return session
+    }
+  }
+
 };
 export default NextAuth(authOptions)

@@ -38,7 +38,10 @@ export default function Home() {
   };
 
   const handleScheduleEmail = (props) => {
-    axios.post('/api/emailScheduled', props);
+    axios.post('/api/emailScheduled', {
+      userId: session.userId,
+      ...props,
+    });
   };
 
   return (
