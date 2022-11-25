@@ -237,7 +237,7 @@ export async function getServerSideProps(context) {
   const id = context.params.id;
   const email = await getDoc(doc(db, 'scheduledEmails', id));
   console.log(email.data());
-  const returnedEmail = email.data();
+  const returnedEmail = email.data().options;
   return {
     props: { email: returnedEmail },
   };

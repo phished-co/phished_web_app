@@ -7,14 +7,17 @@ import {
   getDocs,
   deleteDoc,
   setDoc,
+  where,
+  query
 } from 'firebase/firestore';
 //addDoc allows you to write a document without manully giving it an id (firestore can do it for you)
 //setDoc means you are giving it an id manually
 
 //can be reused for both getAllEmails or getAllUsers
-export async function getAllscheduledEmails(collectionName) {
-  const querySanpshot = await getDocs(collection(db, collectionName));
-  const allEmails = querySanpshot.docs.map((doc) => {
+export async function getUserscheduledEmails(collectionName, userId) {
+  // console.log(userId)
+  const querySnapshot = await getDocs(query(collection(db, collectionName), where("userId", "==", userId)));
+  const allEmails = querySnapshot.docs.map((doc) => {
     return { ...doc.data(), id: doc.id };
   });
   return allEmails;
@@ -27,7 +30,7 @@ export async function getScheduledEmail(id) {
   //if email is found, you can get it's data w/ scheduledEmail.data()
 }
 
-//postEmailContent
+//postEmailContent with user's id tho
 export async function postScheduleEmail(collectionName, postData) {
   const docAdded = await addDoc(collection(db, collectionName), postData);
   return docAdded.id;
