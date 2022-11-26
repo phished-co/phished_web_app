@@ -4,6 +4,15 @@ import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
+const Container = styled.div`
+  .header > h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+`;
+
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -99,11 +108,10 @@ export default function ConsentForm({ submitHandler }) {
   }
 
   return (
-    <>
-      <div className="explanation">
-        <h1>Consent Email</h1>
-       
-      </div>
+    <Container>
+      <div className='header'>
+        <h1>Consent</h1>
+        </div>
       <div className="container">
     
         <form onSubmit={onClick} style={{ marginTop: 20 }}>
@@ -182,6 +190,6 @@ export default function ConsentForm({ submitHandler }) {
           <p> Submitted successfully</p>
         </div>
       )}
-    </>
+    </Container>
   );
 }
