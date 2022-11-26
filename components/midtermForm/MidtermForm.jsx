@@ -123,7 +123,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   }
 
   return (
-      // <Container>
 
   <>
     <div style={templateStyle} >
@@ -137,7 +136,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
         <form onSubmit={onClick} style={{marginTop: 20 }} >
 
           <TextInput
-              label="First Name"
+              label="Receiver: First Name"
               placeholder="Jane"
               classnames={classes}
               mb={12}
@@ -146,7 +145,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               required
           />
           <TextInput
-              label="Last Name"
+              label="Receiver: Last Name"
               placeholder="Doe"
               classnames={classes}
               mb={12}
