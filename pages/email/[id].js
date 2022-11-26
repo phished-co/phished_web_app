@@ -27,9 +27,9 @@ const Container = styled.div`
 
   h1 {
     margin-bottom: 2rem;
-    font-family: "verdana";
+    font-family: "Verdana";
     text-transform: uppercase;
-    color: #292A2D;
+    color: #459cfb;
   }
 
   .button {
