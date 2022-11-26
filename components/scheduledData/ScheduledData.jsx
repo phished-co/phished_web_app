@@ -8,8 +8,7 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: center;
   margin: 2rem;
-  width: 80%;
-  font-family: 'Verdana';
+  width: 100%;
 
   .card {
     border: 1px solid #459cfb;
@@ -20,18 +19,6 @@ const Container = styled.div`
   .card .card-title {
     margin: 0 0 1rem 0;
     font-size: 1.5rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #292a2d;
-  }
-
-  .card .info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 50%;
-    color: #292a2d;
   }
 
   .button {
@@ -42,10 +29,8 @@ const Container = styled.div`
   }
 
   .message {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 200px;
+    display: block;
+    width: 100px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -68,34 +53,19 @@ export default function ScheduledData({
     <Container>
       <div className="card">
         <h2 className="card-title">
-          {firstName} {lastName}
+          {firstName}
+          {lastName}
         </h2>
-        <div className="info">
-          <p>
-            <strong>First Name:</strong> {firstName}
-          </p>
-          <p>
-            <strong>Last Name:</strong> {lastName}
-          </p>
-          <p>
-            <strong>Sender:</strong> {senderEmail}
-          </p>
-          <p>
-            <strong>Receiver:</strong> {receiver}
-          </p>
-          <p>
-            <strong>Subject:</strong> {subject}
-          </p>
-          <span className="message">
-            <strong>Message:</strong> {message}
-          </span>
-        </div>
+        <p>First Name: {firstName}</p>
+        <p>Last Name: {lastName}</p>
+        <p>Sender: {senderEmail}</p>
+        <p>Receiver: {receiver}</p>
+        <p>Subject: {subject}</p>
+        <span className="message">Message: {message}</span>
         <div className="button">
-          <Button variant="outline" onClick={() => onEdit(id)}>
-            SET DATE
-          </Button>
+          <Button variant="outline" onClick={() => onEdit(id)}>SET DATE</Button>
           {/* <Link href={`/email/${id}`} key={id}> */}
-          {/* <Button variant="outline">SET DATE</Button> */}
+            {/* <Button variant="outline">SET DATE</Button> */}
           {/* </Link> */}
           <Button variant="outline" onClick={() => onDelete(id)}>
             DELETE

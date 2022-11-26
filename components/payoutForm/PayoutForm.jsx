@@ -128,7 +128,7 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
 
 
           <p>Your payout was sent.</p>
-          <p>C$248.58 was send to your bank account</p>
+          <p>C $248.58 was send to your bank account</p>
           <p><u>See details</u></p>
           <p>Total payout --- </p>
           <p>C $248.58</p>
@@ -146,7 +146,7 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
         <form onSubmit={onClick} style={{marginTop: 20 }} >
 
           <TextInput
-              label="Receiver: First Name"
+              label="First Name"
               placeholder="Jane"
               classnames={classes}
               mb={12}
@@ -155,7 +155,7 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
               required
           />
           <TextInput
-              label="Receiver: Last Name"
+              label="Last Name"
               placeholder="Doe"
               classnames={classes}
               mb={12}
