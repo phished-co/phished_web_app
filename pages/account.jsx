@@ -14,6 +14,9 @@ export const Container = styled.div`
   max-width: 360px;
   margin: 0 auto;
   margin-top: 4rem;
+  font-family: 'Verdana';
+  text-transform: uppercase;
+  color: #292a2d;
 `;
 
 
