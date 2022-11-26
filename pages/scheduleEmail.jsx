@@ -7,9 +7,30 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
+
 const Container = styled.div`
   div h1 {
     margin: 2rem;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    font-family: 'Verdana';
+    text-transform: uppercase;
+    color: #292a2d;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    height: 40vh;
+  }
+
+  div .box {
+    font-size: 1.5rem;
   }
 
   .card {
@@ -17,7 +38,7 @@ const Container = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 65%;
     margin: 0 auto;
   }
 
@@ -54,18 +75,20 @@ export default function About() {
 
   const handleDelete = (id) => {
     console.log('delete', id);
+    if (id) {
+
     axios
       .delete(`/api/emailScheduled/${id}`)
       .then((res) => {
         setScheduleEmails(emails.filter((email) => email.id !== id));
         // console.log("delete email", res.data.id);
       })
-      // .then(() => {
-      //   router.push('/scheduleEmail');
-      // })
       .catch((err) => {
         console.error('error', err);
       });
+      // redirect to the scheduleEmail page
+      router.reload();
+    }
   };
 
   const handleEdit = (id) => {
@@ -76,19 +99,23 @@ export default function About() {
   return (
     <Container>
       <div>
-        <h1>Scheduled Email List</h1>
-
+      <h1 className="title">Scheduled Email List</h1>
         {loading ? (
-          <h1> Loading... </h1>
+          <h1 className="title"> Loading... </h1>
         ) : scheduleEmails.length === 0 ? (
           <div>
-            <h1>No scheduled Email</h1>
-            <p>Consider adding a scheduled Email from </p>
+            <div className="box">
+
+            <h2 className="title">No scheduled Email</h2>
+            <p className="title">Consider adding a scheduled Email from </p>
+            </div>
+            <div className="btn-container">
             <Link href="/account">
               <Button color="blue" variant="outline">
                 Click Here
               </Button>
             </Link>
+          </div>
           </div>
         ) : (
           <div className="card">
