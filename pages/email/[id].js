@@ -22,14 +22,11 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 30vw;
+  width: 50vw;
   margin: 3rem auto;
 
   h1 {
     margin-bottom: 2rem;
-    font-family: "verdana";
-    text-transform: uppercase;
-    color: #292A2D;
   }
 
   .button {
@@ -40,7 +37,7 @@ const Container = styled.div`
 
   .description {
     margin: 1rem;
-    width: 25vw;
+    width: 35vw;
   }
 `;
 
