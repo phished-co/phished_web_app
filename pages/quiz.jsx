@@ -9,32 +9,52 @@ export const Container = styled.div`
   margin-top: 8vh
 `
 const questionBank = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6
+  {
+    id: 1,
+    name: 'turtle'
+  },
+  {
+    id: 2,
+    name: 'swan'
+  },
+  {
+    id: 3,
+    name: 'chicken'
+  },
+  {
+    id: 4,
+    name: 'horse'
+  },
+  {
+    id: 5,
+    name: 'crab'
+  },
+  {
+    id: 6,
+    name: 'snake'
+  },
+
 ]
 
 export default function Quiz() {
 
+  let questions = questionBank.slice(0)
   const [showScore, setShowScore] = useState(false)
+  const [shuffledQuestions, setShuffledQuestions] = useState(questions)
 
 
   // Fisher-Yates shuffle method
   function shuffle() {
-    let currentQuestionBank = questionBank.slice(0)
-    let currentIndex = currentQuestionBank.length, randomIndex
+    let currentIndex = questions.length, randomIndex
 
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex)
       currentIndex--
-      [currentQuestionBank[currentIndex], currentQuestionBank[randomIndex]] = [currentQuestionBank[randomIndex], currentQuestionBank[currentIndex]]
+      [questions[currentIndex], questions[randomIndex]] = [questions[randomIndex], questions[currentIndex]]
     }
-    console.log(currentQuestionBank)
+    console.log(questions)
     setShowScore(false)
-    return currentQuestionBank
+    setShuffledQuestions(questions)
   }
 
   return (
@@ -45,7 +65,7 @@ export default function Quiz() {
           <Button type='null' onClick={() => { setShowScore(true) }}>Legitimate</Button>
           <Button type='null'>Fradulent</Button>
         </div>}
-      <EmailQuestion />
+      <EmailQuestion questionIds={shuffledQuestions} />
     </Container>
   )
 }
