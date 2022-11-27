@@ -65,7 +65,7 @@ export default function Quiz() {
           <Button type='null' onClick={() => { setShowScore(true) }}>Legitimate</Button>
           <Button type='null'>Fradulent</Button>
         </div>}
-      <EmailQuestion questionIds={shuffledQuestions} />
+      <EmailQuestion questionIds={shuffledQuestions.slice(0, 5)} />
     </Container>
   )
 }
