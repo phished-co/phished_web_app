@@ -12,27 +12,34 @@ export default function Article() {
       <TextContainer>
         <Header>How Cyber Threats Work</Header>
         <AuthorDate>
-          Nov 8 2022, 10:32 am
+          September 21 2022, 10:32 am
         </AuthorDate>
         <Text>
-          Magna nostrud proident quis cupidatat et adipisicing voluptate ut non ipsum. Commodo fugiat Lorem consectetur Lorem officia in qui tempor minim. Velit irure dolor minim ullamco laborum aliqua ut incididunt et mollit. Esse exercitation ea esse voluptate deserunt esse. Do nisi occaecat laborum do deserunt esse dolore cillum cupidatat adipisicing nostrud magna ipsum laborum.
+        To protect yourself from the ever looming threat of being cyber hacked, remember there are many different kinds of attacks. Some sophisticated cyber attacks involve carefully planned stages, each one designed to help scammers gain the upper hand. Understanding that you are your own best defense is essential if you want to keep your digital life private.
+
         </Text>
         <br />
         <Text>
-          Enim dolore amet eu dolore nulla. Cupidatat est ex Lorem dolore irure aliqua qui minim cupidatat. Labore eu aliqua aliqua nostrud aliqua aliqua. Et nulla sit duis labore fugiat amet proident consectetur eiusmod. Aliqua id ex aliqua anim aute sint culpa velit.
-
-          Reprehenderit officia esse aute aute ex in dolore nisi quis ex sint culpa aliqua esse. In veniam amet laboris ex aute. Aliquip laborum esse minim nisi tempor in adipisicing non sint. Sit aliqua est consectetur reprehenderit nisi officia nostrud duis sunt aute. Magna nulla ullamco laboris nisi. Eiusmod minim duis anim labore minim laboris sunt qui ullamco nulla fugiat anim. Fugiat dolor magna et aute reprehenderit commodo minim commodo laborum.
-
-          Enim esse quis velit irure non duis adipisicing ea. Proident fugiat elit cupidatat est ullamco et incididunt. Sint incididunt reprehenderit quis laboris.
+        Attacks can be categorized into two groups – targeted and untargeted. Untargeted cyberattacks are usually seen more often because they are more effective when sent en masse. On the other hand, targeted cyberattacks are rarer but can be incredibly damaging.
         </Text>
         <br />
         <Text>
-          Enim dolore amet eu dolore nulla. Cupidatat est ex Lorem dolore irure aliqua qui minim cupidatat. Labore eu aliqua aliqua nostrud aliqua aliqua. Et nulla sit duis labore fugiat amet proident consectetur eiusmod. Aliqua id ex aliqua anim aute sint culpa velit.
-
-          Reprehenderit officia esse aute aute ex in dolore nisi quis ex sint culpa aliqua esse. In veniam amet laboris ex aute. Aliquip laborum esse minim nisi tempor in adipisicing non sint. Sit aliqua est consectetur reprehenderit nisi officia nostrud duis sunt aute. Magna nulla ullamco laboris nisi. Eiusmod minim duis anim labore minim laboris sunt qui ullamco nulla fugiat anim. Fugiat dolor magna et aute reprehenderit commodo minim commodo laborum.
-
-          Enim esse quis velit irure non duis adipisicing ea. Proident fugiat elit cupidatat est ullamco et incididunt. Sint incididunt reprehenderit quis laboris.
+        Both targeted and untargeted cyberattacks can have multiple stages. Persistent enemy attackers will often stake out victims for months at a time. They are looking for gaps in your digital defenses, or information that they can then later use to trick and deceive you.
         </Text>
+        <br />
+        <Text>
+        Criminals often seek out you personal or financial information. That’s why it is important to safeguard your online identity carefully; unless there’s an absolute need, don’t have any more information on the internet than you need to. With the amount of time we spend on our devices, it’s inevitable that you will run into those with bad intentions.
+        </Text>
+        To protect yourself online, adhere to these guidelines:
+        <br/>
+          -Use strong, unique passwords or passphrases
+          <br/>
+          -Consider using a trustworthy password manager
+          <br/>
+          -Always enable multi-factor authentication
+          <br/>
+          -Keep your device’s software up to date
+
       </TextContainer>
     </Container>
   );
