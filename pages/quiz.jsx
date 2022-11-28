@@ -7,12 +7,12 @@ export const Container = styled.div`
   max-width: 1140px;
   margin: 0 auto;
   margin-top: 8vh;
-  outline: 2px solid green;
+  ${'' /* outline: 2px solid green; */}
 
   .btn-cont {
     display: flex;
     gap: 2rem;
-    outline: 2px solid orange;
+    ${'' /* outline: 2px solid orange; */}
     max-width: 640px;
     margin: 0 auto;
     margin-top: 4rem;
@@ -41,6 +41,7 @@ const questionBank = [
     from: 'Logan MacDougall',
     email: 'l.macdougall@gmail.com',
     answer: 1,
+    url: 'www.google-photo.com'
   },
   {
     id: 2,
@@ -144,7 +145,7 @@ export default function Quiz() {
         </div>}
       {showUrl
         ? <div className='url'>
-          <Text>url here</Text>
+          <Text>{questionBank[questionNum].url}</Text>
         </div>
         : <div className='no-url'><Text>url here</Text></div>}
     </Container>

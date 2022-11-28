@@ -2,11 +2,11 @@ import { Button, Text, Title } from "@mantine/core"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-  outline: 2px solid red;
+  ${'' /* outline: 2px solid red; */}
   padding: 0 1rem;
 
   .title {
-    outline: 2px solid blue;
+    ${'' /* outline: 2px solid blue; */}
     h1 {
       font-weight: 900;
     }
@@ -15,14 +15,13 @@ const Wrapper = styled.div`
   .email {
     margin-top: 2rem;
     padding: 2rem;
-    background: white;
+    background: #fafafa;
     color: black;
-    border-radius: 4px;
   }
 
   .email-body {
     padding: 0 2rem;
-    background: white;
+    background: #fafafa;
     color: black;
     padding-bottom: 2rem;
   }
