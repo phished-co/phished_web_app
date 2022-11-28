@@ -43,6 +43,34 @@ const Wrapper = styled.div`
   .link:hover {
     text-decoration: underline;
   }
+
+  .btn {
+    outline: 2px solid blue;
+    max-width: 12rem;
+    display: grid;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .red-banner {
+    background: red;
+    color: white;
+    padding: 0.5rem 1rem;
+  }
+
+  .other-btn {
+    outline: 2px solid blue;
+    max-width: 4rem;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    padding: 0.25rem 1rem;
+    border-radius: 24px;
+    margin-top: 2rem;
+  }
 `
 
 const Circle = styled.div`
@@ -84,7 +112,7 @@ export default function EmailQuestion({ questionIds, questionNum, handleHover, h
       </>
     } else if (questionIds[questionNum].id === 2) {
       return <>
-        <p>{questionIds[questionNum].id}</p>
+        {/* <p>{questionIds[questionNum].id}</p> */}
         <p>Please double check the attachment to confirm your order!</p>
         <img src="/pdfimg.png" alt="icon for a pdf" />
       </>
@@ -110,6 +138,31 @@ export default function EmailQuestion({ questionIds, questionNum, handleHover, h
           <li>Change your password. You'll be logged out of all your active Twitter sessions except the one you're using at this time.</li>
           <li><span className='link' onMouseEnter={handleHover} onMouseLeave={handleLeave}>Learn more</span> about revoking access to to any unfamiliar apps.</li>
         </ul>
+      </>
+    } else if (questionIds[questionNum].id === 5) {
+      let today = new Date()
+      let date = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear()
+
+      return <>
+        <div className='red-banner'>
+          <h1>Someone has your password</h1>
+        </div>
+        <p>Someone just used your password to try to sign in to your Google Account.</p>
+        <p>Information:</p>
+        <p>{date}</p>
+        <p>Firefox browser</p>
+        <p>Google stopped this sign-in attempt. You should change your password immediately.</p>
+        <div className='btn'><span className="link" onMouseEnter={handleHover} onMouseLeave={handleLeave}>CHANGE PASSWORD</span></div>
+        <p>Best, </p>
+        <p>The Mail Team</p>
+      </>
+    } else if (questionIds[questionNum].id === 6) {
+      return <>
+        <div className='docs'>
+          <h1>Abby M shared a document</h1>
+          <p>Abby M (abbym@gmail.com) has invited you to <strong>edit </strong> the following document:</p>
+          <div className="other-btn"><span className='link' onMouseEnter={handleHover} onMouseLeave={handleLeave}>Open</span></div>
+        </div>
       </>
     }
   }
