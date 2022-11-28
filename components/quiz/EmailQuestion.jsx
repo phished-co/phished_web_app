@@ -6,14 +6,35 @@ const Wrapper = styled.div`
 `
 
 export default function EmailQuestion({ questionIds, questionNum }) {
-  let list = questionIds.map(question => {
-    return <h1 key={question.id}>{question.name}</h1>
+  let questions = questionIds.map(question => {
+    return (
+      <>
+        <h1 key={question.id}>{question.name}</h1>
+        <p key={question.tip}>{question.tip}</p>
+        <p key={question.from}>{question.from}</p>
+        <p key={question.email}>{question.email}</p>
+      </>
+    )
   })
 
-  return (
-    <Wrapper>
+  if (questionNum === 0) {
+    return <Wrapper>
       {questionNum}
-      {list}
+      {questions[0]}
     </Wrapper>
-  )
+  } else if (questionNum === 1) {
+    return <Wrapper>
+      {questionNum}
+      {questions[1]}
+    </Wrapper>
+  } else if (questionNum === 2) {
+    return <Wrapper>
+      {questionNum}
+      {questions[2]}
+    </Wrapper>
+  } else {
+    return <Wrapper>
+      End of test
+    </Wrapper>
+  }
 }
