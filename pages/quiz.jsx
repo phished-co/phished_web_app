@@ -19,17 +19,18 @@ export const Container = styled.div`
   }
 
   .url {
-    margin-top: 16rem;
+    position: absolute;
+    bottom: 0;
     background: #444;
     color: white;
-    margin-left: 1rem;
-    margin-right: 50%;
     padding-left: 1rem;
+    padding-right: 2rem;
     opacity: 1;
+    left: 0;
   }
 
   .no-url {
-    margin-top: 16rem;
+    position: absolute;
     opacity: 0;
   }
 
@@ -68,9 +69,12 @@ const questionBank = [
   },
   {
     id: 4,
-    name: 'Personal contact with external link',
-    tip: "This example contains a link. Is it safe to open?",
-    answer: 1,
+    name: 'Security Alert',
+    tip: "A message's urgency can be an indicator of an email scam.",
+    answer: 0,
+    from: 'Twitter',
+    email: 'verify@twitter.com',
+    url: 'https://help.twitter.com/en'
   },
   {
     id: 5,
@@ -109,9 +113,10 @@ export default function Quiz() {
   }
 
   function handleLegitClick() {
-    if (questionBank[questionNum].answer === 0) {
+
+    if (shuffledQuestions[questionNum].answer === 0) {
       setScore(score => score + 1)
-      console.log('Correct!')
+      console.log('Correct! Legit is the answer')
     }
 
     if (questionNum > 1) {
@@ -122,9 +127,10 @@ export default function Quiz() {
   }
 
   function handleFraudClick() {
-    if (questionBank[questionNum].answer === 1) {
+
+    if (shuffledQuestions[questionNum].answer === 1) {
       setScore(score => score + 1)
-      console.log('Correct!')
+      console.log('Correct! Fraud is the answer')
     }
 
     if (questionNum > 1) {

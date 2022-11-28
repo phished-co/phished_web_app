@@ -1,4 +1,4 @@
-import { Button, Text, Title } from "@mantine/core"
+import { Button, Divider, Text, Title } from "@mantine/core"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -98,6 +98,18 @@ export default function EmailQuestion({ questionIds, questionNum, handleHover, h
         <p><strong>If you didn't do this, </strong>please <span className="link" onMouseEnter={handleHover} onMouseLeave={handleLeave}>secure your account</span>.</p>
         <p>Thanks, </p>
         <p>The Google Security Team</p>
+      </>
+    } else if (questionIds[questionNum].id === 4) {
+      return <><h1>We noticed a login to your account from a new device. Was this you?</h1>
+        <Divider mt={8} mb={8} />
+        <p><strong>If this was you</strong></p>
+        <p>You can ignore this message. There's no need to take any action.</p>
+        <p><strong>If this wasn't you</strong></p>
+        <p>Complete these steps now to protect your account.</p>
+        <ul>
+          <li>Change your password. You'll be logged out of all your active Twitter sessions except the one you're using at this time.</li>
+          <li><span className='link' onMouseEnter={handleHover} onMouseLeave={handleLeave}>Learn more</span> about revoking access to to any unfamiliar apps.</li>
+        </ul>
       </>
     }
   }
