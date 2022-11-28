@@ -1,4 +1,4 @@
-import { Button, Text } from "@mantine/core"
+import { Button, Text, Title } from "@mantine/core"
 import styled from "styled-components"
 import { useState } from "react"
 import EmailQuestion from "../components/quiz/EmailQuestion"
@@ -31,6 +31,11 @@ export const Container = styled.div`
   .no-url {
     margin-top: 16rem;
     opacity: 0;
+  }
+
+  .score-screen {
+    max-width: 640px;
+    margin: 0 auto;
   }
 `
 const questionBank = [
@@ -140,9 +145,12 @@ export default function Quiz() {
   return (
     <Container>
       {showScore
-        ? <div>
-          <p>{score}/3</p>
-          <Button type='null' onClick={shuffle}>Reset quiz</Button>
+        ? <div className='score-screen'>
+          <Title align='center' variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>
+            You answered {score}/3 questions correctly
+          </Title>
+          {score <= 1 ? <Text align='center'>Good try!</Text> : <Text align='center'>Nice job!</Text>}
+          <Button mt={32} type='null' fullWidth onClick={shuffle}>Try again</Button>
         </div>
         : <>
           <EmailQuestion questionIds={shuffledQuestions.slice(0, 3)} questionNum={questionNum} handleHover={handleHover} handleLeave={handleLeave} />
