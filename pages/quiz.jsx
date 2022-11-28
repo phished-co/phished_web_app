@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core"
+import { Button, Text } from "@mantine/core"
 import styled from "styled-components"
 import { useState } from "react"
 import EmailQuestion from "../components/quiz/EmailQuestion"
@@ -15,6 +15,22 @@ export const Container = styled.div`
     outline: 2px solid orange;
     max-width: 640px;
     margin: 0 auto;
+    margin-top: 4rem;
+  }
+
+  .url {
+    margin-top: 16rem;
+    background: #444;
+    color: white;
+    margin-left: 1rem;
+    margin-right: 50%;
+    padding-left: 1rem;
+    opacity: 1;
+  }
+
+  .no-url {
+    margin-top: 16rem;
+    opacity: 0;
   }
 `
 const questionBank = [
@@ -62,6 +78,7 @@ export default function Quiz() {
   const [shuffledQuestions, setShuffledQuestions] = useState(questions)
   const [questionNum, setQuestionNum] = useState(0)
   const [score, setScore] = useState(0)
+  const [showUrl, setShowUrl] = useState(false)
 
   // Fisher-Yates shuffle method
   function shuffle() {
@@ -105,9 +122,17 @@ export default function Quiz() {
     }
   }
 
+  function handleHover() {
+    setShowUrl(true)
+  }
+
+  function handleLeave() {
+    setShowUrl(false)
+  }
+
   return (
     <Container>
-      <EmailQuestion questionIds={shuffledQuestions.slice(0, 3)} questionNum={questionNum} />
+      <EmailQuestion questionIds={shuffledQuestions.slice(0, 3)} questionNum={questionNum} handleHover={handleHover} handleLeave={handleLeave} />
       {showScore
         ? <div>
           <p>{score}/3</p>
@@ -117,6 +142,11 @@ export default function Quiz() {
           <Button type='null' fullWidth onClick={handleLegitClick}>Legitimate</Button>
           <Button type='null' fullWidth onClick={handleFraudClick}>Fradulent</Button>
         </div>}
+      {showUrl
+        ? <div className='url'>
+          <Text>url here</Text>
+        </div>
+        : <div className='no-url'><Text>url here</Text></div>}
     </Container>
   )
 }
