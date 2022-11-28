@@ -48,6 +48,9 @@ const questionBank = [
     name: 'Email with attachment',
     tip: "This example contains an attachment. Do you want to check the file?",
     answer: 1,
+    from: 'Natasha Gisman',
+    email: 'gis.nas.man@gmail.com',
+    answer: 1,
   },
   {
     id: 3,
@@ -133,21 +136,24 @@ export default function Quiz() {
 
   return (
     <Container>
-      <EmailQuestion questionIds={shuffledQuestions.slice(0, 3)} questionNum={questionNum} handleHover={handleHover} handleLeave={handleLeave} />
       {showScore
         ? <div>
           <p>{score}/3</p>
           <Button type='null' onClick={shuffle}>Reset quiz</Button>
         </div>
-        : <div className='btn-cont'>
-          <Button type='null' fullWidth onClick={handleLegitClick}>Legitimate</Button>
-          <Button type='null' fullWidth onClick={handleFraudClick}>Fradulent</Button>
-        </div>}
+        : <>
+          <EmailQuestion questionIds={shuffledQuestions.slice(0, 3)} questionNum={questionNum} handleHover={handleHover} handleLeave={handleLeave} />
+          <div className='btn-cont'>
+            <Button type='null' fullWidth onClick={handleLegitClick}>Legitimate</Button>
+            <Button type='null' fullWidth onClick={handleFraudClick}>Fradulent</Button>
+          </div>
+        </>}
+
       {showUrl
         ? <div className='url'>
-          <Text>{questionBank[questionNum].url}</Text>
+          <Text>{(shuffledQuestions.slice(0, 3)[questionNum].url)}</Text>
         </div>
-        : <div className='no-url'><Text>url here</Text></div>}
+        : <div className='no-url' aria-hidden='true'><Text>url here</Text></div>}
     </Container>
   )
 }
