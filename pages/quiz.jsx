@@ -57,6 +57,9 @@ const questionBank = [
     name: 'Security Alert',
     tip: "It looks like you've received a security alert.",
     answer: 1,
+    from: 'Google Security Team',
+    email: 'security@googlesecurity.com',
+    url: 'www.gmail-verification.com'
   },
   {
     id: 4,

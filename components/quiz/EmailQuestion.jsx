@@ -5,6 +5,11 @@ const Wrapper = styled.div`
   ${'' /* outline: 2px solid red; */}
   padding: 0 1rem;
 
+  img {
+    max-width: 80px;
+    margin-top: 1rem;
+  }
+
   .title {
     ${'' /* outline: 2px solid blue; */}
     h1 {
@@ -38,7 +43,6 @@ const Wrapper = styled.div`
   .link:hover {
     text-decoration: underline;
   }
-
 `
 
 const Circle = styled.div`
@@ -81,7 +85,19 @@ export default function EmailQuestion({ questionIds, questionNum, handleHover, h
     } else if (questionIds[questionNum].id === 2) {
       return <>
         <p>{questionIds[questionNum].id}</p>
-        <p>Custom for question 2</p>
+        <p>Please double check the attachment to confirm your order!</p>
+        <img src="/pdfimg.png" alt="icon for a pdf" />
+      </>
+    } else if (questionIds[questionNum].id === 3) {
+      let today = new Date()
+      let date = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear()
+
+      return <>
+        <p>Your Google account password was changed on {date}.</p>
+        <p><strong>If you did this, </strong>you can safely disregard this email.</p>
+        <p><strong>If you didn't do this, </strong>please <span className="link" onMouseEnter={handleHover} onMouseLeave={handleLeave}>secure your account</span>.</p>
+        <p>Thanks, </p>
+        <p>The Google Security Team</p>
       </>
     }
   }
