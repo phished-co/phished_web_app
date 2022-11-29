@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-
-
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth';
+import { useSession } from 'next-auth/react';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -55,15 +56,23 @@ const confirmStyle = {
   borderRadius: '4px',
 };
 
+
+
 export default function ConsentForm({ submitHandler }) {
+  const { data: session } = useSession();
+
   const { classes } = useStyles();
   const { textarea } = textAreaStyles();
 
   // Inputs
-  const [fromEmail, setFromEmail] = useState('');
+  const [fromEmail, setFromEmail] = useState(session.user.email);
   const [to, setTo] = useState('');
-  const [html, setHtml] = useState('');
-  const [subject, setSubject] = useState('Consent request for phishing Education');
+  const [html, setHtml] = useState(
+    `Hello, We received a request from ${session.user.name} for a phishing campaign against you. By clicking the link below, you give us consent, and it will take you to our website. Thank you.`
+  );
+  const [subject, setSubject] = useState(
+    'Consent request for phishing Education'
+  );
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [targetName, setTargetName] = useState('');
@@ -71,10 +80,11 @@ export default function ConsentForm({ submitHandler }) {
 
   const [successNote, setSuccessNote] = useState(false);
 
+
   async function onClick(e) {
     e.preventDefault();
 
-    setFromEmail('');
+    // setFromEmail('');
     setTo('');
     setFname('');
     setLname('');
@@ -99,11 +109,10 @@ export default function ConsentForm({ submitHandler }) {
     return () => clearTimeout(timeId);
   }
 
+
   return (
-    
-      <>
+    <>
       <div className="container">
-    
         <form onSubmit={onClick} style={{ marginTop: 20 }}>
           <TextInput
             label="Receiver: First Name"
@@ -124,14 +133,14 @@ export default function ConsentForm({ submitHandler }) {
             required
           />
           <TextInput
-            label="Sender Email"
+            // label="Sender Email [Default]"
             placeholder="my.email@gmail.com"
             classnames={classes}
             mb={12}
-            value={fromEmail}
-            onChange={(e) => setFromEmail(e.target.value)}
+            defaultValue={fromEmail}
+            // onChange={(e) => setFromEmail(e.target.value)}
             type="email"
-            required
+            hidden
           />
           <TextInput
             label="Receiver Email"
@@ -150,18 +159,19 @@ export default function ConsentForm({ submitHandler }) {
             classnames={classes}
             mb={12}
             defaultValue={subject}
-            onChange={(e) => setSubject(e.target.value)}
+            // onChange={(e) => setSubject(e.target.value)}
             readOnly
           />
 
           <Textarea
             label="Content"
-            placeholder="Hello, We received a request for a phishing campaign against you. By clicking the link below, you give us consent, and it will take you to our website. Thank you."
+            // placeholder="Hello, We received a request from  for a phishing campaign against you. By clicking the link below, you give us consent, and it will take you to our website. Thank you."
             autosize
             minRows={4}
             classnames={textarea}
             // value={html}
-            onChange={(e) => setHtml(e.target.value)}
+            defaultValue={html}
+            // onChange={(e) => setHtml(e.target.value)}
             readOnly
           />
 
@@ -180,7 +190,29 @@ export default function ConsentForm({ submitHandler }) {
           <p> Submitted successfully</p>
         </div>
       )}
-    
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/api/auth/signin',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
 }

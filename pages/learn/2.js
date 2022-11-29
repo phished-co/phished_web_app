@@ -64,7 +64,7 @@ export default function Article() {
       <TextContainer>
         <Header>The Most Common Phishing Methods in 2022 (and how to spot them)</Header>
         <AuthorDate>
-          Nov 21 2022, 5:01pm
+          October 5 2022, 5:01pm
         </AuthorDate>
         <Text>
           Phishing scams are more sophisticated than ever. Phishing is an increasingly popular method used by criminals to steal personal data or infect devices – here’s an overview of the most common phishing techniques in 2022 and how you can avoid them.
