@@ -2,6 +2,7 @@ import { Button, Text, Title } from "@mantine/core"
 import styled from "styled-components"
 import { useState } from "react"
 import EmailQuestion from "../components/quiz/EmailQuestion"
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Container = styled.div`
   max-width: 1140px;
@@ -127,7 +128,10 @@ export default function Quiz() {
 
     if (shuffledQuestions[questionNum].answer === 0) {
       setScore(score => score + 1)
+      correct()
       console.log('Correct! Legit is the answer')
+    } else {
+      incorrect()
     }
 
     if (questionNum > 1) {
@@ -141,7 +145,10 @@ export default function Quiz() {
 
     if (shuffledQuestions[questionNum].answer === 1) {
       setScore(score => score + 1)
+      correct()
       console.log('Correct! Fraud is the answer')
+    } else {
+      incorrect()
     }
 
     if (questionNum > 1) {
@@ -159,8 +166,12 @@ export default function Quiz() {
     setShowUrl(false)
   }
 
+  const correct = () => toast.success('Correct!')
+  const incorrect = () => toast.error('Incorrect!')
+
   return (
     <Container>
+      <Toaster />
       {showScore
         ? <div className='score-screen'>
           <Title align='center' variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}>
