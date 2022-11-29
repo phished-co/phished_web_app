@@ -19,8 +19,6 @@ export const Container = styled.div`
   color: #292a2d;
 `;
 
-
-
 export default function Home() {
 
   const { data: session } = useSession();
