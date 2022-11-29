@@ -13,6 +13,16 @@ import ConsentForm from '../../pages/consentForm';
 
 // import Calendar from '../datetimepicker/Calendar';
 
+const confirmStyle = {
+    backgroundColor: 'RGBA(150,183,80,0.43)',
+    padding: '10px',
+    margin: '10px',
+    textAlign: 'center',
+    fontSize: '10px',
+    borderRadius: '4px'
+};
+
+
 const Container = styled.div`
 
   h2 {
@@ -54,9 +64,8 @@ const Container = styled.div`
 export function TermForm({ onSendEmail, onScheduleEmail }) {
   const [templateName, setTemplateName] = useState('');
 
-  async function submitHandler(data) {
-    await onSendEmail(data);
-  }
+
+
 
   return (
     <Container>
@@ -92,23 +101,28 @@ export function TermForm({ onSendEmail, onScheduleEmail }) {
       {templateName == '' && <div style={{ height: 250 }}></div>}
       {templateName == 'Basic' && (
         <MidtermForm
-          submitHandler={submitHandler}
+          submitHandler={onSendEmail}
           onScheduleEmail={onScheduleEmail}
         />
       )}
+
       {templateName == 'Facebook' && (
-        <FacebookForm submitHandler={submitHandler} />
+        <FacebookForm submitHandler={onSendEmail} />
       )}
       {templateName == 'New Device' && (
-        <NewDeviceForm submitHandler={submitHandler} />
+        <NewDeviceForm submitHandler={onSendEmail} />
       )}
-      {templateName == 'Payout' && <PayoutForm submitHandler={submitHandler} />}
+      {templateName == 'Payout' &&
+      <PayoutForm submitHandler={onSendEmail} />
+      }
       {templateName == 'Google Docs' && (
-        <DocsForm submitHandler={submitHandler} />
+        <DocsForm submitHandler={onSendEmail} />
       )}
       {templateName == 'Consent' && (
-        <ConsentForm submitHandler={submitHandler} />
+        <ConsentForm submitHandler={onSendEmail} />
       )}
+
+
     </Container>
   );
 }

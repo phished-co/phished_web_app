@@ -57,14 +57,14 @@ const textAreaStyles = createStyles((theme) => ({
 }));
 
 
-const confirmStyle = {
-  backgroundColor: 'RGBA(150,183,80,0.43)',
-  padding: '10px',
-  margin: '10px',
-  textAlign: 'center',
-  fontSize: '10px',
-  borderRadius: '4px'
-};
+// const confirmStyle = {
+//   backgroundColor: 'RGBA(150,183,80,0.43)',
+//   padding: '10px',
+//   margin: '10px',
+//   textAlign: 'center',
+//   fontSize: '10px',
+//   borderRadius: '4px'
+// };
 
 
 const templateStyle ={
@@ -97,6 +97,8 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   const [template, setTemplate] = useState('facebook');
 
   const [successNote, setSuccessNote] = useState(false);
+  // const [submissionNote, setSubmissionNote] = useState(null);
+
 
 
 
@@ -110,15 +112,15 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
     setBodyName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = submitHandler({ from, to, subject, html, bodyName, template})
-
-    setSuccessNote(true)
+    let validation = await submitHandler({ from, to, subject, html, bodyName, template})
+   
+    setSuccessNote(validation)
     const timeId = setTimeout(() => {
       setSuccessNote(false);}, 2000);
     return () => clearTimeout(timeId);
 
-
   }
+  
 
   return (
       // <Container>

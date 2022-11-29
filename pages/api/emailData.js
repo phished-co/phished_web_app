@@ -56,7 +56,6 @@ export default async function handler(req, res) {
       let senderEmail = sentEmailDocSnap.data().creatorEmail
       let targetEmail = sentEmailDocSnap.data().to
       let emailTemplate = sentEmailDocSnap.data().template
-
       /* -- Notification Emails Link Destination---*/
       let websiteLink = `https://phished.app/`        //Deploymnt
       // let websiteLink = `http://localhost:3000/`   //LocalHost
@@ -173,17 +172,17 @@ export default async function handler(req, res) {
       chartMonths[1].sent = 23
       chartMonths[1].success = 18
       // // 2months ago
-      chartMonths[2].sent = 29
-      chartMonths[2].success = 24
+      // chartMonths[2].sent = 29
+      // chartMonths[2].success = 24
       // // 3months ago
-      chartMonths[3].sent = 20
-      chartMonths[3].success = 16
+      // chartMonths[3].sent = 20
+      // chartMonths[3].success = 16
       // // 4months ago
-      chartMonths[4].sent = 25
-      chartMonths[4].success = 15
+      // chartMonths[4].sent = 25
+      // chartMonths[4].success = 15
       // // 5months ago
-      chartMonths[5].sent = 10
-      chartMonths[5].success = 7
+      // chartMonths[5].sent = 10
+      // chartMonths[5].success = 7
       // //--------------------------------------------------
 
 
