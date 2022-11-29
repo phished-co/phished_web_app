@@ -204,6 +204,19 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
               ></span>
               <ColorToggle />
 
+              {session ? (
+                //would be nice if we could add some padding to the pfp when in mobile
+                <Avatar
+                  radius="xl"
+                  src={session.user.image}
+                  onClick={() => {
+                    r.push({ pathname: '/dashboard' });
+                  }}
+                  alt="your profile picture"
+                />
+              ) : (
+                <></>
+              )}
               {items}
               <Group position="left" pb="xl" px="md">
                 <MantineModal />
