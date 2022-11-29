@@ -3,16 +3,34 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-
+import { Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
 // import Calendar from '../datetimepicker/Calendar';
 
-
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+  margin: 3rem auto;
+
+  h1 {
+    margin-bottom: 2rem;
+    font-family: "Verdana";
+    text-transform: uppercase;
+    color: #459cfb;
+  }
+
   .button {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    margin-top: 2rem;
+  }
+
+  .description {
+    margin: 1rem;
+    width: 25vw;
   }
 `;
 
@@ -57,16 +75,6 @@ const textAreaStyles = createStyles((theme) => ({
 }));
 
 
-const confirmStyle = {
-  backgroundColor: 'RGBA(150,183,80,0.43)',
-  padding: '10px',
-  margin: '10px',
-  textAlign: 'center',
-  fontSize: '10px',
-  borderRadius: '4px'
-};
-
-
 const templateStyle ={
   marginTop: 20,
   padding: 20,
@@ -75,8 +83,6 @@ const templateStyle ={
   borderRadius: '5px',
   color: '#3F3F3F',
   fontSize: '10px',
-
-  
 
 
 }
@@ -125,6 +131,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   return (
 
   <>
+   <Container>
     <div style={templateStyle} >
       {/*<p>[your text] <br/> link</p>*/}
       <p>[Phish emoticon]</p>
@@ -217,12 +224,14 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
           </div>
         </form>
 
-    {successNote &&
-    <div style={confirmStyle}>
-      <p> Submitted successfully</p>
-    </div>
-    }
-
+   
+        <br></br>
+      {successNote &&
+        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
+          Submitted successfully
+        </Notification>
+      }
+    </Container>
   </>
 
   );

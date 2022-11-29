@@ -16,6 +16,8 @@ import * as firebase from 'firebase/firestore';
 import styled from 'styled-components';
 import { authOptions } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
+import { Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
 
 const Container = styled.div`
   display: flex;
@@ -84,6 +86,7 @@ const textAreaStyles = createStyles((theme) => ({
   },
 }));
 
+
 const Calendar = dynamic(
   () => import('../../components/datetimepicker/Calendar'),
   {
@@ -103,6 +106,8 @@ export default function Email({ email }) {
   const [subject, setSubject] = useState(email.subject);
   const [dateTime, setDateTime] = useState(firebase.Timestamp.now().seconds);
 
+  const [successNote, setSuccessNote] = useState(false);
+
   function handleChange(date, time) {
     console.log('this is from handleChange');
     console.log(new Date(`${date} ${time}`));
@@ -116,6 +121,7 @@ export default function Email({ email }) {
 
   const handleScheduleEmail = (props) => {
     axios.post('/api/emailTasks', props);
+
   };
 
   async function handleSubmit(e) {
@@ -132,8 +138,19 @@ export default function Email({ email }) {
         subject: subject,
       },
     };
+
     console.log(emailTemplate);
     handleScheduleEmail(emailTemplate);
+    setFromEmail("")
+    setTo("")
+    setSubject("")
+    setHtml("")
+    setSuccessNote(true)
+
+    const timeId = setTimeout(() => {
+      setSuccessNote(false);
+    }, 2000);
+    return () => clearTimeout(timeId);
   }
   return (
     <Container>
@@ -141,11 +158,12 @@ export default function Email({ email }) {
       <form onSubmit={handleSubmit}>
         <TextInput
           onChange={(e) => setFromEmail(e.target.value)}
-          label="Your Phish Email"
+          label="from"
           value={fromEmail}
           mb={12}
           classNames={classes}
           required
+          placeholder="Jane Doe janedoe@gmail.com"
         ></TextInput>
         <TextInput
           label="to"
@@ -154,6 +172,7 @@ export default function Email({ email }) {
           classNames={classes}
           onChange={(e) => setTo(e.target.value)}
           required
+          placeholder="receivers.email@gmail.com"
         ></TextInput>
         <TextInput
           label="subject"
@@ -162,6 +181,8 @@ export default function Email({ email }) {
           classNames={classes}
           onChange={(e) => setSubject(e.target.value)}
           required
+          placeholder="You Won!"
+
         ></TextInput>
         <Textarea
           label="content"
@@ -171,12 +192,11 @@ export default function Email({ email }) {
           classNames={textarea}
           onChange={(e) => setHtml(e.target.value)}
           required
+          placeholder="Hi Mom..."
         ></Textarea>
         <div className="description">
-          {/* This is where the email should be edited/deleted and removed from
-          scheduled emails once sent (this is sent to tasks) (once scheduled
-          can't change it lol) */}
         </div>
+
 
         <Calendar onChange={handleChange}></Calendar>
 
@@ -189,37 +209,16 @@ export default function Email({ email }) {
           </Link>
         </div>
       </form>
+      <br></br>
+      {successNote &&
+        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
+          Submitted successfully
+        </Notification>
+      }
     </Container>
   );
 }
 
-// export async function getStaticProps(context) {
-//   const id = context.params.id;
-//   const email = await getDoc(doc(db, 'scheduledEmails', id));
-//   console.log(email.data());
-//   const returnedEmail = email.data();
-//   return {
-//     props: { email: returnedEmail },
-//   };
-// }
-
-// export async function getStaticPaths() {
-//   const querySnapshot = await getDocs(collection(db, 'scheduledEmails'));
-//   const allEmails = [];
-//   querySnapshot.forEach((doc) => {
-//     allEmails.push(doc);
-//   });
-//   const paths = allEmails.map((email) => {
-//     return {
-//       params: { id: `${email.id}` },
-//     };
-//   });
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
 
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(
