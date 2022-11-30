@@ -69,6 +69,7 @@ export default function ConsentForm({ submitHandler }) {
   const [lname, setLname] = useState('');
   const [targetName, setTargetName] = useState('');
   const [template, setTemplate] = useState('consent');
+  const [yourName, setYourName] = useState(session.user.name);
 
   const [successNote, setSuccessNote] = useState(false);
 
@@ -84,14 +85,16 @@ export default function ConsentForm({ submitHandler }) {
     // setHtml('');
     setTargetName('');
 
-    let from = `${fname} ${lname} ${fromEmail}`;
+    let from = `${yourName} ${fromEmail}`;
     let validation = submitHandler({
       from,
       to,
+      yourName,
       subject,
       html,
       targetName,
       template,
+      consent: false,
     });
 
     setSuccessNote(true);
@@ -107,22 +110,32 @@ export default function ConsentForm({ submitHandler }) {
       <div className="container">
         <form onSubmit={onClick} style={{ marginTop: 20 }}>
           <TextInput
-            label="Receiver: First Name"
-            placeholder="Jane"
+            label="Receiver's Name"
+            placeholder="Jane Doe"
             classnames={classes}
             mb={12}
-            value={fname}
-            onChange={(e) => setFname(e.target.value)}
+            value={targetName}
+            onChange={(e) => setTargetName(e.target.value)}
             required
           />
           <TextInput
-            label="Receiver: Last Name"
-            placeholder="Doe"
+            label="Your Name"
+            // placeholder="Doe"
             classnames={classes}
             mb={12}
-            value={lname}
-            onChange={(e) => setLname(e.target.value)}
-            required
+            value={yourName}
+            // onChange={(e) => setLname(e.target.value)}
+            readOnly
+          />
+          <TextInput
+            // label="consent"
+            // placeholder="Doe"
+            defaultValue="false"
+            classnames={classes}
+            mb={12}
+            // value={lname}
+            // onChange={(e) => setLname(e.target.value)}
+            hidden
           />
           <TextInput
             // label="Sender Email [Default]"
