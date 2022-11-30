@@ -1,9 +1,10 @@
-import { Button, createStyles, TextInput, Textarea } from '@mantine/core';
+import { Button, createStyles, TextInput, Textarea, Notification} from '@mantine/core';
 import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { authOptions } from './api/auth/[...nextauth]';
+import { IconCheck } from '@tabler/icons';
 import { unstable_getServerSession } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
@@ -46,15 +47,6 @@ const textAreaStyles = createStyles((theme) => ({
     zIndex: 1,
   },
 }));
-
-const confirmStyle = {
-  backgroundColor: 'RGBA(150,183,80,0.43)',
-  padding: '10px',
-  margin: '10px',
-  textAlign: 'center',
-  fontSize: '10px',
-  borderRadius: '4px',
-};
 
 
 
@@ -174,22 +166,29 @@ export default function ConsentForm({ submitHandler }) {
             // onChange={(e) => setHtml(e.target.value)}
             readOnly
           />
-
+         
+   {successNote && (
+     <>
+          <br />
+          <Notification icon={<IconCheck size={18} />} color="teal" title="Consent Email Sent">
+         Submitted successfully
+       </Notification>
+       </>
+      )}
           <div className="button">
+            <br />
             <Button variant="outline" type="submit">
               Send Consent Email
             </Button>
+            <br />
+            <br />
             <Link href="/">
               <Button variant="outline">Cancel</Button>
             </Link>
           </div>
         </form>
       </div>
-      {successNote && (
-        <div style={confirmStyle}>
-          <p> Submitted successfully</p>
-        </div>
-      )}
+   
     </>
   );
 }

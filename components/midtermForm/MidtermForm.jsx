@@ -4,8 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Notification } from '@mantine/core';
-import { IconCheck, IconX } from '@tabler/icons';
-// import Calendar from '../datetimepicker/Calendar';
+import { IconCheck } from '@tabler/icons';
 
 
 const templateStyle ={
@@ -19,9 +18,6 @@ const templateStyle ={
 }
 
 export function MidtermForm({ submitHandler, onScheduleEmail }) {
-  // Styles
-  // const { classes } = useStyles();
-  // const { textarea } = textAreaStyles();
 
   // Inputs
   const [fromEmail, setFromEmail] = useState('');
@@ -34,8 +30,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   const [template, setTemplate] = useState('basic');
 
   const [successNote, setSuccessNote] = useState(false);
-
-
 
   async function onClick(e) {
     e.preventDefault();
@@ -60,13 +54,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   return (
 
   <>
-   
-   {/* <Notification title="How your email will be formatted">
-    <p>[Phish emoticon]</p>
-      <p>[your text]</p>
-      <p>Click Here</p>
-      </Notification> */}
-
     <div style={templateStyle} >
       {/* <p>[your text] <br/> link</p> */}
       <p>[Phish emoticon]</p>
@@ -80,7 +67,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
           <TextInput
               label="Receiver: First Name"
               placeholder="Jane"
-              // classnames={classes}
               mb={12}
               value={fname}
               onChange={(e) => setFname(e.target.value)}
@@ -89,7 +75,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
           <TextInput
               label="Receiver: Last Name"
               placeholder="Doe"
-              // classnames={classes}
               mb={12}
               value={lname}
               onChange={(e) => setLname(e.target.value)}
@@ -98,7 +83,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
           <TextInput
               label="Sender Email"
               placeholder="senders.email@gmail.com"
-              // classnames={classes}
               mb={12}
               value={fromEmail}
               onChange={(e) => setFromEmail(e.target.value)}
@@ -108,7 +92,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
           <TextInput
               label="Receiver Email"
               placeholder="receivers.email@gmail.com"
-              // classnames={classes}
               mb={12}
               value={to}
               onChange={(e) => setTo(e.target.value)}
@@ -120,7 +103,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               <TextInput
                   label="Subject"
                   placeholder="You won!"
-                    // classnames={classes}
                     mb={12}
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
@@ -133,12 +115,18 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
                     placeholder="Hi Mom..."
                     autosize
                     minRows={4}
-                    // classnames={textarea}
                     value={html}
                     onChange={(e) => setHtml(e.target.value)}
                     required
                 />
-
+  {successNote &&
+      <>
+        <br></br>
+        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
+          Submitted successfully
+        </Notification>
+      </>
+      }
 
           <div className="button">
             <br />
@@ -156,15 +144,9 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               </a>
             </Link>
           </div>
-        </form>
-
-   
-        <br></br>
-      {successNote &&
-        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
-          Submitted successfully
-        </Notification>
-      }
+        </form> 
+        
+    
 
   </>
 
