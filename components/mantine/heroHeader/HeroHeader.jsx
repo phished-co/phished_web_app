@@ -1,6 +1,7 @@
 import { createStyles, Container, Text, Button, Group } from '@mantine/core';
 import { FaGithub } from 'react-icons/fa'
 import { useRouter } from "next/router";
+import { useSession } from 'next-auth/react'
 
 const BREAKPOINT = '@media (max-width: 755px)';
 
@@ -69,6 +70,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function HeroHeader() {
+  const { data: session } = useSession();
   const { classes } = useStyles();
   const r = useRouter()
 
@@ -87,15 +89,27 @@ export function HeroHeader() {
         </Text>
 
         <Group className={classes.controls}>
-          <Button
-            size="xl"
-            className={classes.control}
-            variant="fill"
-            type='null'
-            onClick={() => { r.push({ pathname: '/onboarding' }) }}
-          >
-            Get started
-          </Button>
+          {session ?
+            <Button
+              size="xl"
+              className={classes.control}
+              variant="fill"
+              type="null"
+              onClick={() => { r.push({ pathname: '/dashboard' }) }}
+            >
+              Dashboard
+            </Button>
+            :
+            <Button
+              size="xl"
+              className={classes.control}
+              variant="fill"
+              type='null'
+              onClick={() => { r.push({ pathname: '/onboarding' }) }}
+            >
+              Get started
+            </Button>
+          }
 
           <Button
             component="a"
