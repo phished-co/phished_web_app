@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { useState } from "react"
 import EmailQuestion from "../components/quiz/EmailQuestion"
 import toast, { Toaster } from 'react-hot-toast';
+import Lottie from "lottie-react";
+import fishAnimation from "/public/fishAnimation.json";
 
 export const Container = styled.div`
   max-width: 1140px;
@@ -37,6 +39,9 @@ export const Container = styled.div`
   }
 
   .score-screen {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     max-width: 640px;
     margin: 0 auto;
   }
@@ -178,6 +183,7 @@ export default function Quiz() {
             You answered {score}/3 questions correctly
           </Title>
           {score <= 1 ? <Text align='center'>Good try!</Text> : <Text align='center'>Nice job!</Text>}
+          <Lottie style={{width:200}} animationData={fishAnimation} loop={true} />
           <Button mt={32} type='null' fullWidth onClick={shuffle}>Try again</Button>
         </div>
         : <>

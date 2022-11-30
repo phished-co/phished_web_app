@@ -3,6 +3,17 @@ import { Text } from '@mantine/core';
 import { TextContainer, ImgContainer, Header, AuthorDate } from './2';
 import { Container } from '../quiz'
 
+export const SubHeading = styled(Text)`
+  font-size: 1.75em;
+  font-weight: 500;
+`
+export const SubSubHeading = styled(Text)`
+  font-size: 1.25em;
+  font-weight: 500;
+  margin-bottom:0.5rem;
+  color:#5e5e5e;
+`
+
 export default function Article() {
   return (
     <div>
@@ -12,26 +23,23 @@ export default function Article() {
       <TextContainer>
         <Header>Senior's guide to staying cyber safe</Header>
         <AuthorDate>
-          Nov 8 2022, 10:32 am
+          September 9 2022, 10:32 am
         </AuthorDate>
         <Text>
-          Magna nostrud proident quis cupidatat et adipisicing voluptate ut non ipsum. Commodo fugiat Lorem consectetur Lorem officia in qui tempor minim. Velit irure dolor minim ullamco laborum aliqua ut incididunt et mollit. Esse exercitation ea esse voluptate deserunt esse. Do nisi occaecat laborum do deserunt esse dolore cillum cupidatat adipisicing nostrud magna ipsum laborum.
+          The Internet and mobile devices have some risks, just like any other powerful tool. As long as you adhere to some fundamental rules of the digital road, these dangers can be controlled. In addition to all the topics we discuss in this guide, we also go over basic safety measures.
         </Text>
         <br />
         <Text>
-          Enim dolore amet eu dolore nulla. Cupidatat est ex Lorem dolore irure aliqua qui minim cupidatat. Labore eu aliqua aliqua nostrud aliqua aliqua. Et nulla sit duis labore fugiat amet proident consectetur eiusmod. Aliqua id ex aliqua anim aute sint culpa velit.
+          <SubHeading>Tips to Stay Safe</SubHeading>
+          <br />
+          <SubSubHeading>Use strong and unique passwords for every account</SubSubHeading>
+          Experts recommend including symbols, numbers, upper and lowercase letters, and at least eight characters. Try to avoid using names or common words. To further security, always enable multi-factor authentication.
 
-          Reprehenderit officia esse aute aute ex in dolore nisi quis ex sint culpa aliqua esse. In veniam amet laboris ex aute. Aliquip laborum esse minim nisi tempor in adipisicing non sint. Sit aliqua est consectetur reprehenderit nisi officia nostrud duis sunt aute. Magna nulla ullamco laboris nisi. Eiusmod minim duis anim labore minim laboris sunt qui ullamco nulla fugiat anim. Fugiat dolor magna et aute reprehenderit commodo minim commodo laborum.
-
-          Enim esse quis velit irure non duis adipisicing ea. Proident fugiat elit cupidatat est ullamco et incididunt. Sint incididunt reprehenderit quis laboris.
         </Text>
         <br />
         <Text>
-          Enim dolore amet eu dolore nulla. Cupidatat est ex Lorem dolore irure aliqua qui minim cupidatat. Labore eu aliqua aliqua nostrud aliqua aliqua. Et nulla sit duis labore fugiat amet proident consectetur eiusmod. Aliqua id ex aliqua anim aute sint culpa velit.
-
-          Reprehenderit officia esse aute aute ex in dolore nisi quis ex sint culpa aliqua esse. In veniam amet laboris ex aute. Aliquip laborum esse minim nisi tempor in adipisicing non sint. Sit aliqua est consectetur reprehenderit nisi officia nostrud duis sunt aute. Magna nulla ullamco laboris nisi. Eiusmod minim duis anim labore minim laboris sunt qui ullamco nulla fugiat anim. Fugiat dolor magna et aute reprehenderit commodo minim commodo laborum.
-
-          Enim esse quis velit irure non duis adipisicing ea. Proident fugiat elit cupidatat est ullamco et incididunt. Sint incididunt reprehenderit quis laboris.
+        <SubSubHeading>Report online abuse</SubSubHeading>
+        Any abuse should be reported, whether directed towards you or not. Children are frequently mentioned as victims of "cyberbullying," but it may also happen to adults, especially elders. Reach out for support and assistance from a person you can trust and report the conduct to the website or service if you receive emails or texts that are threatening, mean, accusatory, or otherwise abusive. All significant social media platforms, as well as internet and mobile service providers, have staff members who respond to abuse reports.
         </Text>
       </TextContainer>
     </div>

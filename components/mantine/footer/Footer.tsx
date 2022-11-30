@@ -1,6 +1,7 @@
-import { createStyles, Container, Group, Anchor } from '@mantine/core';
+import { createStyles, Container, Group, Anchor, Image } from '@mantine/core';
 import {GiFishingHook} from 'react-icons/gi'
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -27,6 +28,10 @@ const useStyles = createStyles((theme) => ({
       marginTop: theme.spacing.md,
     },
   },
+  logo: {
+    marginRight: '8px',
+    cursor: 'pointer'
+  },
 }));
 
 let links = [
@@ -50,6 +55,7 @@ let links = [
 
 export function FooterSimple() {
   const { classes } = useStyles();
+  const r = useRouter()
   const items = links.map((link) => (
     <Link
       color="dimmed"
@@ -65,7 +71,9 @@ export function FooterSimple() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <GiFishingHook size={28} />
+        <span className={classes.logo} onClick={() => {r.push({pathname: '/'})}}>
+          <Image src="../../../../icon-wordmark.png" width={100}/>
+        </span>
         <Group className={classes.links}>{items}</Group>
       </Container>
     </div>
