@@ -22,7 +22,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 30vw;
+  width: 40vw;
   margin: 3rem auto;
 
   h1 {
@@ -41,6 +41,19 @@ const Container = styled.div`
   .description {
     margin: 1rem;
     width: 25vw;
+  }
+
+  @media (max-width: 970px) {
+    width: 80vw;
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+    
+    form {
+      width: 50vw;
+      min-width: 300px;
+    }
   }
 `;
 

@@ -51,11 +51,15 @@ const Container = styled.div`
   }
 `;
 
-export function TermForm({ onSendEmail, onScheduleEmail }) {
+export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
   const [templateName, setTemplateName] = useState('');
 
   async function submitHandler(data) {
     await onSendEmail(data);
+  }
+
+  async function submitConsentHandler(data) {
+    await onConsentEmail(data);
   }
 
   return (
@@ -107,7 +111,7 @@ export function TermForm({ onSendEmail, onScheduleEmail }) {
         <DocsForm submitHandler={submitHandler} />
       )}
       {templateName == 'Consent' && (
-        <ConsentForm submitHandler={submitHandler} />
+        <ConsentForm submitHandler={submitConsentHandler} />
       )}
     </Container>
   );
