@@ -14,24 +14,23 @@ export default function Home() {
   const { data: session } = useSession();
   // console.log(session);
 
-  // const handleSendEmail = async (emailProperties) => {
-    // if (session) {
-      // checking for consent, if it exist send the email
-      // const consent = await axios.get(
-      //   `/api/emailConsentCheck?to=${emailProperties.to}&creator=${session.user.email}`
-      // );
 
-      //if there is a consent send the email
-      // if (consent.data) {
-      // console.log('consent exist', consent.data);
       const handleSendEmail = async (emailProperties) => {
         if (session) {
-        await axios.post('/api/emailSent', {
-          ...emailProperties,
-          replyTo: 'phishedapp@gmail.com',
-          creatorEmail: session.user.email,
-        });
-        //if there is no consent, send a consent email
+
+          // checking for consent, if it exist send the email
+          const consent = await axios.get(
+            `/api/emailConsentCheck?to=${emailProperties.to}&creator=${session.user.email}`
+          );
+
+            //if there is consent send the email
+           if (consent.data && emailProperties.template !== "consent" ) {
+             await axios.post('/api/emailSent', {
+               ...emailProperties,
+               replyTo: 'phishedapp@gmail.com',
+               creatorEmail: session.user.email,
+             });
+           }
 
         return consent.data;
       };
