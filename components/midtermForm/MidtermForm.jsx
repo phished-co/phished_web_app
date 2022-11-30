@@ -75,25 +75,6 @@ const textAreaStyles = createStyles((theme) => ({
   },
 }));
 
-const confirmStyle = {
-  backgroundColor: 'RGBA(150,183,80,0.43)',
-  padding: '10px',
-  margin: '10px',
-  textAlign: 'center',
-  fontSize: '10px',
-  borderRadius: '4px'
-};
-
-
-const errorStyle = {
-  backgroundColor: 'RGBA(255,101,80,0.4)',
-  padding: '10px',
-  margin: '10px',
-  textAlign: 'center',
-  fontSize: '10px',
-  borderRadius: '4px'
-};
-
 
 const templateStyle ={
   marginTop: 20,
