@@ -28,38 +28,25 @@
 //   </>
 // }
 
-import { useMantineColorScheme, SegmentedControl, Group, Center, Box } from '@mantine/core';
+import { useMantineColorScheme, ActionIcon, Group } from '@mantine/core';
 import { RiMoonClearFill, RiSunFill } from 'react-icons/ri'
 
 export default function ColorToggle(position) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
-    <Group position="left" my="xl">
-      <SegmentedControl
-        value={colorScheme}
-        onChange={(value) => toggleColorScheme(value)}
-        data={[
-          {
-            value: 'light',
-            label: (
-              <Center>
-                <RiSunFill size={16} stroke={1.5} />
-                <Box ml={10}>Light</Box>
-              </Center>
-            ),
-          },
-          {
-            value: 'dark',
-            label: (
-              <Center>
-                <RiMoonClearFill size={16} stroke={1.5} />
-                <Box ml={10}>Dark</Box>
-              </Center>
-            ),
-          },
-        ]}
-      />
+    <Group position="left">
+      <ActionIcon
+        onClick={() => toggleColorScheme()}
+        size="lg"
+        sx={(theme) => ({
+          backgroundColor:
+            theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+          color: theme.colorScheme === 'dark' ? theme.colors.yellow[4] : theme.colors.blue[6],
+        })}
+      >
+        {colorScheme === 'dark' ? <RiSunFill size={18} /> : <RiMoonClearFill size={18} />}
+      </ActionIcon>
     </Group>
   );
 }
