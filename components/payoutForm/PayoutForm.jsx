@@ -192,9 +192,9 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
         </form>
 
         {submissionNote=="true" &&
-        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
-          Submitted successfully
-        </Notification>
+        <div style={confirmStyle}>
+          <p> Submitted successfully</p>
+        </div>
         }
 
         {submissionNote=="false" &&
