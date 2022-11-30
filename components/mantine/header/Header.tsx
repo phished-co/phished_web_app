@@ -66,6 +66,10 @@ const useStyles = createStyles((theme) => ({
     cursor: 'pointer',
   },
 
+  avatar: {
+    cursor: 'pointer',
+  },
+
   link: {
     display: 'block',
     lineHeight: 1,
@@ -148,7 +152,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
           </span>
           {items}
         </Group>
-        <Group spacing={5} className={classes.links}>
+        <Group spacing={12} className={classes.links}>
           <MantineModal />
           {/* <Button variant="default">Log in</Button> */}
           {session ? (
@@ -172,9 +176,8 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
               Sign Up
             </Button>
           )}
-
-          <ColorToggle />
           {session ? (
+            <span className={classes.avatar}>
             <Avatar
               radius="xl"
               src={session.user.image}
@@ -183,9 +186,11 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
               }}
               alt="your profile picture"
             />
+            </span>
           ) : (
             <></>
           )}
+          <ColorToggle />
         </Group>
         <Burger
           opened={opened}
@@ -202,21 +207,6 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
                   r.push({ pathname: '/' });
                 }}
               ></span>
-              <ColorToggle />
-
-              {session ? (
-                //would be nice if we could add some padding to the pfp when in mobile
-                <Avatar
-                  radius="xl"
-                  src={session.user.image}
-                  onClick={() => {
-                    r.push({ pathname: '/dashboard' });
-                  }}
-                  alt="your profile picture"
-                />
-              ) : (
-                <></>
-              )}
               {items}
               <Group position="left" pb="xl" px="md">
                 <MantineModal />
@@ -240,6 +230,21 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
                     Sign Up
                   </Button>
                 )}
+            <span className={classes.avatar}>
+              {session ? (
+                <Avatar
+                  radius="xl"
+                  src={session.user.image}
+                  onClick={() => {
+                    r.push({ pathname: '/dashboard' });
+                  }}
+                  alt="your profile picture"
+                />
+              ) : (
+                <></>
+              )}
+              </span>
+                <ColorToggle />
               </Group>
             </Paper>
           )}
