@@ -32,7 +32,6 @@ export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
           placeholder="Pick one"
           data={[
             { value: 'Consent', label: 'Consent' },
-            { value: 'Basic', label: 'Basic' },
             { value: 'Facebook', label: 'Facebook' },
             { value: 'New Device', label: 'New Device' },
             { value: 'Payout', label: 'Payout' },
@@ -42,23 +41,23 @@ export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
       </form>
 
       {templateName == '' && <div style={{ height: 250 }}></div>}
-      {templateName == 'Basic' && (
-        <MidtermForm
-          submitHandler={onSendEmail}
-          onScheduleEmail={onScheduleEmail}
-        />
-      )}
 
       {templateName == 'Facebook' && (
-        <FacebookForm submitHandler={onSendEmail} />
+        <FacebookForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
       )}
+
       {templateName == 'New Device' && (
-        <NewDeviceForm submitHandler={onSendEmail} />
+        <NewDeviceForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
       )}
-      {templateName == 'Payout' && <PayoutForm submitHandler={onSendEmail} />}
+
+      {templateName == 'Payout' &&
+      (<PayoutForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
+      )}
+
       {templateName == 'Google Docs' && (
-        <DocsForm submitHandler={onSendEmail} />
+          <DocsForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
       )}
+
       {templateName == 'Consent' && <ConsentForm submitHandler={onConsentEmail} />}
     </>
   );

