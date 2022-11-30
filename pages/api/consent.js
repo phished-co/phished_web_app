@@ -66,8 +66,8 @@ export default async function handler(req, res) {
 
 
       /* -- Phished Emails Link Destination---*/
-      // let consentLink = `https://phished.app/consent?consentCode=${consent.id}`       
-      let consentLink = `http://localhost:3000/consent?consentCode=${consent.id}`       
+      let consentLink = `https://phished.app/consent?consentCode=${consent.id}`       
+      // let consentLink = `http://localhost:3000/consent?consentCode=${consent.id}`       
 
       let phishedApp = `https://phished.app/`
       
