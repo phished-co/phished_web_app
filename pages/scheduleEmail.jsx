@@ -7,6 +7,61 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
+import NextNProgress from '../components/LoadingBar/LoadingBar';
+
+
+const Container = styled.div`
+  min-width: 500px;
+
+  div h1 {
+    margin: 2rem;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    font-family: 'Verdana';
+    text-transform: uppercase;
+    color: #459cfb;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    height: 40vh;
+  }
+
+  div .box {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    // min-width: 80%;
+  }
+
+  .card .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    // min-width: 80%;
+
+    .card {
+      width: 100%;
+    }
+  }
+`;
 
 export default function About() {
   const router = useRouter();
@@ -34,16 +89,15 @@ export default function About() {
   const handleDelete = (id) => {
     console.log('delete', id);
     if (id) {
-
-    axios
-      .delete(`/api/emailScheduled/${id}`)
-      .then((res) => {
-        setScheduleEmails(emails.filter((email) => email.id !== id));
-        // console.log("delete email", res.data.id);
-      })
-      .catch((err) => {
-        console.error('error', err);
-      });
+      axios
+        .delete(`/api/emailScheduled/${id}`)
+        .then((res) => {
+          setScheduleEmails(emails.filter((email) => email.id !== id));
+          // console.log("delete email", res.data.id);
+        })
+        .catch((err) => {
+          console.error('error', err);
+        });
       // redirect to the scheduleEmail page
       router.reload();
     }
@@ -55,6 +109,67 @@ export default function About() {
   };
 
   return (
+
+    <>
+      <NextNProgress
+        color="#459CFB"
+        startPosition={0.3}
+        stopDelayMs={300}
+        height={5}
+        showOnShallow={true}
+        easing="ease"
+        speed={500}
+        options={{ showSpinner: false }}
+      />
+
+    //  <Container>
+       // <div>
+          //<h1 className="title">Scheduled Email List</h1>
+         // {loading ? (
+          //  <h1 className="title"> Loading... </h1>
+        //  ) : scheduleEmails.length === 0 ? (
+           // <div>
+              //<div className="box">
+               // <h2 className="title">No scheduled Email</h2>
+               // <p className="title">Consider adding a scheduled Email from </p>
+             // </div>
+             // <div className="btn-container">
+               // <Link href="/account">
+                 // <Button color="blue" variant="outline">
+                   // Click Here
+                 // </Button>
+               // </Link>
+             // </div>
+           // </div>
+         // ) : (
+            
+              //<div className="card">
+              //  {scheduleEmails.map((email) => (
+            //      <ScheduledData
+                    //id={email.id}
+                  //  key={email.id}
+              //      firstName={email.options.firstName}
+                //    lastName={email.options.lastName}
+               //     senderEmail={email.options.senderEmail}
+              //      receiver={email.options.receiver}
+              //      subject={email.options.subject}
+              //      message={email.options.message}
+             //       onDelete={handleDelete}
+            //        onEdit={handleEdit}
+            //      />
+            //    ))}
+           //     <Link href="/account" className="button">
+           //       <Button color="blue" variant="outline">
+            //        Go back to Email page
+             //     </Button>
+            //    </Link>
+            //  </div>
+            
+        //  )}
+      //  </div>
+   //   </Container>
+  //  </>
+
     <Container>
       <div>
       <br></br>
@@ -106,6 +221,8 @@ export default function About() {
         )}
       </div>
     </Container>
+     </>
+
   );
 }
 export async function getServerSideProps(context) {

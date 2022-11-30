@@ -16,6 +16,48 @@ import * as firebase from 'firebase/firestore';
 import styled from 'styled-components';
 import { authOptions } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
+
+
+//const Container = styled.div`
+  //display: flex;
+  //flex-direction: column;
+  //align-items: center;
+  //justify-content: center;
+  //width: 40vw;
+  //margin: 3rem auto;
+
+ // h1 {
+ //   margin-bottom: 2rem;
+  //  font-family: "Verdana";
+  //  text-transform: uppercase;
+ //   color: #459cfb;
+ // }
+
+  //.button {
+ //   display: flex;
+  //  gap: 1rem;
+  //  justify-content: center;
+ // }
+
+ // .description {
+  //  margin: 1rem;
+ //   width: 25vw;
+ // }
+
+ // @media (max-width: 970px) {
+ //   width: 80vw;
+    
+  //  h1 {
+  //    font-size: 1.5rem;
+  //  }
+    
+  //  form {
+  //    width: 50vw;
+  //    min-width: 300px;
+ //   }
+//  }
+//`;
+
 import { Notification } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons';
 
@@ -38,6 +80,7 @@ import { IconCheck, IconX } from '@tabler/icons';
 //     width: 25vw;
 //   }
 // `;
+
 
 const useStyles = createStyles((theme) => ({
   root: {

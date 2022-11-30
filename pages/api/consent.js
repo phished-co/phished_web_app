@@ -13,6 +13,7 @@ import {
   deleteDoc,
   setDoc,
 } from 'firebase/firestore';
+import { Session } from 'inspector';
 
 
 
@@ -39,8 +40,16 @@ export default async function handler(req, res) {
 
       //Send data to Db
       let emailDataForDb = req.body
+      
+
+      console.log("ss", req.body)
+
+
       emailDataForDb.createdAt = Date.now()
-      const sentEmail = await addDoc(collection(db, "sentEmails"), emailDataForDb);
+      
+      const consent = await addDoc(collection(db, "consentRequest"), emailDataForDb);
+
+      
 
 
       //Template Connection
@@ -59,18 +68,24 @@ export default async function handler(req, res) {
 
       let date = new Date();
       let newDate = subtractMinutes(date, 20);
-      /* -- Phished Emails Link Destination---*/
-      let phishedLink = `https://phished.app/youPhished?phishingCode=${sentEmail.id}`       //Deplyment
-      // let phishedLink = `http://localhost:3000/youPhished?phishingCode=${sentEmail.id}`  //LocalHost
 
+
+      /* -- Phished Emails Link Destination---*/
+      // let consentLink = `https://phished.app/consent?consentCode=${consent.id}`       
+      let consentLink = `http://localhost:3000/consent?consentCode=${consent.id}`       
+
+      let phishedApp = `https://phished.app/`
+      
 
         
       var mailOptions = {
         from: req.body.from,
         to: req.body.to,
+        yourName: req.body.yourName,
         subject: req.body.subject,
         replyTo: req.body.replyTo,
         template: req.body.template,
+        targetName: req.body.targetName,
         // html: req.body.html,
         context: {
           text: req.body.html,
@@ -78,7 +93,11 @@ export default async function handler(req, res) {
           email: req.body.to,
           bodyName:req.body.bodyName,
           bank:req.body.bankName,
-          phishedLink: phishedLink
+          yourName: req.body.yourName,
+          targetName: req.body.targetName,
+          consentLink: consentLink,
+          phishedApp: phishedApp,
+          
         },
       };
 
@@ -88,7 +107,7 @@ export default async function handler(req, res) {
         transporter
             .sendMail(mailOptions)
             .then((info) => {
-              // console.log(req.body);
+              console.log('test', req.body);
               console.log('Email sent: ' + info.response);
               resolve(info);
             })

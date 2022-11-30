@@ -11,11 +11,15 @@ import PayoutForm from '../payoutForm/PayoutForm';
 import ConsentForm from '../../pages/consentForm';
 import { Select, Container, Text, Title} from '@mantine/core';
 
-export function TermForm({ onSendEmail, onScheduleEmail }) {
+export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
   const [templateName, setTemplateName] = useState('');
 
 
 
+
+  async function submitConsentHandler(data) {
+    await onConsentEmail(data);
+  }
 
   return (
     <>
@@ -65,7 +69,7 @@ export function TermForm({ onSendEmail, onScheduleEmail }) {
         <DocsForm submitHandler={onSendEmail} />
       )}
       {templateName == 'Consent' && (
-        <ConsentForm submitHandler={onSendEmail} />
+        <ConsentForm submitHandler={submitConsentHandler} />
       )}
 
     </>
