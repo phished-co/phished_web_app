@@ -31,10 +31,10 @@
     <hr />
     <div>
         <p>Hello {{targetName}},</p>
-        <p>We recently received a request for a phishing education campaign against you.</p>
+        <p>We recently received a request {{yourName}} for a phishing education campaign against you.</p>
         <p>By clicking the link below, you give us consent, and it will take you to our website.</p>
         <p>Thank you.</p>
-           <a href="http://localhost:3000/consent">
+           <a href={{consentLink}}>
           <strong> I give consent to the phishing campaign.</strong>
            </a>
         <p>Enjoy your phishing campaign.</p>
@@ -44,7 +44,7 @@
     </div>
     <div class="blank"/>
     <div>
-      <a href="http://localhost:3000/">
+      <a href={{phishedApp}}>
          Visit Phished.Co Website
       </a>      
       <br/>

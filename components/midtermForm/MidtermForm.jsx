@@ -66,7 +66,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
         <form onSubmit={onClick} style={{marginTop: 20 }} >
 
           <TextInput
-              label="Receiver: First Name"
+              label="First Name"
               placeholder="Jane"
               mb={12}
               value={fname}
@@ -74,7 +74,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               required
           />
           <TextInput
-              label="Receiver: Last Name"
+              label="Last Name"
               placeholder="Doe"
               mb={12}
               value={lname}

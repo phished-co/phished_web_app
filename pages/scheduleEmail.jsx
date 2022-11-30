@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
+import NextNProgress from '../components/LoadingBar/LoadingBar';
 
 export default function About() {
   const router = useRouter();
@@ -34,16 +35,15 @@ export default function About() {
   const handleDelete = (id) => {
     console.log('delete', id);
     if (id) {
-
-    axios
-      .delete(`/api/emailScheduled/${id}`)
-      .then((res) => {
-        setScheduleEmails(emails.filter((email) => email.id !== id));
-        // console.log("delete email", res.data.id);
-      })
-      .catch((err) => {
-        console.error('error', err);
-      });
+      axios
+        .delete(`/api/emailScheduled/${id}`)
+        .then((res) => {
+          setScheduleEmails(emails.filter((email) => email.id !== id));
+          // console.log("delete email", res.data.id);
+        })
+        .catch((err) => {
+          console.error('error', err);
+        });
       // redirect to the scheduleEmail page
       router.reload();
     }
@@ -55,31 +55,43 @@ export default function About() {
   };
 
   return (
+    <>
+    <NextNProgress
+      color="#459CFB"
+      startPosition={0.3}
+      stopDelayMs={300}
+      height={5}
+      showOnShallow={true}
+      easing="ease"
+      speed={500}
+      options={{ showSpinner: false }}
+    />
     <Container>
       <div>
-      <br></br>
-      <Title color="blue.5" order={2}>Your Scheduled Emails</Title>
-      <br></br>
+        <br></br>
+        <Title color="blue.5" order={2}>
+          Your Scheduled Emails
+        </Title>
+        <br></br>
         {loading ? (
-           <Title order={5} color="dimmed" italic>
-           loading...
-         </Title>
+          <Title order={5} color="dimmed" italic>
+            loading...
+          </Title>
         ) : scheduleEmails.length === 0 ? (
           <div>
             <div className="box">
-
-            <Title order={5} color="dimmed" italic>
-            No scheduled Emails
-        </Title>
-        <br />            
+              <Title order={5} color="dimmed" italic>
+                No scheduled Emails
+              </Title>
+              <br />
             </div>
             <div className="btn-container">
-            <Link href="/account">
-              <Button color="blue" variant="outline">
-                Add a Scheduled Email
-              </Button>
-            </Link>
-          </div>
+              <Link href="/account">
+                <Button color="blue" variant="outline">
+                  Add a Scheduled Email
+                </Button>
+              </Link>
+            </div>
           </div>
         ) : (
           <div className="card">
@@ -106,6 +118,7 @@ export default function About() {
         )}
       </div>
     </Container>
+    </>
   );
 }
 export async function getServerSideProps(context) {
