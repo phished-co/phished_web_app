@@ -120,14 +120,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
                     onChange={(e) => setHtml(e.target.value)}
                     required
                 />
-  {successNote &&
-      <>
-        <br></br>
-        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
-          Submitted successfully
-        </Notification>
-      </>
-      }
 
           <div className="button">
             <br />
