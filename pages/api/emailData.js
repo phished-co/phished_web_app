@@ -46,6 +46,7 @@ export default async function handler(req, res) {
       
       console.log("Email has been saved in DB as a success.")
       await setDoc(doc(db, "phishedEmails", phishedEmailId), sentEmailDocSnap.data());
+
       await updateDoc(phishedEmailsDocRef, {
         phishedAt: Date.now()
       });

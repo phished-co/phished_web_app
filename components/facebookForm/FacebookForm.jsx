@@ -57,14 +57,25 @@ const textAreaStyles = createStyles((theme) => ({
 }));
 
 
-// const confirmStyle = {
-//   backgroundColor: 'RGBA(150,183,80,0.43)',
-//   padding: '10px',
-//   margin: '10px',
-//   textAlign: 'center',
-//   fontSize: '10px',
-//   borderRadius: '4px'
-// };
+const confirmStyle = {
+  backgroundColor: 'RGBA(150,183,80,0.43)',
+  padding: '10px',
+  margin: '10px',
+  textAlign: 'center',
+  fontSize: '10px',
+  borderRadius: '4px'
+};
+
+
+const errorStyle = {
+  backgroundColor: 'RGBA(255,101,80,0.4)',
+  padding: '10px',
+  margin: '10px',
+  textAlign: 'center',
+  fontSize: '10px',
+  borderRadius: '4px'
+};
+
 
 
 const templateStyle ={
@@ -75,8 +86,6 @@ const templateStyle ={
   borderRadius: '5px',
   color: '#3F3F3F',
   fontSize: '10px',
-
-
 
 
 }
@@ -96,8 +105,8 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   const [bodyName, setBodyName] = useState('');
   const [template, setTemplate] = useState('facebook');
 
-  const [successNote, setSuccessNote] = useState(false);
-  // const [submissionNote, setSubmissionNote] = useState(null);
+  // const [successNote, setSuccessNote] = useState(false);
+  const [submissionNote, setSubmissionNote] = useState("invisable");
 
 
 
@@ -113,10 +122,15 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
 
     let from = `${fname} ${lname} ${fromEmail}`;
     let validation = await submitHandler({ from, to, subject, html, bodyName, template})
-   
-    setSuccessNote(validation)
+
+    setSubmissionNote(validation.toString())
+    
+    console.log(`After validation: ${submissionNote}`)
+    
+
     const timeId = setTimeout(() => {
-      setSuccessNote(false);}, 2000);
+      setSubmissionNote("invisable");
+      }, 2500);
     return () => clearTimeout(timeId);
 
   }
@@ -195,11 +209,19 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
           </div>
         </form>
 
-        {successNote &&
+
+        {submissionNote=="true" &&
         <div style={confirmStyle}>
           <p> Submitted successfully</p>
         </div>
         }
+
+        {submissionNote=="false" &&
+        <div style={errorStyle}>
+          <p> You can only send phishing emails to consented targets </p>
+        </div>
+        }
+
 
       </>
 
