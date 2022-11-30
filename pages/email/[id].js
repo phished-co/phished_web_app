@@ -11,7 +11,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { Button, createStyles, TextInput, Textarea } from '@mantine/core';
+import { Button, createStyles, TextInput, Textarea, Title, Container } from '@mantine/core';
 import * as firebase from 'firebase/firestore';
 import styled from 'styled-components';
 import { authOptions } from '../api/auth/[...nextauth]';
@@ -19,32 +19,25 @@ import { unstable_getServerSession } from 'next-auth';
 import { Notification } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 30vw;
-  margin: 3rem auto;
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   width: 30vw;
+//   margin: 3rem auto;
 
-  h1 {
-    margin-bottom: 2rem;
-    font-family: "Verdana";
-    text-transform: uppercase;
-    color: #459cfb;
-  }
+//   .button {
+//     display: flex;
+//     gap: 1rem;
+//     justify-content: center;
+//   }
 
-  .button {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  .description {
-    margin: 1rem;
-    width: 25vw;
-  }
-`;
+//   .description {
+//     margin: 1rem;
+//     width: 25vw;
+//   }
+// `;
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -154,7 +147,9 @@ export default function Email({ email }) {
   }
   return (
     <Container>
-      <h1> Schedule Your Email</h1>
+      <br></br>
+      <Title color="blue.5" order={2}>Schedule Your Email</Title>
+      <br></br>
       <form onSubmit={handleSubmit}>
         <TextInput
           onChange={(e) => setFromEmail(e.target.value)}
@@ -204,6 +199,9 @@ export default function Email({ email }) {
           <Button variant="outline" type="submit">
             Schedule Email
           </Button>
+          <br>
+          </br>
+          <br></br>
           <Link href="/scheduleEmail">
             <Button variant="outline">Cancel</Button>
           </Link>
@@ -216,6 +214,8 @@ export default function Email({ email }) {
         </Notification>
       }
     </Container>
+    // </>
+
   );
 }
 

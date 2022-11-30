@@ -1,23 +1,15 @@
 import PhishForm from '../components/phishForm/PhishForm';
 import MidtermForm from '../components/midtermForm/MidtermForm';
 import TermForm from '../components/termForm/TermForm';
-
 import axios from 'axios';
 import styled from 'styled-components';
+import { Container } from '@mantine/core';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
 
 import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
 
-export const Container = styled.div`
-  max-width: 360px;
-  margin: 0 auto;
-  margin-top: 4rem;
-  font-family: 'Verdana';
-  text-transform: uppercase;
-  color: #292a2d;
-`;
 
 export default function Home() {
 
@@ -52,12 +44,14 @@ export default function Home() {
 
 
   return (
-      <Container>
-        <TermForm
-            onSendEmail={handleSendEmail}
-            onScheduleEmail={handleScheduleEmail}
-        />
-      </Container>
+
+    <Container size="xs" px="xs">
+      <br />
+      <TermForm
+        onSendEmail={handleSendEmail}
+        onScheduleEmail={handleScheduleEmail}
+      />
+    </Container>
   );
 }
 

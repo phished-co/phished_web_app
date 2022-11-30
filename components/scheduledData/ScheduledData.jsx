@@ -1,57 +1,6 @@
 import styled from 'styled-components';
-import { Button } from '@mantine/core';
-import Link from 'next/link';
+import { Button, Card, Table, Group} from '@mantine/core';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin: 2rem;
-  width: 80%;
-  font-family: 'Verdana';
-
-  .card {
-    border: 1px solid #459cfb;
-    padding: 2rem;
-    border-radius: 10px;
-  }
-
-  .card .card-title {
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #292a2d;
-  }
-
-  .card .info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 50%;
-    color: #292a2d;
-  }
-
-  .button {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1.5rem;
-  }
-
-  .message {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 200px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 3;
-  }
-`;
 
 export default function ScheduledData({
   firstName,
@@ -64,45 +13,78 @@ export default function ScheduledData({
   onEdit,
   id,
 }) {
+
+
   return (
-    <Container>
-      <div className="card">
-        <h2 className="card-title">
-          {firstName} {lastName}
-        </h2>
-        <div className="info">
-          <p>
-            <strong>First Name:</strong> {firstName}
-          </p>
-          <p>
-            <strong>Last Name:</strong> {lastName}
-          </p>
-          <p>
-            <strong>Sender:</strong> {senderEmail}
-          </p>
-          <p>
-            <strong>Receiver:</strong> {receiver}
-          </p>
-          <p>
-            <strong>Subject:</strong> {subject}
-          </p>
-          <span className="message">
-            <strong>Message:</strong> {message}
-          </span>
-        </div>
+    <>  
+      <Card  p="lg" radius="md" withBorder>
+    <Table horizontalSpacing="sm">
+    <tbody>
+      <thead>
+      <tr>
+        <th>First Name:</th>
+      <td>{firstName}</td>
+    </tr>
+    </thead>
+    <thead>
+    <tr >
+        <th>Last Name:</th>
+      <td>{lastName}</td>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+        <th>Sender:</th>
+      <td>{senderEmail}</td>
+    </tr>
+</thead>
+<thead>
+    <tr>
+        <th>Receiver:</th>
+      <td>{receiver}</td>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+      
+        <th>Subject:</th>
+      <td>{subject}</td>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+        <th>Message:</th>
+      <td>{message}</td>
+    </tr>
+    </thead>
+    </tbody>
+
+    </Table>
+    
+        <br />
+
         <div className="button">
+
           <Button variant="outline" onClick={() => onEdit(id)}>
-            SET DATE
+            Schedule Date
           </Button>
+          <br></br>
+          <br></br>
           {/* <Link href={`/email/${id}`} key={id}> */}
           {/* <Button variant="outline">SET DATE</Button> */}
           {/* </Link> */}
-          <Button variant="outline" onClick={() => onDelete(id)}>
-            DELETE
+          <Button variant="light" color="red" size="xs" compact onClick={() => onDelete(id)}>
+            Delete
           </Button>
+        
         </div>
-      </div>
-    </Container>
+        
+      </Card>
+      <br></br>
+      </>
+      
+        
+  
   );
 }
 
