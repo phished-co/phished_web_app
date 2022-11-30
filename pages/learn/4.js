@@ -12,7 +12,7 @@ export default function Article() {
       <TextContainer>
         <Header>How to help the older adults in your life get cyber safe'</Header>
         <AuthorDate>
-          Nov 8 2022, 10:32 am
+          September 14 2022, 10:32 am
         </AuthorDate>
         <Text>
           Magna nostrud proident quis cupidatat et adipisicing voluptate ut non ipsum. Commodo fugiat Lorem consectetur Lorem officia in qui tempor minim. Velit irure dolor minim ullamco laborum aliqua ut incididunt et mollit. Esse exercitation ea esse voluptate deserunt esse. Do nisi occaecat laborum do deserunt esse dolore cillum cupidatat adipisicing nostrud magna ipsum laborum.

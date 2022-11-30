@@ -3,6 +3,11 @@ import { Text } from '@mantine/core';
 import { TextContainer, ImgContainer, Header, AuthorDate } from './2';
 import { Container } from '../quiz'
 
+export const SubHeading = styled(Text)`
+  font-size: 1.75em;
+  font-weight: 500;
+`
+
 export default function Article() {
   return (
     <div>
@@ -12,26 +17,53 @@ export default function Article() {
       <TextContainer>
         <Header>How anyone can become a confident online shopper</Header>
         <AuthorDate>
-          Nov 8 2022, 10:32 am
+          September 7 2022, 10:32 am
         </AuthorDate>
         <Text>
-          Magna nostrud proident quis cupidatat et adipisicing voluptate ut non ipsum. Commodo fugiat Lorem consectetur Lorem officia in qui tempor minim. Velit irure dolor minim ullamco laborum aliqua ut incididunt et mollit. Esse exercitation ea esse voluptate deserunt esse. Do nisi occaecat laborum do deserunt esse dolore cillum cupidatat adipisicing nostrud magna ipsum laborum.
+          Online shopping is handy since you can buy things using a mobile device and have them delivered the next day at your front door. You should be aware of the risks related to online shopping, though. These dangers provide numerous risks to your assets as well as your personal information (e.g. email address, shipping address, phone number, credit card). Protective online shopping habits will help you and your business keep sensitive data and assets secure, whether you're shopping for personal use or utilising company accounts to make business purchases.
+
         </Text>
         <br />
         <Text>
-          Enim dolore amet eu dolore nulla. Cupidatat est ex Lorem dolore irure aliqua qui minim cupidatat. Labore eu aliqua aliqua nostrud aliqua aliqua. Et nulla sit duis labore fugiat amet proident consectetur eiusmod. Aliqua id ex aliqua anim aute sint culpa velit.
+          <SubHeading>Possible threats and scams</SubHeading>
+          <br />
+          You run the danger of identity theft, hacking, and financial loss when you shop online. The following are some instances of how criminals can take sensitive information and compromise accounts:
+          <br /><br />
+          - sites that pretend to be e-commerce but actually capture your data after you make a purchase
+          <br />
+          - sites that process payments fraudulently (i.e., third-party financial arrangements) and take your money for fictitious transactions
+          <br />
+          - websites that do not use encryption, exposing your data to everyone
+          <br />
+          - websites with poor security and questionable vendors (e.g. individual sellers or private citizens)
 
-          Reprehenderit officia esse aute aute ex in dolore nisi quis ex sint culpa aliqua esse. In veniam amet laboris ex aute. Aliquip laborum esse minim nisi tempor in adipisicing non sint. Sit aliqua est consectetur reprehenderit nisi officia nostrud duis sunt aute. Magna nulla ullamco laboris nisi. Eiusmod minim duis anim labore minim laboris sunt qui ullamco nulla fugiat anim. Fugiat dolor magna et aute reprehenderit commodo minim commodo laborum.
-
-          Enim esse quis velit irure non duis adipisicing ea. Proident fugiat elit cupidatat est ullamco et incididunt. Sint incididunt reprehenderit quis laboris.
         </Text>
         <br />
         <Text>
-          Enim dolore amet eu dolore nulla. Cupidatat est ex Lorem dolore irure aliqua qui minim cupidatat. Labore eu aliqua aliqua nostrud aliqua aliqua. Et nulla sit duis labore fugiat amet proident consectetur eiusmod. Aliqua id ex aliqua anim aute sint culpa velit.
+          <SubHeading>Common Warning Signs</SubHeading>
+          <br />
+          - The following red flags are excellent indicators to determine whether a website is reliable:
+          <br />
+          - The website appears shoddy and unprofessional.
+          <br />
+          - The back button and the links are inoperable or disabled.
+          <br />
+          - The website does not include a contact page (e.g. phone number, email, address)
+          <br />
+          - The privacy or return policies are either not specified or are not clear.
+          <br />
+          - requesting your credit card information for purposes unrelated to your purchase.
+          <br />
+          - The item costs are absurdly cheap (i.e. too good to be true)
+          <br />
+          - The shipping, tariffs, and other fees seem out of the ordinary.
+        </Text>
+        <br />
+        <Text>
+          <SubHeading>Remain vigilant</SubHeading>
+          Implementing these practices can help protect you when shopping online.
+          While they may reduce your risks, they do not erase them completely.
 
-          Reprehenderit officia esse aute aute ex in dolore nisi quis ex sint culpa aliqua esse. In veniam amet laboris ex aute. Aliquip laborum esse minim nisi tempor in adipisicing non sint. Sit aliqua est consectetur reprehenderit nisi officia nostrud duis sunt aute. Magna nulla ullamco laboris nisi. Eiusmod minim duis anim labore minim laboris sunt qui ullamco nulla fugiat anim. Fugiat dolor magna et aute reprehenderit commodo minim commodo laborum.
-
-          Enim esse quis velit irure non duis adipisicing ea. Proident fugiat elit cupidatat est ullamco et incididunt. Sint incididunt reprehenderit quis laboris.
         </Text>
       </TextContainer>
     </div>
