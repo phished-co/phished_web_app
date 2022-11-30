@@ -21,8 +21,8 @@ export function MantineModal() {
             Log in
           </Button>
         ) : (
-          <Button type="null" onClick={signOut}>
-            Sign out
+          <Button type="null" onClick={() => { r.push({ pathname: '/dashboard' }) }}>
+            Dashboard
           </Button>
         )}
       </Group>
