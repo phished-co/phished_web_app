@@ -63,7 +63,6 @@ export default async function handler(req, res) {
       let phishedLink = `https://phished.app/youPhished?phishingCode=${sentEmail.id}`       //Deplyment
       // let phishedLink = `http://localhost:3000/youPhished?phishingCode=${sentEmail.id}`  //LocalHost
 
-
         
       var mailOptions = {
         from: req.body.from,

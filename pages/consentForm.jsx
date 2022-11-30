@@ -67,7 +67,6 @@ export default function ConsentForm({ submitHandler }) {
   );
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [yourName, setYourName] = useState(session.user.name);
   const [targetName, setTargetName] = useState('');
   const [template, setTemplate] = useState('consent');
 
@@ -85,16 +84,14 @@ export default function ConsentForm({ submitHandler }) {
     // setHtml('');
     setTargetName('');
 
-    let from = `${yourName} ${fromEmail}`;
+    let from = `${fname} ${lname} ${fromEmail}`;
     let validation = submitHandler({
       from,
       to,
-      yourName,
       subject,
       html,
       targetName,
       template,
-      consent: false,
     });
 
     setSuccessNote(true);
@@ -110,32 +107,22 @@ export default function ConsentForm({ submitHandler }) {
       <div className="container">
         <form onSubmit={onClick} style={{ marginTop: 20 }}>
           <TextInput
-            label="Receiver's Name"
-            placeholder="Jane Doe"
+            label="Receiver: First Name"
+            placeholder="Jane"
             classnames={classes}
             mb={12}
-            value={targetName}
-            onChange={(e) => setTargetName(e.target.value)}
+            value={fname}
+            onChange={(e) => setFname(e.target.value)}
             required
           />
           <TextInput
-            label="Your Name"
-            // placeholder="Jane Doe"
+            label="Receiver: Last Name"
+            placeholder="Doe"
             classnames={classes}
             mb={12}
-            defaultValue={yourName}
-            // onChange={(e) => setYourName(e.target.value)}
-            readOnly
-          />
-          <TextInput
-            // label="consent"
-            // placeholder="Doe"
-            defaultValue="false"
-            classnames={classes}
-            mb={12}
-            // value={lname}
-            // onChange={(e) => setLname(e.target.value)}
-            hidden
+            value={lname}
+            onChange={(e) => setLname(e.target.value)}
+            required
           />
           <TextInput
             // label="Sender Email [Default]"
@@ -179,7 +166,7 @@ export default function ConsentForm({ submitHandler }) {
             // onChange={(e) => setHtml(e.target.value)}
             readOnly
           />
-
+         
    {successNote && (
      <>
           <br />
@@ -188,7 +175,6 @@ export default function ConsentForm({ submitHandler }) {
        </Notification>
        </>
       )}
-
           <div className="button">
             <br />
             <Button variant="outline" type="submit">
