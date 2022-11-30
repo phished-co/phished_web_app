@@ -1,5 +1,7 @@
 import { Title, Button } from "@mantine/core"
 import styled from 'styled-components'
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/router"
 
 const Container = styled.div`
   display: grid;
@@ -14,9 +16,15 @@ const Container = styled.div`
 `
 
 export function GetStarted() {
+  const { data: session } = useSession();
+  const r = useRouter()
+
   return <Container>
     <Title align='center' order={2}>Know someone vulnerable? Get phishing immediately</Title>
-    <Button className='cta' type='null' variant='fill'>Let's go!</Button>
+    {session ?
+      <Button className='cta' type='null' variant='fill' onClick={() => { r.push({ pathname: '/dashboard' }) }}>Let's go!</Button> :
+      <Button className='cta' type='null' variant='fill' onClick={() => { r.push({ pathname: '/onboarding' }) }}>Let's go!</Button>
+    }
   </Container>
 }
 
