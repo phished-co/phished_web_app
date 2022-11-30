@@ -233,7 +233,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
                 <Avatar
                   radius="xl"
                   src={session.user.image}
-                  onClick={() => {signOut}}
+                  onClick={() => {signOut()}}
                   alt="your profile picture"
                 />
               ) : (

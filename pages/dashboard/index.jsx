@@ -20,7 +20,8 @@ import NewChart from '../../components/newChart/NewChart';
 const useStyles = createStyles((theme) => ({
   topbar: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignContent: 'center'
   }
 }))
 
@@ -56,12 +57,14 @@ export default function Dashboard() {
           <div className={classes.topbar}>
             <h1 className="text-4xl mb-6">Dashboard</h1>
             <Button
+              size='xs'
               variant='outline'
               onClick={() => {
                 r.push({ pathname: '/account' });
               }}
+              mt={12}
             >
-              Send a phishing email
+              Send phishing email
             </Button>
           </div>
           <NewChart data={chartdata} />
