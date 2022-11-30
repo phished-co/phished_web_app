@@ -23,11 +23,10 @@ export default async function handler(req, res) {
 
             //PLACE HOLDERS: subtitude the code with commented ones.
             let consentCreator = "yaasminaa77@gmail.com"  // req.query.creator
-            let consentTarget = "y@gmail.com"  //req.query.to
+            let consentTarget = "email@fake.com"  //req.query.to
             let consentExist = false
 
-            //PLACE HOLDERS: change the db name from consentedEmails to sejin db
-            const consentedEmailDocRef = query(collection(db, 'consentedEmails'), where('creatorEmail', '==', consentCreator), where('to', '==', consentTarget));
+            const consentedEmailDocRef = query(collection(db, 'consent'), where('creatorEmail', '==', consentCreator), where('to', '==', consentTarget));
             const querySnapshot = await getDocs(consentedEmailDocRef);
             querySnapshot.forEach((doc) => {
                 consentExist = true
