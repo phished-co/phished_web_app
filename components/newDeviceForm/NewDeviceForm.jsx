@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-
+import { Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
 // import Calendar from '../datetimepicker/Calendar';
 
 
@@ -67,6 +68,15 @@ const confirmStyle = {
 };
 
 
+const errorStyle = {
+  backgroundColor: 'RGBA(255,101,80,0.4)',
+  padding: '10px',
+  margin: '10px',
+  textAlign: 'center',
+  fontSize: '10px',
+  borderRadius: '4px'
+};
+
 const templateStyle ={
   marginTop: 20,
   padding: 20,
@@ -75,8 +85,6 @@ const templateStyle ={
   borderRadius: '5px',
   color: '#3F3F3F',
   fontSize: '10px',
-
-
 
 
 }
@@ -94,8 +102,7 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [template, setTemplate] = useState('new_device');
-
-  const [successNote, setSuccessNote] = useState(false);
+  const [submissionNote, setSubmissionNote] = useState("invisable");
 
 
 
@@ -108,11 +115,12 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
     setHtml('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = submitHandler({ from, to, subject, html, template})
+    let validation = await submitHandler({ from, to, subject, html, template})
 
-    setSuccessNote(true)
+    setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
-      setSuccessNote(false);}, 2000);
+      setSubmissionNote("invisable");
+    }, 2500);
     return () => clearTimeout(timeId);
 
 
@@ -178,10 +186,16 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
           </div>
         </form>
 
-        {successNote &&
-        <div style={confirmStyle}>
-          <p> Submitted successfully</p>
-        </div>
+        {submissionNote=="true" &&
+        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
+          Submitted successfully
+        </Notification>
+        }
+
+        {submissionNote=="false" &&
+        <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
+          The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn more</a>
+        </Notification>
         }
 
       </>

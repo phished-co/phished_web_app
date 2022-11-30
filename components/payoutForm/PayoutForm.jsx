@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-
+import { Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
 // import Calendar from '../datetimepicker/Calendar';
 
 
@@ -67,6 +68,15 @@ const confirmStyle = {
 };
 
 
+const errorStyle = {
+  backgroundColor: 'RGBA(255,101,80,0.4)',
+  padding: '10px',
+  margin: '10px',
+  textAlign: 'center',
+  fontSize: '10px',
+  borderRadius: '4px'
+};
+
 const templateStyle ={
   marginTop: 20,
   padding: 20,
@@ -76,9 +86,7 @@ const templateStyle ={
   color: '#3F3F3F',
   fontSize: '10px',
 
-
-
-
+  
 }
 
 export function PayoutForm({ submitHandler, onScheduleEmail }) {
@@ -95,11 +103,9 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
   const [lname, setLname] = useState('');
   const [bankName, setBankName] = useState('');
   const [template, setTemplate] = useState('payout');
+  const [submissionNote, setSubmissionNote] = useState("invisable");
 
-  const [successNote, setSuccessNote] = useState(false);
-
-
-
+  
   async function onClick(e) {
     e.preventDefault();
 
@@ -110,11 +116,12 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
     setBankName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = submitHandler({ from, to, subject, html, bankName, template})
+    let validation = await submitHandler({ from, to, subject, html, bankName, template})
 
-    setSuccessNote(true)
+    setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
-      setSuccessNote(false);}, 2000);
+      setSubmissionNote("invisable");
+    }, 2500);
     return () => clearTimeout(timeId);
 
 
@@ -203,10 +210,16 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
           </div>
         </form>
 
-        {successNote &&
+        {submissionNote=="true" &&
         <div style={confirmStyle}>
           <p> Submitted successfully</p>
         </div>
+        }
+
+        {submissionNote=="false" &&
+        <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
+          The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn more</a>
+        </Notification>
         }
 
       </>

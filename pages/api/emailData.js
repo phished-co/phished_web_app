@@ -149,8 +149,7 @@ export default async function handler(req, res) {
         });
 
       });
-
-
+      
 
       //get the user phished emails
       const userPhishedEmailsQuery = query(collection(db, "phishedEmails"), where("creatorEmail", "==", req.query.userEmail));

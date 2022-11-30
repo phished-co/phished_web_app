@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-
+import { Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
 // import Calendar from '../datetimepicker/Calendar';
 
 
@@ -104,8 +105,6 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   const [lname, setLname] = useState('');
   const [bodyName, setBodyName] = useState('');
   const [template, setTemplate] = useState('facebook');
-
-  // const [successNote, setSuccessNote] = useState(false);
   const [submissionNote, setSubmissionNote] = useState("invisable");
 
 
@@ -122,12 +121,8 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
 
     let from = `${fname} ${lname} ${fromEmail}`;
     let validation = await submitHandler({ from, to, subject, html, bodyName, template})
-
+    
     setSubmissionNote(validation.toString())
-    
-    console.log(`After validation: ${submissionNote}`)
-    
-
     const timeId = setTimeout(() => {
       setSubmissionNote("invisable");
       }, 2500);
@@ -209,19 +204,17 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
           </div>
         </form>
 
-
         {submissionNote=="true" &&
-        <div style={confirmStyle}>
-          <p> Submitted successfully</p>
-        </div>
+        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
+          Submitted successfully
+        </Notification>
         }
 
         {submissionNote=="false" &&
-        <div style={errorStyle}>
-          <p> You can only send phishing emails to consented targets </p>
-        </div>
+        <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
+          The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn more</a>
+        </Notification>
         }
-
 
       </>
 

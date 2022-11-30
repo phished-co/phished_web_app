@@ -54,6 +54,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+
 const textAreaStyles = createStyles((theme) => ({
   root: {
     position: 'relative',
@@ -73,6 +74,25 @@ const textAreaStyles = createStyles((theme) => ({
     zIndex: 1,
   },
 }));
+
+const confirmStyle = {
+  backgroundColor: 'RGBA(150,183,80,0.43)',
+  padding: '10px',
+  margin: '10px',
+  textAlign: 'center',
+  fontSize: '10px',
+  borderRadius: '4px'
+};
+
+
+const errorStyle = {
+  backgroundColor: 'RGBA(255,101,80,0.4)',
+  padding: '10px',
+  margin: '10px',
+  textAlign: 'center',
+  fontSize: '10px',
+  borderRadius: '4px'
+};
 
 
 const templateStyle ={
@@ -101,8 +121,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   const [lname, setLname] = useState('');
   const [targetName, setTargetName] = useState('');
   const [template, setTemplate] = useState('basic');
-
-  const [successNote, setSuccessNote] = useState(false);
+  const [submissionNote, setSubmissionNote] = useState("invisable");
 
 
 
@@ -118,11 +137,12 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
     setTargetName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = submitHandler({ from, to, subject, html, targetName, template})
+    let validation = await submitHandler({ from, to, subject, html, targetName, template})
 
-    setSuccessNote(true)
+    setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
-      setSuccessNote(false);}, 2000);
+      setSubmissionNote("invisable");
+    }, 2500);
     return () => clearTimeout(timeId);
 
 
@@ -130,109 +150,114 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
 
   return (
 
-  <>
-   <Container>
-    <div style={templateStyle} >
-      {/*<p>[your text] <br/> link</p>*/}
-      <p>[Phish emoticon]</p>
-      <p>[your text]</p>
-      <p><u>Click Here</u></p>
+      <>
+        <Container>
+          <div style={templateStyle} >
+            {/*<p>[your text] <br/> link</p>*/}
+            <p>[Phish emoticon]</p>
+            <p>[your text]</p>
+            <p><u>Click Here</u></p>
 
-    </div>
-
-        <form onSubmit={onClick} style={{marginTop: 20 }} >
-
-          <TextInput
-              label="Receiver: First Name"
-              placeholder="Jane"
-              classnames={classes}
-              mb={12}
-              value={fname}
-              onChange={(e) => setFname(e.target.value)}
-              required
-          />
-          <TextInput
-              label="Receiver: Last Name"
-              placeholder="Doe"
-              classnames={classes}
-              mb={12}
-              value={lname}
-              onChange={(e) => setLname(e.target.value)}
-              required
-          />
-          <TextInput
-              label="Sender Email"
-              placeholder="senders.email@gmail.com"
-              classnames={classes}
-              mb={12}
-              value={fromEmail}
-              onChange={(e) => setFromEmail(e.target.value)}
-              type="email"
-              required
-          />
-          <TextInput
-              label="Receiver Email"
-              placeholder="receivers.email@gmail.com"
-              classnames={classes}
-              mb={12}
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-              type="email"
-              required
-          />
-
-
-              <TextInput
-                  label="Subject"
-                  placeholder="You won!"
-                    classnames={classes}
-                    mb={12}
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
-                    required
-
-                />
-
-                <Textarea
-                    label="Content"
-                    placeholder="Hi Mom..."
-                    autosize
-                    minRows={4}
-                    classnames={textarea}
-                    value={html}
-                    onChange={(e) => setHtml(e.target.value)}
-                    required
-                />
-
-
-          
-
-          <div className="button">
-            <Button type="submit" variant="outline">
-              Send email
-            </Button>
-
-            <Link href="/scheduleEmail" passHref>
-              <a
-                  onClick={() =>
-                      onScheduleEmail({ fname, lname, fromEmail, to, subject, html })
-                  }
-              >
-                <Button variant="subtle">Schedule email for later</Button>
-              </a>
-            </Link>
           </div>
-        </form>
 
-   
-        <br></br>
-      {successNote &&
-        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
-          Submitted successfully
-        </Notification>
-      }
-    </Container>
-  </>
+          <form onSubmit={onClick} style={{marginTop: 20 }} >
+
+            <TextInput
+                label="Receiver: First Name"
+                placeholder="Jane"
+                classnames={classes}
+                mb={12}
+                value={fname}
+                onChange={(e) => setFname(e.target.value)}
+                required
+            />
+            <TextInput
+                label="Receiver: Last Name"
+                placeholder="Doe"
+                classnames={classes}
+                mb={12}
+                value={lname}
+                onChange={(e) => setLname(e.target.value)}
+                required
+            />
+            <TextInput
+                label="Sender Email"
+                placeholder="senders.email@gmail.com"
+                classnames={classes}
+                mb={12}
+                value={fromEmail}
+                onChange={(e) => setFromEmail(e.target.value)}
+                type="email"
+                required
+            />
+            <TextInput
+                label="Receiver Email"
+                placeholder="receivers.email@gmail.com"
+                classnames={classes}
+                mb={12}
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+                type="email"
+                required
+            />
+
+
+            <TextInput
+                label="Subject"
+                placeholder="You won!"
+                classnames={classes}
+                mb={12}
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                required
+
+            />
+
+            <Textarea
+                label="Content"
+                placeholder="Hi Mom..."
+                autosize
+                minRows={4}
+                classnames={textarea}
+                value={html}
+                onChange={(e) => setHtml(e.target.value)}
+                required
+            />
+
+
+
+
+            <div className="button">
+              <Button type="submit" variant="outline">
+                Send email
+              </Button>
+
+              <Link href="/scheduleEmail" passHref>
+                <a
+                    onClick={() =>
+                        onScheduleEmail({ fname, lname, fromEmail, to, subject, html })
+                    }
+                >
+                  <Button variant="subtle">Schedule email for later</Button>
+                </a>
+              </Link>
+            </div>
+          </form>
+
+          {submissionNote=="true" &&
+          <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
+            Submitted successfully
+          </Notification>
+          }
+
+          {submissionNote=="false" &&
+          <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
+            The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn more</a>
+          </Notification>
+          }
+
+        </Container>
+      </>
 
   );
 }
