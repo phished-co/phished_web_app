@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Notification } from '@mantine/core';
-import { IconCheck } from '@tabler/icons';
+import { IconCheck, IconX } from '@tabler/icons';
 
 
 const templateStyle ={
