@@ -181,9 +181,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
             <Avatar
               radius="xl"
               src={session.user.image}
-              onClick={() => {
-                r.push({ pathname: '/dashboard' });
-              }}
+              onClick={() => {signOut()}}
               alt="your profile picture"
             />
             </span>
@@ -235,9 +233,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
                 <Avatar
                   radius="xl"
                   src={session.user.image}
-                  onClick={() => {
-                    r.push({ pathname: '/dashboard' });
-                  }}
+                  onClick={() => {signOut}}
                   alt="your profile picture"
                 />
               ) : (
