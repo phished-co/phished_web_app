@@ -191,11 +191,11 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
           </div>
         </form>
 
-        {submissionNote=="true" &&
+        {/*{submissionNote=="true" &&*/}
         {/*<Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">*/}
-          Submitted successfully
+        {/*   Submitted successfully*/}
         {/*</Notification>*/}
-        }
+        {/*}*/}
 
         {submissionNote=="false" &&
         <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
