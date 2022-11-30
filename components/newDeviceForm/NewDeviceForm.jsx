@@ -119,7 +119,7 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
         <form onSubmit={onClick} style={{marginTop: 20 }} >
 
           <TextInput
-              label="Receiver: First Name"
+              label="First Name"
               placeholder="Jane"
               classnames={classes}
               mb={12}
@@ -128,7 +128,7 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
               required
           />
           <TextInput
-              label="Receiver: Last Name"
+              label="Last Name"
               placeholder="Doe"
               classnames={classes}
               mb={12}
