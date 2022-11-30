@@ -14,19 +14,26 @@ import React, { useState, useEffect } from 'react';
 export default function Home() {
 
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session);
 
-  const handleSendEmail = async (emailProperties) => {
-    if (session) {
-      const res = await axios.post('/api/emailSent', {
-        ...emailProperties,
-        replyTo: 'phishedapp@gmail.com',
-        creatorEmail: session.user.email,
-      });
+    const handleSendEmail = async (emailProperties) => {
+      if (session) {
 
-      return res.data;
-    }
-  };
+      // checking for consent, if it exist send the email
+      const consent = await axios.get(`/api/emailConsentCheck?to=${emailProperties.to}&creator=${session.user.email}`,);
+      
+      //if there is a consent send the email
+      if (consent.data) {
+        const res = await axios.post('/api/emailSent', {
+          ...emailProperties,
+          replyTo: 'phishedapp@gmail.com',
+          creatorEmail: session.user.email,
+        });
+      }
+      
+      return consent.data;
+      
+    }};
 
   const handleScheduleEmail = (props) => {
     axios.post('/api/emailScheduled', {
@@ -34,9 +41,10 @@ export default function Home() {
       ...props,
     });
   };
-  
+
 
   return (
+
     <Container size="xs" px="xs">
       <br />
       <TermForm
@@ -49,9 +57,9 @@ export default function Home() {
 
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(
-    context.req,
-    context.res,
-    authOptions
+      context.req,
+      context.res,
+      authOptions
   );
 
   if (!session) {

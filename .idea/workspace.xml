@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f5614ad5-0748-41e2-a0c7-81b3af1be12f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/docsForm/DocsForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/docsForm/DocsForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/facebookForm/FacebookForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/facebookForm/FacebookForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/midtermForm/MidtermForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/midtermForm/MidtermForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/newDeviceForm/NewDeviceForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/newDeviceForm/NewDeviceForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/payoutForm/PayoutForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/payoutForm/PayoutForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/emailConsentCheck.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailConsentCheck.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/api/emailData.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/emailSent.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailSent.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +49,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../frameworks/trash-queens" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />

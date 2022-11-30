@@ -14,9 +14,8 @@ import { Select, Container, Text, Title} from '@mantine/core';
 export function TermForm({ onSendEmail, onScheduleEmail }) {
   const [templateName, setTemplateName] = useState('');
 
-  async function submitHandler(data) {
-    await onSendEmail(data);
-  }
+
+
 
   return (
     <>
@@ -48,23 +47,27 @@ export function TermForm({ onSendEmail, onScheduleEmail }) {
       {templateName == '' && <div style={{ height: 250 }}></div>}
       {templateName == 'Basic' && (
         <MidtermForm
-          submitHandler={submitHandler}
+          submitHandler={onSendEmail}
           onScheduleEmail={onScheduleEmail}
         />
       )}
+
       {templateName == 'Facebook' && (
-        <FacebookForm submitHandler={submitHandler} />
+        <FacebookForm submitHandler={onSendEmail} />
       )}
       {templateName == 'New Device' && (
-        <NewDeviceForm submitHandler={submitHandler} />
+        <NewDeviceForm submitHandler={onSendEmail} />
       )}
-      {templateName == 'Payout' && <PayoutForm submitHandler={submitHandler} />}
+      {templateName == 'Payout' &&
+      <PayoutForm submitHandler={onSendEmail} />
+      }
       {templateName == 'Google Docs' && (
-        <DocsForm submitHandler={submitHandler} />
+        <DocsForm submitHandler={onSendEmail} />
       )}
       {templateName == 'Consent' && (
-        <ConsentForm submitHandler={submitHandler} />
+        <ConsentForm submitHandler={onSendEmail} />
       )}
+
     </>
   );
 }

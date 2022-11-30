@@ -28,8 +28,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   const [lname, setLname] = useState('');
   const [targetName, setTargetName] = useState('');
   const [template, setTemplate] = useState('basic');
-
-  const [successNote, setSuccessNote] = useState(false);
+  const [submissionNote, setSubmissionNote] = useState("invisable");
 
   async function onClick(e) {
     e.preventDefault();
@@ -43,15 +42,17 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
     setTargetName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = submitHandler({ from, to, subject, html, targetName, template})
+    let validation = await submitHandler({ from, to, subject, html, targetName, template})
 
-    setSuccessNote(true)
+    setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
-      setSuccessNote(false);}, 2000);
+      setSubmissionNote("invisable");
+    }, 2500);
     return () => clearTimeout(timeId);
   }
 
   return (
+
 
   <>
     <div style={templateStyle} >
@@ -147,6 +148,17 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
         </form> 
         
     
+          {submissionNote=="true" &&
+          <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
+            Submitted successfully
+          </Notification>
+          }
+
+          {submissionNote=="false" &&
+          <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
+            The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn more</a>
+          </Notification>
+          }
 
   </>
 
