@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ScheduledData from '../components/scheduledData/ScheduledData';
-import { Button } from '@mantine/core';
+import { Button, Container, Title, Card } from '@mantine/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
 import NextNProgress from '../components/LoadingBar/LoadingBar';
+
 
 const Container = styled.div`
   min-width: 500px;
@@ -108,6 +109,7 @@ export default function About() {
   };
 
   return (
+
     <>
       <NextNProgress
         color="#459CFB"
@@ -120,53 +122,107 @@ export default function About() {
         options={{ showSpinner: false }}
       />
 
-      <Container>
-        <div>
-          <h1 className="title">Scheduled Email List</h1>
-          {loading ? (
-            <h1 className="title"> Loading... </h1>
-          ) : scheduleEmails.length === 0 ? (
-            <div>
-              <div className="box">
-                <h2 className="title">No scheduled Email</h2>
-                <p className="title">Consider adding a scheduled Email from </p>
-              </div>
-              <div className="btn-container">
-                <Link href="/account">
-                  <Button color="blue" variant="outline">
-                    Click Here
-                  </Button>
-                </Link>
-              </div>
+    //  <Container>
+       // <div>
+          //<h1 className="title">Scheduled Email List</h1>
+         // {loading ? (
+          //  <h1 className="title"> Loading... </h1>
+        //  ) : scheduleEmails.length === 0 ? (
+           // <div>
+              //<div className="box">
+               // <h2 className="title">No scheduled Email</h2>
+               // <p className="title">Consider adding a scheduled Email from </p>
+             // </div>
+             // <div className="btn-container">
+               // <Link href="/account">
+                 // <Button color="blue" variant="outline">
+                   // Click Here
+                 // </Button>
+               // </Link>
+             // </div>
+           // </div>
+         // ) : (
+            
+              //<div className="card">
+              //  {scheduleEmails.map((email) => (
+            //      <ScheduledData
+                    //id={email.id}
+                  //  key={email.id}
+              //      firstName={email.options.firstName}
+                //    lastName={email.options.lastName}
+               //     senderEmail={email.options.senderEmail}
+              //      receiver={email.options.receiver}
+              //      subject={email.options.subject}
+              //      message={email.options.message}
+             //       onDelete={handleDelete}
+            //        onEdit={handleEdit}
+            //      />
+            //    ))}
+           //     <Link href="/account" className="button">
+           //       <Button color="blue" variant="outline">
+            //        Go back to Email page
+             //     </Button>
+            //    </Link>
+            //  </div>
+            
+        //  )}
+      //  </div>
+   //   </Container>
+  //  </>
+
+    <Container>
+      <div>
+      <br></br>
+      <Title color="blue.5" order={2}>Your Scheduled Emails</Title>
+      <br></br>
+        {loading ? (
+           <Title order={5} color="dimmed" italic>
+           loading...
+         </Title>
+        ) : scheduleEmails.length === 0 ? (
+          <div>
+            <div className="box">
+
+            <Title order={5} color="dimmed" italic>
+            No scheduled Emails
+        </Title>
+        <br />            
             </div>
-          ) : (
-            
-              <div className="card">
-                {scheduleEmails.map((email) => (
-                  <ScheduledData
-                    id={email.id}
-                    key={email.id}
-                    firstName={email.options.firstName}
-                    lastName={email.options.lastName}
-                    senderEmail={email.options.senderEmail}
-                    receiver={email.options.receiver}
-                    subject={email.options.subject}
-                    message={email.options.message}
-                    onDelete={handleDelete}
-                    onEdit={handleEdit}
-                  />
-                ))}
-                <Link href="/account" className="button">
-                  <Button color="blue" variant="outline">
-                    Go back to Email page
-                  </Button>
-                </Link>
-              </div>
-            
-          )}
-        </div>
-      </Container>
-    </>
+            <div className="btn-container">
+            <Link href="/account">
+              <Button color="blue" variant="outline">
+                Add a Scheduled Email
+              </Button>
+            </Link>
+          </div>
+          </div>
+        ) : (
+          <div className="card">
+            {scheduleEmails.map((email) => (
+              <ScheduledData
+                id={email.id}
+                key={email.id}
+                firstName={email.options.firstName}
+                lastName={email.options.lastName}
+                senderEmail={email.options.senderEmail}
+                receiver={email.options.receiver}
+                subject={email.options.subject}
+                message={email.options.message}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+              />
+            ))}
+            <Link href="/account" className="button">
+              <Button color="blue" variant="outline">
+                Go back to Email page
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </Container>
+     </>
+
   );
 }
 export async function getServerSideProps(context) {

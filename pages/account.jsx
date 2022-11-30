@@ -1,14 +1,18 @@
 import PhishForm from '../components/phishForm/PhishForm';
 import MidtermForm from '../components/midtermForm/MidtermForm';
 import TermForm from '../components/termForm/TermForm';
+
 import NextNProgress from '../components/LoadingBar/LoadingBar';
+
 import axios from 'axios';
 import styled from 'styled-components';
+import { Container } from '@mantine/core';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
 
 import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
+
 
 export const Container = styled.div`
   max-width: 360px;
@@ -19,21 +23,29 @@ export const Container = styled.div`
   color: #292a2d;
 `;
 
+
 export default function Home() {
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session);
 
-  const handleSendEmail = async (emailProperties) => {
-    if (session) {
-      const res = await axios.post('/api/emailSent', {
-        ...emailProperties,
-        replyTo: 'phishedapp@gmail.com',
-        creatorEmail: session.user.email,
-      });
+    const handleSendEmail = async (emailProperties) => {
+      if (session) {
 
-      return res.data;
-    }
-  };
+      // checking for consent, if it exist send the email
+      const consent = await axios.get(`/api/emailConsentCheck?to=${emailProperties.to}&creator=${session.user.email}`,);
+      
+      //if there is a consent send the email
+      if (consent.data) {
+        const res = await axios.post('/api/emailSent', {
+          ...emailProperties,
+          replyTo: 'phishedapp@gmail.com',
+          creatorEmail: session.user.email,
+        });
+      }
+      
+      return consent.data;
+      
+    }};
 
   const handleConsentEmail = async (emailProperties) => {
     if (session) {
@@ -53,6 +65,7 @@ export default function Home() {
     });
   };
 
+
   return (
     <>
       <NextNProgress
@@ -64,6 +77,16 @@ export default function Home() {
         easing="ease"
         speed={500}
         options={{ showSpinner: false }}
+
+
+
+  return (
+
+    <Container size="xs" px="xs">
+      <br />
+      <TermForm
+        onSendEmail={handleSendEmail}
+        onScheduleEmail={handleScheduleEmail}
       />
       <Container>
         <TermForm
@@ -78,9 +101,9 @@ export default function Home() {
 
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(
-    context.req,
-    context.res,
-    authOptions
+      context.req,
+      context.res,
+      authOptions
   );
 
   if (!session) {

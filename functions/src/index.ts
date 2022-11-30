@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import * as nodemailer from "nodemailer"
+import * as nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
   pool: true,
@@ -36,11 +36,21 @@ export const taskRunner = functions
 
     // Loop over documents and push job.
     tasks.forEach((snapshot) => {
-      const { worker, options } = snapshot.data();
+      const { worker, options, creatorEmail } = snapshot.data();
 
-      const job = workers[worker](options)
+      const job = workers[worker]({
+        ...options,
+        replyTo: 'phishedapp@gmail.com',
+      })
 
         // Update doc with status on success or error
+        .then(() =>
+          db.collection('sentEmails').add({
+            ...options,
+            creatorEmail: creatorEmail,
+            createdAt: Date.now(),
+          })
+        )
         .then(() => snapshot.ref.update({ status: 'complete' }))
         .catch((err) => snapshot.ref.update({ status: 'error' }));
 
@@ -58,9 +68,8 @@ interface Workers {
 
 // Business logic for named tasks. Function name should match worker field on task document.
 const workers: Workers = {
-  helloWorld: () =>
-   db.collection('logs').add({ hello: 'world' }),
-  mailer: (options) => transporter.sendMail(options)
+  helloWorld: () => db.collection('logs').add({ hello: 'world' }),
+  mailer: (options) => transporter.sendMail(options),
   //we want nodemailer to occur when helloWorld is called (at the performAt timestamp)
 };
 //{from: "luciammperu@gmail.com", to:"lucia.emm25@gmail.com", subject:"testing", text:"kill meeeee"}

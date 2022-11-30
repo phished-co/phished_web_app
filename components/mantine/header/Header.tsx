@@ -1,10 +1,21 @@
 import { useState } from 'react';
-import { Button, createStyles, Header, Container, Group, Burger, Paper, Transition, Image } from '@mantine/core';
-import {MantineModal} from "../modal/Modal"
+import {
+  Button,
+  createStyles,
+  Header,
+  Container,
+  Group,
+  Burger,
+  Paper,
+  Transition,
+  Image,
+  Avatar,
+} from '@mantine/core';
+import { MantineModal } from '../modal/Modal';
 import { useDisclosure } from '@mantine/hooks';
-import {GiFishingHook} from 'react-icons/gi'
+import { GiFishingHook } from 'react-icons/gi';
 import { useRouter } from 'next/router';
-import ColorToggle from '../../colorToggle/ColorToggle'
+import ColorToggle from '../../colorToggle/ColorToggle';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
 const HEADER_HEIGHT = 60;
@@ -52,7 +63,7 @@ const useStyles = createStyles((theme) => ({
 
   logo: {
     marginRight: '8px',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 
   link: {
@@ -61,12 +72,18 @@ const useStyles = createStyles((theme) => ({
     padding: '8px 12px',
     borderRadius: theme.radius.sm,
     textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[0]
+        : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
     },
 
     [theme.fn.smallerThan('sm')]: {
@@ -77,8 +94,12 @@ const useStyles = createStyles((theme) => ({
 
   linkActive: {
     '&, &:hover': {
-      backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-      color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
+      backgroundColor: theme.fn.variant({
+        variant: 'light',
+        color: theme.primaryColor,
+      }).background,
+      color: theme.fn.variant({ variant: 'light', color: theme.primaryColor })
+        .color,
     },
   },
 }));
@@ -91,59 +112,135 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState('');
   const { classes, cx } = useStyles();
-  const r = useRouter()
+  const r = useRouter();
   const { data: session } = useSession();
   const items = links.map((link) => (
-
     <a
       key={link.label}
       href={link.link}
-      className={cx(classes.link, { [classes.linkActive]: active === link.link })}
+      className={cx(classes.link, {
+        [classes.linkActive]: active === link.link,
+      })}
       onClick={(event) => {
         event.preventDefault();
         setActive(link.link);
         r.push({
-          pathname: `${link.link}`
-        })
+          pathname: `${link.link}`,
+        });
         close();
-      }}>
+      }}
+    >
       {link.label}
     </a>
   ));
-
+  console.log(session);
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
         <Group spacing={5} className={classes.links}>
-        <span className={classes.logo} onClick={() => {r.push({pathname: '/'})}}>
-          <Image src="../../../../icon-logo-coloured.png" width={28}/>
-        </span>
+          <span
+            className={classes.logo}
+            onClick={() => {
+              r.push({ pathname: '/' });
+            }}
+          >
+            <Image src="../../../../icon-logo-coloured.png" width={28} />
+          </span>
           {items}
-
         </Group>
         <Group spacing={5} className={classes.links}>
           <MantineModal />
           {/* <Button variant="default">Log in</Button> */}
-          {session ?<Button variant="outline" onClick={()=> {r.push({pathname:"/account"})}}>Send Email</Button> : <Button variant="outline" onClick={()=> {r.push({pathname:"/onboarding"})}}>Sign Up</Button>}        <ColorToggle />
+          {session ? (
+            <>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  r.push({ pathname: '/account' });
+                }}
+              >
+                Send Email
+              </Button>
+            </>
+          ) : (
+            <Button
+              variant="outline"
+              onClick={() => {
+                r.push({ pathname: '/onboarding' });
+              }}
+            >
+              Sign Up
+            </Button>
+          )}
 
+          <ColorToggle />
+          {session ? (
+            <Avatar
+              radius="xl"
+              src={session.user.image}
+              onClick={() => {
+                r.push({ pathname: '/dashboard' });
+              }}
+              alt="your profile picture"
+            />
+          ) : (
+            <></>
+          )}
         </Group>
-        <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
-
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          className={classes.burger}
+          size="sm"
+        />
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
-              <span onClick={() => {r.push({pathname: '/'})}}>
-        </span>
-        <ColorToggle/>
+              <span
+                onClick={() => {
+                  r.push({ pathname: '/' });
+                }}
+              ></span>
+              <ColorToggle />
 
+              {session ? (
+                //would be nice if we could add some padding to the pfp when in mobile
+                <Avatar
+                  radius="xl"
+                  src={session.user.image}
+                  onClick={() => {
+                    r.push({ pathname: '/dashboard' });
+                  }}
+                  alt="your profile picture"
+                />
+              ) : (
+                <></>
+              )}
               {items}
               <Group position="left" pb="xl" px="md">
-            <MantineModal/>
-            {/* <Button variant="default">Log in</Button> */}
-            {session ?<Button variant="outline" onClick={()=> {r.push({pathname:"/account"})}}>Send Email</Button> : <Button variant="outline" onClick={()=> {r.push({pathname:"/onboarding"})}}>Sign Up</Button>}
-            
-          </Group>
+                <MantineModal />
+                {/* <Button variant="default">Log in</Button> */}
+                {session ? (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      r.push({ pathname: '/account' });
+                    }}
+                  >
+                    Send Email
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      r.push({ pathname: '/onboarding' });
+                    }}
+                  >
+                    Sign Up
+                  </Button>
+                )}
+              </Group>
             </Paper>
           )}
         </Transition>
