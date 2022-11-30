@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Card } from '@mantine/core';
+import { Button, Card, Table, Group} from '@mantine/core';
 
 
 export default function ScheduledData({
@@ -13,34 +13,58 @@ export default function ScheduledData({
   onEdit,
   id,
 }) {
+
+
   return (
-    <>
+    <>  
       <Card  p="lg" radius="md" withBorder>
-      <h2 className="card-title">
-          {firstName} {lastName}
-        </h2>
-        <div className="info">
-          <p>
-            <strong>First Name:</strong> {firstName}
-          </p>
-          <p>
-            <strong>Last Name:</strong> {lastName}
-          </p>
-          <p>
-            <strong>Sender:</strong> {senderEmail}
-          </p>
-          <p>
-            <strong>Receiver:</strong> {receiver}
-          </p>
-          <p>
-            <strong>Subject:</strong> {subject}
-          </p>
-          <span className="message">
-            <strong>Message:</strong> {message}
-          </span>
-        </div>
+    <Table horizontalSpacing="sm">
+    <tbody>
+      <thead>
+      <tr>
+        <th>First Name:</th>
+      <td>{firstName}</td>
+    </tr>
+    </thead>
+    <thead>
+    <tr >
+        <th>Last Name:</th>
+      <td>{lastName}</td>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+        <th>Sender:</th>
+      <td>{senderEmail}</td>
+    </tr>
+</thead>
+<thead>
+    <tr>
+        <th>Receiver:</th>
+      <td>{receiver}</td>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+      
+        <th>Subject:</th>
+      <td>{subject}</td>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+        <th>Message:</th>
+      <td>{message}</td>
+    </tr>
+    </thead>
+    </tbody>
+
+    </Table>
+    
         <br />
+
         <div className="button">
+
           <Button variant="outline" onClick={() => onEdit(id)}>
             Schedule Date
           </Button>
@@ -49,9 +73,10 @@ export default function ScheduledData({
           {/* <Link href={`/email/${id}`} key={id}> */}
           {/* <Button variant="outline">SET DATE</Button> */}
           {/* </Link> */}
-          <Button variant="outline" onClick={() => onDelete(id)}>
+          <Button variant="light" color="red" size="xs" compact onClick={() => onDelete(id)}>
             Delete
           </Button>
+        
         </div>
         
       </Card>
