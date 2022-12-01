@@ -146,7 +146,7 @@ export function LinkedInForm({ submitHandler, onScheduleEmail }) {
           />
 
           <TextInput
-              label="Receiver Email"
+              label="Receiver's Email"
               placeholder="receivers.email@gmail.com"
               classnames={classes}
               mb={12}
@@ -156,7 +156,7 @@ export function LinkedInForm({ submitHandler, onScheduleEmail }) {
               required
           />
           <TextInput
-              label="Target Name"
+              label="Target's Name"
               placeholder="Sam"
               classnames={classes}
               mb={12}
