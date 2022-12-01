@@ -296,6 +296,7 @@ export function HeaderResponsive({ links, user }: HeaderResponsiveProps) {
             onClose={() => setUserMenuOpened(false)}
             onOpen={() => setUserMenuOpened(true)}
           >
+              {session ?
             <Menu.Target>
               <UnstyledButton
                 className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
@@ -308,7 +309,8 @@ export function HeaderResponsive({ links, user }: HeaderResponsiveProps) {
                   <IconChevronDown size={12} stroke={1.5} />
                 </Group>
               </UnstyledButton>
-            </Menu.Target>
+            </Menu.Target> :
+              <></>}
             <Menu.Dropdown>
               <Menu.Item onClick={() => {r.push({pathname: '/dashboard'})}} icon={<IconChartBar size={14} color={theme.colors.blue[6]} stroke={1.5} />}>
                 Dashboard
