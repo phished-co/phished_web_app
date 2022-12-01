@@ -83,7 +83,7 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
   const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
-  const [fname, setFname] = useState('');
+  const [fname, setFname] = useState('Google');
   const [lname, setLname] = useState('');
   const [bodyName, setBodyName] = useState('');
   const [template, setTemplate] = useState('docs');
@@ -95,8 +95,6 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
     e.preventDefault();
 
     setTo('');
-    setFname('');
-    setLname('');
     setHtml('');
     setBodyName('');
 
@@ -106,7 +104,7 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
     setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
       setSubmissionNote("invisable");
-    }, 2500);
+    }, 4500);
     return () => clearTimeout(timeId);
 
 
@@ -122,25 +120,6 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
         </div>
 
         <form onSubmit={onClick} style={{marginTop: 20 }} >
-
-          <TextInput
-              label="First Name"
-              placeholder="Jane"
-              classnames={classes}
-              mb={12}
-              value={fname}
-              onChange={(e) => setFname(e.target.value)}
-              required
-          />
-          <TextInput
-              label="Last Name"
-              placeholder="Doe"
-              classnames={classes}
-              mb={12}
-              value={lname}
-              onChange={(e) => setLname(e.target.value)}
-              required
-          />
 
           <TextInput
               label="Receiver Email"
@@ -169,26 +148,26 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
               Send email
             </Button>
 
-            {/*<Link href="/scheduleEmail" passHref>*/}
-            {/*  <a*/}
-            {/*      onClick={() =>*/}
-            {/*          onScheduleEmail({ fname, lname, fromEmail, to, subject, html })*/}
-            {/*      }*/}
-            {/*  >*/}
-            {/*    <Button variant="subtle">Schedule email for later</Button>*/}
-            {/*  </a>*/}
-            {/*</Link>*/}
+            <Link href="/scheduleEmail" passHref>
+              <a
+                  onClick={() =>
+                      onScheduleEmail({ fname, lname, fromEmail, to, subject, html, bodyName, template })
+                  }
+              >
+                <Button variant="subtle">Schedule email for later</Button>
+              </a>
+            </Link>
           </div>
         </form>
         {submissionNote=="true" &&
-        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
-          Submitted successfully
+        <Notification icon={<IconCheck size={18} />} color="teal" title=" Email Submitted">
+          It may take a few minutes before the email is delivered.
         </Notification>
         }
 
         {submissionNote=="false" &&
         <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
-          The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn more</a>
+          The person you are trying to phish has not consented to receiving our phishing emails yet. <u><a href={"#"}>Learn more</a></u>
         </Notification>
         }
 

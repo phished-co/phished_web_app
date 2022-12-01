@@ -11,8 +11,8 @@
       <change beforePath="$PROJECT_DIR$/components/midtermForm/MidtermForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/midtermForm/MidtermForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/newDeviceForm/NewDeviceForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/newDeviceForm/NewDeviceForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/payoutForm/PayoutForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/payoutForm/PayoutForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/emailConsentCheck.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailConsentCheck.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/emailData.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/termForm/TermForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/termForm/TermForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/emailSent.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/emailSent.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +83,7 @@
       <workItem from="1665938459707" duration="51188000" />
       <workItem from="1667161315468" duration="2376000" />
       <workItem from="1667172572434" duration="8377000" />
+      <workItem from="1669837105969" duration="3447000" />
     </task>
     <servers />
   </component>

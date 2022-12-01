@@ -8,60 +8,67 @@ import FacebookForm from '../facebookForm/FacebookForm';
 import DocsForm from '../docsForm/DocsForm';
 import NewDeviceForm from '../newDeviceForm/NewDeviceForm';
 import PayoutForm from '../payoutForm/PayoutForm';
+import LinkedInForm from '../linkedinForm/LinkedInForm';
 import ConsentForm from '../../pages/consentForm';
 
 import { Select, Container, Text, Title } from '@mantine/core';
 
 export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
-  const [templateName, setTemplateName] = useState('');
+    const [templateName, setTemplateName] = useState('');
 
-  return (
-    <>
-      <Container size={400} px={0}>
-        <Title order={5} weight={600} align="center" color="blue.5">
-          * Please send a consent email first to the person you want to phish to
-          get their confirmation.
-        </Title>
-      </Container>
-      <form style={{ marginTop: 20 }}>
-        <Select
-          name="template"
-          value={templateName}
-          onChange={setTemplateName}
-          label="Choose a template to start"
-          placeholder="Pick one"
-          data={[
-            { value: 'Consent', label: 'Consent' },
-            { value: 'Basic', label: 'Basic' },
-            { value: 'Facebook', label: 'Facebook' },
-            { value: 'New Device', label: 'New Device' },
-            { value: 'Payout', label: 'Payout' },
-            { value: 'Google Docs', label: 'Google Docs' },
-          ]}
-        />
-      </form>
+    return (
+        <>
+            <Container size={400} px={0}>
+                <Title order={5} weight={600} align="center" color="blue.5">
+                    * Please send a consent email first to the person you want to phish to
+                    get their confirmation.
+                </Title>
+            </Container>
+            <form style={{ marginTop: 20 }}>
+                <Select
+                    name="template"
+                    value={templateName}
+                    onChange={setTemplateName}
+                    label="Choose a template to start"
+                    placeholder="Pick one"
+                    data={[
+                        { value: 'Consent', label: 'Consent' },
+                        { value: 'Facebook', label: 'Facebook' },
+                        { value: 'New Device', label: 'New Device' },
+                        { value: 'Payout', label: 'Payout' },
+                        { value: 'LinkedIn', label: 'LinkedIn' },
+                        { value: 'Google Docs', label: 'Google Docs' },
 
-      {templateName == '' && <div style={{ height: 250 }}></div>}
-      {templateName == 'Basic' && (
-        <MidtermForm
-          submitHandler={onSendEmail}
-          onScheduleEmail={onScheduleEmail}
-        />
-      )}
+                    ]}
+                />
+            </form>
 
-      {templateName == 'Facebook' && (
-        <FacebookForm submitHandler={onSendEmail} />
-      )}
-      {templateName == 'New Device' && (
-        <NewDeviceForm submitHandler={onSendEmail} />
-      )}
-      {templateName == 'Payout' && <PayoutForm submitHandler={onSendEmail} />}
-      {templateName == 'Google Docs' && (
-        <DocsForm submitHandler={onSendEmail} />
-      )}
-      {templateName == 'Consent' && <ConsentForm submitHandler={onConsentEmail} />}
-    </>
-  );
+            {templateName == '' && <div style={{ height: 250 }}></div>}
+
+
+            {templateName == 'Facebook' && (
+                <FacebookForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
+            )}
+
+            {templateName == 'New Device' && (
+                <NewDeviceForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
+            )}
+
+            {templateName == 'Payout' &&
+            (<PayoutForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
+            )}
+
+            {templateName == 'Google Docs' && (
+                <DocsForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
+            )}
+
+            {templateName == 'LinkedIn' && (
+                <LinkedInForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
+            )}
+
+            {templateName == 'Consent' && <ConsentForm submitHandler={onConsentEmail} />}
+        </>
+    );
 }
 
 export default TermForm;

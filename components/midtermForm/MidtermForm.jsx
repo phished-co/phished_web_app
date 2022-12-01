@@ -182,8 +182,6 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
         
         </form> 
         
-    
-          
 
   </>
 
