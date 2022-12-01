@@ -20,7 +20,7 @@ export default function Home() {
 
           // checking for consent, if it exist send the email
           const consent = await axios.get(
-            `/api/emailConsentCheck?to=${emailProperties.to}&creator=${session.user.email}`
+            `/api/consentData?to=${emailProperties.to}&creator=${session.user.email}`
           );
 
             //if there is consent send the email

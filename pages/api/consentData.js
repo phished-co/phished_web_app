@@ -24,6 +24,21 @@ export const config = {
 export default async function handler(req, res) {
   const { method } = req
   switch (method) {
+    case 'GET':
+      let consentCreator = req.query.creator
+      let consentTarget = req.query.to
+      let consentExist = {isConsented: false}
+
+      const consentedEmailDocRef = query(collection(db, 'consentRequest'), where('creatorEmail', '==', consentCreator), where('to', '==', consentTarget), where('consent', '==', true));
+      const querySnapshot = await getDocs(consentedEmailDocRef);
+      querySnapshot.forEach((doc) => {
+        consentExist = {isConsented: true, id: doc.id}
+        // console.log(doc.id, " => ", doc.data());
+      });
+
+      res.send(consentExist)
+
+      break;
 
     case 'POST':
 
@@ -105,9 +120,7 @@ export default async function handler(req, res) {
 
 
       break;
-
-
-    
+      
     default:
       res.setHeader('Allow', ['POST'])
       res.status(405).end(`Method ${method} Not Allowed`)
