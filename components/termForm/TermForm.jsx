@@ -11,18 +11,22 @@ import PayoutForm from '../payoutForm/PayoutForm';
 import LinkedInForm from '../linkedinForm/LinkedInForm';
 import ConsentForm from '../../pages/consentForm';
 
-import { Select, Container, Text, Title } from '@mantine/core';
+import { Select, Container, Text, Title, Alert } from '@mantine/core';
+import { IconAlertCircle } from '@tabler/icons';
 
 export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
     const [templateName, setTemplateName] = useState('');
-
+    const [consentAlert, setConsentAlert]  = useState(<Alert color="orange" onClose={closeAlert} icon={<IconAlertCircle size={16} />} title="Obtain Consent First" withCloseButton variant="outline">
+    Please send a consent email below to the person you want to phish to get their approval first.</Alert>);
+    function closeAlert () {
+        setConsentAlert("")
+    }
+    const consent = <b><Text color="orange">Consent</Text></b>
     return (
         <>
             <Container size={400} px={0}>
-                <Title order={5} weight={600} align="center" color="blue.5">
-                    * Please send a consent email first to the person you want to phish to
-                    get their confirmation.
-                </Title>
+                <br />
+                {consentAlert}
             </Container>
             <form style={{ marginTop: 20 }}>
                 <Select
@@ -32,12 +36,12 @@ export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
                     label="Choose a template to start"
                     placeholder="Pick one"
                     data={[
-                        { value: 'Consent', label: 'Consent' },
-                        { value: 'Facebook', label: 'Facebook' },
-                        { value: 'New Device', label: 'New Device' },
-                        { value: 'Payout', label: 'Payout' },
-                        { value: 'LinkedIn', label: 'LinkedIn' },
-                        { value: 'Google Docs', label: 'Google Docs' },
+                        { value: 'Consent', label: 'Consent Email', group:"Obtaining Consent From Phishee"},
+                        { value: 'Facebook', label: 'Facebook', group:"Phishing Templates"},
+                        { value: 'New Device', label: 'New Device', group:"Phishing Templates" },
+                        { value: 'Payout', label: 'Payout', group:"Phishing Templates" },
+                        { value: 'LinkedIn', label: 'LinkedIn', group:"Phishing Templates" },
+                        { value: 'Google Docs', label: 'Google Docs', group:"Phishing Templates" },
 
                     ]}
                 />

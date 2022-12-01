@@ -7,6 +7,7 @@ import { authOptions } from './api/auth/[...nextauth]';
 import { IconCheck } from '@tabler/icons';
 import { unstable_getServerSession } from 'next-auth';
 import { useSession } from 'next-auth/react';
+import { showNotification } from '@mantine/notifications';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -60,7 +61,7 @@ export default function ConsentForm({ submitHandler }) {
   const [fromEmail, setFromEmail] = useState(session.user.email);
   const [to, setTo] = useState('');
   const [html, setHtml] = useState(
-    `Hello, We received a request from ${session.user.name} for a phishing campaign against you. By clicking the link below, you give us consent, and it will take you to our website. Thank you.`
+    `Hello, We have received a request from ${session.user.name} for a phishing campaign against you. By clicking the link below, you give ${session.user.email} approval to send you fake phishing emails for educational purposes. Thank you.`
   );
   const [subject, setSubject] = useState(
     'Consent request for phishing Education'
@@ -181,12 +182,18 @@ export default function ConsentForm({ submitHandler }) {
           />
          
    {successNote && (
-     <>
-          <br />
-          <Notification icon={<IconCheck size={18} />} color="teal" title="Consent Email Sent">
-         Submitted successfully
-       </Notification>
-       </>
+          showNotification({
+            id: 'successEmail',
+            disallowClose: true,
+            autoClose: 10000,
+            title: "Consent Email Sent",
+            message: 'You will receive an email notification once the receiver gives their consent',
+            color: 'teal',
+            icon: <IconCheck />,
+            className: 'my-notification-class',
+            loading: false,
+          })
+      
       )}
           <div className="button">
             <br />
