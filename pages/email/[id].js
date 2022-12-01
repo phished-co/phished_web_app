@@ -20,25 +20,6 @@ import { Notification } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { IconCheck, IconX } from '@tabler/icons';
 
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   width: 30vw;
-//   margin: 3rem auto;
-
-//   .button {
-//     display: flex;
-//     gap: 1rem;
-//     justify-content: center;
-//   }
-
-//   .description {
-//     margin: 1rem;
-//     width: 25vw;
-//   }
-// `;
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -92,6 +73,8 @@ export default function Email({ email }) {
   const { classes } = useStyles();
   const { textarea } = textAreaStyles();
 
+  console.log("this is the email props")
+  console.log(email)
   const [fromEmail, setFromEmail] = useState(
     `${email.firstName} ${email.lastName} ${email.senderEmail}`
   );
@@ -114,9 +97,21 @@ export default function Email({ email }) {
   }
 
   const handleScheduleEmail = (props) => {
-    axios.post('/api/emailTasks', props);
-
+    axios.post('/api/emailTasks', { props });
   };
+
+  function deleteScheduledEmail(id) {
+    axios
+      .delete(`/api/emailScheduled/${id}`)
+      .then((res) => {
+        // setScheduleEmails(emails.filter((email) => email.id !== id));
+        console.log("delete email", res.data());
+      })
+      .catch((err) => {
+        console.error('error', err);
+      });
+    return true;
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -206,6 +201,7 @@ export default function Email({ email }) {
       </form>
       <br></br>
       {successNote &&
+        deleteScheduledEmail(email.id) &&
         showNotification({
           id: 'successEmail',
           disallowClose: true,
@@ -217,7 +213,6 @@ export default function Email({ email }) {
           className: 'my-notification-class',
           loading: false,
         })
-
       }
     </Container>
     // </>
@@ -244,8 +239,21 @@ export async function getServerSideProps(context) {
 
   const id = context.params.id;
   const email = await getDoc(doc(db, 'scheduledEmails', id));
-  console.log(email.data());
+  // console.log(email.data())
+
+  if (!email.data()) {
+    return {
+      redirect: {
+        destination: '/scheduleEmail',
+        permanent: false,
+      },
+    };
+  }
+
   const returnedEmail = email.data().options;
+  returnedEmail.id = id;
+
+
   return {
     props: { email: returnedEmail },
   };
