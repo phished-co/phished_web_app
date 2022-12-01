@@ -176,7 +176,7 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
           showNotification({
             id: 'successEmail',
             disallowClose: true,
-            autoClose: 5000,
+            autoClose: 7000,
             title: "Email Submitted",
             message: 'It may take a few minutes before the email is delivered.',
             color: 'teal',

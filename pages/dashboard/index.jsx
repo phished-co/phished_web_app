@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { Divider } from '@tremor/react';
 import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
-import { Button, createStyles } from '@mantine/core'
+import { Button,Container, createStyles, Text } from '@mantine/core'
 
 import axios from 'axios';
 import { authOptions } from '../api/auth/[...nextauth]';
@@ -52,13 +52,20 @@ export default function Dashboard() {
 
   return (
     <div>
+      
       <div className={styles.container}>
         <div className="pt-4">
           <div className={classes.topbar}>
             <h1 className="text-4xl mb-6">Dashboard</h1>
-            <Button
+         
+          </div>
+          <Text> Every email you send will be tracked on this dashboard. If a user clicks on any of the links, they will increase your Success rate. </Text>
+<br />
+          <NewChart data={chartdata} />
+          <Divider />
+          <Button
               size='xs'
-              variant='outline'
+              variant='subtle'
               onClick={() => {
                 r.push({ pathname: '/account' });
               }}
@@ -66,9 +73,6 @@ export default function Dashboard() {
             >
               Send phishing email
             </Button>
-          </div>
-          <NewChart data={chartdata} />
-          <Divider />
           {/*<h1 className="text-4xl mb-6">Active Campaigns</h1>*/}
           {/*<Cards categories={categories} handleClick={handleClick} />*/}
         </div>
@@ -87,7 +91,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: '/',
         permanent: false,
       },
     };

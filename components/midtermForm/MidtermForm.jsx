@@ -135,7 +135,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
                       onScheduleEmail({ fname, lname, fromEmail, to, subject, html })
                   }
               >
-                <Button variant="subtle">Schedule email for later</Button>
+                <Button variant="subtle">Save email for later</Button>
               </a>
             </Link>
           </div>
