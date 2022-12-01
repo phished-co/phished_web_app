@@ -74,7 +74,7 @@ export default function Consent() {
         <h1>Thank you for your consent!</h1>
       <div className="box">
         <p>
-          We are reaching out to the sender who reqeusted your phishing education.
+          We are reaching out to the sender who requested your phishing education.
         </p>
         <p>You can now close this window.</p>
         <p>Thank you.</p>
