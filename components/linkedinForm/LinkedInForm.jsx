@@ -80,7 +80,7 @@ export function LinkedInForm({ submitHandler, onScheduleEmail }) {
   const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
-  const [fname, setFname] = useState('');
+  const [fname, setFname] = useState('LinkedIn');
   const [lname, setLname] = useState('');
   const [bodyName, setBodyName] = useState('');
   const [template, setTemplate] = useState('linkedin');
@@ -93,8 +93,6 @@ export function LinkedInForm({ submitHandler, onScheduleEmail }) {
     e.preventDefault();
 
     setTo('');
-    setFname('');
-    setLname('');
     setHtml('');
     setBodyName('');
 

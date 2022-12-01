@@ -79,7 +79,7 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
   const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
-  const [fname, setFname] = useState('');
+  const [fname, setFname] = useState('Automated Message');
   const [lname, setLname] = useState('');
   const [bankName, setBankName] = useState('');
   const [template, setTemplate] = useState('payout');
@@ -88,10 +88,8 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
   
   async function onClick(e) {
     e.preventDefault();
-
+    
     setTo('');
-    setFname('');
-    setLname('');
     setHtml('');
     setBankName('');
 
@@ -131,25 +129,7 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
         </div>
 
         <form onSubmit={onClick} style={{marginTop: 20 }} >
-
-          <TextInput
-              label="First Name"
-              placeholder="Jane"
-              classnames={classes}
-              mb={12}
-              value={fname}
-              onChange={(e) => setFname(e.target.value)}
-              required
-          />
-          <TextInput
-              label="Last Name"
-              placeholder="Doe"
-              classnames={classes}
-              mb={12}
-              value={lname}
-              onChange={(e) => setLname(e.target.value)}
-              required
-          />
+          
 
           <TextInput
               label="Receiver Email"
