@@ -17,6 +17,8 @@ export default async function handler(req, res) {
         ...req.body, replyTo: 'phishedapp@gmail.com',
         creatorEmail: session.user.email
       });
+
+      // await deleteScheduledEmail(req.body.id)
       console.log(`***stored in db: Tasks with Id: ${emailTask}***`);
     }
     res.status(200).send();

@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   try {
     if (req.method === 'DELETE') {
       // delete email
-      let emailId = req.query.id;
+      let emailId = req.query.id || req.body.id;
       const deletedEmail = await deleteScheduledEmail(
         emailId
       );
