@@ -26,11 +26,9 @@ function subtractMinutes(date, minutes) {
   return date;
 }
 
-
 export default async function handler(req, res) {
 
   const {method} = req
-
   switch (method) {
     case 'POST':
 
@@ -63,7 +61,11 @@ export default async function handler(req, res) {
       let phishedLink = `https://phished.app/youPhished?phishingCode=${sentEmail.id}`       //Deplyment
       // let phishedLink = `http://localhost:3000/youPhished?phishingCode=${sentEmail.id}`  //LocalHost
 
-        
+      // let subscribeLink = `https://phished.app/unsubscribe?consentId=${req.body.consentId}`       //Deplyment
+      let unsubscribeLink = `http://localhost:3000/unsubscribe?consentId=${req.body.consentId}`  //LocalHost
+
+
+
       var mailOptions = {
         from: req.body.from,
         to: req.body.to,
@@ -77,7 +79,8 @@ export default async function handler(req, res) {
           email: req.body.to,
           bodyName:req.body.bodyName,
           bank:req.body.bankName,
-          phishedLink: phishedLink
+          phishedLink: phishedLink,
+          unsubscribeLink: unsubscribeLink
         },
       };
 

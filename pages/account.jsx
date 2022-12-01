@@ -1,7 +1,6 @@
 import PhishForm from '../components/phishForm/PhishForm';
 import MidtermForm from '../components/midtermForm/MidtermForm';
 import TermForm from '../components/termForm/TermForm';
-import axios from 'axios';
 import styled from 'styled-components';
 import { Container } from '@mantine/core';
 import { authOptions } from './api/auth/[...nextauth]';
@@ -9,6 +8,7 @@ import { unstable_getServerSession } from 'next-auth';
 import NextNProgress from '../components/LoadingBar/LoadingBar';
 import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Home() {
   const { data: session } = useSession();
@@ -20,19 +20,20 @@ export default function Home() {
 
           // checking for consent, if it exist send the email
           const consent = await axios.get(
-            `/api/emailConsentCheck?to=${emailProperties.to}&creator=${session.user.email}`
+            `/api/consentData?to=${emailProperties.to}&creator=${session.user.email}`
           );
 
             //if there is consent send the email
-           if (consent.data && emailProperties.template !== "consent" ) {
+          
+           if (consent.data.isConsented && emailProperties.template !== "consent" ) {
              await axios.post('/api/emailSent', {
                ...emailProperties,
                replyTo: 'phishedapp@gmail.com',
                creatorEmail: session.user.email,
+               consentId: consent.data.id
              });
            }
-
-        return consent.data;
+        return consent.data.isConsented;
       };
     }
     
