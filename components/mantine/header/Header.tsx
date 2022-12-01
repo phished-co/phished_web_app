@@ -10,6 +10,9 @@ import {
   Transition,
   Image,
   Avatar,
+  Menu,
+  UnstyledButton,
+  Text,
 } from '@mantine/core';
 import { MantineModal } from '../modal/Modal';
 import { useDisclosure } from '@mantine/hooks';
@@ -17,6 +20,13 @@ import { GiFishingHook } from 'react-icons/gi';
 import { useRouter } from 'next/router';
 import ColorToggle from '../../colorToggle/ColorToggle';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import {
+  IconLogout,
+  IconStar,
+  IconMessage,
+  IconChevronDown,
+  IconChartBar
+} from '@tabler/icons';
 
 const HEADER_HEIGHT = 60;
 
@@ -106,18 +116,39 @@ const useStyles = createStyles((theme) => ({
         .color,
     },
   },
+
+  user: {
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+    padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
+    borderRadius: theme.radius.sm,
+    transition: 'background-color 100ms ease',
+
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+    },
+
+    [theme.fn.smallerThan('xs')]: {
+      display: 'none',
+    },
+  },
+
+  userActive: {
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+  },
 }));
 
 interface HeaderResponsiveProps {
   links: { link: string; label: string }[];
+  user: { name: string; image: string };
 }
 
-export function HeaderResponsive({ links }: HeaderResponsiveProps) {
+export function HeaderResponsive({ links, user }: HeaderResponsiveProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState('');
-  const { classes, cx } = useStyles();
+  const { classes, cx, theme } = useStyles();
   const r = useRouter();
   const { data: session } = useSession();
+  const [userMenuOpened, setUserMenuOpened] = useState(false);
   const items = links.map((link) => (
     <a
       key={link.label}
@@ -178,12 +209,41 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
           )}
           {session ? (
             <span className={classes.avatar}>
-            <Avatar
-              radius="xl"
-              src={session.user.image}
-              onClick={() => {signOut()}}
-              alt="your profile picture"
-            />
+
+              {/* User drop down */}
+              <Menu
+            width={260}
+            position="bottom-end"
+            transition="pop-top-right"
+            onClose={() => setUserMenuOpened(false)}
+            onOpen={() => setUserMenuOpened(true)}
+          >
+            <Menu.Target>
+              <UnstyledButton
+                className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
+              >
+                <Group spacing={7}>
+                  <Avatar radius="xl" size={20} src={session.user.image} onClick={() => {signOut()}} alt="your profile picture" />
+                  <Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
+                    {session.user.name}
+                  </Text>
+                  <IconChevronDown size={12} stroke={1.5} />
+                </Group>
+              </UnstyledButton>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item onClick={() => {r.push({pathname: '/dashboard'})}} icon={<IconChartBar size={14} color={theme.colors.blue[6]} stroke={1.5} />}>
+                Dashboard
+              </Menu.Item>
+              <Menu.Item onClick={() => {r.push({pathname: '/scheduleEmail'})}} icon={<IconStar size={14} color={theme.colors.yellow[6]} stroke={1.5} />}>
+                Saved emails
+              </Menu.Item>
+
+              <Menu.Divider />
+
+              <Menu.Item onClick={() => {signOut()}} icon={<IconLogout size={14} stroke={1.5} color={theme.colors.red[6]}/>}>Logout</Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
             </span>
           ) : (
             <></>
@@ -197,6 +257,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
           size="sm"
         />
 
+        {/* Burger content */}
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
@@ -228,19 +289,41 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
                     Sign Up
                   </Button>
                 )}
-            <span className={classes.avatar}>
-              {session ? (
-                <Avatar
-                  radius="xl"
-                  src={session.user.image}
-                  onClick={() => {signOut()}}
-                  alt="your profile picture"
-                />
-              ) : (
-                <></>
-              )}
-              </span>
+                <Menu
+            width={260}
+            position="bottom-end"
+            transition="pop-top-right"
+            onClose={() => setUserMenuOpened(false)}
+            onOpen={() => setUserMenuOpened(true)}
+          >
+            <Menu.Target>
+              <UnstyledButton
+                className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
+              >
+                <Group spacing={7}>
+                  <Avatar radius="xl" size={20} src={session.user.image} onClick={() => {signOut()}} alt="your profile picture" />
+                  <Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
+                    {session.user.name}
+                  </Text>
+                  <IconChevronDown size={12} stroke={1.5} />
+                </Group>
+              </UnstyledButton>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item onClick={() => {r.push({pathname: '/dashboard'})}} icon={<IconChartBar size={14} color={theme.colors.blue[6]} stroke={1.5} />}>
+                Dashboard
+              </Menu.Item>
+              <Menu.Item onClick={() => {r.push({pathname: '/scheduleEmail'})}} icon={<IconStar size={14} color={theme.colors.yellow[6]} stroke={1.5} />}>
+                Saved emails
+              </Menu.Item>
+
+              <Menu.Divider />
+
+              <Menu.Item onClick={() => {signOut()}} icon={<IconLogout size={14} stroke={1.5} color={theme.colors.red[6]}/>}>Logout</Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
                 <ColorToggle />
+
               </Group>
             </Paper>
           )}

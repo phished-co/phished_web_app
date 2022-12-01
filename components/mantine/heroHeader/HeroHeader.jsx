@@ -97,7 +97,7 @@ export function HeroHeader() {
               type="null"
               onClick={() => { r.push({ pathname: '/dashboard' }) }}
             >
-              Dashboard
+              Get started
             </Button>
             :
             <Button
