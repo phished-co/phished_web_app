@@ -5,6 +5,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Notification } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons';
+import {showNotification} from '@mantine/notifications'
 // import Calendar from '../datetimepicker/Calendar';
 
 
@@ -171,17 +172,44 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
           </div>
         </form>
 
-        {/*{submissionNote=="true" &&*/}
-        {/*<Notification icon={<IconCheck size={18} />} color="teal" title=" Email Submitted">*/}
-        {/*It may take a few minutes before the email is delivered.*/}
-        {/*</Notification>*/}
-        {/*}*/}
+        {submissionNote=="true" &&
+          showNotification({
+            id: 'successEmail',
+            disallowClose: true,
+            autoClose: 5000,
+            title: "Email Submitted",
+            message: 'It may take a few minutes before the email is delivered.',
+            color: 'teal',
+            icon: <IconCheck />,
+            className: 'my-notification-class',
+            loading: false,
+          })
+          } 
 
+          {submissionNote=="false" &&
+          showNotification({
+            id: 'consentFailed',
+            disallowClose: false,
+            autoClose: 10000,
+            title: "Consent Needed",
+            message: <>The person you are trying to phish has not consented to receiving our phishing emails yet. <a href="https://phished.app/consentEmails">Learn more.</a></>,
+            color: 'red',
+            icon: <IconX />,
+            className: 'my-notification-class',
+            loading: false,
+            styles: (theme) => ({
+              root: {
+                backgroundColor: theme.white,
+                borderColor: theme.white,
+              },
 
-        {submissionNote=="false" &&
-        <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
-          The person you are trying to phish has not consented to receiving our phishing emails yet. <u><a href={"#"}>Learn more</a></u>
-        </Notification>
+              title: { color: theme.colors.red[7] },
+              // description: { color: theme.colors.red[6] },
+              closeButton: {
+                color: theme.colors.red[7],
+              },
+            }),
+          })
         }
 
       </>

@@ -95,9 +95,9 @@ export function HeroHeader() {
               className={classes.control}
               variant="fill"
               type="null"
-              onClick={() => { r.push({ pathname: '/dashboard' }) }}
+              onClick={() => { r.push({ pathname: '/account' }) }}
             >
-              Get started
+              Get Phishing
             </Button>
             :
             <Button
