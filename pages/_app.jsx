@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { useState } from 'react';
 import '@tremor/react/dist/esm/tremor.css';
 import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
-import { NotificationsProvider } from '@mantine/notifications';
 
 // Our imports
 import { FooterSimple } from '../components/mantine/footer/Footer';
@@ -55,7 +54,6 @@ export default function App({
               colorScheme,
             }}
           >
-             <NotificationsProvider >
             <Head>
               <title>Phished | Protect Friends & Family by Phishing Them</title>
               <meta
@@ -67,7 +65,6 @@ export default function App({
             <NextNProgress />
             <Component {...pageProps} />
             <FooterSimple />
-            </NotificationsProvider>
           </MantineProvider>
         </ColorSchemeProvider>
       </SessionProvider>
