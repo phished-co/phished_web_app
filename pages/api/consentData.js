@@ -25,6 +25,7 @@ export default async function handler(req, res) {
   const { method } = req
   switch (method) {
     case 'GET':
+
       let consentCreator = req.query.creator
       let consentTarget = req.query.to
       let consentExist = {isConsented: false}
@@ -69,6 +70,7 @@ export default async function handler(req, res) {
       let targetEmail = sentConsentDocSnap.data().to;
       let emailTemplate = sentConsentDocSnap.data().template;
       let targetName = sentConsentDocSnap.data().targetName;
+      
 
       /* -- Notification Emails Link Destination---*/
       let websiteLink = `https://phished.app/`        //Deploymnt
@@ -90,7 +92,7 @@ export default async function handler(req, res) {
 
       //template variables for the notification email to sender
       var mailOptions = {
-        from: 'phishedapp@gmail.com',
+        from: `Phished phishedapp@gmail.com`,
         to: senderEmail,
         subject: 'Your target accepted your consent request!',
         replyTo: 'phishedapp@gmail.com',
