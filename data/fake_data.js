@@ -193,7 +193,7 @@ const data = [
     image:
       '../ArticleSplash/Shield.png',
     title: "Senior's guide to staying cyber safe",
-    category: 'tourism',
+    category: 'article',
     id: '5',
     content: 'This is the content of the article 4',
     date: 'October 12 2022'
