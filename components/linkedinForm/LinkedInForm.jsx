@@ -58,7 +58,6 @@ const textAreaStyles = createStyles((theme) => ({
 }));
 
 
-
 const templateStyle ={
   marginTop: 20,
   padding: 20,
@@ -69,25 +68,24 @@ const templateStyle ={
   fontSize: '10px',
 
 
-
-
 }
 
-export function DocsForm({ submitHandler, onScheduleEmail }) {
+export function LinkedInForm({ submitHandler, onScheduleEmail }) {
   // Styles
   const { classes } = useStyles();
   const { textarea } = textAreaStyles();
 
   // Inputs
-  const [subject, setSubject] = useState('Document shared with you!');
+  const [subject, setSubject] = useState('Two-Factor Authentication ');
   const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [bodyName, setBodyName] = useState('');
-  const [template, setTemplate] = useState('docs');
+  const [template, setTemplate] = useState('linkedin');
   const [submissionNote, setSubmissionNote] = useState("invisable");
+
 
 
 
@@ -101,27 +99,33 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
     setBodyName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = await submitHandler({ from, to, subject, html, bodyName, template})
-
+    let validation = await submitHandler({ from, to, subject, html,bodyName, template})
+    
     setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
       setSubmissionNote("invisable");
-    }, 4500);
+      }, 4500);
     return () => clearTimeout(timeId);
 
-
   }
+  
 
   return (
       // <Container>
 
       <>
         <div style={templateStyle} >
-          <p>[Target's friend's name] has invited you to collaborate on the following document:</p>
-          <p><u>Open in Docs</u></p>
+
+          <p>Hi [targetName] ,please confirm your email address to get full access to LinkedIn.</p>
+          <p>380567</p>
+          <p>Enter this code or click the button below.</p>
+          <p>Your privacy is important</p>
+          <p>We may send you member updates, recruiter messages, job suggestions, invitations, reminders, and promotional messages from us and our partners. You can change your preferences anytime.</p>
+          <p><u>Agree & Authorize your email</u></p>
         </div>
 
-        <form onSubmit={onClick} style={{marginTop: 20 }} >
+        
+        <form onSubmit={onClick} style={{marginTop: 20}} >
 
           <TextInput
               label="First Name"
@@ -153,7 +157,7 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
               required
           />
           <TextInput
-              label="Friend's Name"
+              label="Target Name"
               placeholder="Sam"
               classnames={classes}
               mb={12}
@@ -172,7 +176,7 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
             <Link href="/scheduleEmail" passHref>
               <a
                   onClick={() =>
-                      onScheduleEmail({ fname, lname, fromEmail, to, subject, html, bodyName, template })
+                    onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template, bodyName })
                   }
               >
                 <Button variant="subtle">Schedule email for later</Button>
@@ -180,6 +184,7 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
             </Link>
           </div>
         </form>
+
         {submissionNote=="true" &&
         <Notification icon={<IconCheck size={18} />} color="teal" title=" Email Submitted">
           It may take a few minutes before the email is delivered.
@@ -197,4 +202,4 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
   );
 }
 
-export default DocsForm;
+export default LinkedInForm;

@@ -192,8 +192,8 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
         </form>
 
         {/*{submissionNote=="true" &&*/}
-        {/*<Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">*/}
-        {/*   Submitted successfully*/}
+        {/*<Notification icon={<IconCheck size={18} />} color="teal" title=" Email Submitted">*/}
+        {/*It may take a few minutes before the email is delivered.*/}
         {/*</Notification>*/}
         {/*}*/}
 

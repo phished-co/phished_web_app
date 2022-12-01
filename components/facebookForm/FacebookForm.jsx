@@ -82,7 +82,7 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
   const [html, setHtml] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [targetName, setTargetName] = useState('');
+  const [bodyName, setBodyName] = useState('');
   const [template, setTemplate] = useState('facebook');
   const [submissionNote, setSubmissionNote] = useState("invisable");
 
@@ -96,10 +96,10 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
     setFname('');
     setLname('');
     setHtml('');
-    setTargetName('');
+    setBodyName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = await submitHandler({ from, to, subject, html,targetName, template})
+    let validation = await submitHandler({ from, to, subject, html, bodyName, template})
     
     setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
@@ -159,8 +159,8 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
               placeholder="Sam"
               classnames={classes}
               mb={12}
-              value={targetName}
-              onChange={(e) => setTargetName(e.target.value)}
+              value={bodyName}
+              onChange={(e) => setBodyName(e.target.value)}
               required
           />
 
@@ -175,7 +175,7 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
               <a
                   onClick={() =>
 
-                    onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template, targetName })
+                    onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template, bodyName })
                   }
               >
                 <Button variant="subtle">Schedule email for later</Button>
@@ -186,7 +186,7 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
 
         {submissionNote=="true" &&
         <Notification icon={<IconCheck size={18} />} color="teal" title=" Email Submitted">
-          It may take a few minutes before the email is deliverd .
+          It may take a few minutes before the email is delivered.
         </Notification>
         }
 

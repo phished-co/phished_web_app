@@ -169,7 +169,7 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
 
         {submissionNote=="true" &&
         <Notification icon={<IconCheck size={18} />} color="teal" title=" Email Submitted">
-          It may take a few minutes before the email is deliverd .
+          It may take a few minutes before the email is delivered.
         </Notification>
         }
 
