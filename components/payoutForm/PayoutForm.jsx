@@ -133,7 +133,7 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
           
 
           <TextInput
-              label="Receiver Email"
+              label="Receiver's Email"
               placeholder="receivers.email@gmail.com"
               classnames={classes}
               mb={12}
