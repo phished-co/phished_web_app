@@ -29,13 +29,13 @@ export default function Article() {
           <br />
           You run the danger of identity theft, hacking, and financial loss when you shop online. The following are some instances of how criminals can take sensitive information and compromise accounts:
           <br /><br />
-          - sites that pretend to be e-commerce but actually capture your data after you make a purchase
+          - Sites that pretend to be e-commerce but actually capture your data after you make a purchase
           <br />
-          - sites that process payments fraudulently (i.e., third-party financial arrangements) and take your money for fictitious transactions
+          - Sites that process payments fraudulently (i.e., third-party financial arrangements) and take your money for fictitious transactions
           <br />
-          - websites that do not use encryption, exposing your data to everyone
+          - Websites that do not use encryption, exposing your data to everyone
           <br />
-          - websites with poor security and questionable vendors (e.g. individual sellers or private citizens)
+          - Websites with poor security and questionable vendors (e.g. individual sellers or private citizens)
 
         </Text>
         <br />
@@ -52,7 +52,7 @@ export default function Article() {
           <br />
           - The privacy or return policies are either not specified or are not clear.
           <br />
-          - requesting your credit card information for purposes unrelated to your purchase.
+          - Requesting your credit card information for purposes unrelated to your purchase.
           <br />
           - The item costs are absurdly cheap (i.e. too good to be true)
           <br />
@@ -61,6 +61,7 @@ export default function Article() {
         <br />
         <Text>
           <SubHeading>Remain vigilant</SubHeading>
+          <br/>
           Implementing these practices can help protect you when shopping online.
           While they may reduce your risks, they do not erase them completely.
 

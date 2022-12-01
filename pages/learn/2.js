@@ -73,7 +73,6 @@ export default function Article() {
         <Text>
           <SubHeading>Email Phishing</SubHeading>
           <br />
-          <br />
           Emails are where the majority of phishing incidents occur – oftentimes a “spoofed domain address” will be used to further the illusion by impersonating a legitimate organizational address. By clicking on links or downloading attachments sent from sketchy emails, you open yourself up to being phished.
 
           To protect yourself, inspect the sender’s email address closely. Some addresses may exploit web fonts, exchanging capital I’s for l’s and 0 for O. Before taking any action on an email you’ve received, hover your mouse cursor over any buttons or links. Most browsers will show a URL preview at the bottom of your window – ensure that the URL is safe before proceeding.
@@ -82,7 +81,6 @@ export default function Article() {
         <br />
         <Text>
           <SubHeading>Spear Phishing</SubHeading>
-          <br />
           <br />
           While traditional phishing campaigns often rely on sending their emails en masse, “spear phishing” is a term used for scam campaigns that target specific groups or individuals. Criminals will include information or news specific to the target to make their email appear more credible. Spear phishing messages are created with care and use social engineering methods to trick their targets.
 
@@ -93,26 +91,25 @@ export default function Article() {
         <Text>
           <SubHeading>Whaling</SubHeading>
           <br />
-          <br />
           “Whaling” is a term that refers to two different phishing strategies. Traditional “whaling” attacks will target high-ranking employees within an organization because their accounts often have permission to access sensitive data.
           <br />
           Whaling also refers to the method that targets vulnerable people by sending them emails seemingly sent from people or organizations of authority. Because these figures often command a high-level of trust and respect, victims are more likely to be fooled.
           <br />
           Inducing fear is a key component to social engineering – when you receive important messages, consider the following:
-          <ul>
-            <li>
+          <br/>
+          <br/>
+
               - Is the message urgent or time-sensitive? Criminals use language designed to pressure you.
-            </li>
-            <li>
+              <br/>
               - heck the address the message is sent from – have you communicated with this address before?
-            </li>
-            <li>
-              - Before clicking any links, hover over them and take a look at the URL preview at the bottom of your browser. Verify the link will direct you to a safe domain.
-            </li>
-          </ul>
+              <br/>
+              - Before clicking any links, hover over them and take a look at the URL preview at the bottom of your browser. 
+              <br/>
+              -Verify the link will direct you to a safe domain.
+  
+          <br/>
           <br />
           <SubHeading>Smishing</SubHeading>
-          <br />
           <br />
           “Smishing” is done through the SMS (short message service) that our cell phones utilize. Smishing messages can be just as nefarious as messages sent by email. Some attributes you can look out for are typos, poor grammar, and the area code of the sender.
           <br />
