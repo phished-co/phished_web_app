@@ -70,7 +70,7 @@ export default function About() {
       <div>
         <br></br>
         <Title color="blue.5" order={2}>
-          Your Scheduled Emails
+          Your Saved Emails
         </Title>
         <br></br>
         {loading ? (
@@ -81,14 +81,14 @@ export default function About() {
           <div>
             <div className="box">
               <Title order={5} color="dimmed" italic>
-                No scheduled Emails
+                No Saved Emails
               </Title>
               <br />
             </div>
             <div className="btn-container">
               <Link href="/account">
                 <Button color="blue" variant="outline">
-                  Add a Scheduled Email
+                  Create an Email
                 </Button>
               </Link>
             </div>
@@ -131,7 +131,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: '/',
         permanent: false,
       },
     };

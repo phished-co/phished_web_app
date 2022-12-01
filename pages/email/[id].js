@@ -17,6 +17,7 @@ import styled from 'styled-components';
 import { authOptions } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
 import { Notification } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 import { IconCheck, IconX } from '@tabler/icons';
 
 // const Container = styled.div`
@@ -140,10 +141,6 @@ export default function Email({ email }) {
     setHtml("")
     setSuccessNote(true)
 
-    const timeId = setTimeout(() => {
-      setSuccessNote(false);
-    }, 2000);
-    return () => clearTimeout(timeId);
   }
   return (
     <Container>
@@ -197,7 +194,7 @@ export default function Email({ email }) {
 
         <div className="button">
           <Button variant="outline" type="submit">
-            Schedule Email
+            Send on scheduled date
           </Button>
           <br>
           </br>
@@ -209,9 +206,18 @@ export default function Email({ email }) {
       </form>
       <br></br>
       {successNote &&
-        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
-          Submitted successfully
-        </Notification>
+        showNotification({
+          id: 'successEmail',
+          disallowClose: true,
+          autoClose: 7000,
+          title: "Email Successfully Scheduled",
+          message: 'Your email will be send on your chosen date.',
+          color: 'teal',
+          icon: <IconCheck />,
+          className: 'my-notification-class',
+          loading: false,
+        })
+
       }
     </Container>
     // </>
@@ -230,7 +236,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: '/',
         permanent: false,
       },
     };

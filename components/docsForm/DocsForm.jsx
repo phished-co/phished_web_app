@@ -155,7 +155,7 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
                       onScheduleEmail({ fname, lname, fromEmail, to, subject, html, bodyName, template })
                   }
               >
-                <Button variant="subtle">Schedule email for later</Button>
+                <Button variant="subtle">Save email for later</Button>
               </a>
             </Link>
           </div>

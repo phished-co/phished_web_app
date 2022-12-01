@@ -178,7 +178,7 @@ export function LinkedInForm({ submitHandler, onScheduleEmail }) {
                     onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template, bodyName })
                   }
               >
-                <Button variant="subtle">Schedule email for later</Button>
+                <Button variant="subtle">Save email for later</Button>
               </a>
             </Link>
           </div>
@@ -187,7 +187,7 @@ export function LinkedInForm({ submitHandler, onScheduleEmail }) {
           showNotification({
             id: 'successEmail',
             disallowClose: true,
-            autoClose: 5000,
+            autoClose: 7000,
             title: "Email Submitted",
             message: 'It may take a few minutes before the email is delivered.',
             color: 'teal',

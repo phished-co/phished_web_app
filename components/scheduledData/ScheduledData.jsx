@@ -66,7 +66,7 @@ export default function ScheduledData({
         <div className="button">
 
           <Button variant="outline" onClick={() => onEdit(id)}>
-            Schedule Date
+            Schedule email
           </Button>
           <br></br>
           <br></br>
