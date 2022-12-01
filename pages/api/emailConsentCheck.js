@@ -21,17 +21,14 @@ export default async function handler(req, res) {
         
         case 'GET':
 
-            //PLACE HOLDERS: subtitude the code with commented ones.
             let consentCreator = req.query.creator
-            // let consentCreator = "yaasminaa77@gmail.com"  // req.query.creator
             let consentTarget = req.query.to
-            // let consentTarget = "email@fake.com"  //req.query.to
-            let consentExist = false
+            let consentExist = {isConsented: false}
 
             const consentedEmailDocRef = query(collection(db, 'consentRequest'), where('creatorEmail', '==', consentCreator), where('to', '==', consentTarget), where('consent', '==', true));
             const querySnapshot = await getDocs(consentedEmailDocRef);
             querySnapshot.forEach((doc) => {
-                consentExist = true
+                consentExist = {isConsented: true, id: doc.id}
                 // console.log(doc.id, " => ", doc.data());
             });
 
