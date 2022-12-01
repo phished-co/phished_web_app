@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { Divider } from '@tremor/react';
 import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
-import { Button,Container, createStyles, Text } from '@mantine/core'
+import { Button, Title, createStyles, Text } from '@mantine/core'
 
 import axios from 'axios';
 import { authOptions } from '../api/auth/[...nextauth]';
@@ -59,9 +59,11 @@ export default function Dashboard() {
             <h1 className="text-4xl mb-6">Dashboard</h1>
          
           </div>
-          <Text> Every email you send will be tracked on this dashboard. If a user clicks on any of the links, they will increase your Success rate. </Text>
+          <Text > All phishing emails you send will be tracked here.</Text>
+<Text > <b><Text span color="blue" inherit>Success</Text> </b>increases every time a user clicks on a link from an email you have sent them.</Text>
 <br />
-          <NewChart data={chartdata} />
+<NewChart data={chartdata} />
+       
           <Divider />
           <Button
               size='xs'
