@@ -148,7 +148,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
 
           {submissionNote=="false" &&
           <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
-            The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn more</a>
+            The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn More</a>
           </Notification>
           }
 

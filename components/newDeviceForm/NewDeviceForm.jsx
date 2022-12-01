@@ -80,7 +80,7 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
   const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
-  const [fname, setFname] = useState('');
+  const [fname, setFname] = useState('Automated Message\'');
   const [lname, setLname] = useState('');
   const [template, setTemplate] = useState('new_device');
   const [submissionNote, setSubmissionNote] = useState("invisable");
@@ -91,8 +91,6 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
     e.preventDefault();
 
     setTo('');
-    setFname('');
-    setLname('');
     setHtml('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
@@ -101,7 +99,7 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
     setSubmissionNote(validation.toString())
     const timeId = setTimeout(() => {
       setSubmissionNote("invisable");
-    }, 2500);
+    }, 4500);
     return () => clearTimeout(timeId);
 
 
@@ -113,29 +111,13 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
       <>
         <div style={templateStyle} >
           <p>New device signed in using [target email]</p>
-          <p>Your account was just signed in to from a new Apple iPhone device. You're getting this email to make sure it was you.</p>          <p><u>CHECK ACTIVITY</u></p>
+          <p>Your account was just signed in to from a new Apple IPhone device. You're getting this email to make sure it was you.</p>
+          <p><u>CHECK ACTIVITY</u></p>
         </div>
 
         <form onSubmit={onClick} style={{marginTop: 20 }} >
 
-          <TextInput
-              label="First Name"
-              placeholder="Jane"
-              classnames={classes}
-              mb={12}
-              value={fname}
-              onChange={(e) => setFname(e.target.value)}
-              required
-          />
-          <TextInput
-              label="Last Name"
-              placeholder="Doe"
-              classnames={classes}
-              mb={12}
-              value={lname}
-              onChange={(e) => setLname(e.target.value)}
-              required
-          />
+
 
           <TextInput
               label="Receiver Email"
@@ -147,35 +129,34 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
               type="email"
               required
           />
-
-
+          
 
           <div className="button">
             <Button type="submit" variant="outline">
               Send email
             </Button>
 
-            {/*<Link href="/scheduleEmail" passHref>*/}
-            {/*  <a*/}
-            {/*      onClick={() =>*/}
-            {/*          onScheduleEmail({ fname, lname, fromEmail, to, subject, html })*/}
-            {/*      }*/}
-            {/*  >*/}
-            {/*    <Button variant="subtle">Schedule email for later</Button>*/}
-            {/*  </a>*/}
-            {/*</Link>*/}
+            <Link href="/scheduleEmail" passHref>
+              <a
+                  onClick={() =>
+                      onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template })
+                  }
+              >
+                <Button variant="subtle">Schedule email for later</Button>
+              </a>
+            </Link>
           </div>
         </form>
 
         {submissionNote=="true" &&
-        <Notification icon={<IconCheck size={18} />} color="teal" title="Email Sent">
-          Submitted successfully
+        <Notification icon={<IconCheck size={18} />} color="teal" title=" Email Submitted">
+          It may take a few minutes before the email is delivered.
         </Notification>
         }
 
         {submissionNote=="false" &&
         <Notification icon={<IconX size={18} />} color="red" title="Consent Needed">
-          The person you are trying to phish has not consented to receiving our phishing emails yet. <a>Learn more</a>
+          The person you are trying to phish has not consented to receiving our phishing emails yet. <u><a href={"#"}>Learn more</a></u>
         </Notification>
         }
 
