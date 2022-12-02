@@ -127,22 +127,22 @@ export function LinkedInForm({ submitHandler, onScheduleEmail }) {
         <form onSubmit={onClick} style={{marginTop: 20}} >
 
           <TextInput
-              label="First Name"
-              placeholder="Jane"
+              // label="First Name"
+              // placeholder="Jane"
               classnames={classes}
               mb={12}
               value={fname}
-              onChange={(e) => setFname(e.target.value)}
-              required
+              // onChange={(e) => setFname(e.target.value)}
+              readOnly
           />
           <TextInput
-              label="Last Name"
+              // label="Last Name"
               placeholder="Doe"
               classnames={classes}
               mb={12}
               value={lname}
               onChange={(e) => setLname(e.target.value)}
-              required
+              hidden
           />
 
           <TextInput

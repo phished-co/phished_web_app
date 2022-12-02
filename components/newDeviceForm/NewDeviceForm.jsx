@@ -81,7 +81,7 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
   const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
-  const [fname, setFname] = useState('Automated Message\'');
+  const [fname, setFname] = useState('Automated Message');
   const [lname, setLname] = useState('');
   const [template, setTemplate] = useState('new_device');
   const [submissionNote, setSubmissionNote] = useState("invisable");

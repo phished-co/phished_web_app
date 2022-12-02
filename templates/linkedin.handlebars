@@ -52,12 +52,18 @@
   border-radius: 4px;
   font-size: 1.25rem;
   }
+
+  .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   </style>
 </head>
 <body>
   <div class='gray'>
 <!--  <h2>Two-Factor Authentication</h2>-->
-  <p>Hi {{bodyName}} ,please confirm your email address to get full access to LinkedIn.</p>
+  <p>Hi {{bodyName}}, please confirm your email address to get full access to LinkedIn.</p>
   </div>
   <div class='second-div'>
   <h2 class='code'>380567</h2>
@@ -69,7 +75,14 @@
   <a class='btn' href='http://phished.app/youPhished'>Agree & Authorize your email</a>
   </div>
   </div>
-  <a href={{unsubscribeLink}}>unsubscribe</a>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 
+  <div class="link">
+  <a href={{unsubscribeLink}}>unsubscribe</a>
+</div>
 </body>
 </html>
