@@ -37,6 +37,7 @@ export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
                     placeholder="Pick one"
                     data={[
                         { value: 'Consent', label: 'Consent Email', group:"Obtaining Consent From Phishee"},
+                        { value: 'Custom', label: 'Custom', group:"Phishing Templates" },
                         { value: 'Facebook', label: 'Facebook', group:"Phishing Templates"},
                         { value: 'New Device', label: 'New Device', group:"Phishing Templates" },
                         { value: 'Payout', label: 'Payout', group:"Phishing Templates" },
@@ -49,7 +50,9 @@ export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
 
             {templateName == '' && <div style={{ height: 250 }}></div>}
 
-
+            {templateName == 'Custom' && (
+                <MidtermForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
+            )}
             {templateName == 'Facebook' && (
                 <FacebookForm submitHandler={onSendEmail} onScheduleEmail={onScheduleEmail} />
             )}

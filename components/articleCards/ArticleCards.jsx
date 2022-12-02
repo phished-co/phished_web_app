@@ -1,7 +1,8 @@
-import { createStyles, SimpleGrid, Card, Image, Text, Container, AspectRatio } from '@mantine/core';
+import { createStyles, SimpleGrid, Card, Image, Text, Container, AspectRatio, Title, Divider } from '@mantine/core';
 import Router, { useRouter } from 'next/router';
 
 const mockdata = [
+
   {
     image:
       '../../ArticleSplash/Quiz.png',
@@ -10,6 +11,16 @@ const mockdata = [
     date: 'October 22 2022',
     url: 'quizSplash'
   },
+  
+  // {
+  //   image:
+  //     '../../ArticleSplash/horrorzontal.png',
+  //   title: `Can you spot the phishing email? Take our new quiz!`,
+  //   category: 'article',
+  //   date: 'October 22 2022',
+  //   url: 'quiz'
+  // },
+
   {
     image:
       '../../ArticleSplash/Ocean.png',
@@ -67,6 +78,33 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+export function QuizCard () {
+  const r = useRouter();
+  const { classes } = useStyles();
+
+ const card = 
+  <Card key="Can you spot the phishing email? Take our new quiz!" p="md" radius="md" component="a" href="#" className={classes.card} onClick={() => r.replace(`/quiz`)}>
+    <AspectRatio ratio={1920 / 1080}>
+      <Image src='../../ArticleSplash/horrorzontal.png' />
+    </AspectRatio>
+    <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
+      October 22 2022
+    </Text>
+    <Text className={classes.title} mt={5}>
+      Can you spot the phishing email? Take our new quiz!
+    </Text>
+  </Card>
+
+ return(
+<Container py="xl">
+  <Title order={2}>Phishing Quiz</Title>
+  <Divider size="xs" mt={5} mb={10}/>
+<SimpleGrid cols={3} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
+  {card}
+</SimpleGrid>
+</Container>
+)};
+
 export function ArticleCards() {
   const r = useRouter();
   const { classes } = useStyles();
@@ -88,7 +126,9 @@ export function ArticleCards() {
 
   return (
     <Container py="xl">
-      <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
+      <Title order={2}>Articles</Title>
+      <Divider size="xs" mt={5} mb={10}/>
+      <SimpleGrid cols={3} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
         {cards}
       </SimpleGrid>
     </Container>

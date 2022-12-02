@@ -21,21 +21,20 @@ const templateStyle ={
 export function MidtermForm({ submitHandler, onScheduleEmail }) {
 
   // Inputs
-  const [fromEmail, setFromEmail] = useState('');
+  const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
   const [subject, setSubject] = useState('');
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [targetName, setTargetName] = useState('');
-  const [template, setTemplate] = useState('basic');
+  const [template, setTemplate] = useState('custom');
   const [submissionNote, setSubmissionNote] = useState("invisable");
 
   async function onClick(e) {
     e.preventDefault();
 
     setTo('');
-    setFromEmail('');
     setFname('');
     setLname('');
     setSubject('');
@@ -59,8 +58,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   <>
     <div style={templateStyle} >
       {/* <p>[your text] <br/> link</p> */}
-      <p>[Phish emoticon]</p>
-      <p>[your text]</p>
+      <p>[your custom text]</p>
       <p><u>Click Here</u></p>
 
     </div>
@@ -83,15 +81,15 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               onChange={(e) => setLname(e.target.value)}
               required
           />
-          <TextInput
-              label="Sender Email"
-              placeholder="senders.email@gmail.com"
-              mb={12}
-              value={fromEmail}
-              onChange={(e) => setFromEmail(e.target.value)}
-              type="email"
-              required
-          />
+          {/*<TextInput*/}
+          {/*    label="Sender Email"*/}
+          {/*    placeholder="senders.email@gmail.com"*/}
+          {/*    mb={12}*/}
+          {/*    value={fromEmail}*/}
+          {/*    onChange={(e) => setFromEmail(e.target.value)}*/}
+          {/*    type="email"*/}
+          {/*    required*/}
+          {/*/>*/}
           <TextInput
               label="Receiver Email"
               placeholder="receivers.email@gmail.com"
@@ -142,7 +140,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
         </form> 
         
           
-          {/* {submissionNote=="true" &&
+           {submissionNote=="true" &&
           showNotification({
             id: 'successEmail',
             disallowClose: true,
@@ -154,9 +152,9 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
             className: 'my-notification-class',
             loading: false,
           })
-          } */}
+          }
 
-          {/* {submissionNote=="false" &&
+          {submissionNote=="false" &&
           showNotification({
             id: 'consentFailed',
             disallowClose: false,
@@ -180,7 +178,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               },
             }),
           })
-        } */}
+        } 
 
   </>
 

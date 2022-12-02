@@ -151,16 +151,16 @@ export function FacebookForm({ submitHandler, onScheduleEmail }) {
               Send email
             </Button>
 
-            <Link href="/scheduleEmail" passHref>
-              <a
-                  onClick={() =>
+            {/*<Link href="/scheduleEmail" passHref>*/}
+            {/*  <a*/}
+            {/*      onClick={() =>*/}
 
-                    onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template, bodyName })
-                  }
-              >
-                <Button variant="subtle">Save email for later</Button>
-              </a>
-            </Link>
+            {/*        onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template, bodyName })*/}
+            {/*      }*/}
+            {/*  >*/}
+            {/*    <Button variant="subtle">Save email for later</Button>*/}
+            {/*  </a>*/}
+            {/*</Link>*/}
           </div>
         </form>
 

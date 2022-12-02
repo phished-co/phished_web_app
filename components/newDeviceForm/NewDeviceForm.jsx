@@ -136,15 +136,15 @@ export function NewDeviceForm({ submitHandler, onScheduleEmail }) {
               Send email
             </Button>
 
-            <Link href="/scheduleEmail" passHref>
-              <a
-                  onClick={() =>
-                      onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template })
-                  }
-              >
-                <Button variant="subtle">Save email for later</Button>
-              </a>
-            </Link>
+            {/*<Link href="/scheduleEmail" passHref>*/}
+            {/*  <a*/}
+            {/*      onClick={() =>*/}
+            {/*          onScheduleEmail({ fname, lname, fromEmail, to, subject, html, template })*/}
+            {/*      }*/}
+            {/*  >*/}
+            {/*    <Button variant="subtle">Save email for later</Button>*/}
+            {/*  </a>*/}
+            {/*</Link>*/}
           </div>
         </form>
 
