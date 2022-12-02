@@ -90,7 +90,7 @@ export function FeaturesCards() {
     <Container size="lg" py="xl">
       <Group position="center">
         <Badge variant="filled" size="lg">
-          Free and Open-Source
+          Phished 1.0 is is out! 🎉
         </Badge>
       </Group>
 
