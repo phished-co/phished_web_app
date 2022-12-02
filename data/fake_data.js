@@ -200,7 +200,7 @@ const data = [
   },
   {
     image:
-      '../ArticleSplash/laptop.png',
+      '../ArticleSplash/horrorzontal.png',
     title: 'How anyone can become a confident online shopper',
     category: 'article',
     id: '6',
