@@ -21,7 +21,7 @@ export function TermForm({ onSendEmail, onScheduleEmail, onConsentEmail }) {
     function closeAlert () {
         setConsentAlert("")
     }
-    const consent = <b><Text color="orange">Consent</Text></b>
+   
     return (
         <>
             <Container size={400} px={0}>
