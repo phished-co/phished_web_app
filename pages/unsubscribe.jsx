@@ -76,7 +76,8 @@ export default function About() {
         <p>
           We are sad to see you go. We hope you enjoyed your time with us. 
         </p>
-        <p>If you have any feedback, please let us know. You can now close this window.</p>
+        <p>If you have any feedback, please let us know. </p>
+        <p> You can now close this window.</p>
         <p>Thank you.</p>
       </div>
     </Container>
