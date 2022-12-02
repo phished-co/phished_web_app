@@ -3,14 +3,14 @@ import Router, { useRouter } from 'next/router';
 
 const mockdata = [
 
-  {
-    image:
-      '../../ArticleSplash/Quiz.png',
-    title: `Can you spot the phishing email? Take our new quiz!`,
-    category: 'article',
-    date: 'October 22 2022',
-    url: 'quizSplash'
-  },
+  // {
+  //   image:
+  //     '../../ArticleSplash/Quiz.png',
+  //   title: `Can you spot the phishing email? Take our new quiz!`,
+  //   category: 'article',
+  //   date: 'October 22 2022',
+  //   url: 'quizSplash'
+  // },
   
   // {
   //   image:
@@ -55,7 +55,7 @@ const mockdata = [
   },
   {
     image:
-      '../../ArticleSplash/laptop.png',
+      '../../ArticleSplash/horrorzontal.png',
     title: 'How anyone can become a confident online shopper',
     date: 'September 07 2022',
     url: 'learn/6'
@@ -83,9 +83,9 @@ export function QuizCard () {
   const { classes } = useStyles();
 
  const card = 
-  <Card key="Can you spot the phishing email? Take our new quiz!" p="md" radius="md" component="a" href="#" className={classes.card} onClick={() => r.replace(`/quiz`)}>
+  <Card key="Can you spot the phishing email? Take our new quiz!" p="md" radius="md" component="a" href="#" className={classes.card} onClick={() => r.replace(`/quizSplash`)}>
     <AspectRatio ratio={1920 / 1080}>
-      <Image src='../../ArticleSplash/horrorzontal.png' />
+      <Image src='../../ArticleSplash/Quiz.png' />
     </AspectRatio>
     <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
       October 22 2022

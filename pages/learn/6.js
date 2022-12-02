@@ -12,7 +12,7 @@ export default function Article() {
   return (
     <div>
       <ImgContainer>
-        <img src="../../ArticleSplash/laptop.png" />
+        <img src="../../ArticleSplash/horrorzontal.png" />
       </ImgContainer>
       <TextContainer>
         <Header>How anyone can become a confident online shopper</Header>
