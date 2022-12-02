@@ -52,29 +52,29 @@ export default function Dashboard() {
 
   return (
     <div>
-      
+
       <div className={styles.container}>
         <div className="pt-4">
           <div className={classes.topbar}>
             <h1 className="text-4xl mb-6">Dashboard</h1>
-         
+
           </div>
           <Text > All phishing emails you send will be tracked here.</Text>
-<Text > <b><Text span color="blue" inherit>Success</Text> </b>increases every time a user clicks on a link from an email you have sent them.</Text>
-<br />
-<NewChart data={chartdata} />
-       
+          <Text > <b><Text span color="blue" inherit>Success</Text> </b>increases every time a user clicks on a link from an email you have sent them.</Text>
+          <br />
+          <NewChart data={chartdata} />
+
           <Divider />
           <Button
-              size='xs'
-              variant='subtle'
-              onClick={() => {
-                r.push({ pathname: '/account' });
-              }}
-              mt={12}
-            >
-              Send phishing email
-            </Button>
+            size='md'
+            variant='subtle'
+            onClick={() => {
+              r.push({ pathname: '/account' });
+            }}
+            mt={12}
+          >
+            Send phishing email
+          </Button>
           {/*<h1 className="text-4xl mb-6">Active Campaigns</h1>*/}
           {/*<Cards categories={categories} handleClick={handleClick} />*/}
         </div>
