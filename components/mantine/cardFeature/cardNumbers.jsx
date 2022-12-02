@@ -92,11 +92,11 @@ export function NumbersCards() {
     <Card key={numbers.title} shadow="md" radius="md" className={classes.card} p="lg">
       <Group positon="apart">
         <numbers.icon size={30} stroke={2} color={theme.fn.primaryColor()} />
-        <Text size="25px" weight={700}  >
+        <Text size="20px" weight={700}  >
           {numbers.title}
         </Text>
       </Group>
-      <Text size="md" color="dimmed" mt="sm">
+      <Text size="md" color="#5c5b5b" mt="sm">
         {numbers.description}
       </Text>
       <Text size="sm" color="dimmed" mt="sm">
