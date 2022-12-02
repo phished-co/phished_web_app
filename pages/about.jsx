@@ -3,6 +3,7 @@ import { Divider, Text, Title, List } from "@mantine/core";
 import { useRouter } from "next/router";
 import { NumbersCards } from "../components/mantine/cardFeature/cardNumbers";
 
+
 const Container = styled.div`
   max-width: 1140px;
   margin: 0 auto;
@@ -34,7 +35,8 @@ const Container = styled.div`
 const SubCont = styled.div`
   ${'' /* text-align: center; */}
   width: 90%;
-  margin-bottom: 4rem;
+  margin: 2rem 0;
+  
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -61,12 +63,8 @@ const SubCont = styled.div`
   
 
 `
-const ImgCont = styled.img`
-  display: block;
-`
-
 const Link = styled.span`
-  color: blue;
+  color: #449CFE;
   font-weight: bold;
 
   :hover {
@@ -84,7 +82,7 @@ export default function About() {
     <Container>
 
       <SubCont>
-        <Title mb={40} order={2} size='h1' weight='900'>
+        <Title mb={30} order={2} size='h1' weight='900'>
               About Us{' '}
         </Title>
 
@@ -95,12 +93,12 @@ export default function About() {
             <Text sx={{lineHeight:1.6}}>As Phishing techniques are constantly evolving, Phishing and scam campaigns are more common than ever. According to many studies, elderly individuals are likely more vulnerable to cybercrimes due to low-tech proficiency and low financial literacy in addition to higher prosperity. </Text>
             <br />
             <Text sx={{lineHeight:1.6}}>So, we took this matter into our own hands and found a way to help not only the elderly individuals but also other vulnerable users on the internet. </Text>
-            <NumbersCards />
+        
         </div>
       </SubCont>
 
       <SubCont>
-        <Title mb={40} order={2} size='h1' weight='900'>
+        <Title mb={30} order={2} size='h1' weight='900'>
           What is{' '}
           <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'blue' }} inherit>
             Phishing
@@ -126,34 +124,14 @@ export default function About() {
             To learn more about different types of phishing, <Link onClick={()=>r.replace({pathname: `/learn/2`})}>Click here</Link> to check our articles.
           </Text>
         </div>
-
-        <div className="cnt">
         
-        </div>
-
-        <div className="cnt first">
-          <div className="left"></div>
-          <div className="right"></div>
-        </div>
       </SubCont>
 
-      <SubCont>
-        <Title mb={40} order={2} size='h1' weight='900'>
-          Meet Our  {' '}
-          <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'blue' }} inherit>
-            Team
-          </Text>
-        </Title>
+            <NumbersCards />
       
-        <div className="cnt">
-          maybe picture of us?
-        </div>
-
-      </SubCont>
-
 
       <SubCont>
-        <Title mb={40} order={2} size='h1' weight='900'>
+        <Title mt = {40} mb={30} order={2} size='h1' weight='900'>
           This is {' '}
           <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'blue' }} inherit>
             Phished
