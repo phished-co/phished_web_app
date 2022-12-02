@@ -142,7 +142,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
         </form> 
         
           
-          {/* {submissionNote=="true" &&
+           {submissionNote=="true" &&
           showNotification({
             id: 'successEmail',
             disallowClose: true,
@@ -154,9 +154,9 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
             className: 'my-notification-class',
             loading: false,
           })
-          } */}
+          }
 
-          {/* {submissionNote=="false" &&
+          {submissionNote=="false" &&
           showNotification({
             id: 'consentFailed',
             disallowClose: false,
@@ -180,7 +180,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               },
             }),
           })
-        } */}
+        } 
 
   </>
 
