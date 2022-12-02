@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import Lottie from "lottie-react";
 import QuizSplash from "/public/QuizSplash.json";
-import Router, { useRouter } from 'next/router';
-import { Button } from "@mantine/core";
-import { Container } from "postcss";
+import { useRouter } from 'next/router';
 
 
 export const Bg = styled.div`
@@ -12,19 +10,22 @@ export const Bg = styled.div`
     justify-content: center;
     margin: 0 auto;
     padding: 0px;
-    width:100%;
     height:100%;
+    width: 100%;
+    margin-top: 3em;
+    margin-bottom: 15em;
 `;
 
 export const BgCont = styled.div`
-display:flex;
+    display:flex;
   max-width: 1140px;
   margin: 0 auto;
+  
 `
 
 export const Start = styled.button`
     position: absolute;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border-radius: 50px;
     z-index: 1;
     width: 100px;
