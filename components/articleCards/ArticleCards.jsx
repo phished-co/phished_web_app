@@ -4,11 +4,11 @@ import Router, { useRouter } from 'next/router';
 const mockdata = [
   {
     image:
-      '../../ArticleSplash/horrorzontal.png',
+      '../../ArticleSplash/Quiz.png',
     title: `Can you spot the phishing email? Take our new quiz!`,
     category: 'article',
     date: 'October 22 2022',
-    url: 'quiz'
+    url: 'quizSplash'
   },
   {
     image:
