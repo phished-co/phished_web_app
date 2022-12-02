@@ -2,6 +2,16 @@ import { createStyles, SimpleGrid, Card, Image, Text, Container, AspectRatio, Ti
 import Router, { useRouter } from 'next/router';
 
 const mockdata = [
+
+  {
+    image:
+      '../../ArticleSplash/Quiz.png',
+    title: `Can you spot the phishing email? Take our new quiz!`,
+    category: 'article',
+    date: 'October 22 2022',
+    url: 'quizSplash'
+  },
+  
   // {
   //   image:
   //     '../../ArticleSplash/horrorzontal.png',
@@ -10,6 +20,7 @@ const mockdata = [
   //   date: 'October 22 2022',
   //   url: 'quiz'
   // },
+
   {
     image:
       '../../ArticleSplash/Ocean.png',

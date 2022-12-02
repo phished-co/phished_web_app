@@ -53,7 +53,7 @@ function Card({ image, title, category, id, ...props }) {
       radius="md"
       sx={{ backgroundImage: `url(${image})` }}
       className={classes.card}
-      onClick={() => { { category === 'quiz' ? r.push({ pathname: '/quiz' }) : r.push({ pathname: `learn/${id}` }) } }}
+      onClick={() => { { category === 'quiz' ? r.push({ pathname: '/quizSplash' }) : r.push({ pathname: `learn/${id}` }) } }}
     >
       <div>
         <Text className={classes.category} size="xs">

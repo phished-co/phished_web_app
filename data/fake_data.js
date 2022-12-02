@@ -156,7 +156,7 @@ const links = [
 const data = [
   {
     image:
-      '../ArticleSplash/horrorzontal.png',
+      '../ArticleSplash/Quiz.png',
     title: `Can you spot the phishing email? Take our new quiz!`,
     category: 'quiz',
     id: 'quiz',
