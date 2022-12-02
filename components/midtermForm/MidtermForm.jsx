@@ -58,8 +58,7 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
   <>
     <div style={templateStyle} >
       {/* <p>[your text] <br/> link</p> */}
-      <p>[Phish emoticon]</p>
-      <p>[your text]</p>
+      <p>[your custom text]</p>
       <p><u>Click Here</u></p>
 
     </div>
