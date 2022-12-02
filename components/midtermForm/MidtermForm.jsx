@@ -21,7 +21,7 @@ const templateStyle ={
 export function MidtermForm({ submitHandler, onScheduleEmail }) {
 
   // Inputs
-  const [fromEmail, setFromEmail] = useState('');
+  const [fromEmail, setFromEmail] = useState('phishedapp@gmail.com');
   const [to, setTo] = useState('');
   const [html, setHtml] = useState('');
   const [subject, setSubject] = useState('');
@@ -81,15 +81,15 @@ export function MidtermForm({ submitHandler, onScheduleEmail }) {
               onChange={(e) => setLname(e.target.value)}
               required
           />
-          <TextInput
-          label="Sender Email"
-           placeholder="senders.email@gmail.com"
-           mb={12}
-           value={fromEmail}
-          onChange={(e) => setFromEmail(e.target.value)}
-           type="email"
-            required
-          />
+          {/*<TextInput*/}
+          {/*label="Sender Email"*/}
+          {/* placeholder="senders.email@gmail.com"*/}
+          {/* mb={12}*/}
+          {/* value={fromEmail}*/}
+          {/*onChange={(e) => setFromEmail(e.target.value)}*/}
+          {/* type="email"*/}
+          {/*  required*/}
+          {/*/>*/}
           <TextInput
               label="Receiver Email"
               placeholder="receivers.email@gmail.com"
