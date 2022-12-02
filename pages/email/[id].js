@@ -97,15 +97,18 @@ export default function Email({ email }) {
   }
 
   const handleScheduleEmail = (props) => {
-    axios.post('/api/emailTasks', { props });
+    axios.post('/api/emailTasks', props);
+
   };
 
   function deleteScheduledEmail(id) {
+    console.log("delete scheduled email")
     axios
       .delete(`/api/emailScheduled/${id}`)
       .then((res) => {
         // setScheduleEmails(emails.filter((email) => email.id !== id));
         console.log("delete email", res.data());
+        res.status(200)
       })
       .catch((err) => {
         console.error('error', err);
@@ -113,7 +116,7 @@ export default function Email({ email }) {
     return true;
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     let emailTemplate = {
       performAt: dateTime,
@@ -129,6 +132,7 @@ export default function Email({ email }) {
     };
 
     console.log(emailTemplate);
+    console.log("we are inside of the handle submit function")
     handleScheduleEmail(emailTemplate);
     setFromEmail("")
     setTo("")
