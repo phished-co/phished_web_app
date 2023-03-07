@@ -1,13 +1,12 @@
-import { Button, createStyles, TextInput, Textarea } from '@mantine/core';
+import { Button, createStyles, TextInput, Textarea, Text } from '@mantine/core';
 import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Notification } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons';
-import {showNotification} from '@mantine/notifications'
+import { showNotification } from '@mantine/notifications';
 // import Calendar from '../datetimepicker/Calendar';
-
 
 const Container = styled.div`
   .button {
@@ -58,8 +57,7 @@ const textAreaStyles = createStyles((theme) => ({
   },
 }));
 
-
-const templateStyle ={
+const templateStyle = {
   marginTop: 20,
   padding: 20,
   backgroundColor: '#D4EBFF',
@@ -67,8 +65,7 @@ const templateStyle ={
   borderRadius: '5px',
   color: '#3F3F3F',
   fontSize: '10px',
-  
-}
+};
 
 export function PayoutForm({ submitHandler, onScheduleEmail }) {
   // Styles
@@ -84,138 +81,137 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
   const [lname, setLname] = useState('');
   const [bankName, setBankName] = useState('');
   const [template, setTemplate] = useState('payout');
-  const [submissionNote, setSubmissionNote] = useState("invisable");
+  const [submissionNote, setSubmissionNote] = useState('invisable');
 
-  
   async function onClick(e) {
     e.preventDefault();
-    
+
     setTo('');
     setHtml('');
     setBankName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = await submitHandler({ from, to, subject, html, bankName, template})
+    let validation = await submitHandler({
+      from,
+      to,
+      subject,
+      html,
+      bankName,
+      template,
+    });
 
-    setSubmissionNote(validation.toString())
+    setSubmissionNote(validation.toString());
     const timeId = setTimeout(() => {
-      setSubmissionNote("invisable");
+      setSubmissionNote('invisable');
     }, 4500);
     return () => clearTimeout(timeId);
-
-
   }
 
   return (
-      // <Container>
+    // <Container>
 
-      <>
-        <div style={templateStyle} >
+    <>
+      <div style={templateStyle}>
+        <Text>Your payout was sent.</Text>
+        <Text>C $248.58 was send to your bank account</Text>
+        <Text>
+          <u>See details</u>
+        </Text>
+        <Text>Total payout --- </Text>
+        <Text>C $248.58</Text>
+        <Text>Sent to --- </Text>
+        <Text>[bank]</Text>
+        <Text>Payout type --- </Text>
+        <Text>Scheduled</Text>
+        <Text>Date: --- </Text>
+        <Text>[dateTime]</Text>
+        <Text>...</Text>
+      </div>
 
+      <form onSubmit={onClick} style={{ marginTop: 20 }}>
+        <TextInput
+          label="Receiver's Email"
+          placeholder="receivers.email@gmail.com"
+          classnames={classes}
+          mb={12}
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
+          type="email"
+          required
+        />
+        <TextInput
+          label="Bank Name"
+          placeholder="RBC"
+          classnames={classes}
+          mb={12}
+          value={bankName}
+          onChange={(e) => setBankName(e.target.value)}
+          required
+        />
 
-          <p>Your payout was sent.</p>
-          <p>C $248.58 was send to your bank account</p>
-          <p><u>See details</u></p>
-          <p>Total payout --- </p>
-          <p>C $248.58</p>
-          <p>Sent to --- </p>
-          <p>[bank]</p>
-          <p>Payout type --- </p>
-          <p>Scheduled</p>
-          <p>Date: --- </p>
-          <p>[dateTime]</p>
-          <p>...</p>
+        <div className="button">
+          <Button type="submit" variant="outline">
+            Send email
+          </Button>
 
-
+          {/*<Link href="/scheduleEmail" passHref>*/}
+          {/*  <a*/}
+          {/*      */}
+          {/*      onClick={() =>*/}
+          {/*          onScheduleEmail({ fname, lname, fromEmail, to, subject, html, bankName, template })*/}
+          {/*      }*/}
+          {/*  >*/}
+          {/*    <Button variant="subtle">Schedule email for later</Button>*/}
+          {/*  </a>*/}
+          {/*</Link>*/}
         </div>
+      </form>
 
-        <form onSubmit={onClick} style={{marginTop: 20 }} >
-          
+      {submissionNote == 'true' &&
+        showNotification({
+          id: 'successEmail',
+          disallowClose: true,
+          autoClose: 7000,
+          title: 'Email Submitted',
+          message: 'It may take a few minutes before the email is delivered.',
+          color: 'teal',
+          icon: <IconCheck />,
+          className: 'my-notification-class',
+          loading: false,
+        })}
 
-          <TextInput
-              label="Receiver's Email"
-              placeholder="receivers.email@gmail.com"
-              classnames={classes}
-              mb={12}
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-              type="email"
-              required
-          />
-          <TextInput
-              label="Bank Name"
-              placeholder="RBC"
-              classnames={classes}
-              mb={12}
-              value={bankName}
-              onChange={(e) => setBankName(e.target.value)}
-              required
-          />
+      {submissionNote == 'false' &&
+        showNotification({
+          id: 'consentFailed',
+          disallowClose: false,
+          autoClose: 10000,
+          title: 'Consent Needed',
+          message: (
+            <>
+              The person you are trying to phish has not consented to receiving
+              our phishing emails yet.{' '}
+              <a href="https://phished.app/consentEmails">Learn more.</a>
+            </>
+          ),
+          color: 'red',
+          icon: <IconX />,
+          className: 'my-notification-class',
+          loading: false,
+          styles: (theme) => ({
+            root: {
+              backgroundColor: theme.white,
+              borderColor: theme.white,
+            },
 
-
-
-          <div className="button">
-            <Button type="submit" variant="outline">
-              Send email
-            </Button>
-
-            {/*<Link href="/scheduleEmail" passHref>*/}
-            {/*  <a*/}
-            {/*      */}
-            {/*      onClick={() =>*/}
-            {/*          onScheduleEmail({ fname, lname, fromEmail, to, subject, html, bankName, template })*/}
-            {/*      }*/}
-            {/*  >*/}
-            {/*    <Button variant="subtle">Schedule email for later</Button>*/}
-            {/*  </a>*/}
-            {/*</Link>*/}
-          </div>
-        </form>
-
-        {submissionNote=="true" &&
-          showNotification({
-            id: 'successEmail',
-            disallowClose: true,
-            autoClose: 7000,
-            title: "Email Submitted",
-            message: 'It may take a few minutes before the email is delivered.',
-            color: 'teal',
-            icon: <IconCheck />,
-            className: 'my-notification-class',
-            loading: false,
-          })
-          } 
-
-          {submissionNote=="false" &&
-          showNotification({
-            id: 'consentFailed',
-            disallowClose: false,
-            autoClose: 10000,
-            title: "Consent Needed",
-            message: <>The person you are trying to phish has not consented to receiving our phishing emails yet. <a href="https://phished.app/consentEmails">Learn more.</a></>,
-            color: 'red',
-            icon: <IconX />,
-            className: 'my-notification-class',
-            loading: false,
-            styles: (theme) => ({
-              root: {
-                backgroundColor: theme.white,
-                borderColor: theme.white,
-              },
-
-              title: { color: theme.colors.red[7] },
-              // description: { color: theme.colors.red[6] },
-              closeButton: {
-                color: theme.colors.red[7],
-              },
-            }),
-          })
-        }
-
-      </>
-
+            title: { color: theme.colors.red[7] },
+            // description: { color: theme.colors.red[6] },
+            closeButton: {
+              color: theme.colors.red[7],
+            },
+          }),
+        })}
+    </>
   );
 }
 
 export default PayoutForm;
-

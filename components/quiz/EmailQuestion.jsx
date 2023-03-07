@@ -1,5 +1,5 @@
-import { Button, Divider, Text, Title } from "@mantine/core"
-import styled from "styled-components"
+import { Button, Divider, Text, Title } from '@mantine/core';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   ${'' /* outline: 2px solid red; */}
@@ -71,7 +71,7 @@ const Wrapper = styled.div`
     border-radius: 24px;
     margin-top: 2rem;
   }
-`
+`;
 
 const Circle = styled.div`
   height: 3.5rem;
@@ -80,98 +80,192 @@ const Circle = styled.div`
   border-radius: 8rem;
   display: block;
   margin-right: 2rem;
-`
+`;
 
-export default function EmailQuestion({ questionIds, questionNum, handleHover, handleLeave }) {
-  let questions = questionIds.map(question => {
+export default function EmailQuestion({
+  questionIds,
+  questionNum,
+  handleHover,
+  handleLeave,
+}) {
+  let questions = questionIds.map((question) => {
     return (
       <>
-        <div className='title'>
+        <div className="title">
           <Title key={question.id}>{question.name}</Title>
           <Text key={question.tip}>{question.tip}</Text>
         </div>
-        <div className='email'>
-          <div className='header'>
+        <div className="email">
+          <div className="header">
             <Circle />
-            <span className='address'>
+            <span className="address">
               <Text key={question.from}>{question.from}</Text>
               <Text key={question.email}>{question.email}</Text>
             </span>
           </div>
         </div>
       </>
-    )
-  })
+    );
+  });
 
   let emailBody = () => {
-
     if (questionIds[questionNum].id === 1) {
-      return <>
-        <p>{questionIds[questionNum].id}</p>
-        <p>Here are the photos from <span className='link' onMouseEnter={handleHover} onMouseLeave={handleLeave}>last vacation!</span></p>
-      </>
+      return (
+        <>
+          <Text>{questionIds[questionNum].id}</Text>
+          <Text>
+            Here are the photos from{' '}
+            <span
+              className="link"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+            >
+              last vacation!
+            </span>
+          </Text>
+        </>
+      );
     } else if (questionIds[questionNum].id === 2) {
-      return <>
-        {/* <p>{questionIds[questionNum].id}</p> */}
-        <p>Please double check the attachment to confirm your order!</p>
-        <img src="/pdfimg.png" alt="icon for a pdf" />
-      </>
+      return (
+        <>
+          {/* <Text>{questionIds[questionNum].id}</Text> */}
+          <Text>Please double check the attachment to confirm your order!</Text>
+          <img src="/pdfimg.png" alt="icon for a pdf" />
+        </>
+      );
     } else if (questionIds[questionNum].id === 3) {
-      let today = new Date()
-      let date = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear()
+      let today = new Date();
+      let date =
+        today.getDate() +
+        '-' +
+        parseInt(today.getMonth() + 1) +
+        '-' +
+        today.getFullYear();
 
-      return <>
-        <p>Your Google account password was changed on {date}.</p>
-        <p><strong>If you did this, </strong>you can safely disregard this email.</p>
-        <p><strong>If you didn't do this, </strong>please <span className="link" onMouseEnter={handleHover} onMouseLeave={handleLeave}>secure your account</span>.</p>
-        <p>Thanks, </p>
-        <p>The Google Security Team</p>
-      </>
+      return (
+        <>
+          <Text>Your Google account password was changed on {date}.</Text>
+          <Text>
+            <strong>If you did this, </strong>you can safely disregard this
+            email.
+          </Text>
+          <Text>
+            <strong>If you didn't do this, </strong>please{' '}
+            <span
+              className="link"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+            >
+              secure your account
+            </span>
+            .
+          </Text>
+          <Text>Thanks, </Text>
+          <Text>The Google Security Team</Text>
+        </>
+      );
     } else if (questionIds[questionNum].id === 4) {
-      return <><h1>We noticed a login to your account from a new device. Was this you?</h1>
-        <Divider mt={8} mb={8} />
-        <p><strong>If this was you</strong></p>
-        <p>You can ignore this message. There's no need to take any action.</p>
-        <p><strong>If this wasn't you</strong></p>
-        <p>Complete these steps now to protect your account.</p>
-        <ul>
-          <li>Change your password. You'll be logged out of all your active Twitter sessions except the one you're using at this time.</li>
-          <li><span className='link' onMouseEnter={handleHover} onMouseLeave={handleLeave}>Learn more</span> about revoking access to to any unfamiliar apps.</li>
-        </ul>
-      </>
+      return (
+        <>
+          <h1>
+            We noticed a login to your account from a new device. Was this you?
+          </h1>
+          <Divider mt={8} mb={8} />
+          <Text>
+            <strong>If this was you</strong>
+          </Text>
+          <Text>
+            You can ignore this message. There's no need to take any action.
+          </Text>
+          <Text>
+            <strong>If this wasn't you</strong>
+          </Text>
+          <Text>Complete these steps now to protect your account.</Text>
+          <ul>
+            <li>
+              Change your password. You'll be logged out of all your active
+              Twitter sessions except the one you're using at this time.
+            </li>
+            <li>
+              <span
+                className="link"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleLeave}
+              >
+                Learn more
+              </span>{' '}
+              about revoking access to to any unfamiliar apps.
+            </li>
+          </ul>
+        </>
+      );
     } else if (questionIds[questionNum].id === 5) {
-      let today = new Date()
-      let date = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear()
+      let today = new Date();
+      let date =
+        today.getDate() +
+        '-' +
+        parseInt(today.getMonth() + 1) +
+        '-' +
+        today.getFullYear();
 
-      return <>
-        <div className='red-banner'>
-          <h1>Someone has your password</h1>
-        </div>
-        <p>Someone just used your password to try to sign in to your Google Account.</p>
-        <p>Information:</p>
-        <p>{date}</p>
-        <p>Firefox browser</p>
-        <p>Google stopped this sign-in attempt. You should change your password immediately.</p>
-        <div className='btn'><span className="link" onMouseEnter={handleHover} onMouseLeave={handleLeave}>CHANGE PASSWORD</span></div>
-        <p>Best, </p>
-        <p>The Mail Team</p>
-      </>
+      return (
+        <>
+          <div className="red-banner">
+            <h1>Someone has your password</h1>
+          </div>
+          <Text>
+            Someone just used your password to try to sign in to your Google
+            Account.
+          </Text>
+          <Text>Information:</Text>
+          <Text>{date}</Text>
+          <Text>Firefox browser</Text>
+          <Text>
+            Google stopped this sign-in attempt. You should change your password
+            immediately.
+          </Text>
+          <div className="btn">
+            <span
+              className="link"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+            >
+              CHANGE PASSWORD
+            </span>
+          </div>
+          <Text>Best, </Text>
+          <Text>The Mail Team</Text>
+        </>
+      );
     } else if (questionIds[questionNum].id === 6) {
-      return <>
-        <div className='docs'>
-          <h1>Abby M shared a document</h1>
-          <p>Abby M (abbym@gmail.com) has invited you to <strong>edit </strong> the following document:</p>
-          <div className="other-btn"><span className='link' onMouseEnter={handleHover} onMouseLeave={handleLeave}>Open</span></div>
-        </div>
-      </>
+      return (
+        <>
+          <div className="docs">
+            <h1>Abby M shared a document</h1>
+            <Text>
+              Abby M (abbym@gmail.com) has invited you to <strong>edit </strong>{' '}
+              the following document:
+            </Text>
+            <div className="other-btn">
+              <span
+                className="link"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleLeave}
+              >
+                Open
+              </span>
+            </div>
+          </div>
+        </>
+      );
     }
-  }
+  };
 
-  return <Wrapper>
-    {/* {questionNum} */}
-    {questions[questionNum]}
-    <div className='email-body'>
-      {emailBody()}
-    </div>
-  </Wrapper>
+  return (
+    <Wrapper>
+      {/* {questionNum} */}
+      {questions[questionNum]}
+      <div className="email-body">{emailBody()}</div>
+    </Wrapper>
+  );
 }

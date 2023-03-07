@@ -1,12 +1,9 @@
-
 import NextNProgress from '../components/LoadingBar/LoadingBar';
 import axios from 'axios';
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Text, Title, Divider, Accordion } from '@mantine/core';
-
-
 
 const Container = styled.div`
   // max-width: 420px;
@@ -18,7 +15,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  
 
   .box {
     border: 1px solid #459cfb;
@@ -71,13 +67,14 @@ export default function Consent() {
         speed={500}
         options={{ showSpinner: false }}
       />
-        <h1>Thank you for your consent!</h1>
+      <h1>Thank you for your consent!</h1>
       <div className="box">
-        <p>
-          We are reaching out to the sender who requested your phishing education.
-        </p>
-        <p>You can now close this window.</p>
-        <p>Thank you.</p>
+        <Text>
+          We are reaching out to the sender who requested your phishing
+          education.
+        </Text>
+        <Text>You can now close this window.</Text>
+        <Text>Thank you.</Text>
       </div>
     </Container>
   );

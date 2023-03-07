@@ -2,7 +2,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Text} from "@mantine/core";
+import { Text } from '@mantine/core';
 import NextNProgress from '../components/LoadingBar/LoadingBar';
 
 const Container = styled.div`
@@ -15,7 +15,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  
 
   .box {
     border: 1px solid #459cfb;
@@ -44,23 +43,19 @@ const Container = styled.div`
 `;
 
 export default function About() {
+  const router = useRouter();
+  const consentId = router.query.consentId;
 
+  useEffect(() => {
+    if (!consentId) return;
+    const postData = async () => {
+      const res = await axios.post('/api/emailSubscription', { id: consentId });
+    };
+    postData();
+  }, [consentId]);
 
-    const router = useRouter()
-    const consentId = router.query.consentId
-
-    useEffect(() => {
-        if(!consentId) return;
-        const postData = async () => {
-            const res = await axios.post('/api/emailSubscription', {id: consentId});
-        }
-        postData()
-    }, [consentId])
-    
-
-
-    return (
-      <Container>
+  return (
+    <Container>
       <NextNProgress
         color="#459CFB"
         startPosition={0.3}
@@ -71,15 +66,15 @@ export default function About() {
         speed={500}
         options={{ showSpinner: false }}
       />
-        <h1>Successfully Unsubscribed</h1>
+      <h1>Successfully Unsubscribed</h1>
       <div className="box">
-        <p>
-          We are sad to see you go. We hope you enjoyed your time with us. 
-        </p>
-        <p>If you have any feedback, please let us know. </p>
-        <p> You can now close this window.</p>
-        <p>Thank you.</p>
+        <Text>
+          We are sad to see you go. We hope you enjoyed your time with us.
+        </Text>
+        <Text>If you have any feedback, please let us know. </Text>
+        <Text> You can now close this window.</Text>
+        <Text>Thank you.</Text>
       </div>
     </Container>
-    );
+  );
 }

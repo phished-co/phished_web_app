@@ -1,13 +1,12 @@
-import { Button, createStyles, TextInput, Textarea } from '@mantine/core';
+import { Button, createStyles, TextInput, Textarea, Text } from '@mantine/core';
 import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Notification } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons';
-import {showNotification} from '@mantine/notifications'
+import { showNotification } from '@mantine/notifications';
 // import Calendar from '../datetimepicker/Calendar';
-
 
 const Container = styled.div`
   .button {
@@ -58,9 +57,7 @@ const textAreaStyles = createStyles((theme) => ({
   },
 }));
 
-
-
-const templateStyle ={
+const templateStyle = {
   marginTop: 20,
   padding: 20,
   backgroundColor: '#D4EBFF',
@@ -68,11 +65,7 @@ const templateStyle ={
   borderRadius: '5px',
   color: '#3F3F3F',
   fontSize: '10px',
-
-
-
-
-}
+};
 
 export function DocsForm({ submitHandler, onScheduleEmail }) {
   // Styles
@@ -88,9 +81,7 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
   const [lname, setLname] = useState('');
   const [bodyName, setBodyName] = useState('');
   const [template, setTemplate] = useState('docs');
-  const [submissionNote, setSubmissionNote] = useState("invisable");
-
-
+  const [submissionNote, setSubmissionNote] = useState('invisable');
 
   async function onClick(e) {
     e.preventDefault();
@@ -100,108 +91,117 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
     setBodyName('');
 
     let from = `${fname} ${lname} ${fromEmail}`;
-    let validation = await submitHandler({ from, to, subject, html, bodyName, template})
+    let validation = await submitHandler({
+      from,
+      to,
+      subject,
+      html,
+      bodyName,
+      template,
+    });
 
-    setSubmissionNote(validation.toString())
+    setSubmissionNote(validation.toString());
     const timeId = setTimeout(() => {
-      setSubmissionNote("invisable");
+      setSubmissionNote('invisable');
     }, 4500);
     return () => clearTimeout(timeId);
-
-
   }
 
   return (
-      // <Container>
+    // <Container>
 
-      <>
-        <div style={templateStyle} >
-          <p>[Target's friend's name] has invited you to collaborate on the following document:</p>
-          <p><u>Open in Docs</u></p>
+    <>
+      <div style={templateStyle}>
+        <Text>
+          [Target's friend's name] has invited you to collaborate on the
+          following document:
+        </Text>
+        <Text>
+          <u>Open in Docs</u>
+        </Text>
+      </div>
+
+      <form onSubmit={onClick} style={{ marginTop: 20 }}>
+        <TextInput
+          label="Receiver's Email"
+          placeholder="receivers.email@gmail.com"
+          classnames={classes}
+          mb={12}
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
+          type="email"
+          required
+        />
+        <TextInput
+          label="Friend's Name"
+          placeholder="Sam"
+          classnames={classes}
+          mb={12}
+          value={bodyName}
+          onChange={(e) => setBodyName(e.target.value)}
+          required
+        />
+
+        <div className="button">
+          <Button type="submit" variant="outline">
+            Send email
+          </Button>
+
+          {/*<Link href="/scheduleEmail" passHref>*/}
+          {/*  <a*/}
+          {/*      onClick={() =>*/}
+          {/*          onScheduleEmail({ fname, lname, fromEmail, to, subject, html, bodyName, template })*/}
+          {/*      }*/}
+          {/*  >*/}
+          {/*    <Button variant="subtle">Save email for later</Button>*/}
+          {/*  </a>*/}
+          {/*</Link>*/}
         </div>
+      </form>
+      {submissionNote == 'true' &&
+        showNotification({
+          id: 'successEmail',
+          disallowClose: true,
+          autoClose: 5000,
+          title: 'Email Submitted',
+          message: 'It may take a few minutes before the email is delivered.',
+          color: 'teal',
+          icon: <IconCheck />,
+          className: 'my-notification-class',
+          loading: false,
+        })}
 
-        <form onSubmit={onClick} style={{marginTop: 20 }} >
+      {submissionNote == 'false' &&
+        showNotification({
+          id: 'consentFailed',
+          disallowClose: false,
+          autoClose: 10000,
+          title: 'Consent Needed',
+          message: (
+            <>
+              The person you are trying to phish has not consented to receiving
+              our phishing emails yet.{' '}
+              <a href="https://phished.app/consentEmails">Learn more.</a>
+            </>
+          ),
+          color: 'red',
+          icon: <IconX />,
+          className: 'my-notification-class',
+          loading: false,
+          styles: (theme) => ({
+            root: {
+              backgroundColor: theme.white,
+              borderColor: theme.white,
+            },
 
-          <TextInput
-              label="Receiver's Email"
-              placeholder="receivers.email@gmail.com"
-              classnames={classes}
-              mb={12}
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-              type="email"
-              required
-          />
-          <TextInput
-              label="Friend's Name"
-              placeholder="Sam"
-              classnames={classes}
-              mb={12}
-              value={bodyName}
-              onChange={(e) => setBodyName(e.target.value)}
-              required
-          />
-
-
-
-          <div className="button">
-            <Button type="submit" variant="outline">
-              Send email
-            </Button>
-
-            {/*<Link href="/scheduleEmail" passHref>*/}
-            {/*  <a*/}
-            {/*      onClick={() =>*/}
-            {/*          onScheduleEmail({ fname, lname, fromEmail, to, subject, html, bodyName, template })*/}
-            {/*      }*/}
-            {/*  >*/}
-            {/*    <Button variant="subtle">Save email for later</Button>*/}
-            {/*  </a>*/}
-            {/*</Link>*/}
-          </div>
-        </form>
-        {submissionNote=="true" &&
-          showNotification({
-            id: 'successEmail',
-            disallowClose: true,
-            autoClose: 5000,
-            title: "Email Submitted",
-            message: 'It may take a few minutes before the email is delivered.',
-            color: 'teal',
-            icon: <IconCheck />,
-            className: 'my-notification-class',
-            loading: false,
-          })
-          } 
-
-          {submissionNote=="false" &&
-          showNotification({
-            id: 'consentFailed',
-            disallowClose: false,
-            autoClose: 10000,
-            title: "Consent Needed",
-            message: <>The person you are trying to phish has not consented to receiving our phishing emails yet. <a href="https://phished.app/consentEmails">Learn more.</a></>,
-            color: 'red',
-            icon: <IconX />,
-            className: 'my-notification-class',
-            loading: false,
-            styles: (theme) => ({
-              root: {
-                backgroundColor: theme.white,
-                borderColor: theme.white,
-              },
-
-              title: { color: theme.colors.red[7] },
-              // description: { color: theme.colors.red[6] },
-              closeButton: {
-                color: theme.colors.red[7],
-              },
-            }),
-          })
-        }
-
-      </>
-
+            title: { color: theme.colors.red[7] },
+            // description: { color: theme.colors.red[6] },
+            closeButton: {
+              color: theme.colors.red[7],
+            },
+          }),
+        })}
+    </>
   );
 }
 

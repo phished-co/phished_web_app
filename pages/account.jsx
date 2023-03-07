@@ -9,42 +9,42 @@ import NextNProgress from '../components/LoadingBar/LoadingBar';
 import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Text } from '@mantine/core';
 
 export default function Home() {
   const { data: session } = useSession();
   // console.log(session);
 
+  const handleSendEmail = async (emailProperties) => {
+    if (session) {
+      // checking for consent, if it exist send the email
+      const consent = await axios.get(
+        `/api/consentData?to=${emailProperties.to}&creator=${session.user.email}`
+      );
 
-      const handleSendEmail = async (emailProperties) => {
-        if (session) {
+      //if there is consent send the email
 
-          // checking for consent, if it exist send the email
-          const consent = await axios.get(
-            `/api/consentData?to=${emailProperties.to}&creator=${session.user.email}`
-          );
-
-            //if there is consent send the email
-          
-           if (consent.data.isConsented && emailProperties.template !== "consent" ) {
-             await axios.post('/api/emailSent', {
-               ...emailProperties,
-               replyTo: 'phishedapp@gmail.com',
-               creatorEmail: session.user.email,
-               consentId: consent.data.id
-             });
-           }
-        return consent.data.isConsented;
-      };
+      if (consent.data.isConsented && emailProperties.template !== 'consent') {
+        await axios.post('/api/emailSent', {
+          ...emailProperties,
+          replyTo: 'phishedapp@gmail.com',
+          creatorEmail: session.user.email,
+          consentId: consent.data.id,
+        });
+      }
+      return consent.data.isConsented;
     }
-    
-    const handleConsentEmail = async (emailProperties) => {
-      if (session) {
-      const res = await axios.post('/api/consent', { ...emailProperties,
+  };
+
+  const handleConsentEmail = async (emailProperties) => {
+    if (session) {
+      const res = await axios.post('/api/consent', {
+        ...emailProperties,
         replyTo: 'phishedapp@gmail.com',
         creatorEmail: session.user.email,
       });
       return res.data;
-    };
+    }
   };
 
   const handleScheduleEmail = (props) => {
