@@ -30,7 +30,8 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      // text: 'Chart.js Line Chart',
+      text: 'Line Chart',
     },
   },
 };

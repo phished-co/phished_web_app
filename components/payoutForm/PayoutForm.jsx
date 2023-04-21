@@ -114,7 +114,7 @@ export function PayoutForm({ submitHandler, onScheduleEmail }) {
 
 
           <p>Your payout was sent.</p>
-          <p>C $248.58 was send to your bank account</p>
+          <p>C $248.58 was sent to your bank account</p>
           <p><u>See details</u></p>
           <p>Total payout --- </p>
           <p>C $248.58</p>
