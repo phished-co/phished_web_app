@@ -308,7 +308,7 @@ const ResultPage = () =>{
           <Text>
             Try until you get it all right! The more you practice, the safer you are from phishing attacks.
             <br />
-            Learn more about how to protect yourself and loved ones. <HoverLink><a href="https://www.phished.app/learn">Click Here</a></HoverLink>
+            Learn more about how to protect yourself and loved ones. <HoverLink><a href="https://phished.up.railway.app/learn">Click Here</a></HoverLink>
           </Text>
             
           <Button type='null' onClick={resetQuestion}>Try Again</Button>

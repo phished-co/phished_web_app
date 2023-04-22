@@ -40,7 +40,7 @@ export default function Privacy() {
       <Text>You are advised to review this privacy policy periodically for any changes. Changes to this privacy policy are effective when they are posted on this page.</Text>
       <Title order={2} mt='md'>Contact Us</Title>
       <Text>If you have any questions about this privacy policy, you can contact us by visiting 
-      <a href='https://phished.app/contact' rel='external nofollow noopener' target='_blank'> phished.app/contact</a>.</Text>
+      <a href='https://phished.up.railway.app/contact' rel='external nofollow noopener' target='_blank'> phished.up.railway.app/contact</a>.</Text>
     </Container>
   )
 }

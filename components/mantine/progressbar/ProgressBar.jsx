@@ -98,7 +98,7 @@ export function ProgressBar() {
             <Checkbox label={
               <>
                 I accept the{' '}
-                <Anchor size="md" href="https://phished.app/terms" target="_blank">
+                <Anchor size="md" href="https://phished.up.railway.app/terms" target="_blank">
                   terms and conditions
                 </Anchor>
               </>
@@ -116,7 +116,7 @@ export function ProgressBar() {
             <Checkbox label={
               <>
                 I accept the{' '}
-                <Anchor size="md" href="https://phished.app/privacy" target="_blank">
+                <Anchor size="md" href="https://phished.up.railway.app/privacy" target="_blank">
                   privacy policy
                 </Anchor>
               </>
@@ -129,7 +129,7 @@ export function ProgressBar() {
               id='terms'
               onClick={() => { terms ? setTerms(false) : setTerms(true) }}
             />
-            <label htmlFor='terms'> I agree to the <Anchor href="https://phished.app/terms" target="_blank">terms and agreements</Anchor></label>
+            <label htmlFor='terms'> I agree to the <Anchor href="https://phished.up.railway.app/terms" target="_blank">terms and agreements</Anchor></label>
           </Container>
           <Container>
             <input
@@ -138,7 +138,7 @@ export function ProgressBar() {
               id='privacy'
               onClick={() => { privacy ? setPrivacy(false) : setPrivacy(true) }}
             />
-            <label htmlFor='privacy'> I agree to the <Anchor href="https://phished.app/privacy" target="_blank">privacy policy</Anchor></label>
+            <label htmlFor='privacy'> I agree to the <Anchor href="https://phished.up.railway.app/privacy" target="_blank">privacy policy</Anchor></label>
           </Container>
         </Stepper.Step>
 

@@ -48,7 +48,7 @@ export default function Privacy() {
           <p><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
         </li>
         <li>
-          <p><strong>Website</strong> refers to Phished, accessible from <a href="https://www.phished.app" rel="external nofollow noopener" target="_blank">https://www.phished.app</a></p>
+          <p><strong>Website</strong> refers to Phished, accessible from <a href="https://phished.up.railway.app/" rel="external nofollow noopener" target="_blank">https://phished.up.railway.app/</a></p>
         </li>
         <li>
           <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
@@ -96,7 +96,7 @@ export default function Privacy() {
       <Title order={2} mt={8}>Contact Us</Title>
       <Text>If you have any questions about these Terms and Conditions, You can contact us:</Text>
       <ul>
-        <li>By visiting this page on our website: <a href="https://phished.app/contact" rel="external nofollow noopener" target="_blank">https://phished.app/contact</a></li>
+        <li>By visiting this page on our website: <a href="https://phished.up.railway.app/contact" rel="external nofollow noopener" target="_blank">https://phished.up.railway.app/contact</a></li>
       </ul>
     </Container>
   )

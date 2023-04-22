@@ -180,7 +180,7 @@ export function DocsForm({ submitHandler, onScheduleEmail }) {
             disallowClose: false,
             autoClose: 10000,
             title: "Consent Needed",
-            message: <>The person you are trying to phish has not consented to receiving our phishing emails yet. <a href="https://phished.app/consentEmails">Learn more.</a></>,
+            message: <>The person you are trying to phish has not consented to receiving our phishing emails yet. <a href="https://phished.up.railway.app/consentEmails">Learn more.</a></>,
             color: 'red',
             icon: <IconX />,
             className: 'my-notification-class',
