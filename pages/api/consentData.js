@@ -73,7 +73,7 @@ export default async function handler(req, res) {
       
 
       /* -- Notification Emails Link Destination---*/
-      let websiteLink = `https://phished.app/`        //Deploymnt
+      let websiteLink = `https://phished.up.railway.app/`        //Deploymnt
       // let websiteLink = `http://localhost:3000/`   //Localhost
 
       //Template Connection

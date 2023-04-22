@@ -115,7 +115,7 @@ export default function Article() {
           <br />
           —
           <br />
-          Worried a family member might click on a phishing link? <a href='https://phished.app/account'><HoverLink>Send them a phishing email</HoverLink></a> with our free tool!
+          Worried a family member might click on a phishing link? <a href='https://phished.up.railway.app/account'><HoverLink>Send them a phishing email</HoverLink></a> with our free tool!
 
         </Text>
       </TextContainer>
